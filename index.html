@@ -317,6 +317,95 @@
       white-space: nowrap !important;
     }
 
+
+    /* ==================== 3 ATMOSPHERIC THEMES ==================== */
+    /* Theme 1: Oxford Crimson (Default) */
+    :root, [data-theme="crimson"] {
+      --theme-bg-body: #0c0406;
+      --theme-bg-card: #140609;
+      --theme-border: rgba(255, 255, 255, 0.08);
+      --theme-accent: #e11d48;
+      --theme-accent-glow: rgba(225, 29, 72, 0.45);
+    }
+
+    /* Theme 2: Vintage Parchment (Antik Kitaplık - Warm Espresso & Amber) */
+    [data-theme="parchment"] {
+      --theme-bg-body: #110d0b;
+      --theme-bg-card: #1a1410;
+      --theme-border: rgba(245, 158, 11, 0.15);
+      --theme-accent: #d97706;
+      --theme-accent-glow: rgba(217, 119, 6, 0.45);
+    }
+    [data-theme="parchment"] body {
+      background-color: #110d0b !important;
+      color: #f4ece1 !important;
+    }
+    [data-theme="parchment"] .bg-\[\#140609\] {
+      background-color: #1a1410 !important;
+      border-color: rgba(245, 158, 11, 0.14) !important;
+    }
+    [data-theme="parchment"] .bg-\[\#17080c\], [data-theme="parchment"] .bg-\[\#1c0a10\] {
+      background: linear-gradient(180deg, #221914 0%, #140e0b 100%) !important;
+    }
+    [data-theme="parchment"] .bg-rose-900\/60, [data-theme="parchment"] .btn-primary-glow {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #92400e 100%) !important;
+      border-color: rgba(245, 158, 11, 0.5) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(217, 119, 6, 0.45) !important;
+    }
+    [data-theme="parchment"] .text-rose-300 { color: #fde68a !important; }
+    [data-theme="parchment"] .text-rose-400 { color: #f59e0b !important; }
+    [data-theme="parchment"] .border-rose-500\/30, [data-theme="parchment"] .border-rose-500\/40 {
+      border-color: rgba(245, 158, 11, 0.35) !important;
+    }
+
+    /* Theme 3: Emerald Sanctuary (Zümrüt Odak - Deep Graphite & Emerald Mint) */
+    [data-theme="emerald"] {
+      --theme-bg-body: #050f0c;
+      --theme-bg-card: #091913;
+      --theme-border: rgba(16, 185, 129, 0.15);
+      --theme-accent: #059669;
+      --theme-accent-glow: rgba(5, 150, 105, 0.45);
+    }
+    [data-theme="emerald"] body {
+      background-color: #050f0c !important;
+      color: #e8f5f0 !important;
+    }
+    [data-theme="emerald"] .bg-\[\#140609\] {
+      background-color: #091913 !important;
+      border-color: rgba(16, 185, 129, 0.14) !important;
+    }
+    [data-theme="emerald"] .bg-\[\#17080c\], [data-theme="emerald"] .bg-\[\#1c0a10\] {
+      background: linear-gradient(180deg, #0d251d 0%, #06140f 100%) !important;
+    }
+    [data-theme="emerald"] .bg-rose-900\/60, [data-theme="emerald"] .btn-primary-glow {
+      background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%) !important;
+      border-color: rgba(52, 211, 153, 0.5) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(5, 150, 105, 0.45) !important;
+    }
+    [data-theme="emerald"] .text-rose-300 { color: #a7f3d0 !important; }
+    [data-theme="emerald"] .text-rose-400 { color: #34d399 !important; }
+    [data-theme="emerald"] .border-rose-500\/30, [data-theme="emerald"] .border-rose-500\/40 {
+      border-color: rgba(16, 185, 129, 0.35) !important;
+    }
+
+    /* Core Hub Pill Styles */
+    .hub-pill.active {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.5) 0%, rgba(159, 18, 57, 0.65) 100%) !important;
+      border: 1px solid rgba(251, 113, 133, 0.45) !important;
+      color: #ffffff !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(225, 29, 72, 0.3) !important;
+    }
+    [data-theme="parchment"] .hub-pill.active {
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.5) 0%, rgba(180, 83, 9, 0.65) 100%) !important;
+      border-color: rgba(245, 158, 11, 0.45) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(217, 119, 6, 0.3) !important;
+    }
+    [data-theme="emerald"] .hub-pill.active {
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.5) 0%, rgba(4, 120, 87, 0.65) 100%) !important;
+      border-color: rgba(52, 211, 153, 0.45) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(5, 150, 105, 0.3) !important;
+    }
+
   </style>
 </head>
 <body class="text-slate-100 min-h-screen flex flex-col antialiased selection:bg-rose-600 selection:text-white relative">
@@ -410,32 +499,59 @@
         </div>
       </div>
 
-      <!-- Segmented Mode Switcher (Clean, Zero Tacky Emojis) -->
-      <div class="flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/[0.07] text-xs font-medium overflow-x-auto max-w-full">
-        <button onclick="switchTab('flashcards')" id="tab-flashcards" class="tab-btn active px-3 sm:px-3.5 py-1.5 rounded-lg bg-rose-900/60 border border-rose-500/30 text-white font-medium transition shrink-0">
-          Kartlar
-        </button>
-        <button onclick="switchTab('cloze')" id="tab-cloze" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
-          Boşluk Doldurma
-        </button>
-        <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
-          Test
-        </button>
-        <button onclick="switchTab('match')" id="tab-match" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
-          Eşleştirme
-        </button>
-        <button onclick="switchTab('dict')" id="tab-dict" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
-          Sözlük
-        </button>
-        <button onclick="switchTab('reading')" id="tab-reading" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
-          Okuma Lab
-        </button>
-        <button onclick="switchTab('exam')" id="tab-exam" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0 flex items-center gap-1">
-          <span>🏆</span> <span>Deneme Sınavı</span>
-        </button>
-        <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
-          Gramer
-        </button>
+      <!-- Simplified 3-Hub Navigation System (Kaybolmayan Sezgisel Arayüz) -->
+      <div class="flex flex-col gap-1.5 shrink-0">
+        <!-- Level 1: 3 Core Hubs -->
+        <div class="flex items-center gap-1 bg-black/50 p-1 rounded-xl border border-white/[0.08] text-xs font-semibold">
+          <button type="button" onclick="switchHub('learn')" id="hubBtn-learn" class="hub-pill active px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap active:scale-95 text-white">
+            <span>🧠</span> <span>Öğren & Keşfet</span>
+          </button>
+          <button type="button" onclick="switchHub('practice')" id="hubBtn-practice" class="hub-pill px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95">
+            <span>🎮</span> <span>Pratik & Oyun</span>
+          </button>
+          <button type="button" onclick="switchHub('arena')" id="hubBtn-arena" class="hub-pill px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95">
+            <span>🏆</span> <span>Sınav & Arena</span>
+          </button>
+        </div>
+
+        <!-- Level 2: Sub-pills for Active Hub -->
+        <div class="flex items-center gap-1 bg-black/30 p-1 rounded-lg border border-white/[0.05] text-xs overflow-x-auto scrollbar-none">
+          <!-- Hub: Learn Sub-pills -->
+          <div id="subHub-learn" class="flex items-center gap-1">
+            <button onclick="switchTab('flashcards')" id="tab-flashcards" class="tab-btn active px-2.5 sm:px-3 py-1 rounded-md text-white font-medium transition shrink-0 whitespace-nowrap">
+              🃏 Kartlar
+            </button>
+            <button onclick="switchTab('dict')" id="tab-dict" class="tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
+              📚 Sözlük
+            </button>
+            <button onclick="switchTab('reading')" id="tab-reading" class="tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
+              📖 Okuma Labı
+            </button>
+          </div>
+
+          <!-- Hub: Practice Sub-pills -->
+          <div id="subHub-practice" class="hidden flex items-center gap-1">
+            <button onclick="switchTab('cloze')" id="tab-cloze" class="tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
+              ✍️ Boşluk Doldurma
+            </button>
+            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
+              🎯 Test
+            </button>
+            <button onclick="switchTab('match')" id="tab-match" class="tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
+              🔄 Eşleştirme & Synonym
+            </button>
+          </div>
+
+          <!-- Hub: Arena Sub-pills -->
+          <div id="subHub-arena" class="hidden flex items-center gap-1">
+            <button onclick="switchTab('exam')" id="tab-exam" class="tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
+              🏆 Deneme Sınavı
+            </button>
+            <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
+              📋 Gramer & Preposition
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Audio Voice & Zen Toggle -->
@@ -445,6 +561,11 @@
           <option value="uk">İngiliz (UK)</option>
           <option value="mute">Sessiz</option>
         </select>
+
+        <!-- Theme Switcher Button -->
+        <button onclick="toggleThemeModal()" id="btnThemeToggle" title="Tema Değiştir (🎨)" class="p-2 bg-black/40 hover:bg-white/[0.06] border border-white/[0.08] text-[#d6c7b2] hover:text-white rounded-lg transition flex items-center justify-center text-xs">
+          <span>🎨</span>
+        </button>
 
         <button onclick="toggleZenMode()" title="Zen Odak Modu (F)" class="p-2 bg-black/40 hover:bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white rounded-lg transition flex items-center justify-center">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
@@ -1354,23 +1475,34 @@
       <!-- PANEL 1: OKUMA & AKILLI SORU ÇÖZÜM WORKSTATION -->
       <div id="panel-reading-highlighter" class="space-y-5">
         
-        <!-- Text Level & Preset Selection Bar -->
-        <div class="flex flex-wrap items-center justify-between gap-2 p-2 rounded-2xl bg-[#140609] border border-white/[0.08]">
-          <div class="flex flex-wrap items-center gap-1.5">
-            <span class="text-[11px] font-mono uppercase tracking-wider text-[#d6c7b2]/60 px-2">Metin & Seviye:</span>
-            <button onclick="loadPresetReadingText(0)" id="readingPreset-0" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition btn-primary-glow whitespace-nowrap">
-              <span class="paren-span">B1 • Alışkanlıklar & Zihin</span>
-            </button>
-            <button onclick="loadPresetReadingText(1)" id="readingPreset-1" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06] whitespace-nowrap">
-              <span class="paren-span">B2 • Yapay Zeka & Etik</span>
-            </button>
-            <button onclick="loadPresetReadingText(2)" id="readingPreset-2" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06] whitespace-nowrap">
-              <span class="paren-span">C1 • Küresel İklim Döngüleri</span>
+        <!-- Text Level Filter & Preset Selection Bar -->
+        <div class="space-y-2.5 p-3 rounded-2xl bg-[#140609] border border-white/[0.08]">
+          <!-- Filter Header & CEFR Level Pills -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/[0.06]">
+            <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-[#d6c7b2]/60 px-1 shrink-0">Seviye Filtresi:</span>
+              <button type="button" onclick="filterReadingPresets('ALL')" id="readingFilter-ALL" class="reading-filter-pill px-3 py-1 rounded-lg text-xs font-semibold border transition bg-rose-900/60 border-rose-500/40 text-white shrink-0">
+                Tümü (12)
+              </button>
+              <button type="button" onclick="filterReadingPresets('B1')" id="readingFilter-B1" class="reading-filter-pill px-3 py-1 rounded-lg text-xs font-semibold border transition bg-white/[0.03] border-white/5 text-slate-400 hover:text-white shrink-0">
+                B1 Orta (4)
+              </button>
+              <button type="button" onclick="filterReadingPresets('B2')" id="readingFilter-B2" class="reading-filter-pill px-3 py-1 rounded-lg text-xs font-semibold border transition bg-white/[0.03] border-white/5 text-slate-400 hover:text-white shrink-0">
+                B2 İleri (4)
+              </button>
+              <button type="button" onclick="filterReadingPresets('C1')" id="readingFilter-C1" class="reading-filter-pill px-3 py-1 rounded-lg text-xs font-semibold border transition bg-white/[0.03] border-white/5 text-slate-400 hover:text-white shrink-0">
+                C1 Uzman (4)
+              </button>
+            </div>
+            <button onclick="toggleCustomPasteArea()" id="togglePasteBtn" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition btn-glass-subtle text-[#d6c7b2] flex items-center gap-1.5 whitespace-nowrap shrink-0">
+              <span>📋</span> <span>Kendi Metnini Yapıştır</span>
             </button>
           </div>
-          <button onclick="toggleCustomPasteArea()" id="togglePasteBtn" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition btn-glass-subtle text-[#d6c7b2] flex items-center gap-1.5 whitespace-nowrap">
-            <span>📋</span> <span>Kendi Metnini Yapıştır</span>
-          </button>
+
+          <!-- Dynamic Preset Buttons Container -->
+          <div id="readingPresetsContainer" class="flex flex-wrap items-center gap-1.5 overflow-x-auto py-0.5">
+            <!-- Preset buttons dynamically rendered by JS -->
+          </div>
         </div>
 
         <!-- Custom Paste Area (Collapsible) -->
@@ -1995,6 +2127,68 @@
     </div>
   </div>
 
+
+  <!-- ==================== THEME SWITCHER MODAL ==================== -->
+  <div id="themeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="bg-[#140609] border border-white/[0.08] rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative text-left">
+      <button onclick="toggleThemeModal()" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.05] transition text-sm">
+        ✕
+      </button>
+
+      <div class="space-y-1">
+        <div class="flex items-center gap-2">
+          <span>🎨</span>
+          <h3 class="font-serif-hero text-xl font-bold text-[#fdf6ee]">Atmosferik Temalar</h3>
+        </div>
+        <p class="text-xs text-[#a8998c]">Çalışma modunuza ve ortamınıza uygun renk paletini seçin:</p>
+      </div>
+
+      <div class="space-y-2.5 pt-1">
+        <!-- Theme 1: Crimson -->
+        <button onclick="selectTheme('crimson')" id="themeBtn-crimson" class="theme-card-btn w-full p-3.5 rounded-xl border border-rose-500/50 bg-rose-950/40 text-left flex items-center justify-between transition hover:border-rose-400">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-[#0c0406] border border-rose-500/40 flex items-center justify-center text-sm shadow-inner">
+              🍷
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">Oxford Crimson</div>
+              <div class="text-[11px] text-[#d6c7b2]/70">Derin Asil Bordo & Gece Paleti</div>
+            </div>
+          </div>
+          <span id="themeCheck-crimson" class="text-rose-400 text-sm font-bold">✓</span>
+        </button>
+
+        <!-- Theme 2: Vintage Parchment -->
+        <button onclick="selectTheme('parchment')" id="themeBtn-parchment" class="theme-card-btn w-full p-3.5 rounded-xl border border-white/[0.08] bg-[#1a1410] text-left flex items-center justify-between transition hover:border-amber-500/50">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-[#110d0b] border border-amber-500/40 flex items-center justify-center text-sm shadow-inner">
+              📜
+            </div>
+            <div>
+              <div class="text-xs font-bold text-[#f4ece1]">Vintage Parchment</div>
+              <div class="text-[11px] text-[#a89c8d]">Antik Kitaplık, Parşömen & Amber</div>
+            </div>
+          </div>
+          <span id="themeCheck-parchment" class="hidden text-amber-400 text-sm font-bold">✓</span>
+        </button>
+
+        <!-- Theme 3: Emerald Sanctuary -->
+        <button onclick="selectTheme('emerald')" id="themeBtn-emerald" class="theme-card-btn w-full p-3.5 rounded-xl border border-white/[0.08] bg-[#091913] text-left flex items-center justify-between transition hover:border-emerald-500/50">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-[#050f0c] border border-emerald-500/40 flex items-center justify-center text-sm shadow-inner">
+              🌲
+            </div>
+            <div>
+              <div class="text-xs font-bold text-[#e8f5f0]">Emerald Sanctuary</div>
+              <div class="text-[11px] text-[#8faaa0]">Koyu Grafit & Zümrüt Yeşili</div>
+            </div>
+          </div>
+          <span id="themeCheck-emerald" class="hidden text-emerald-400 text-sm font-bold">✓</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   </main>
 
   <!-- ==================== DAILY STREAK & GOALS MODAL ==================== -->
@@ -2377,6 +2571,7 @@
       updateReverseModeUI();
       updateShuffleModeUI();
       updateDueCountUI();
+      loadSavedTheme();
     }
 
     function saveMemory() {
@@ -2885,18 +3080,87 @@
     }
 
     // ==================== TAB SWITCHER ====================
+    // ==================== 3-HUB FOCUS NAVIGATION SYSTEM ====================
+    const HUB_MAP = {
+      learn: ['flashcards', 'dict', 'reading'],
+      practice: ['cloze', 'quiz', 'match'],
+      arena: ['exam', 'grammar']
+    };
+
+    function switchHub(hubId) {
+      ['learn', 'practice', 'arena'].forEach(h => {
+        const btn = document.getElementById('hubBtn-' + h);
+        const sub = document.getElementById('subHub-' + h);
+        const isActive = (h === hubId);
+        if (btn) {
+          if (isActive) {
+            btn.className = 'hub-pill active px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap active:scale-95 text-white';
+          } else {
+            btn.className = 'hub-pill px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95';
+          }
+        }
+        if (sub) {
+          sub.classList.toggle('hidden', !isActive);
+          if (isActive) sub.classList.add('flex');
+        }
+      });
+
+      const currentTab = getCurrentActiveTab();
+      const tabsInHub = HUB_MAP[hubId] || [];
+      if (!tabsInHub.includes(currentTab)) {
+        switchTab(tabsInHub[0]);
+      }
+    }
+
+    function getCurrentActiveTab() {
+      const tabs = ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'exam', 'grammar'];
+      for (const t of tabs) {
+        const v = document.getElementById('view-' + t);
+        if (v && !v.classList.contains('hidden')) return t;
+      }
+      return 'flashcards';
+    }
+
     function switchTab(tabId) {
+      let targetHub = 'learn';
+      for (const [hub, tabs] of Object.entries(HUB_MAP)) {
+        if (tabs.includes(tabId)) {
+          targetHub = hub;
+          break;
+        }
+      }
+
+      // Update Hub Pill & Sub-Hub Container
+      ['learn', 'practice', 'arena'].forEach(h => {
+        const btn = document.getElementById('hubBtn-' + h);
+        const sub = document.getElementById('subHub-' + h);
+        const isActive = (h === targetHub);
+        if (btn) {
+          if (isActive) {
+            btn.className = 'hub-pill active px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap active:scale-95 text-white';
+          } else {
+            btn.className = 'hub-pill px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95';
+          }
+        }
+        if (sub) {
+          sub.classList.toggle('hidden', !isActive);
+          if (isActive) sub.classList.add('flex');
+        }
+      });
+
+      // Hide all views and reset sub-tab buttons
       ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'exam', 'grammar'].forEach(t => {
         const view = document.getElementById('view-' + t);
         const tab = document.getElementById('tab-' + t);
         if (view) view.classList.add('hidden');
-        if (tab) tab.className = 'tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0';
+        if (tab) tab.className = 'tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap';
       });
 
+      // Activate target view & sub-tab
       const activeView = document.getElementById('view-' + tabId);
       const activeTab = document.getElementById('tab-' + tabId);
       if (activeView) activeView.classList.remove('hidden');
-      if (activeTab) activeTab.className = 'tab-btn active px-3 sm:px-3.5 py-1.5 rounded-lg bg-rose-900/60 border border-rose-500/30 text-white font-medium transition shrink-0';
+      if (activeTab) activeTab.className = 'tab-btn active px-2.5 sm:px-3 py-1 rounded-md bg-rose-900/60 border border-rose-500/30 text-white font-medium transition shrink-0 whitespace-nowrap';
 
       const filterBar = document.getElementById('levelFilterBar');
       if (filterBar) {
@@ -2911,6 +3175,49 @@
       if (tabId === 'reading') initReadingLab();
       if (tabId === 'exam') initExamArena();
       if (tabId === 'grammar') renderGrammarView();
+    }
+
+    // ==================== 3 ATMOSPHERIC THEMES ENGINE ====================
+    function applyTheme(themeName) {
+      const validThemes = ['crimson', 'parchment', 'emerald'];
+      const theme = validThemes.includes(themeName) ? themeName : 'crimson';
+      document.documentElement.setAttribute('data-theme', theme);
+
+      validThemes.forEach(t => {
+        const check = document.getElementById('themeCheck-' + t);
+        const card = document.getElementById('themeBtn-' + t);
+        if (check) check.classList.toggle('hidden', t !== theme);
+        if (card) {
+          if (t === theme) {
+            card.classList.add('ring-2', 'ring-rose-500', 'border-rose-400');
+          } else {
+            card.classList.remove('ring-2', 'ring-rose-500', 'border-rose-400');
+          }
+        }
+      });
+
+      try {
+        localStorage.setItem('voxlearn_theme_v1', theme);
+      } catch(e) {}
+    }
+
+    function selectTheme(themeName) {
+      applyTheme(themeName);
+      toggleThemeModal();
+    }
+
+    function toggleThemeModal() {
+      const m = document.getElementById('themeModal');
+      if (m) m.classList.toggle('hidden');
+    }
+
+    function loadSavedTheme() {
+      try {
+        const saved = localStorage.getItem('voxlearn_theme_v1') || 'crimson';
+        applyTheme(saved);
+      } catch(e) {
+        applyTheme('crimson');
+      }
     }
 
     // ==================== 1. FLASHCARDS MODULE ====================
@@ -4734,185 +5041,1335 @@
       if (countEl) countEl.innerText = dueWords.length;
     }
 
-    // ==================== 12. READING LAB 2.0 & COMPREHENSION WORKSTATION ====================
+// ==================== 12. READING LAB 2.0 & COMPREHENSION WORKSTATION ====================
     const readingPresets = [
+  {
+    "id": "b1-habits",
+    "level": "B1",
+    "shortTitle": "B1 • Alışkanlıklar & Nöroplastisite",
+    "levelBadge": "B1 • Orta Seviye (Intermediate)",
+    "title": "Daily Habits and Neuroplasticity",
+    "text": "Human behavior is largely driven by small, repetitive habits that shape our daily routines. When we perform an action consistently, our brain forms neural pathways that make the task automatic over time. Neuroscientists describe this adaptability as neuroplasticity. Developing a productive mindset begins with manageable steps rather than dramatic changes. For example, reading ten pages of a book every morning or practicing vocabulary for fifteen minutes can yield remarkable long-term results. By understanding how environmental cues trigger our habits, we can intentionally replace unproductive tendencies with constructive practices that foster personal growth and mental resilience.",
+    "questions": [
       {
-        id: "b1-habits",
-        level: "B1",
-        levelBadge: "B1 • Orta Seviye (Intermediate)",
-        title: "The Science of Daily Habits and Mindset",
-        text: "Human behavior is largely driven by small, repetitive habits that shape our daily routines. When we perform an action consistently, our brain forms neural pathways that make the task automatic over time. Psychologists explain that developing a positive mindset begins with manageable steps rather than dramatic changes. For example, reading ten pages of a book every morning or practicing vocabulary for fifteen minutes can yield remarkable long-term results. By understanding how environmental cues trigger our habits, we can intentionally replace unproductive tendencies with constructive practices that foster personal growth and mental resilience.",
-        questions: [
+        "id": 1,
+        "prompt": "What is the primary purpose of the passage?",
+        "options": [
           {
-            id: 1,
-            prompt: "What is the primary purpose of the passage?",
-            options: [
-              { key: "A", text: "To explain how small consistent habits gradually shape automatic behaviors and long-term success." },
-              { key: "B", text: "To argue that only dramatic life changes can lead to psychological improvement." },
-              { key: "C", text: "To criticize modern society for lacking daily routines." },
-              { key: "D", text: "To prove that reading books is the only way to build mental resilience." }
-            ],
-            answer: "A",
-            explanation: "Metnin ana fikri, küçük ve düzenli alışkanlıkların zamanla beyinde otomatik yollar oluşturarak uzun vadeli başarı ve zihinsel direnç sağladığıdır."
+            "key": "A",
+            "text": "To explain how small consistent habits gradually shape automatic behaviors through neuroplasticity."
           },
           {
-            id: 2,
-            prompt: "According to the text, how does the brain make tasks automatic?",
-            options: [
-              { key: "A", text: "By eliminating all emotional reactions." },
-              { key: "B", text: "By forming neural pathways through consistent repetition." },
-              { key: "C", text: "By forcing individuals to take dramatic risks." },
-              { key: "D", text: "By avoiding any environmental cues." }
-            ],
-            answer: "B",
-            explanation: "'When we perform an action consistently, our brain forms neural pathways that make the task automatic over time' cümlesi B şıkkını doğrudan kanıtlar."
+            "key": "B",
+            "text": "To argue that only dramatic life changes can lead to psychological improvement."
           },
           {
-            id: 3,
-            prompt: "In the text, the word <strong>'yield'</strong> is closest in meaning to:",
-            options: [
-              { key: "A", text: "surrender" },
-              { key: "B", text: "produce or generate" },
-              { key: "C", text: "postpone" },
-              { key: "D", text: "forbid" }
-            ],
-            answer: "B",
-            explanation: "'Yield remarkable long-term results' bağlamında 'yield' fiili 'meydana getirmek, üretmek, kazanç/sonuç sağlamak' (produce, generate) anlamındadır."
+            "key": "C",
+            "text": "To criticize modern society for lacking daily routines."
           },
           {
-            id: 4,
-            prompt: "What can be inferred about changing unproductive tendencies?",
-            options: [
-              { key: "A", text: "It is impossible without medical intervention." },
-              { key: "B", text: "It requires recognizing and altering the environmental cues that trigger them." },
-              { key: "C", text: "It should be accomplished within 24 hours." },
-              { key: "D", text: "It has no relationship with personal habits." }
-            ],
-            answer: "B",
-            explanation: "Son cümlede 'By understanding how environmental cues trigger our habits, we can intentionally replace unproductive tendencies' ifadesiyle çevresel tetikleyicileri anlamanın önemi vurgulanmıştır."
+            "key": "D",
+            "text": "To prove that reading books is the only way to build mental resilience."
           }
-        ]
+        ],
+        "answer": "A",
+        "explanation": "Metnin ana fikri, küçük ve düzenli alışkanlıkların nöroplastisite sayesinde beyinde otomatik yollar oluşturarak uzun vadeli başarı ve zihinsel direnç sağladığıdır."
       },
       {
-        id: "b2-ai-ethics",
-        level: "B2",
-        levelBadge: "B2 • Yetkin / Muafiyet Standardı",
-        title: "Artificial Intelligence, Algorithms, and Contemporary Ethics",
-        text: "The rapid expansion of artificial intelligence presents a significant dilemma for contemporary society. While autonomous systems can analyze substantial amounts of data and enhance industrial productivity, they simultaneously generate critical ethical concerns. Machine-learning algorithms may unintentionally reinforce historical biases or make decisions that lack transparency. Furthermore, the opacity of deep neural networks—frequently described as the black box problem—hampers accountability and institutional oversight. Therefore, researchers and policymakers argue that it is crucial to establish strict regulations and transparent frameworks to govern algorithmic decision-making and mitigate potential harm to vulnerable communities.",
-        questions: [
+        "id": 2,
+        "prompt": "According to the text, how does the brain make tasks automatic?",
+        "options": [
           {
-            id: 1,
-            prompt: "The passage is primarily concerned with:",
-            options: [
-              { key: "A", text: "The technological impossibility of developing autonomous systems." },
-              { key: "B", text: "The dual nature of AI as an efficiency tool and a source of serious ethical and social challenges." },
-              { key: "C", text: "The commercial profits generated by artificial intelligence companies." },
-              { key: "D", text: "The historical evolution of criminal justice systems before computers." }
-            ],
-            answer: "B",
-            explanation: "Paragraf, yapay zekanın sağladığı endüstriyel verimlilik ile beraberinde getirdiği derin etik açmazları (taraflı algoritmalar, şeffaflık eksikliği) birlikte ele almaktadır."
+            "key": "A",
+            "text": "By eliminating all emotional reactions."
           },
           {
-            id: 2,
-            prompt: "The phrase <strong>'black box problem'</strong> refers to:",
-            options: [
-              { key: "A", text: "Physical damage occurring in airplane flight recorders." },
-              { key: "B", text: "The inability of computers to process large datasets quickly." },
-              { key: "C", text: "The lack of interpretability and transparency in deep learning decisions." },
-              { key: "D", text: "The high monetary cost of purchasing artificial intelligence hardware." }
-            ],
-            answer: "C",
-            explanation: "'The opacity of deep neural networks—frequently described as the black box problem—hampers accountability' ifadesi, sistemlerin karar mekanizmasının şeffaf ve anlaşılabilir olmamasını tanımlar."
+            "key": "B",
+            "text": "By forming neural pathways through consistent repetition."
           },
           {
-            id: 3,
-            prompt: "According to the author, why do AI systems produce biased outcomes?",
-            options: [
-              { key: "A", text: "They reflect and magnify historical prejudices embedded in training data." },
-              { key: "B", text: "Computer programmers intentionally write malicious code." },
-              { key: "C", text: "Governments refuse to purchase modern microchips." },
-              { key: "D", text: "Users do not spend enough time training the software." }
-            ],
-            answer: "A",
-            explanation: "Metinde açıkça 'algorithms may unintentionally reinforce historical biases' ifadesi kullanılmıştır."
+            "key": "C",
+            "text": "By forcing individuals to take dramatic risks."
           },
           {
-            id: 4,
-            prompt: "Which of the following can be inferred from the last sentence?",
-            options: [
-              { key: "A", text: "Artificial intelligence research should be outlawed globally." },
-              { key: "B", text: "Civic trust and safety can be preserved if AI progress is paired with strict oversight and transparency." },
-              { key: "C", text: "Auditing algorithms has been proven completely ineffective." },
-              { key: "D", text: "International treaties are no longer necessary in technology." }
-            ],
-            answer: "B",
-            explanation: "Son cümlede ilerlemenin denetim ve şeffaf yasal çerçevelerle desteklenmesi gerektiği, aksi halde savunmasız toplulukların zarar görebileceği belirtilmiştir."
+            "key": "D",
+            "text": "By avoiding any environmental cues."
           }
-        ]
+        ],
+        "answer": "B",
+        "explanation": "'When we perform an action consistently, our brain forms neural pathways that make the task automatic over time' cümlesi B şıkkını doğrudan kanıtlar."
       },
       {
-        id: "c1-climate",
-        level: "C1",
-        levelBadge: "C1 • İleri Akademik (Advanced)",
-        title: "Global Climate Mechanisms and Oceanic Circulation",
-        text: "Global climate patterns are driven by complex thermodynamic interactions between atmospheric currents and oceanic circulation. When anthropogenic greenhouse gas emissions increase, thermal energy is trapped within the atmosphere, precipitating notable shifts in precipitation and weather stability. A critical component of this planetary system is thermohaline circulation, which acts as a global conveyor belt transporting thermal energy toward polar latitudes. Accelerated melting of Arctic ice sheets injects low-density freshwater into the ocean, diluting salinity and inhibiting the sinking of dense surface water. Paleoclimatological records suggest that a protracted deceleration of this convective loop could trigger abrupt climatic destabilization across continents.",
-        questions: [
+        "id": 3,
+        "prompt": "In the text, the word 'yield' is closest in meaning to:",
+        "options": [
           {
-            id: 1,
-            prompt: "Which statement best expresses the central thesis of the excerpt?",
-            options: [
-              { key: "A", text: "Arctic ice sheets are expanding due to unexpected planetary cold fronts." },
-              { key: "B", text: "Disruptions to oceanic thermohaline circulation caused by warming threaten severe climate destabilization." },
-              { key: "C", text: "Oceanic currents are solely governed by surface wind velocities." },
-              { key: "D", text: "Agricultural output across continents is unaffected by oceanic temperatures." }
-            ],
-            answer: "B",
-            explanation: "Metnin ana düşüncesi, insan kaynaklı sera gazlarının okyanus termohalin akıntılarını yavaşlatarak küresel ölçekte ani iklimsel bozulmalara yol açma tehlikesidir."
+            "key": "A",
+            "text": "surrender"
           },
           {
-            id: 2,
-            prompt: "The influx of freshwater into the Arctic ocean causes concern primarily because it:",
-            options: [
-              { key: "A", text: "Raises water temperatures to boiling points." },
-              { key: "B", text: "Dilutes salinity and prevents dense surface water from sinking." },
-              { key: "C", text: "Permanently stops all marine animal migration within days." },
-              { key: "D", text: "Blocks commercial vessel navigation completely." }
-            ],
-            answer: "B",
-            explanation: "Metindeki 'diluting salinity and inhibiting the sinking of dense surface water' ifadesi B şıkkının birebir doğruluğunu gösterir."
+            "key": "B",
+            "text": "produce or generate"
           },
           {
-            id: 3,
-            prompt: "The word <strong>'precipitating'</strong> in the text is closest in meaning to:",
-            options: [
-              { key: "A", text: "triggering or bringing about" },
-              { key: "B", text: "peacefully resolving" },
-              { key: "C", text: "carefully averting" },
-              { key: "D", text: "measuring precisely" }
-            ],
-            answer: "A",
-            explanation: "'Precipitating notable shifts in precipitation' cümlesinde 'precipitate', 'hızla tetiklemek, sebep olmak' (triggering, bringing about) anlamında kullanılmıştır."
+            "key": "C",
+            "text": "postpone"
           },
           {
-            id: 4,
-            prompt: "What can be deduced from paleoclimatological records mentioned in the text?",
-            options: [
-              { key: "A", text: "Earth has never experienced shifts in oceanic temperatures." },
-              { key: "B", text: "Historical deceleration of oceanic circulation loops has triggered abrupt climatic disruptions." },
-              { key: "C", text: "Freshwater has no measurable impact on water density." },
-              { key: "D", text: "Atmospheric currents operate independently of planetary thermodynamics." }
-            ],
-            answer: "B",
-            explanation: "Son cümlede 'Paleoclimatological records suggest that a protracted deceleration of this convective loop could trigger abrupt climatic destabilization' denmiştir."
+            "key": "D",
+            "text": "forbid"
           }
-        ]
+        ],
+        "answer": "B",
+        "explanation": "'yield remarkable long-term results' ifadesinde 'yield', dikkate değer sonuçlar 'üretmek / ortaya çıkarmak' (produce, generate) anlamındadır."
+      },
+      {
+        "id": 4,
+        "prompt": "What can be inferred about changing unproductive tendencies?",
+        "options": [
+          {
+            "key": "A",
+            "text": "It is biologically impossible once habits are formed."
+          },
+          {
+            "key": "B",
+            "text": "It requires understanding the environmental triggers that initiate them."
+          },
+          {
+            "key": "C",
+            "text": "It happens overnight without conscious intention."
+          },
+          {
+            "key": "D",
+            "text": "It only works if you change your physical location."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Son cümlede 'By understanding how environmental cues trigger our habits, we can intentionally replace unproductive tendencies' denilerek çevresel tetikleyicileri anlamanın önemi vurgulanmıştır."
       }
-    ];
+    ]
+  },
+  {
+    "id": "b1-social-media",
+    "level": "B1",
+    "shortTitle": "B1 • Sosyal Medya & İletişim",
+    "levelBadge": "B1 • Orta Seviye (Intermediate)",
+    "title": "The Psychology of Social Media Connectivity",
+    "text": "Digital platforms have fundamentally transformed interpersonal communication across the globe. While social media enables instant connectivity with friends and family, psychologists caution against excessive usage. Research indicates that frequent passive scrolling often fosters social comparison, leading to feelings of inadequacy and anxiety. Conversely, when people utilize digital tools actively to share creative ideas or maintain supportive relationships, these platforms can enhance subjective well-being. Therefore, the psychological impact of digital technology depends not solely on screen time, but on the qualitative nature of online interactions.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the author's main argument regarding social media?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Social media should be universally banned due to psychological harm."
+          },
+          {
+            "key": "B",
+            "text": "The psychological effect depends on how actively and meaningfully it is used."
+          },
+          {
+            "key": "C",
+            "text": "Passive scrolling is the most beneficial way to use digital platforms."
+          },
+          {
+            "key": "D",
+            "text": "Digital technology has not changed human communication in any meaningful way."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Yazar son cümlede etkinin sadece ekran süresine değil, çevrimiçi etkileşimlerin niteliğine ve nasıl kullanıldığına bağlı olduğunu net bir şekilde belirtmektedir."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, what negative consequence is associated with passive scrolling?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Permanent memory loss."
+          },
+          {
+            "key": "B",
+            "text": "Social comparison and feelings of inadequacy."
+          },
+          {
+            "key": "C",
+            "text": "Immediate financial hardship."
+          },
+          {
+            "key": "D",
+            "text": "A complete decline in verbal skills."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'frequent passive scrolling often fosters social comparison, leading to feelings of inadequacy and anxiety' ifadesi B seçeneğini doğrular."
+      },
+      {
+        "id": 3,
+        "prompt": "In the text, the word 'foster' is closest in meaning to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "encourage or promote"
+          },
+          {
+            "key": "B",
+            "text": "prevent or eliminate"
+          },
+          {
+            "key": "C",
+            "text": "criticize harshly"
+          },
+          {
+            "key": "D",
+            "text": "measure precisely"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'foster social comparison' ifadesinde foster, kıyaslamayı 'teşvik etmek, beslemek, ortaya çıkarmak' (encourage / promote) anlamındadır."
+      },
+      {
+        "id": 4,
+        "prompt": "Which scenario best illustrates positive social media use as described in the text?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Silently viewing hundreds of photos of unknown influencers."
+          },
+          {
+            "key": "B",
+            "text": "Checking notifications continuously during late night hours."
+          },
+          {
+            "key": "C",
+            "text": "Using online communities to share creative work and support peers."
+          },
+          {
+            "key": "D",
+            "text": "Measuring self-worth by the number of likes received."
+          }
+        ],
+        "answer": "C",
+        "explanation": "Metinde 'when people utilize digital tools actively to share creative ideas or maintain supportive relationships, these platforms can enhance subjective well-being' denilmektedir."
+      }
+    ]
+  },
+  {
+    "id": "b1-sustainable-travel",
+    "level": "B1",
+    "shortTitle": "B1 • Sürdürülebilir Seyahat",
+    "levelBadge": "B1 • Orta Seviye (Intermediate)",
+    "title": "Sustainable Travel and Cultural Awareness",
+    "text": "In recent decades, global tourism has expanded at an unprecedented rate, providing economic opportunities to remote communities. However, mass tourism also creates severe ecological pressure, including waste accumulation and habitat degradation. In response, modern travelers are embracing sustainable tourism principles. Responsible travelers prioritize local businesses, respect regional customs, and minimize carbon footprints by utilizing public transit. By shifting the objective from superficial sightseeing to genuine cultural immersion, tourism can become a constructive force that protects heritage while fostering mutual respect between diverse cultures.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the main topic of the passage?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Why international flights should be prohibited globally."
+          },
+          {
+            "key": "B",
+            "text": "The balance between tourism benefits and the necessity of sustainable travel practices."
+          },
+          {
+            "key": "C",
+            "text": "The economic dominance of luxury hotel chains in remote villages."
+          },
+          {
+            "key": "D",
+            "text": "Historical travel routes used in ancient civilizations."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Metin, turizmin getirdiği ekonomik fırsatlar ile çevresel baskıları ele alıp sürdürülebilir ve kültürel açıdan sorumlu seyahatin önemini açıklamaktadır."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, sustainable travelers do all of the following EXCEPT:",
+        "options": [
+          {
+            "key": "A",
+            "text": "Support local economies and businesses."
+          },
+          {
+            "key": "B",
+            "text": "Respect local heritage and regional customs."
+          },
+          {
+            "key": "C",
+            "text": "Prioritize private luxury jets over public transit."
+          },
+          {
+            "key": "D",
+            "text": "Seek meaningful cultural immersion."
+          }
+        ],
+        "answer": "C",
+        "explanation": "Metinde sorumlu gezginlerin 'minimizing carbon footprints by utilizing public transit' yaptığı belirtilir; özel jetleri tercih etmeleri bu ilkeye zıttır."
+      },
+      {
+        "id": 3,
+        "prompt": "In the text, the word 'unprecedented' means:",
+        "options": [
+          {
+            "key": "A",
+            "text": "never experienced or seen before"
+          },
+          {
+            "key": "B",
+            "text": "extremely disappointing"
+          },
+          {
+            "key": "C",
+            "text": "slow and unnoticeable"
+          },
+          {
+            "key": "D",
+            "text": "temporary and harmless"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'unprecedented rate' ifadesi, tarihte daha önce görülmemiş / benzeri yaşanmamış (never seen before) bir hızı ifade eder."
+      },
+      {
+        "id": 4,
+        "prompt": "It can be inferred from the passage that superficial sightseeing:",
+        "options": [
+          {
+            "key": "A",
+            "text": "Provides deeper satisfaction than cultural immersion."
+          },
+          {
+            "key": "B",
+            "text": "Does not contribute as positively to preserving cultural heritage."
+          },
+          {
+            "key": "C",
+            "text": "Is legally forbidden in most developed nations."
+          },
+          {
+            "key": "D",
+            "text": "Requires extensive knowledge of foreign languages."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Yazar yüzeysel geziler yerine gerçek kültürel bağ kurmanın mirası koruyacağını vurguladığı için yüzeysel gezilerin mirasa aynı olumlu katkıyı sağlamadığı çıkarılır."
+      }
+    ]
+  },
+  {
+    "id": "b1-nutrition-sleep",
+    "level": "B1",
+    "shortTitle": "B1 • Beslenme & Akademik Odak",
+    "levelBadge": "B1 • Orta Seviye (Intermediate)",
+    "title": "Nutrition, Sleep and Academic Focus",
+    "text": "Academic success requires more than rigorous study schedules; physiological health plays a pivotal role in cognitive performance. Numerous clinical trials demonstrate that sleep deprivation impairs memory consolidation, reasoning capacity, and emotional balance. Similarly, nutritional intake directly influences neurotransmitter synthesis. A balanced diet rich in omega-3 fatty acids, complex carbohydrates, and essential micronutrients enhances mental stamina during demanding study periods. Students who maintain consistent sleep cycles and nourishing dietary habits consistently outperform those who sacrifice physical well-being for frantic, late-night cramming sessions.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the central focus of the text?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The biological mechanisms of sleep deprivation in animals."
+          },
+          {
+            "key": "B",
+            "text": "The critical contribution of sleep and nutrition to cognitive and academic performance."
+          },
+          {
+            "key": "C",
+            "text": "A comparison between different university grading systems."
+          },
+          {
+            "key": "D",
+            "text": "Techniques for studying 14 hours continuously without fatigue."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Metin, uyku ve doğru beslenmenin öğrencilerin bilişsel kapasitesi ve akademik performansı üzerindeki belirleyici rolünü anlatmaktadır."
+      },
+      {
+        "id": 2,
+        "prompt": "What does sleep deprivation negatively affect according to the text?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Only physical muscle growth."
+          },
+          {
+            "key": "B",
+            "text": "Memory consolidation, reasoning, and emotional balance."
+          },
+          {
+            "key": "C",
+            "text": "The ability to speak foreign languages fluently."
+          },
+          {
+            "key": "D",
+            "text": "Metabolic digestion during morning hours exclusively."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'sleep deprivation impairs memory consolidation, reasoning capacity, and emotional balance' cümlesi açıkça B şıkkını vermektedir."
+      },
+      {
+        "id": 3,
+        "prompt": "The word 'pivotal' in the first sentence is closest in meaning to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "crucial or essential"
+          },
+          {
+            "key": "B",
+            "text": "unnecessary"
+          },
+          {
+            "key": "C",
+            "text": "hazardous"
+          },
+          {
+            "key": "D",
+            "text": "unpredictable"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'pivotal role' ifadesi kilit / hayati / çok önemli rol (crucial, essential) demektir."
+      },
+      {
+        "id": 4,
+        "prompt": "The author contrasts disciplined lifestyle habits with which practice?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Regular physical aerobic workouts."
+          },
+          {
+            "key": "B",
+            "text": "Frantic late-night study sessions at the expense of sleep."
+          },
+          {
+            "key": "C",
+            "text": "Collaborative group project discussions."
+          },
+          {
+            "key": "D",
+            "text": "Daily meditation and mindfulness routines."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Son cümlede düzenli uyuyan öğrenciler ile uykuyu feda ederek telaşla sabahlara kadar ders çalışan ('frantic late-night cramming') öğrenciler kıyaslanmaktadır."
+      }
+    ]
+  },
+  {
+    "id": "b2-ai-ethics",
+    "level": "B2",
+    "shortTitle": "B2 • Yapay Zeka & Algoritmik Etik",
+    "levelBadge": "B2 • Yetkin (Upper-Intermediate)",
+    "title": "Artificial Intelligence and Algorithmic Ethics",
+    "text": "The rapid proliferation of artificial intelligence in healthcare, judicial sentencing, and hiring has triggered intense academic debate. While algorithmic systems can process vast data volumes with unprecedented speed, they frequently mirror and amplify systemic biases embedded in historical training datasets. For instance, predictive policing tools have been shown to disproportionately target marginalized communities, exacerbating existing societal inequalities. To prevent autonomous algorithms from undermining democratic values, computer scientists and policymakers must collaborate on transparent audit frameworks. Ethical AI governance requires algorithmic accountability, verifiable fairness metrics, and robust human oversight.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the primary concern raised by the author regarding AI systems?",
+        "options": [
+          {
+            "key": "A",
+            "text": "They operate too slowly to be useful in modern healthcare."
+          },
+          {
+            "key": "B",
+            "text": "They may reproduce and amplify historical biases, worsening societal inequalities."
+          },
+          {
+            "key": "C",
+            "text": "They are entirely too expensive for public institutions to deploy."
+          },
+          {
+            "key": "D",
+            "text": "They will inevitably eliminate all human employment within a decade."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Yazar yapay zekanın tarihsel verilerdeki önyargıları kopyalayıp büyüterek toplumsal eşitsizlikleri derinleştirmesi riskine odaklanmaktadır."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, predictive policing tools provide an example of:",
+        "options": [
+          {
+            "key": "A",
+            "text": "Flawless objective decision-making in legal affairs."
+          },
+          {
+            "key": "B",
+            "text": "Algorithms that disproportionately impact marginalized groups."
+          },
+          {
+            "key": "C",
+            "text": "A system that requires zero human supervision."
+          },
+          {
+            "key": "D",
+            "text": "An obsolete method no longer in practical use."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'predictive policing tools have been shown to disproportionately target marginalized communities' ifadesi B seçeneğini doğrular."
+      },
+      {
+        "id": 3,
+        "prompt": "In the text, the word 'exacerbating' is closest in meaning to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "worsening or aggravating"
+          },
+          {
+            "key": "B",
+            "text": "resolving smoothly"
+          },
+          {
+            "key": "C",
+            "text": "analyzing statistically"
+          },
+          {
+            "key": "D",
+            "text": "concealing carefully"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'exacerbating existing societal inequalities' ifadesinde 'exacerbate', var olan sorunları daha da 'kötüleştirmek / alevlendirmek' (worsen / aggravate) demektir."
+      },
+      {
+        "id": 4,
+        "prompt": "What is proposed as an essential solution for ethical AI governance?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Allowing tech companies to self-regulate without government involvement."
+          },
+          {
+            "key": "B",
+            "text": "Completely halting software engineering education worldwide."
+          },
+          {
+            "key": "C",
+            "text": "Establishing transparent audit frameworks, verifiable metrics, and human oversight."
+          },
+          {
+            "key": "D",
+            "text": "Restricting computers from processing historical datasets altogether."
+          }
+        ],
+        "answer": "C",
+        "explanation": "Son cümlede 'Ethical AI governance requires algorithmic accountability, verifiable fairness metrics, and robust human oversight' çözümü sunulmaktadır."
+      }
+    ]
+  },
+  {
+    "id": "b2-global-supply-chains",
+    "level": "B2",
+    "shortTitle": "B2 • Küresel Tedarik & Ekonomi",
+    "levelBadge": "B2 • Yetkin (Upper-Intermediate)",
+    "title": "Global Supply Chains and Modern Economics",
+    "text": "Contemporary globalization relies heavily on just-in-time manufacturing networks that cross international borders. While this streamlined model minimizes storage expenditure and accelerates production turnover, it introduces significant vulnerability to macroeconomic shocks. Recent geopolitical crises and extreme weather disruptions revealed that localized bottlenecks can trigger widespread shortages of vital commodities, ranging from microchips to pharmaceuticals. Consequently, prominent multinational enterprises are reconsidering lean inventories in favor of resilient supply chains, embracing strategic nearshoring and redundant sourcing to protect against future turbulence.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the central focus of the passage?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The decline of maritime shipping in developing regions."
+          },
+          {
+            "key": "B",
+            "text": "The vulnerabilities of just-in-time manufacturing and the strategic shift toward resilient supply chains."
+          },
+          {
+            "key": "C",
+            "text": "The complete failure of all global trade agreements."
+          },
+          {
+            "key": "D",
+            "text": "The history of pharmaceutical production in the twentieth century."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Metin, 'tam zamanında' (just-in-time) üretim modelinin kırılganlıklarını ve şirketlerin daha dirençli tedarik zincirlerine yönelmesini açıklamaktadır."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the text, what is one major advantage of just-in-time manufacturing?",
+        "options": [
+          {
+            "key": "A",
+            "text": "It guarantees complete immunity from geopolitical disruptions."
+          },
+          {
+            "key": "B",
+            "text": "It minimizes storage costs and accelerates production cycles."
+          },
+          {
+            "key": "C",
+            "text": "It eliminates the need for foreign imports entirely."
+          },
+          {
+            "key": "D",
+            "text": "It requires zero computer technology."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'this streamlined model minimizes storage expenditure and accelerates production turnover' cümlesi depolama masraflarını düşürdüğünü belirtir."
+      },
+      {
+        "id": 3,
+        "prompt": "The word 'resilient' in the final sentence is closest in meaning to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "fragile and sensitive"
+          },
+          {
+            "key": "B",
+            "text": "adaptable and capable of recovering"
+          },
+          {
+            "key": "C",
+            "text": "outdated and neglected"
+          },
+          {
+            "key": "D",
+            "text": "overly expensive"
+          }
+        ],
+        "answer": "B",
+        "explanation": "'resilient supply chains', krizlere karşı dayanıklı, uyum sağlayabilen ve kendini toparlayabilen (adaptable, durable) zincirler anlamına gelir."
+      },
+      {
+        "id": 4,
+        "prompt": "How are companies responding to recent supply chain disruptions?",
+        "options": [
+          {
+            "key": "A",
+            "text": "By eliminating quality control checks entirely."
+          },
+          {
+            "key": "B",
+            "text": "By adopting nearshoring and redundant sourcing strategies."
+          },
+          {
+            "key": "C",
+            "text": "By halting all international commerce permanently."
+          },
+          {
+            "key": "D",
+            "text": "By relying solely on single, remote suppliers."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'embracing strategic nearshoring and redundant sourcing to protect against future turbulence' ifadesi B şıkkını kanıtlar."
+      }
+    ]
+  },
+  {
+    "id": "b2-biotech-innovations",
+    "level": "B2",
+    "shortTitle": "B2 • Biyoteknoloji & Genetik",
+    "levelBadge": "B2 • Yetkin (Upper-Intermediate)",
+    "title": "Biotechnology and Genetic Innovations",
+    "text": "The advent of gene-editing technologies, most notably CRISPR-Cas9, has revolutionized biomedical research. Scientists can now alter specific DNA sequences with unprecedented accuracy, unlocking potential therapies for hereditary conditions that were once deemed incurable. Beyond human medicine, agricultural biotechnology employs genetic modification to produce drought-resistant crops capable of withstanding climate volatility. Nonetheless, these profound capabilities evoke substantial ethical dilemmas. Concerns regarding unintended genetic mutations, ecological disruption, and socio-economic disparities in healthcare access necessitate rigorous international regulatory oversight before widespread clinical applications proceed.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the primary theme of the text?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The revolutionary potential of genetic editing alongside the ethical dilemmas it creates."
+          },
+          {
+            "key": "B",
+            "text": "The total failure of biotechnology to cure any hereditary illnesses."
+          },
+          {
+            "key": "C",
+            "text": "Why agricultural genetic modification should be universally prohibited."
+          },
+          {
+            "key": "D",
+            "text": "The historical development of antibiotics in the 1940s."
+          }
+        ],
+        "answer": "A",
+        "explanation": "Metin, CRISPR teknolojisinin tıptaki ve tarımdaki devrimsel kazanımları ile beraberinde getirdiği etik ve güvenlik tartışmalarını ele alır."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, how is biotechnology applied in agriculture?",
+        "options": [
+          {
+            "key": "A",
+            "text": "By creating crops that can endure droughts and climate fluctuations."
+          },
+          {
+            "key": "B",
+            "text": "By replacing all organic farming with synthetic chemicals."
+          },
+          {
+            "key": "C",
+            "text": "By forcing plants to grow without sunlight."
+          },
+          {
+            "key": "D",
+            "text": "By eradicating all insect species worldwide."
+          }
+        ],
+        "answer": "A",
+        "explanation": "'agricultural biotechnology employs genetic modification to produce drought-resistant crops capable of withstanding climate volatility' ifadesi A şıkkını açıkça belirtir."
+      },
+      {
+        "id": 3,
+        "prompt": "In the text, the word 'unprecedented' accuracy suggests that:",
+        "options": [
+          {
+            "key": "A",
+            "text": "The accuracy had never been achieved at this level before."
+          },
+          {
+            "key": "B",
+            "text": "The precision was highly questionable and unreliable."
+          },
+          {
+            "key": "C",
+            "text": "The results were identical to previous centuries."
+          },
+          {
+            "key": "D",
+            "text": "The procedure caused catastrophic errors."
+          }
+        ],
+        "answer": "A",
+        "explanation": "'unprecedented accuracy', daha önce hiç bu hassasiyet düzeyine ulaşılamamış olduğunu belirtir."
+      },
+      {
+        "id": 4,
+        "prompt": "What does the author conclude regarding gene-editing applications?",
+        "options": [
+          {
+            "key": "A",
+            "text": "They should be deployed immediately without any testing."
+          },
+          {
+            "key": "B",
+            "text": "They require strict international regulatory oversight to address safety and equity."
+          },
+          {
+            "key": "C",
+            "text": "They are strictly reserved for cosmetic enhancements."
+          },
+          {
+            "key": "D",
+            "text": "They will replace conventional doctors entirely."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Son cümlede 'necessitate rigorous international regulatory oversight before widespread clinical applications proceed' denilmektedir."
+      }
+    ]
+  },
+  {
+    "id": "b2-space-colonization",
+    "level": "B2",
+    "shortTitle": "B2 • Uzay Keşfi & Kolonileşme",
+    "levelBadge": "B2 • Yetkin (Upper-Intermediate)",
+    "title": "Space Exploration and Colonization Dilemmas",
+    "text": "The prospect of establishing permanent human settlements on the Moon and Mars has shifted from science fiction to plausible engineering reality. Private aerospace corporations and international coalitions are investing billions into reusable launch vehicles and life-support architectures. Proponents argue that multi-planetary presence offers an insurance policy against existential catastrophes on Earth, while catalyzing breakthroughs in energy conservation. Conversely, critics contend that allocating exorbitant capital to extraterrestrial endeavors is morally problematic when pressing terrestrial crises, such as poverty and environmental degradation, demand urgent resolution. The debate reflects competing philosophies regarding humanity's technological priorities.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the central conflict explored in the passage?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Whether rocket fuel should be synthesized from solar energy."
+          },
+          {
+            "key": "B",
+            "text": "The justification of spending massive resources on space colonization versus addressing urgent problems on Earth."
+          },
+          {
+            "key": "C",
+            "text": "The technical specifications of Martian surface rovers."
+          },
+          {
+            "key": "D",
+            "text": "Why international coalitions refuse to cooperate in space science."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Metin, uzay kolonileşmesine kaynak ayırmanın gerekçeleri ile Dünya'daki yoksulluk ve çevre sorunlarına öncelik verilmesi gerektiği görüşü arasındaki felsefi tartışmayı inceler."
+      },
+      {
+        "id": 2,
+        "prompt": "According to supporters, why is establishing a multi-planetary presence advantageous?",
+        "options": [
+          {
+            "key": "A",
+            "text": "It guarantees that no further taxes will be collected on Earth."
+          },
+          {
+            "key": "B",
+            "text": "It serves as an insurance policy against existential risks on Earth and stimulates technological innovation."
+          },
+          {
+            "key": "C",
+            "text": "It eliminates the need for environmental protection policies."
+          },
+          {
+            "key": "D",
+            "text": "It allows humanity to abandon agriculture completely."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'multi-planetary presence offers an insurance policy against existential catastrophes on Earth, while catalyzing breakthroughs' cümlesi B seçeneğini doğrular."
+      },
+      {
+        "id": 3,
+        "prompt": "The word 'exorbitant' in the passage is closest in meaning to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "unreasonably excessive or massive"
+          },
+          {
+            "key": "B",
+            "text": "insufficient and modest"
+          },
+          {
+            "key": "C",
+            "text": "secret and unrecorded"
+          },
+          {
+            "key": "D",
+            "text": "readily available"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'exorbitant capital', aşırı / fahiş miktarda sermaye harcaması (excessive, outrageously high) demektir."
+      },
+      {
+        "id": 4,
+        "prompt": "The author's tone throughout the passage can best be described as:",
+        "options": [
+          {
+            "key": "A",
+            "text": "Aggressively dismissive of aerospace engineering."
+          },
+          {
+            "key": "B",
+            "text": "Balanced and analytical in presenting opposing perspectives."
+          },
+          {
+            "key": "C",
+            "text": "Overly emotional and pessimistic."
+          },
+          {
+            "key": "D",
+            "text": "Humorous and satirical."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Yazar hem savunucuların ('Proponents argue...') hem de eleştirmenlerin ('Conversely, critics contend...') görüşlerini dengeli ve tarafsız bir üslupla aktarmaktadır."
+      }
+    ]
+  },
+  {
+    "id": "c1-marine-ecosystems",
+    "level": "C1",
+    "shortTitle": "C1 • İklim Kriz & Okyanuslar",
+    "levelBadge": "C1 • İleri Düzey (Advanced Academic)",
+    "title": "Climate Disruption and Marine Ecosystems",
+    "text": "Anthropogenic carbon emissions have precipitated unprecedented thermodynamic and chemical shifts across planetary oceanic systems. As oceans absorb approximately thirty percent of atmospheric carbon dioxide, escalating carbonic acid concentrations systematically drive ocean acidification. This insidious phenomenon severely diminishes carbonate ion bioavailability, thereby impeding calcification in coral reefs, pteropods, and mollusks that underpin oceanic trophic hierarchies. Furthermore, persistent marine heatwaves provoke catastrophic coral bleaching events, unraveling biodiversity reservoirs that sustain global fisheries. Mitigating this ecological catastrophe necessitates immediate decarbonization coupled with the establishment of resilient marine protected zones to preserve biological equilibrium.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the primary focus of the passage?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The economic revenue generated by commercial cruise ships in tropical seas."
+          },
+          {
+            "key": "B",
+            "text": "The catastrophic chemical and ecological ramifications of anthropogenic carbon emissions on marine ecosystems."
+          },
+          {
+            "key": "C",
+            "text": "Methods for extracting minerals from the ocean floor."
+          },
+          {
+            "key": "D",
+            "text": "A chronological review of oceanic exploration during the Renaissance."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Metin, insan kaynaklı karbon emisyonlarının okyanus asitlenmesi, mercan beyazlaması ve deniz besin zincirine verdiği yıkıcı ekolojik zararları akademik düzeyde ele alır."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, how does ocean acidification directly impact calcifying organisms?",
+        "options": [
+          {
+            "key": "A",
+            "text": "By increasing water salinity to toxic levels."
+          },
+          {
+            "key": "B",
+            "text": "By diminishing carbonate ion bioavailability, thereby hindering shell and skeleton formation."
+          },
+          {
+            "key": "C",
+            "text": "By depriving them entirely of sunlight in shallow depths."
+          },
+          {
+            "key": "D",
+            "text": "By attracting unprecedented numbers of predatory fish."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'severely diminishes carbonate ion bioavailability, thereby impeding calcification in coral reefs, pteropods, and mollusks' ifadesi B şıkkını kanıtlar."
+      },
+      {
+        "id": 3,
+        "prompt": "The word 'insidious' in the third sentence most nearly implies:",
+        "options": [
+          {
+            "key": "A",
+            "text": "gradual and subtle yet causing severe harm"
+          },
+          {
+            "key": "B",
+            "text": "widely celebrated and beneficial"
+          },
+          {
+            "key": "C",
+            "text": "abrupt, loud, and instantly noticeable"
+          },
+          {
+            "key": "D",
+            "text": "purely theoretical and nonexistent"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'insidious' (sinsi), ilk bakışta fark edilmeyen fakat zaman içinde derin ve sinsi zararlar veren olguları anlatmak için kullanılır (subtle yet harmful)."
+      },
+      {
+        "id": 4,
+        "prompt": "Which dual remedy does the author advocate in the final sentence?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Increasing commercial fishing quotas and building sea walls."
+          },
+          {
+            "key": "B",
+            "text": "Rapid decarbonization combined with the creation of resilient marine protected areas."
+          },
+          {
+            "key": "C",
+            "text": "Synthesizing artificial coral reefs using plastic compounds."
+          },
+          {
+            "key": "D",
+            "text": "Desalinating seawater for agricultural irrigation exclusively."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Son cümlede 'immediate decarbonization coupled with the establishment of resilient marine protected zones' açıkça tavsiye edilmiştir."
+      }
+    ]
+  },
+  {
+    "id": "c1-language-neuroscience",
+    "level": "C1",
+    "shortTitle": "C1 • Nörobilim & Dil Edinimi",
+    "levelBadge": "C1 • İleri Düzey (Advanced Academic)",
+    "title": "Cognitive Neuroscience of Language Acquisition",
+    "text": "The neurobiological substrates mediating second-language acquisition exhibit remarkable developmental sensitivity. Early bilingual acquisition typically engages shared cortical representations across Broca's and Wernicke's areas, characterized by enhanced neural efficiency and bilateral recruitment. Conversely, post-pubescent second-language acquisition often recruits supplementary prefrontal and parietal regions to compensate for diminished synaptic plasticity. Neuroimaging reveals that cognitive control mechanisms, notably the anterior cingulate cortex, remain perpetually engaged during bilingual language mediation to suppress cross-linguistic interference. Consequently, lifelong multilingualism fosters cognitive reserve, conferring neurological resilience that demonstrably attenuates age-related neurodegenerative decline.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the primary conclusion regarding lifelong multilingualism in the text?",
+        "options": [
+          {
+            "key": "A",
+            "text": "It exhausts cognitive capacity and speeds up neurological deterioration."
+          },
+          {
+            "key": "B",
+            "text": "It strengthens cognitive reserve and offers resilience against age-related neurodegenerative decline."
+          },
+          {
+            "key": "C",
+            "text": "It permanently alters the physical volume of the skull in adults."
+          },
+          {
+            "key": "D",
+            "text": "It eliminates the ability to learn additional non-verbal skills."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Son cümlede 'lifelong multilingualism fosters cognitive reserve, conferring neurological resilience that demonstrably attenuates age-related neurodegenerative decline' denilmektedir."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, how does post-pubescent language acquisition differ from early acquisition?",
+        "options": [
+          {
+            "key": "A",
+            "text": "It utilizes fewer brain regions due to increased efficiency."
+          },
+          {
+            "key": "B",
+            "text": "It enlists compensatory prefrontal and parietal circuits to counteract reduced synaptic plasticity."
+          },
+          {
+            "key": "C",
+            "text": "It is entirely localized in the occipital lobe."
+          },
+          {
+            "key": "D",
+            "text": "It prevents the activation of Broca's area under any circumstances."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'post-pubescent second-language acquisition often recruits supplementary prefrontal and parietal regions to compensate for diminished synaptic plasticity' ifadesi B şıkkını kanıtlar."
+      },
+      {
+        "id": 3,
+        "prompt": "In the text, the word 'attenuates' is closest in meaning to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "lessens or reduces"
+          },
+          {
+            "key": "B",
+            "text": "accelerates rapidly"
+          },
+          {
+            "key": "C",
+            "text": "initiates or sparks"
+          },
+          {
+            "key": "D",
+            "text": "diagnoses medically"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'attenuate', hafifletmek, şiddetini veya etkisini azaltmak (lessen, reduce, weaken) anlamına gelir."
+      },
+      {
+        "id": 4,
+        "prompt": "What role does the anterior cingulate cortex play during bilingual speech?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Generating spontaneous vocabulary in the native language only."
+          },
+          {
+            "key": "B",
+            "text": "Exercising cognitive control to suppress interference between the two languages."
+          },
+          {
+            "key": "C",
+            "text": "Storing auditory recordings of childhood conversations."
+          },
+          {
+            "key": "D",
+            "text": "Eliminating grammatical structures entirely."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'cognitive control mechanisms, notably the anterior cingulate cortex, remain perpetually engaged during bilingual language mediation to suppress cross-linguistic interference' cümlesi B şıkkını açıklar."
+      }
+    ]
+  },
+  {
+    "id": "c1-urbanization-inequality",
+    "level": "C1",
+    "shortTitle": "C1 • Kentleşme & Sosyoekonomik Eşitsizlik",
+    "levelBadge": "C1 • İleri Düzey (Advanced Academic)",
+    "title": "Urbanization and Socioeconomic Inequality",
+    "text": "The 21st-century demographic transition toward hyper-urbanized agglomerations has exacerbated profound spatial and socioeconomic disparities. While metropolises operate as engines of macroeconomic innovation, agglomeration benefits are disproportionately captured by affluent cohorts. Concurrently, rapid gentrification and speculative real estate commodification systematically displace low-income residents to peripheral zones, creating spatial segregation and exacerbating transport poverty. Scholars emphasize that equitable urban governance requires decoupling municipal housing policies from pure market speculation, implementing progressive land-value capture, and democratizing access to metropolitan infrastructure and green commons.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What is the primary argument advanced by the author?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Metropolises have ceased to produce any scientific or financial innovations."
+          },
+          {
+            "key": "B",
+            "text": "Urban agglomeration creates severe spatial inequalities that demand policy intervention beyond market speculation."
+          },
+          {
+            "key": "C",
+            "text": "All city residents should be relocated to agrarian rural communes immediately."
+          },
+          {
+            "key": "D",
+            "text": "Real estate speculation is the only viable method to fund public transportation."
+          }
+        ],
+        "answer": "B",
+        "explanation": "Metin, metropollerin ekonomik üretkenliğine rağmen soylulaştırma ve spekülatif konut piyasası yüzünden derinleşen eşitsizlikleri ve kamusal politikaların gerekliliğini savunur."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, gentrification and real estate commodification result in:",
+        "options": [
+          {
+            "key": "A",
+            "text": "The uniform distribution of wealth across all social classes."
+          },
+          {
+            "key": "B",
+            "text": "The displacement of low-income populations to peripheral regions and transport poverty."
+          },
+          {
+            "key": "C",
+            "text": "A dramatic reduction in overall metropolitan population sizes."
+          },
+          {
+            "key": "D",
+            "text": "The complete eradication of industrial manufacturing."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'rapid gentrification and speculative real estate commodification systematically displace low-income residents to peripheral zones... exacerbating transport poverty' ifadesi B seçeneğini doğrular."
+      },
+      {
+        "id": 3,
+        "prompt": "The word 'affluent' in the second sentence is closest in meaning to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "wealthy and privileged"
+          },
+          {
+            "key": "B",
+            "text": "politically neutral"
+          },
+          {
+            "key": "C",
+            "text": "intellectually curious"
+          },
+          {
+            "key": "D",
+            "text": "disadvantaged"
+          }
+        ],
+        "answer": "A",
+        "explanation": "'affluent cohorts', refah düzeyi yüksek, zengin ve ayrıcalıklı kesimler (wealthy, prosperous) anlamına gelir."
+      },
+      {
+        "id": 4,
+        "prompt": "What reform does the author specifically propose in the final sentence?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Abolishing all urban zoning regulations permanently."
+          },
+          {
+            "key": "B",
+            "text": "Implementing progressive land-value capture and public infrastructure democratization."
+          },
+          {
+            "key": "C",
+            "text": "Privatizing remaining parks and green communal spaces."
+          },
+          {
+            "key": "D",
+            "text": "Subsidizing private luxury automobile ownership."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'implementing progressive land-value capture, and democratizing access to metropolitan infrastructure and green commons' ifadesi B şıkkını doğrudan verir."
+      }
+    ]
+  },
+  {
+    "id": "c1-consciousness-philosophy",
+    "level": "C1",
+    "shortTitle": "C1 • Bilinç & Zihin Felsefesi",
+    "levelBadge": "C1 • İleri Düzey (Advanced Academic)",
+    "title": "Philosophical Perspectives on Human Consciousness",
+    "text": "Explaining the ontological nature of subjective experience—famously coined by philosopher David Chalmers as the 'hard problem of consciousness'—remains an enduring intellectual frontier. While reductive physicalism posits that phenomenal states are fully explainable by neurochemical cascades, critics argue that physical metrics leave an intractable 'explanatory gap.' No objective account of neurological firings can completely capture the qualitative feel of seeing scarlet or experiencing sorrow—the enigmatic domain of qualia. Emerging paradigms, such as panpsychism and integrated information theory, challenge strict materialism by suggesting consciousness may be a fundamental property of the cosmos rather than an incidental byproduct of biological complexity.",
+    "questions": [
+      {
+        "id": 1,
+        "prompt": "What constitutes the core dilemma discussed in the passage?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The inability of physicalist neuroscience to fully account for subjective, qualitative experience (qualia)."
+          },
+          {
+            "key": "B",
+            "text": "The mathematical calculation of synaptic transmission speeds in mammals."
+          },
+          {
+            "key": "C",
+            "text": "A historical overview of pharmaceutical treatments for chronic insomnia."
+          },
+          {
+            "key": "D",
+            "text": "Why computer microchips are conscious entities today."
+          }
+        ],
+        "answer": "A",
+        "explanation": "Metin, 'hard problem of consciousness' ve nörolojik ölçümlerin öznel niteliksel deneyimleri (qualia) açıklamakta yetersiz kaldığı 'açıklayıcı boşluk' (explanatory gap) konusunu inceler."
+      },
+      {
+        "id": 2,
+        "prompt": "According to the passage, reductive physicalism contends that phenomenal states:",
+        "options": [
+          {
+            "key": "A",
+            "text": "Are entirely illusions created by language conventions."
+          },
+          {
+            "key": "B",
+            "text": "Can be completely explained by underlying neurochemical processes."
+          },
+          {
+            "key": "C",
+            "text": "Exist independently of any physical substrate in the universe."
+          },
+          {
+            "key": "D",
+            "text": "Can only be perceived through telepathic mechanisms."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'reductive physicalism posits that phenomenal states are fully explainable by neurochemical cascades' cümlesi B şıkkını kanıtlar."
+      },
+      {
+        "id": 3,
+        "prompt": "The term 'qualia' as used in the passage refers to:",
+        "options": [
+          {
+            "key": "A",
+            "text": "The qualitative, subjective aspect of conscious experiences."
+          },
+          {
+            "key": "B",
+            "text": "The quantitative electrical voltage of brainwaves."
+          },
+          {
+            "key": "C",
+            "text": "Artificial neurons constructed in silicon chips."
+          },
+          {
+            "key": "D",
+            "text": "Chemical preservatives used in laboratory specimens."
+          }
+        ],
+        "answer": "A",
+        "explanation": "'the qualitative feel of seeing scarlet or experiencing sorrow—the enigmatic domain of qualia' ifadesi, 'qualia'nın öznel niteliksel duyumları temsil ettiğini açıkça tanımlar."
+      },
+      {
+        "id": 4,
+        "prompt": "How do alternative theories like panpsychism challenge orthodox materialism?",
+        "options": [
+          {
+            "key": "A",
+            "text": "By rejecting all scientific methodology."
+          },
+          {
+            "key": "B",
+            "text": "By proposing that consciousness might be an intrinsic property of the universe rather than a mere biological byproduct."
+          },
+          {
+            "key": "C",
+            "text": "By proving that human brains do not contain neurons."
+          },
+          {
+            "key": "D",
+            "text": "By claiming that physical matter does not exist in any dimension."
+          }
+        ],
+        "answer": "B",
+        "explanation": "'suggesting consciousness may be a fundamental property of the cosmos rather than an incidental byproduct of biological complexity' cümlesi B seçeneğini doğrular."
+      }
+    ]
+  }
+];
 
     let currentReadingTextIndex = 0;
     let readingLookupMap = null;
     let currentReadingQuestions = [];
-    let readingUserAnswers = {}; // { qIndex: 'A' | 'B' | 'C' | 'D' }
+    let readingSelectedChoices = {}; // { [qIdx]: 'A' | 'B' | 'C' | 'D' }
+    let readingConfirmedAnswers = {}; // { [qIdx]: 'A' | 'B' | 'C' | 'D' }
+    let readingUserAnswers = {}; // backward compatibility
+    let activeReadingLevelFilter = 'ALL'; // 'ALL', 'B1', 'B2', 'C1'
+
+    function filterReadingPresets(level) {
+      activeReadingLevelFilter = level;
+      ['ALL', 'B1', 'B2', 'C1'].forEach(lvl => {
+        const btn = document.getElementById('readingFilter-' + lvl);
+        if (btn) {
+          if (lvl === level) {
+            btn.className = 'reading-filter-pill px-3 py-1 rounded-lg text-xs font-semibold border transition bg-rose-900/60 border-rose-500/40 text-white shrink-0';
+          } else {
+            btn.className = 'reading-filter-pill px-3 py-1 rounded-lg text-xs font-semibold border transition bg-white/[0.03] border-white/5 text-slate-400 hover:text-white shrink-0';
+          }
+        }
+      });
+
+      renderReadingPresetButtons();
+
+      // If current preset not in filtered list, switch to first visible
+      const curPreset = readingPresets[currentReadingTextIndex];
+      if (curPreset && level !== 'ALL' && curPreset.level !== level) {
+        const firstIdx = readingPresets.findIndex(p => p.level === level);
+        if (firstIdx !== -1) {
+          loadPresetReadingText(firstIdx);
+        }
+      }
+    }
+
+    function renderReadingPresetButtons() {
+      const container = document.getElementById('readingPresetsContainer');
+      if (!container) return;
+
+      container.innerHTML = readingPresets.map((preset, idx) => {
+        if (activeReadingLevelFilter !== 'ALL' && preset.level !== activeReadingLevelFilter) {
+          return '';
+        }
+        const isActive = (idx === currentReadingTextIndex);
+        const activeClass = isActive
+          ? 'btn-primary-glow border-rose-500/50 text-white shadow-sm font-semibold'
+          : 'bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06] font-medium';
+
+        return `
+          <button onclick="loadPresetReadingText(${idx})" id="readingPreset-${idx}" class="px-3 py-1.5 rounded-xl text-xs border transition whitespace-nowrap ${activeClass}">
+            <span class="paren-span">${escapeHtmlAttr(preset.shortTitle || preset.title)}</span>
+          </button>
+        `;
+      }).join('');
+    }
 
     function getReadingLookupMap() {
       if (!readingLookupMap) {
@@ -4993,46 +6450,24 @@
       // 5. Intelligent Fallback for rare uncatalogued words
       return {
         w: rawToken,
-        pos: "academic",
-        lvl: "C1",
+        pos: 'academic',
+        lvl: 'C1',
         isAwl: true,
-        tr: "Akademik bağlamsal ifade (Detaylı sözlük araması)",
-        ipa: "",
-        ex: ""
+        tr: 'Akademik bağlamsal ifade (Detaylı sözlük araması)',
+        ipa: '',
+        ex: ''
       };
     }
 
     function initReadingLab() {
+      renderReadingPresetButtons();
       loadPresetReadingText(currentReadingTextIndex);
-    }
-
-    function switchReadingSubTab(tab) {
-      const isHighlighter = tab === 'highlighter';
-      document.getElementById('panel-reading-highlighter').classList.toggle('hidden', !isHighlighter);
-      document.getElementById('panel-reading-upgrader').classList.toggle('hidden', isHighlighter);
-
-      const btnH = document.getElementById('subtab-highlighter');
-      const btnU = document.getElementById('subtab-upgrader');
-      if (btnH && btnU) {
-        btnH.className = isHighlighter
-          ? 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition btn-primary-glow shadow-sm flex items-center justify-center gap-1.5'
-          : 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
-        btnU.className = !isHighlighter
-          ? 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition btn-primary-glow shadow-sm flex items-center justify-center gap-1.5'
-          : 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
-      }
     }
 
     function loadPresetReadingText(idx) {
       currentReadingTextIndex = idx;
-      [0, 1, 2].forEach(i => {
-        const btn = document.getElementById('readingPreset-' + i);
-        if (btn) {
-          btn.className = i === idx
-            ? 'px-3 py-1.5 rounded-xl text-xs font-medium border transition btn-primary-glow whitespace-nowrap'
-            : 'px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06] whitespace-nowrap';
-        }
-      });
+      renderReadingPresetButtons();
+
       const pasteBox = document.getElementById('readingCustomPasteBox');
       if (pasteBox) pasteBox.classList.add('hidden');
 
@@ -5070,7 +6505,7 @@
       if (lvlEl) lvlEl.innerText = levelBadge || 'B2 • Hazırlık Muafiyet';
 
       const container = document.getElementById('readingRenderedContainer');
-      const tokens = text.split(/([A-Za-z'-]+)/);
+      const tokens = text.split(/( [A-Za-z'-]+ )/);
 
       const renderedHtml = tokens.map(token => {
         const isWord = /^[A-Za-z'-]+$/.test(token);
@@ -5093,9 +6528,41 @@
 
       container.innerHTML = renderedHtml;
 
-      // Render Questions
+      // Reset state for new article
       currentReadingQuestions = questions || [];
+      readingSelectedChoices = {};
+      readingConfirmedAnswers = {};
       readingUserAnswers = {};
+      renderReadingQuestionsUI();
+    }
+
+    function selectReadingOption(qIdx, optKey) {
+      if (readingConfirmedAnswers[qIdx] !== undefined) return;
+      readingSelectedChoices[qIdx] = optKey;
+      renderReadingQuestionsUI();
+    }
+
+    function confirmReadingAnswer(qIdx) {
+      if (readingConfirmedAnswers[qIdx] !== undefined) return;
+      const choice = readingSelectedChoices[qIdx];
+      if (!choice) return;
+
+      readingConfirmedAnswers[qIdx] = choice;
+      readingUserAnswers[qIdx] = choice; // backward compatibility
+      logHeatmapActivity(1);
+
+      const q = currentReadingQuestions[qIdx];
+      if (q && choice !== q.answer) {
+        addMistakeToVault({
+          type: 'reading',
+          word: 'Okuma Sorusu',
+          prompt: q.prompt,
+          options: q.options ? q.options.map(o => `${o.key}) ${o.text}`) : [],
+          answer: q.answer,
+          explanation: q.explanation || ''
+        });
+      }
+
       renderReadingQuestionsUI();
     }
 
@@ -5108,7 +6575,7 @@
       if (!currentReadingQuestions || currentReadingQuestions.length === 0) {
         container.innerHTML = `
           <div class="p-4 rounded-xl bg-black/40 border border-white/[0.06] text-center text-xs text-[#a8998c] space-y-1">
-            <p>📋 Bu metin için özel soru havuzu bulunmuyor.</p>
+            <p>📋 Bu metin için soru havuzu bulunmuyor.</p>
             <p class="text-[11px] text-[#d6c7b2]/60">Metindeki kelimelerin üzerine tıklayarak anlam ve telaffuz çalışabilirsiniz.</p>
           </div>
         `;
@@ -5118,14 +6585,19 @@
       }
 
       let correctCount = 0;
-      let totalAnswered = 0;
+      let totalConfirmed = 0;
 
       container.innerHTML = currentReadingQuestions.map((q, idx) => {
-        const userChoice = readingUserAnswers[idx];
-        const isAnswered = userChoice !== undefined;
-        if (isAnswered) totalAnswered++;
-        const isCorrect = userChoice === q.answer;
-        if (isAnswered && isCorrect) correctCount++;
+        const selected = readingSelectedChoices[idx];
+        const isConfirmed = readingConfirmedAnswers[idx] !== undefined;
+        const confirmedChoice = readingConfirmedAnswers[idx];
+
+        if (isConfirmed) {
+          totalConfirmed++;
+          if (confirmedChoice === q.answer) correctCount++;
+        }
+
+        const isCorrect = isConfirmed && (confirmedChoice === q.answer);
 
         return `
           <div class="p-4 rounded-xl bg-black/40 border border-white/[0.06] space-y-3 text-left">
@@ -5137,60 +6609,70 @@
             <div class="space-y-1.5">
               ${q.options.map(opt => {
                 let btnStyle = 'bg-white/[0.03] hover:bg-white/[0.07] border-white/[0.08] text-slate-300 hover:text-white';
-                if (isAnswered) {
+                let badgeStyle = 'bg-white/10 text-slate-400';
+
+                if (isConfirmed) {
                   if (opt.key === q.answer) {
                     btnStyle = 'bg-emerald-600/30 border-emerald-500/70 text-emerald-200 font-semibold ring-1 ring-emerald-500/40';
-                  } else if (opt.key === userChoice) {
+                    badgeStyle = 'bg-emerald-500 text-white font-bold';
+                  } else if (opt.key === confirmedChoice) {
                     btnStyle = 'bg-rose-600/30 border-rose-500/70 text-rose-200 font-semibold ring-1 ring-rose-500/40 line-through opacity-80';
+                    badgeStyle = 'bg-rose-500 text-white font-bold';
                   } else {
                     btnStyle = 'bg-white/[0.02] border-white/5 text-slate-500 opacity-60';
+                    badgeStyle = 'bg-white/5 text-slate-500';
+                  }
+                } else {
+                  // Not confirmed yet: highlight selected option freely
+                  if (opt.key === selected) {
+                    btnStyle = 'bg-rose-950/70 border-rose-500/80 text-white font-medium ring-1 ring-rose-500/50 shadow-sm';
+                    badgeStyle = 'bg-rose-600 text-white font-bold';
                   }
                 }
 
                 return `
-                  <button type="button" onclick="answerReadingQuestion(${idx}, '${opt.key}')" ${isAnswered ? 'disabled' : ''} class="w-full p-2.5 rounded-lg border text-xs text-left transition flex items-start gap-2.5 ${btnStyle}">
-                    <span class="w-5 h-5 rounded flex items-center justify-center font-mono text-[10px] font-bold shrink-0 ${opt.key === userChoice ? 'bg-rose-500 text-white' : 'bg-white/10 text-slate-400'}">${opt.key}</span>
+                  <button type="button" onclick="selectReadingOption(${idx}, '${opt.key}')" ${isConfirmed ? 'disabled' : ''} class="w-full p-2.5 rounded-lg border text-xs text-left transition flex items-start gap-2.5 ${btnStyle}">
+                    <span class="w-5 h-5 rounded flex items-center justify-center font-mono text-[10px] shrink-0 ${badgeStyle}">${opt.key}</span>
                     <span class="leading-relaxed pt-0.5">${escapeHtmlAttr(opt.text)}</span>
                   </button>
                 `;
               }).join('')}
             </div>
 
-            ${isAnswered ? `
-              <div class="pt-2 text-[11px] leading-relaxed border-t border-white/[0.06] ${isCorrect ? 'text-emerald-300' : 'text-rose-300'}">
-                <strong>${isCorrect ? '✅ Doğru!' : '❌ Yanlış Cevap:'}</strong> ${q.explanation}
+            ${!isConfirmed ? `
+              <div class="pt-2 flex items-center justify-between">
+                <span class="text-[11px] text-[#a8998c]">
+                  ${selected ? 'Seçildi: <strong class="text-rose-300 font-mono">' + selected + '</strong>' : '<span class="italic text-slate-500">Cevabınızı seçin</span>'}
+                </span>
+                ${selected ? `
+                  <button type="button" onclick="confirmReadingAnswer(${idx})" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white border border-rose-400/40 shadow-md transition flex items-center gap-1 active:scale-95">
+                    <span>✓</span> <span>Cevabı Onayla</span>
+                  </button>
+                ` : ''}
               </div>
-            ` : ''}
+            ` : `
+              <div class="pt-2 text-[11px] leading-relaxed border-t border-white/[0.06] ${isCorrect ? 'text-emerald-300' : 'text-rose-300'}">
+                <strong>${isCorrect ? '✅ Doğru!' : '❌ Yanlış:'}</strong> ${q.explanation}
+              </div>
+            `}
           </div>
         `;
       }).join('');
 
       if (scoreDisplay) scoreDisplay.innerText = `${correctCount} / ${currentReadingQuestions.length} Doğru`;
-      if (feedbackEl && totalAnswered === currentReadingQuestions.length) {
+      if (feedbackEl && totalConfirmed === currentReadingQuestions.length) {
         feedbackEl.innerText = correctCount >= 3 ? '🎉 Harika anlama performansı!' : '📚 Metni tekrar okuyup pekiştirebilirsin.';
       }
     }
 
     function answerReadingQuestion(qIdx, optKey) {
-      if (readingUserAnswers[qIdx] !== undefined) return;
-      readingUserAnswers[qIdx] = optKey;
-      renderReadingQuestionsUI();
-      logHeatmapActivity(1);
-
-      const q = currentReadingQuestions[qIdx];
-      if (q && optKey !== q.answer) {
-        addMistakeToVault({
-          type: 'reading',
-          word: 'Okuma Sorusu',
-          prompt: q.prompt,
-          options: q.options ? q.options.map(o => `${o.key}) ${o.text}`) : [],
-          answer: q.answer,
-          explanation: q.explanation || ''
-        });
-      }
+      selectReadingOption(qIdx, optKey);
+      confirmReadingAnswer(qIdx);
     }
 
     function resetReadingQuestions() {
+      readingSelectedChoices = {};
+      readingConfirmedAnswers = {};
       readingUserAnswers = {};
       renderReadingQuestionsUI();
     }
