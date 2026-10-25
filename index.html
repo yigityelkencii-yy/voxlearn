@@ -11,11 +11,11 @@
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
@@ -24,7 +24,9 @@
       background-color: #0c0406;
       color: #ede2d7;
       overflow-x: hidden;
-      letter-spacing: -0.011em;
+      letter-spacing: -0.015em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .font-serif-hero {
       font-family: var(--font-serif);
@@ -205,6 +207,116 @@
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(71, 85, 105, 0.9);
     }
+
+    /* Characteristic Tactile & Velvet Button Styles */
+    .btn-primary-glow {
+      background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #9f1239 100%);
+      border: 1px solid rgba(251, 113, 133, 0.45);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(225, 29, 72, 0.45);
+      color: #ffffff !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-primary-glow:hover {
+      background: linear-gradient(135deg, #f43f5e 0%, #e11d48 50%, #be123c 100%);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 8px 24px -4px rgba(225, 29, 72, 0.6);
+      transform: translateY(-1px);
+    }
+    .btn-primary-glow:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset, 0 2px 8px rgba(225, 29, 72, 0.3);
+    }
+
+    .btn-glass-subtle {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      color: #ede2d7;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-glass-subtle:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .btn-glass-subtle:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-amber-tactile {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.16) 0%, rgba(217, 119, 6, 0.25) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.38);
+      color: #fef3c7;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 14px -3px rgba(245, 158, 11, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-amber-tactile:hover {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.38) 100%);
+      border-color: rgba(245, 158, 11, 0.55);
+      transform: translateY(-1px);
+    }
+    .btn-amber-tactile:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-emerald-tactile {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(5, 150, 105, 0.25) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.38);
+      color: #d1fae5;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 14px -3px rgba(16, 185, 129, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-emerald-tactile:hover {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.38) 100%);
+      border-color: rgba(16, 185, 129, 0.55);
+      transform: translateY(-1px);
+    }
+    .btn-emerald-tactile:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .btn-rose-tactile {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.16) 0%, rgba(159, 18, 57, 0.25) 100%);
+      border: 1px solid rgba(244, 63, 94, 0.38);
+      color: #ffe4e6;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 14px -3px rgba(225, 29, 72, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-rose-tactile:hover {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(159, 18, 57, 0.38) 100%);
+      border-color: rgba(244, 63, 94, 0.55);
+      transform: translateY(-1px);
+    }
+    .btn-rose-tactile:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Tab switcher active pill */
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.55) 0%, rgba(159, 18, 57, 0.7) 100%) !important;
+      border: 1px solid rgba(251, 113, 133, 0.45) !important;
+      color: #ffffff !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(225, 29, 72, 0.3) !important;
+    }
+    .tab-btn {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tab-btn:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
+
+    /* Mobile Parenthesis and Badge Wrap Protection */
+    .whitespace-nowrap, .lvl-btn, .tab-btn, .nowrap-paren {
+      white-space: nowrap !important;
+    }
+    .paren-span {
+      display: inline-block;
+      white-space: nowrap !important;
+    }
+
   </style>
 </head>
 <body class="text-slate-100 min-h-screen flex flex-col antialiased selection:bg-rose-600 selection:text-white relative">
@@ -311,6 +423,9 @@
         <button onclick="switchTab('reading')" id="tab-reading" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
           Okuma Lab
         </button>
+        <button onclick="switchTab('exam')" id="tab-exam" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0 flex items-center gap-1">
+          <span>🏆</span> <span>Deneme Sınavı</span>
+        </button>
         <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn px-3 sm:px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
           Gramer
         </button>
@@ -337,26 +452,26 @@
     <div class="max-w-4xl mx-auto flex items-center justify-between gap-1.5 overflow-x-auto text-xs font-medium scrollbar-none py-0.5">
       <div class="flex items-center gap-1.5 shrink-0">
         <span class="text-[11px] text-[#a8998c]/70 font-mono uppercase tracking-wider mr-1">Kur:</span>
-        <button onclick="setLevelFilter('ALL')" id="lvlBtn-ALL" class="lvl-btn px-3 py-1 rounded-lg bg-white/[0.08] text-white font-medium transition border border-white/10">
-          Tüm Kelimeler (3.600)
+        <button onclick="setLevelFilter('ALL')" id="lvlBtn-ALL" class="lvl-btn px-3 py-1 rounded-lg bg-white/[0.08] text-white font-medium transition border border-white/10 whitespace-nowrap">
+          <span class="paren-span">Tüm Kelimeler (3.600)</span>
         </button>
-        <button onclick="setLevelFilter('A1')" id="lvlBtn-A1" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-emerald-400 transition flex items-center gap-1.5">
+        <button onclick="setLevelFilter('A1')" id="lvlBtn-A1" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-emerald-400 transition flex items-center gap-1.5 whitespace-nowrap">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> A1
         </button>
-        <button onclick="setLevelFilter('A2')" id="lvlBtn-A2" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-sky-400 transition flex items-center gap-1.5">
+        <button onclick="setLevelFilter('A2')" id="lvlBtn-A2" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-sky-400 transition flex items-center gap-1.5 whitespace-nowrap">
           <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span> A2
         </button>
-        <button onclick="setLevelFilter('B1')" id="lvlBtn-B1" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-purple-400 transition flex items-center gap-1.5">
+        <button onclick="setLevelFilter('B1')" id="lvlBtn-B1" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-purple-400 transition flex items-center gap-1.5 whitespace-nowrap">
           <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> B1
         </button>
-        <button onclick="setLevelFilter('B2')" id="lvlBtn-B2" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-amber-400 transition flex items-center gap-1.5">
+        <button onclick="setLevelFilter('B2')" id="lvlBtn-B2" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-amber-400 transition flex items-center gap-1.5 whitespace-nowrap">
           <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> B2
         </button>
-        <button onclick="setLevelFilter('C1')" id="lvlBtn-C1" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-rose-400 transition flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span> C1 (İleri)
+        <button onclick="setLevelFilter('C1')" id="lvlBtn-C1" class="lvl-btn px-3 py-1 rounded-lg text-slate-400 hover:text-rose-400 transition flex items-center gap-1.5 whitespace-nowrap">
+          <span class="paren-span"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 inline-block mr-1"></span>C1 (İleri)</span>
         </button>
-        <button onclick="setLevelFilter('AWL')" id="lvlBtn-AWL" class="lvl-btn px-3 py-1 rounded-lg text-rose-300/80 hover:text-rose-300 transition flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span> AWL (Akademik)
+        <button onclick="setLevelFilter('AWL')" id="lvlBtn-AWL" class="lvl-btn px-3 py-1 rounded-lg text-rose-300/80 hover:text-rose-300 transition flex items-center gap-1.5 whitespace-nowrap">
+          <span class="paren-span"><span class="w-1.5 h-1.5 rounded-full bg-rose-400 inline-block mr-1"></span>AWL (Akademik)</span>
         </button>
       </div>
 
@@ -374,14 +489,14 @@
       
       <!-- Deck Mode Selector Bar + Reverse Mode Toggle -->
       <div id="fcSourceBar" class="flex flex-wrap items-center justify-between gap-1.5 p-1 rounded-xl bg-black/40 border border-white/[0.06] text-xs">
-        <button onclick="setFcSource('batch')" id="fcSource-batch" class="flex-1 py-1.5 px-3 rounded-lg font-medium transition bg-rose-900/60 border border-rose-500/30 text-white shadow-sm">
-          20'lik Tur (<span id="fcActiveLevelLabel">Tümü</span>)
+        <button onclick="setFcSource('batch')" id="fcSource-batch" class="flex-1 py-1.5 px-3 rounded-lg font-medium transition btn-primary-glow whitespace-nowrap">
+          <span class="paren-span">20'lik Tur (<span id="fcActiveLevelLabel">Tümü</span>)</span>
         </button>
-        <button onclick="setFcSource('learn')" id="fcSource-learn" class="flex-1 py-1.5 px-3 rounded-lg font-medium transition text-rose-300 hover:bg-white/[0.04] flex items-center justify-center gap-1.5">
-          Tekrar (<span id="fcBtnLearnCount">0</span>)
+        <button onclick="setFcSource('learn')" id="fcSource-learn" class="flex-1 py-1.5 px-3 rounded-lg font-medium transition text-rose-300 hover:bg-white/[0.06] border border-transparent hover:border-rose-500/20 flex items-center justify-center gap-1.5 whitespace-nowrap">
+          <span class="paren-span">Tekrar (<span id="fcBtnLearnCount">0</span>)</span>
         </button>
-        <button onclick="setFcSource('due')" id="fcSource-due" class="flex-1 py-1.5 px-3 rounded-lg font-medium transition text-amber-300 hover:bg-white/[0.04] flex items-center justify-center gap-1.5">
-          🔔 Vadesi Dolanlar (<span id="fcBtnDueCount">0</span>)
+        <button onclick="setFcSource('due')" id="fcSource-due" class="flex-1 py-1.5 px-3 rounded-lg font-medium transition text-amber-300 hover:bg-white/[0.06] border border-transparent hover:border-amber-500/20 flex items-center justify-center gap-1.5 whitespace-nowrap">
+          <span class="paren-span">🔔 Vadesi Dolanlar (<span id="fcBtnDueCount">0</span>)</span>
         </button>
         <button onclick="toggleReverseMode()" id="btnReverseMode" title="Öğrenme Yönünü Değiştir" 
                 class="py-1.5 px-3 rounded-lg font-mono text-[11px] transition bg-white/[0.04] hover:bg-white/[0.08] text-[#d6c7b2] border border-white/5 flex items-center justify-center gap-1.5 shrink-0">
@@ -517,22 +632,22 @@
         <div class="flex items-center justify-center gap-3 pt-2">
           
           <!-- Tekrar Et (Left Action) -->
-          <button onclick="handleSwipe('left')" class="group flex-1 max-w-[190px] py-3 px-4 rounded-xl bg-white/[0.03] hover:bg-rose-500/[0.08] border border-white/[0.08] hover:border-rose-500/30 text-slate-300 hover:text-rose-200 font-medium text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-[0.98]">
-            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            <span>Tekrar Et</span>
-            <span class="text-[10px] font-mono text-slate-500 hidden sm:inline">[←]</span>
+          <button onclick="handleSwipe('left')" class="group flex-1 max-w-[190px] py-3 px-4 rounded-xl btn-rose-tactile font-medium text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-[0.98]">
+            <svg class="w-3.5 h-3.5 text-rose-300 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <span class="paren-span">Tekrar Et</span>
+            <span class="text-[10px] font-mono text-rose-300/60 hidden sm:inline">[←]</span>
           </button>
 
           <!-- Flip Quick Button -->
-          <button onclick="flipCard()" title="Çevir (Boşluk)" class="p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-slate-300 hover:text-white transition active:scale-[0.98]">
+          <button onclick="flipCard()" title="Çevir (Boşluk)" class="p-3 rounded-xl btn-glass-subtle text-slate-300 hover:text-white transition active:scale-[0.98]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
           </button>
 
           <!-- Öğrendim (Right Action) -->
-          <button onclick="handleSwipe('right')" class="group flex-1 max-w-[190px] py-3 px-4 rounded-xl bg-white/[0.03] hover:bg-emerald-500/[0.08] border border-white/[0.08] hover:border-emerald-500/30 text-slate-300 hover:text-emerald-200 font-medium text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-[0.98]">
-            <span>Öğrendim</span>
-            <span class="text-[10px] font-mono text-slate-500 hidden sm:inline">[→]</span>
-            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          <button onclick="handleSwipe('right')" class="group flex-1 max-w-[190px] py-3 px-4 rounded-xl btn-emerald-tactile font-medium text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-[0.98]">
+            <span class="paren-span">Öğrendim</span>
+            <span class="text-[10px] font-mono text-emerald-300/60 hidden sm:inline">[→]</span>
+            <svg class="w-3.5 h-3.5 text-emerald-300 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </button>
 
         </div>
@@ -826,6 +941,9 @@
             <button onclick="setDictFilter('learn')" id="dictFilter-learn" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-semibold text-rose-400 hover:bg-slate-800 transition">🔥 Tekrar</button>
             <button onclick="setDictFilter('known')" id="dictFilter-known" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-semibold text-emerald-400 hover:bg-slate-800 transition">✅ Bildiklerim</button>
           </div>
+          <button onclick="toggleDictationMode()" id="dictationToggleBtn" class="px-3.5 py-2 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white font-medium text-xs border border-white/5 transition flex items-center gap-1.5 shrink-0">
+            <span>🎧</span> <span>Dikte Modu</span>
+          </button>
           <button onclick="openCustomWordModal()" class="px-3.5 py-2 rounded-2xl bg-rose-900/70 hover:bg-rose-800 text-white font-medium text-xs border border-rose-500/30 transition shadow-sm flex items-center gap-1.5 shrink-0">
             <span>➕</span> <span>Yeni Kelime Ekle</span>
           </button>
@@ -835,6 +953,64 @@
       <div class="text-xs text-slate-400 flex justify-between items-center px-1 font-mono">
         <span id="dictResultCount">Toplam <strong>3,609</strong> kelime listeleniyor</span>
         <span class="text-slate-500 text-[11px] hidden sm:inline">Hoparlöre basarak telaffuzu dinle</span>
+      </div>
+
+      <!-- DICTATION & SPELLING LAB PANEL (DİKTE & YAZIM LABORATUVARI) -->
+      <div id="dictationLabPanel" class="hidden p-6 sm:p-8 rounded-2xl bg-[#140609] border border-white/[0.08] shadow-2xl space-y-6 text-center">
+        <div class="flex items-center justify-between pb-3 border-b border-white/[0.06] text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-sans font-medium">🎧 Dikte Laboratuvarı</span>
+            <span class="text-[#a8998c]">Kelime: <strong id="dictationCurrentNum" class="text-white font-mono">1</strong></span>
+          </div>
+          <div class="text-xs font-mono text-emerald-400">
+            Doğru Yazım: <span id="dictationScore" class="font-bold">0</span>
+          </div>
+        </div>
+
+        <div class="space-y-4 max-w-lg mx-auto">
+          <!-- Audio Playback Controls -->
+          <div class="p-6 rounded-2xl bg-black/40 border border-white/[0.06] space-y-3">
+            <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Sesli Telaffuz & İpucu</div>
+            <div class="flex items-center justify-center gap-3">
+              <button onclick="playDictationWordAudio()" class="px-5 py-2.5 rounded-xl bg-rose-900/70 hover:bg-rose-800 text-white font-medium text-xs sm:text-sm transition border border-rose-500/30 shadow-lg shadow-rose-950/40 flex items-center gap-2">
+                <span>🔊</span> <span>Kelimeyi Dinle</span>
+              </button>
+              <button onclick="playDictationSentenceAudio()" class="px-4 py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white font-medium text-xs sm:text-sm transition border border-white/10 flex items-center gap-2">
+                <span>🗣️</span> <span>Cümle İçinde Dinle</span>
+              </button>
+            </div>
+            <div id="dictationHintTr" class="text-sm font-semibold text-emerald-400 pt-1">
+              Türkçe Anlam: ...
+            </div>
+            <div id="dictationWordMeta" class="text-[11px] font-mono text-[#a8998c]/70 flex items-center justify-center gap-3">
+              <span id="dictationPos">noun</span> • <span id="dictationLength">8 Harf</span>
+            </div>
+          </div>
+
+          <!-- Letter Slot Placeholders -->
+          <div id="dictationSlotsContainer" class="flex flex-wrap items-center justify-center gap-1.5 py-1">
+            <!-- Dynamic character tiles -->
+          </div>
+
+          <!-- User Input Box -->
+          <div class="space-y-2">
+            <input type="text" id="dictationInput" placeholder="Duyduğun kelimeyi yaz ve Enter'a bas..." autocomplete="off" autocapitalize="off" spellcheck="false"
+                   class="w-full bg-slate-900/90 border border-white/[0.12] rounded-xl px-4 py-3 text-center text-lg text-white font-mono placeholder-slate-500 focus:outline-none focus:border-rose-500 transition tracking-wider">
+            <div id="dictationFeedback" class="hidden text-xs py-2 px-3 rounded-xl font-medium transition-all"></div>
+          </div>
+
+          <div class="flex items-center justify-center gap-3 pt-1">
+            <button onclick="giveDictationHintLetter()" class="px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 font-medium text-xs transition border border-white/5">
+              💡 Harf İpucu Al
+            </button>
+            <button onclick="checkDictationAnswer()" class="px-6 py-2.5 rounded-xl bg-rose-900/70 hover:bg-rose-800 text-white font-medium text-xs sm:text-sm transition border border-rose-500/30 shadow-lg shadow-rose-950/50">
+              Kontrol Et (Enter)
+            </button>
+            <button onclick="nextDictationWord()" id="dictationNextBtn" class="hidden px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs sm:text-sm transition shadow-lg">
+              Sonraki Kelime ➔
+            </button>
+          </div>
+        </div>
       </div>
 
       <div id="dictGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -851,25 +1027,268 @@
 
   
 
+
+    <!-- ==================== 5.5. PROFICIENCY MOCK EXAM ARENA ==================== -->
+    <section id="view-exam" class="hidden max-w-4xl mx-auto space-y-6">
+      
+      <!-- Sınav Giriş Ekranı (Exam Intro Screen) -->
+      <div id="examIntroScreen" class="p-8 sm:p-10 rounded-2xl bg-[#140609] border border-white/[0.08] shadow-2xl text-center space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-mono text-xs uppercase tracking-wider">
+          AKADEMİK İNGİLİZCE & PROFICIENCY STANDARDI
+        </div>
+        
+        <div class="space-y-2 max-w-2xl mx-auto">
+          <h2 class="font-serif-hero text-3xl sm:text-4xl font-medium text-[#fdf6ee]">
+            Akademik Muafiyet & Hazırlık Atlama Deneme Sınavı
+          </h2>
+          <p class="text-[#a8998c] text-sm sm:text-base leading-relaxed">
+            Akademik kelime bilgisi, cloze test, restatement (eşdeğer cümle) ve okuma anlama bölümlerinden oluşan gerçek zamanlı yeterlilik denemesi.
+          </p>
+        </div>
+
+        <!-- Seviye Seçim Paneli (Level Selector) -->
+        <div class="space-y-2.5 max-w-3xl mx-auto text-left pt-1">
+          <div class="flex items-center justify-between text-xs font-mono uppercase tracking-wider px-1">
+            <span class="text-[#d6c7b2]/75">Hedef Seviyenizi Seçin:</span>
+            <span id="examSelectedLevelName" class="text-rose-400 font-bold">B2 (Yetkin / Muafiyet)</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <button type="button" onclick="selectExamLevel('B1')" id="examLvlBtn-B1" class="exam-lvl-pill p-3 rounded-xl border transition text-left space-y-1 bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/20 hover:bg-white/[0.06]">
+              <div class="text-xs font-bold text-white flex items-center justify-between"><span>B1 Seviyesi</span><span class="w-2 h-2 rounded-full bg-purple-400"></span></div>
+              <div class="text-[11px] text-[#a8998c]">15 Soru • 20 Dk</div>
+            </button>
+            <button type="button" onclick="selectExamLevel('B2')" id="examLvlBtn-B2" class="exam-lvl-pill p-3 rounded-xl border transition text-left space-y-1 bg-rose-900/40 border-rose-500/60 text-white ring-1 ring-rose-500/50 shadow-md">
+              <div class="text-xs font-bold text-white flex items-center justify-between"><span>B2 Muafiyet</span><span class="w-2 h-2 rounded-full bg-amber-400"></span></div>
+              <div class="text-[11px] text-rose-200/80">20 Soru • 30 Dk</div>
+            </button>
+            <button type="button" onclick="selectExamLevel('C1')" id="examLvlBtn-C1" class="exam-lvl-pill p-3 rounded-xl border transition text-left space-y-1 bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/20 hover:bg-white/[0.06]">
+              <div class="text-xs font-bold text-white flex items-center justify-between"><span>C1 Akademik</span><span class="w-2 h-2 rounded-full bg-rose-400"></span></div>
+              <div class="text-[11px] text-[#a8998c]">20 Soru • 30 Dk</div>
+            </button>
+            <button type="button" onclick="selectExamLevel('ALL')" id="examLvlBtn-ALL" class="exam-lvl-pill p-3 rounded-xl border transition text-left space-y-1 bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/20 hover:bg-white/[0.06]">
+              <div class="text-xs font-bold text-white flex items-center justify-between"><span>🏆 Tam Deneme</span><span class="w-2 h-2 rounded-full bg-pink-400"></span></div>
+              <div class="text-[11px] text-[#a8998c]">20 Soru • 30 Dk</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Sınav Bölümü Kartı -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto text-left pt-2">
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] space-y-1">
+            <div class="text-[10px] font-mono text-cyan-300 uppercase">Bölüm 1</div>
+            <div class="text-xs font-bold text-white">Vocabulary in Context</div>
+            <div class="text-[11px] text-[#a8998c]">Akademik Kelimeler</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] space-y-1">
+            <div class="text-[10px] font-mono text-amber-300 uppercase">Bölüm 2</div>
+            <div class="text-xs font-bold text-white">Cloze Passage</div>
+            <div class="text-[11px] text-[#a8998c]">Paragraf İçi Boşluk</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] space-y-1">
+            <div class="text-[10px] font-mono text-purple-300 uppercase">Bölüm 3</div>
+            <div class="text-xs font-bold text-white">Restatement</div>
+            <div class="text-[11px] text-[#a8998c]">Eşdeğer Cümleler</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-black/40 border border-white/[0.06] space-y-1">
+            <div class="text-[10px] font-mono text-rose-300 uppercase">Bölüm 4</div>
+            <div class="text-xs font-bold text-white">Reading Comprehension</div>
+            <div class="text-[11px] text-[#a8998c]">Akademik Paragraf</div>
+          </div>
+        </div>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div class="text-xs font-mono text-[#d6c7b2]/70 flex items-center gap-2">
+            <span>🎯 Baraj: <strong class="text-white">70 / 100 Puan</strong></span>
+          </div>
+          <button onclick="startMockExam()" id="examStartBtn" class="px-8 py-3.5 rounded-xl btn-primary-glow font-medium text-sm flex items-center gap-2 shadow-xl shadow-rose-950/60 transition">
+            <span>🚀</span> <span id="examStartBtnLabel">Sınavı Başlat (30:00)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Aktif Sınav Ekranı (Exam Active Arena) -->
+      <div id="examActiveScreen" class="hidden space-y-5">
+        <!-- Top Control Bar: Timer, Navigation & Finish -->
+        <div class="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-[#140609] border border-white/[0.08]">
+          <div class="flex items-center gap-3 text-xs">
+            <span class="text-[#a8998c]">Soru: <strong id="examCurrentNum" class="text-white font-mono text-sm">1</strong> / 20</span>
+            <span id="examCategoryBadge" class="px-2.5 py-0.5 rounded-md bg-white/[0.05] border border-white/10 text-cyan-300 font-mono text-[11px]">Vocabulary</span>
+          </div>
+
+          <!-- 30:00 Countdown Timer -->
+          <div id="examTimerContainer" class="px-4 py-1.5 rounded-xl bg-black/50 border border-white/10 font-mono text-sm font-bold text-amber-300 flex items-center gap-2 shadow-inner">
+            <span>⏱️</span>
+            <span id="examTimerDisplay">30:00</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="toggleExamFlag()" id="examFlagBtn" class="px-3 py-1.5 rounded-xl text-xs font-medium border border-white/10 bg-white/[0.03] text-slate-300 hover:text-white transition flex items-center gap-1">
+              <span id="examFlagIcon">🚩</span> <span>Sonra Bak</span>
+            </button>
+            <button onclick="confirmFinishExam()" class="px-4 py-1.5 rounded-xl text-xs font-bold bg-rose-900/70 hover:bg-rose-800 text-white border border-rose-500/30 transition shadow-sm">
+              Sınavı Bitir ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- 20 Question Navigation Grid -->
+        <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06]">
+          <div class="flex items-center justify-between text-[11px] font-mono text-[#a8998c] mb-2 px-1">
+            <span>SORU HARİTASI (Tıkla Geç):</span>
+            <div class="flex items-center gap-3">
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Çözüldü</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Bayraklı</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-white/20"></span> Boş</span>
+            </div>
+          </div>
+          <div id="examQuestionGrid" class="grid grid-cols-10 sm:grid-cols-20 gap-1.5">
+            <!-- 20 question buttons generated by JS -->
+          </div>
+        </div>
+
+        <!-- Question & Content Box -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-[#140609] border border-white/[0.08] shadow-2xl space-y-6">
+          <!-- Optional Passage Box for Cloze & Reading Questions -->
+          <div id="examPassageBox" class="hidden p-5 rounded-xl bg-black/50 border border-white/[0.06] space-y-2 text-left">
+            <div id="examPassageTitle" class="text-xs font-mono uppercase text-[#d6c7b2]/70 font-semibold">Paragraf</div>
+            <div id="examPassageText" class="font-serif text-sm sm:text-base text-[#ede2d7] leading-relaxed select-text space-y-2"></div>
+          </div>
+
+          <!-- Question Prompt -->
+          <div class="text-left space-y-2">
+            <div id="examQuestionPrompt" class="font-serif-hero text-base sm:text-lg text-[#fdf6ee] font-medium leading-relaxed">
+              Soru metni...
+            </div>
+          </div>
+
+          <!-- Multiple Choice Options (A, B, C, D) -->
+          <div id="examOptionsContainer" class="space-y-2.5 text-left">
+            <!-- Options buttons generated by JS -->
+          </div>
+
+          <!-- Bottom Nav (Prev, Next) -->
+          <div class="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+            <button onclick="prevExamQuestion()" id="examPrevBtn" class="px-5 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 text-xs font-medium border border-white/5 transition flex items-center gap-1.5">
+              <span>⬅️</span> <span>Önceki Soru</span>
+            </button>
+            <button onclick="nextExamQuestion()" id="examNextBtn" class="px-6 py-2 rounded-xl bg-rose-900/80 hover:bg-rose-800 text-white text-xs font-medium border border-rose-500/30 transition shadow-lg shadow-rose-950/40 flex items-center gap-1.5">
+              <span>Sonraki Soru</span> <span>➡️</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- EXAM SCORECARD MODAL -->
+    <div id="examScorecardModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+      <div class="bg-[#140609] border border-white/[0.08] rounded-2xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="closeExamScorecardModal()" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.05] transition text-sm">
+          ✕
+        </button>
+
+        <div class="text-center space-y-2">
+          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Sınav Değerlendirme Raporu</div>
+          <h3 class="font-serif-hero text-3xl sm:text-4xl font-medium text-[#fdf6ee]">
+            Sınav Karnen
+          </h3>
+          <div id="examCefrBadge" class="inline-block px-4 py-1 rounded-full text-xs font-bold font-mono uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
+            Düzey Tahmini: B2 Yetkin
+          </div>
+        </div>
+
+        <!-- Big Score Hero -->
+        <div class="p-6 rounded-2xl bg-black/50 border border-white/[0.08] text-center space-y-1">
+          <div class="text-xs font-mono text-[#a8998c] uppercase">Hazırlık Atlama Net Skoru</div>
+          <div class="font-serif-hero text-5xl sm:text-6xl font-bold text-amber-300 font-mono tracking-tight">
+            <span id="scorecardNetScore">85</span><span class="text-2xl sm:text-3xl text-slate-500 font-normal"> / 100</span>
+          </div>
+          <div id="scorecardStatusText" class="text-xs text-emerald-400 font-medium pt-1">
+            🎉 Tebrikler! Üniversite Hazırlık Muafiyet barajını (70+) başarıyla geçtiniz.
+          </div>
+        </div>
+
+        <!-- Section Analysis Bars -->
+        <div class="space-y-3 p-4 rounded-xl bg-black/30 border border-white/[0.05]">
+          <div class="text-xs font-mono text-[#d6c7b2] uppercase tracking-wider font-semibold">Bölüm Başarı Analizi:</div>
+          
+          <!-- Vocab -->
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs text-[#a8998c]">
+              <span>Vocabulary in Context (6 Soru)</span>
+              <span id="scVocabRate" class="font-mono text-cyan-300 font-bold">%0</span>
+            </div>
+            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+              <div id="scVocabBar" class="h-full bg-cyan-400 rounded-full" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Cloze & Restatement -->
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs text-[#a8998c]">
+              <span>Gramer, Cloze & Restatement (9 Soru)</span>
+              <span id="scGrammarRate" class="font-mono text-purple-300 font-bold">%0</span>
+            </div>
+            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+              <div id="scGrammarBar" class="h-full bg-purple-400 rounded-full" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Reading -->
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs text-[#a8998c]">
+              <span>Reading Comprehension (5 Soru)</span>
+              <span id="scReadingRate" class="font-mono text-rose-300 font-bold">%0</span>
+            </div>
+            <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+              <div id="scReadingBar" class="h-full bg-rose-500 rounded-full" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review Mode (Hata İncelemesi) Accordion -->
+        <div class="space-y-2">
+          <button onclick="toggleExamReviewMode()" class="w-full py-2.5 px-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-xs font-medium text-slate-200 border border-white/10 flex items-center justify-between transition">
+            <span>🔍 Yanlışları ve Çözüm Açıklamalarını İncele</span>
+            <span id="examReviewToggleIcon">▼</span>
+          </button>
+          
+          <div id="examReviewContainer" class="hidden space-y-3 pt-2 max-h-80 overflow-y-auto pr-1">
+            <!-- Review items injected by JS -->
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-center gap-3">
+          <button onclick="closeExamScorecardModal()" class="w-1/2 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 font-medium text-xs transition border border-white/10">
+            Kapat ✕
+          </button>
+          <button onclick="restartMockExam()" class="w-1/2 py-3 rounded-xl bg-rose-900/80 hover:bg-rose-800 text-white font-medium text-xs transition border border-rose-500/30 shadow-lg shadow-rose-950/50">
+            Yeniden Sınav Ol 🔄
+          </button>
+        </div>
+      </div>
+    </div>
+
+
     <!-- ==================== 5. READING LAB & ACADEMIC UPGRADER MODULE ==================== -->
-    <section id="view-reading" class="hidden max-w-4xl mx-auto space-y-6">
+    <section id="view-reading" class="hidden max-w-5xl mx-auto space-y-6">
       
       <!-- Reading Lab Header & Sub-tab Switcher -->
       <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-3 border-b border-rose-950/40">
         <div>
-          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Bilişsel Hafıza & Metin Çözümleme</div>
+          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Akademik Okuma & Soru Çözüm Laboratuvarı</div>
           <h2 class="font-serif-hero text-2xl sm:text-3xl font-medium text-[#fdf6ee] flex items-center gap-2.5">
-            <span>Akıllı Okuma Laboratuvarı</span>
-            <span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-sans font-medium">Laboratuvar</span>
+            <span>Okuma & Anlama Laboratuvarı</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-sans font-medium">Reading Lab 2.0</span>
           </h2>
           <p class="text-[#a8998c] text-xs sm:text-sm mt-1">
-            Akademik metinleri CEFR & AWL kelime yoğunluğuna göre analiz et, kelimelere dokunup anlamını keşfet ve basit ifadeleri akademik alternatifleriyle yükselt.
+            Seviyelendirilmiş akademik metinleri oku, istediğin kelimeye dokunup anında Türkçe karşılığını keşfet ve metne bağlı anlama sorularını çöz.
           </p>
         </div>
 
         <div class="flex items-center gap-1.5 bg-black/40 p-1 rounded-xl border border-white/[0.08] text-xs shrink-0 self-stretch sm:self-auto">
-          <button onclick="switchReadingSubTab('highlighter')" id="subtab-highlighter" class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition bg-rose-900/70 text-white border border-rose-500/30 shadow-sm flex items-center justify-center gap-1.5">
-            <span>📖</span> <span>Okuma & Fosforlama</span>
+          <button onclick="switchReadingSubTab('highlighter')" id="subtab-highlighter" class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition btn-primary-glow flex items-center justify-center gap-1.5 shadow-sm">
+            <span>📖</span> <span>Okuma & Sorular</span>
           </button>
           <button onclick="switchReadingSubTab('upgrader')" id="subtab-upgrader" class="flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
             <span>✍️</span> <span>Kelime Yükseltici</span>
@@ -877,24 +1296,24 @@
         </div>
       </div>
 
-      <!-- PANEL 1: OKUMA & AKILLI FOSFORLAMA (SMART HIGHLIGHTER) -->
+      <!-- PANEL 1: OKUMA & AKILLI SORU ÇÖZÜM WORKSTATION -->
       <div id="panel-reading-highlighter" class="space-y-5">
         
-        <!-- Text Source Selection -->
+        <!-- Text Level & Preset Selection Bar -->
         <div class="flex flex-wrap items-center justify-between gap-2 p-2 rounded-2xl bg-[#140609] border border-white/[0.08]">
           <div class="flex flex-wrap items-center gap-1.5">
-            <span class="text-[11px] font-mono uppercase tracking-wider text-[#d6c7b2]/60 px-2">Akademik Paragraflar:</span>
-            <button onclick="loadPresetReadingText(0)" id="readingPreset-0" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-rose-900/60 border-rose-500/30 text-white">
-              1. AI & Ethics
+            <span class="text-[11px] font-mono uppercase tracking-wider text-[#d6c7b2]/60 px-2">Metin & Seviye:</span>
+            <button onclick="loadPresetReadingText(0)" id="readingPreset-0" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition btn-primary-glow whitespace-nowrap">
+              <span class="paren-span">B1 • Alışkanlıklar & Zihin</span>
             </button>
-            <button onclick="loadPresetReadingText(1)" id="readingPreset-1" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06]">
-              2. Climate Mechanisms
+            <button onclick="loadPresetReadingText(1)" id="readingPreset-1" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06] whitespace-nowrap">
+              <span class="paren-span">B2 • Yapay Zeka & Etik</span>
             </button>
-            <button onclick="loadPresetReadingText(2)" id="readingPreset-2" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06]">
-              3. Behavioral Economics
+            <button onclick="loadPresetReadingText(2)" id="readingPreset-2" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06] whitespace-nowrap">
+              <span class="paren-span">C1 • Küresel İklim Döngüleri</span>
             </button>
           </div>
-          <button onclick="toggleCustomPasteArea()" id="togglePasteBtn" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.04] hover:bg-white/[0.08] text-[#d6c7b2] border-white/10 flex items-center gap-1.5">
+          <button onclick="toggleCustomPasteArea()" id="togglePasteBtn" class="px-3 py-1.5 rounded-xl text-xs font-medium border transition btn-glass-subtle text-[#d6c7b2] flex items-center gap-1.5 whitespace-nowrap">
             <span>📋</span> <span>Kendi Metnini Yapıştır</span>
           </button>
         </div>
@@ -903,51 +1322,85 @@
         <div id="readingCustomPasteBox" class="hidden p-4 rounded-2xl bg-[#140609] border border-white/[0.08] space-y-3">
           <div class="flex justify-between items-center text-xs">
             <span class="text-[#d6c7b2] font-medium">Kendi Makale / Essay Metninizi Yapıştırın:</span>
-            <span class="text-[#a8998c] font-mono text-[11px]">3.609 kelimelik CEFR + AWL havuzu ile taranır</span>
+            <span class="text-[#a8998c] font-mono text-[11px]">Metindeki her kelime morfolojik kök bulucu ile taranır</span>
           </div>
           <textarea id="readingCustomTextarea" rows="4" placeholder="Metninizi buraya yapıştırın... (örn: The comprehensive analysis demonstrates that autonomous technology alters economic structures...)"
                     class="w-full bg-black/60 border border-white/[0.08] rounded-xl p-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition font-sans leading-relaxed"></textarea>
           <div class="flex justify-end gap-2">
             <button onclick="toggleCustomPasteArea()" class="px-4 py-2 rounded-xl text-xs text-slate-400 hover:text-white transition">İptal</button>
-            <button onclick="analyzeCustomReadingText()" class="px-5 py-2 rounded-xl bg-rose-900/80 hover:bg-rose-800 text-white font-medium text-xs border border-rose-500/30 transition shadow-lg shadow-rose-950/50">
-              Metni Analiz Et & Fosforla ➔
+            <button onclick="analyzeCustomReadingText()" class="px-5 py-2 rounded-xl btn-primary-glow font-medium text-xs transition">
+              Metni Yükle & Çözümle ➔
             </button>
           </div>
         </div>
 
-        <!-- Text Statistics Strip (Metin İstatistik Şeridi) -->
-        <div class="p-4 rounded-2xl bg-black/40 border border-white/[0.06] space-y-3">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.05]">
-            <div class="text-xs sm:text-sm font-medium text-[#fdf6ee] flex flex-wrap items-center gap-x-4 gap-y-1.5">
-              <span>Toplam: <strong id="statTotalWords" class="font-mono text-amber-300">0</strong> Kelime</span>
-              <span class="text-white/20 hidden sm:inline">|</span>
-              <span>B2/C1 Oranı: <strong id="statB2C1Ratio" class="font-mono text-rose-300">%0</strong></span>
-              <span class="text-white/20 hidden sm:inline">|</span>
-              <span>AWL Akademik Yoğunluk: <strong id="statAwlRatio" class="font-mono text-pink-300">%0</strong></span>
-            </div>
-            <div class="text-[11px] font-mono text-[#a8998c] flex items-center gap-1.5">
-              <span>💡 Kelimenin üzerine tıklayarak Türkçe anlamını ve telaffuzunu görün</span>
+        <!-- TWO COLUMN WORKSTATION: Left = Reading Article, Right = Comprehension Questions -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          
+          <!-- Column 1: Editorial Reading Paper (7 cols on lg) -->
+          <div class="lg:col-span-7 space-y-3">
+            <div class="p-6 sm:p-8 rounded-2xl bg-[#140609] border border-white/[0.08] shadow-2xl relative space-y-4">
+              
+              <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
+                <div class="space-y-1">
+                  <span id="readingPassageLevelBadge" class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    B2 • Yetkin / Muafiyet
+                  </span>
+                  <h3 id="readingTextTitle" class="font-serif-hero text-xl sm:text-2xl font-medium text-[#fdf6ee]">
+                    Metin Başlığı
+                  </h3>
+                </div>
+                
+                <button type="button" onclick="speakCurrentReadingPassage()" id="btnSpeakPassage" class="px-3 py-1.5 rounded-xl btn-glass-subtle text-xs flex items-center gap-1.5 transition text-slate-300 hover:text-white">
+                  <span>🔊</span> <span class="text-[11px] font-sans">Metni Dinle</span>
+                </button>
+              </div>
+
+              <!-- Interactive Editorial Text -->
+              <div id="readingRenderedContainer" class="font-serif text-[16px] sm:text-[17px] text-[#ede2d7] leading-[2.1] tracking-wide select-text space-y-4">
+                <!-- Interactively rendered words with clean hover styling injected here -->
+              </div>
+
+              <!-- Word lookup help footnote -->
+              <div class="pt-3 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-[#a8998c]">
+                <span>💡 Metindeki <strong>herhangi bir kelimeye dokunarak</strong> Türkçe anlamını, telaffuzunu ve Leitner kutusunu görün.</span>
+              </div>
             </div>
           </div>
 
-          <!-- Color Legend -->
-          <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
-            <span class="text-[11px] font-mono text-[#a8998c]/70 uppercase">Fosforlama Rehberi:</span>
-            <span class="px-2 py-0.5 rounded text-[11px] border-b border-sky-400/50 text-sky-200">A1/A2 Temel</span>
-            <span class="px-2 py-0.5 rounded text-[11px] bg-amber-500/15 text-amber-200 border-b border-amber-500/30 font-medium">B1/B2 Orta-İleri</span>
-            <span class="px-2 py-0.5 rounded text-[11px] bg-rose-500/15 text-rose-300 border-b border-rose-500/40 font-medium">C1 İleri</span>
-            <span class="px-2 py-0.5 rounded text-[11px] bg-pink-500/20 text-pink-300 border-b border-pink-500/50 font-bold font-mono">🎓 AWL Akademik</span>
-          </div>
-        </div>
+          <!-- Column 2: Paragraf Anlama Soruları (5 cols on lg) -->
+          <div class="lg:col-span-5 space-y-4">
+            <div id="readingQuestionsCard" class="p-5 sm:p-6 rounded-2xl bg-[#140609] border border-white/[0.08] shadow-2xl space-y-4">
+              
+              <div class="flex items-center justify-between pb-3 border-b border-white/[0.06]">
+                <div class="space-y-0.5">
+                  <div class="text-[10px] font-mono uppercase tracking-wider text-[#d6c7b2]/70">Okuduğunu Anlama</div>
+                  <h4 class="text-sm font-bold text-white flex items-center gap-1.5">
+                    <span>🎯</span> <span>Paragraf Analiz Soruları</span>
+                  </h4>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] font-mono text-[#a8998c]">Başarı:</div>
+                  <div id="readingScoreDisplay" class="text-xs font-mono font-bold text-amber-300">0 / 4 Doğru</div>
+                </div>
+              </div>
 
-        <!-- Interactive Reading Paper Display -->
-        <div class="p-6 sm:p-8 rounded-2xl bg-[#140609] border border-white/[0.08] shadow-2xl relative">
-          <div id="readingTextTitle" class="font-serif-hero text-xl sm:text-2xl font-medium text-[#fdf6ee] mb-4 pb-3 border-b border-white/[0.05]">
-            Metin Başlığı
+              <!-- Questions List Container -->
+              <div id="readingQuestionsContainer" class="space-y-4">
+                <!-- Questions injected here by JS -->
+              </div>
+
+              <!-- Reset / Retry button -->
+              <div class="pt-2 flex items-center justify-between border-t border-white/[0.05]">
+                <button type="button" onclick="resetReadingQuestions()" class="text-xs text-[#a8998c] hover:text-white transition flex items-center gap-1 font-mono">
+                  <span>🔄</span> <span>Soruları Sıfırla</span>
+                </button>
+                <span class="text-[10px] font-mono text-emerald-400" id="readingFeedbackSummary"></span>
+              </div>
+
+            </div>
           </div>
-          <div id="readingRenderedContainer" class="font-serif text-base sm:text-lg text-[#ede2d7] leading-[2.1] tracking-wide select-text space-y-4">
-            <!-- Interactively highlighted tokens will be injected here -->
-          </div>
+
         </div>
 
       </div>
@@ -1316,8 +1769,8 @@
   </main>
 
   <!-- ==================== DAILY STREAK & GOALS MODAL ==================== -->
-  <div id="streakModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-    <div class="bg-[#140609] border border-white/[0.08] rounded-2xl max-w-md w-full p-6 sm:p-7 space-y-5 shadow-2xl relative">
+  <div id="streakModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div class="bg-[#140609] border border-white/[0.08] rounded-2xl max-w-2xl w-full p-6 sm:p-7 space-y-5 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
       
       <button onclick="toggleStreakModal()" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.05] transition text-sm">
         ✕
@@ -1362,6 +1815,40 @@
           <button onclick="setDailyGoal(40)" id="goalBtn-40" class="py-2 px-2 rounded-xl text-xs font-mono font-medium border transition bg-white/[0.03] text-slate-300 border-white/5 hover:border-rose-500/40">
             40 Kelime
           </button>
+        </div>
+      </div>
+
+      <!-- 365 GÜNLÜK ÇALIŞMA ISI HARİTASI (GITHUB-STYLE ACTIVITY HEATMAP) -->
+      <div class="pt-3 border-t border-white/[0.06] space-y-2.5 text-left">
+        <div class="flex items-center justify-between">
+          <div class="text-[11px] font-mono tracking-wider text-[#d6c7b2]/80 uppercase font-semibold">Çalışma Isı Haritası (Son 14 Hafta):</div>
+          <div class="text-[10px] font-mono text-[#a8998c]" id="heatmapTotalCountText">0 Toplam Aktivite</div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-black/50 border border-white/[0.06] overflow-x-auto">
+          <div id="activityHeatmapGrid" class="flex gap-1 min-w-[320px]">
+            <!-- Heatmap columns generated by JS -->
+          </div>
+          
+          <div class="flex items-center justify-between pt-2 text-[10px] font-mono text-[#a8998c]/70">
+            <span>Daha Az</span>
+            <div class="flex items-center gap-1">
+              <span class="w-2.5 h-2.5 rounded-sm bg-[#1c0d12] border border-[#2d151c]"></span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-[#5c1626]"></span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-[#9f1239]"></span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-[#e11d48]"></span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-[#fb7185]"></span>
+            </div>
+            <span>Daha Çok</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 ADET BAŞARI ROZETİ (ACHIEVEMENT BADGES) -->
+      <div class="pt-3 border-t border-white/[0.06] space-y-2.5 text-left">
+        <div class="text-[11px] font-mono tracking-wider text-[#d6c7b2]/80 uppercase font-semibold">Başarı Rozetleri:</div>
+        <div id="badgesContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <!-- 6 Badge cards generated by JS -->
         </div>
       </div>
 
@@ -1681,6 +2168,7 @@
       updateWordLeitner(wordStr, isKnown);
       saveMemory();
       incrementActivityCount();
+      logHeatmapActivity(1);
     }
 
     function updateGlobalStatsUI() {
@@ -1933,6 +2421,10 @@
       const modal = document.getElementById('streakModal');
       modal.classList.toggle('hidden');
       updateStreakUI();
+      if (!modal.classList.contains('hidden')) {
+        renderActivityHeatmap();
+        checkAndRenderBadges();
+      }
     }
 
     function setDailyGoal(newGoal) {
@@ -2161,7 +2653,7 @@
 
     // ==================== TAB SWITCHER ====================
     function switchTab(tabId) {
-      ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'grammar'].forEach(t => {
+      ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'exam', 'grammar'].forEach(t => {
         const view = document.getElementById('view-' + t);
         const tab = document.getElementById('tab-' + t);
         if (view) view.classList.add('hidden');
@@ -2175,7 +2667,7 @@
 
       const filterBar = document.getElementById('levelFilterBar');
       if (filterBar) {
-        filterBar.classList.toggle('hidden', tabId === 'grammar' || tabId === 'reading');
+        filterBar.classList.toggle('hidden', tabId === 'grammar' || tabId === 'reading' || tabId === 'exam');
       }
 
       if (tabId === 'flashcards') renderFlashcard();
@@ -2184,6 +2676,7 @@
       if (tabId === 'match') startMatchGame();
       if (tabId === 'dict') renderDict();
       if (tabId === 'reading') initReadingLab();
+      if (tabId === 'exam') initExamArena();
       if (tabId === 'grammar') renderGrammarView();
     }
 
@@ -3481,13 +3974,20 @@
           customWords = JSON.parse(localStorage.getItem(STORAGE_CUSTOM_WORDS_KEY) || '[]');
         } catch(e) { customWords = []; }
 
+        let heatmapData = {};
+        try { heatmapData = JSON.parse(localStorage.getItem(STORAGE_HEATMAP_KEY) || '{}'); } catch(e) {}
+
         const backupData = {
           app: 'VoxLearn',
-          version: 2,
+          version: 3,
           exportDate: new Date().toISOString(),
           knownWords: Array.from(knownSet),
           learnWords: Array.from(learnSet),
           leitnerBoxes: leitnerBoxes,
+          heatmapData: heatmapData,
+          bestExamScore: parseInt(localStorage.getItem(STORAGE_EXAM_BEST_KEY) || '0', 10),
+          dictionCount: parseInt(localStorage.getItem(STORAGE_DICTION_COUNT_KEY) || '0', 10),
+          upgradesCount: parseInt(localStorage.getItem(STORAGE_UPGRADES_COUNT_KEY) || '0', 10),
           streakCount: streakCount,
           dailyGoal: dailyGoal,
           todayPracticed: todayPracticed,
@@ -3555,6 +4055,18 @@
             localStorage.setItem(STORAGE_LEITNER_KEY, JSON.stringify(data.leitnerBoxes));
             leitnerBoxes = data.leitnerBoxes;
           }
+          if (data.heatmapData && typeof data.heatmapData === 'object') {
+            localStorage.setItem(STORAGE_HEATMAP_KEY, JSON.stringify(data.heatmapData));
+          }
+          if (typeof data.bestExamScore === 'number') {
+            localStorage.setItem(STORAGE_EXAM_BEST_KEY, String(data.bestExamScore));
+          }
+          if (typeof data.dictionCount === 'number') {
+            localStorage.setItem(STORAGE_DICTION_COUNT_KEY, String(data.dictionCount));
+          }
+          if (typeof data.upgradesCount === 'number') {
+            localStorage.setItem(STORAGE_UPGRADES_COUNT_KEY, String(data.upgradesCount));
+          }
 
           loadCustomWords();
           loadMemory();
@@ -3577,7 +4089,7 @@
       reader.readAsText(file);
     }
 
-    // ==================== 9. SPEECH RECOGNITION & PRONUNCIATION EVALUATION ====================
+    // ==================== 9. SPEECH RECOGNITION & LEVENSHTEIN SIMILARITY AI ====================
     let activeSpeechRecognition = null;
 
     function normalizeSpeechText(str) {
@@ -3586,6 +4098,50 @@
         .replace(/[.,/#!$%^&*;:{}=\-_`~()?'"’]/g, '')
         .replace(/\s+/g, ' ')
         .trim();
+    }
+
+    function calculateSimilarity(str1, str2) {
+      const s1 = normalizeSpeechText(str1);
+      const s2 = normalizeSpeechText(str2);
+      if (s1 === s2) return 100;
+      if (!s1 || !s2) return 0;
+
+      const m = s1.length;
+      const n = s2.length;
+      const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          if (s1[i - 1] === s2[j - 1]) {
+            dp[i][j] = dp[i - 1][j - 1];
+          } else {
+            dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+          }
+        }
+      }
+
+      const dist = dp[m][n];
+      const maxLen = Math.max(m, n);
+      const ratio = Math.max(0, (maxLen - dist) / maxLen);
+      return Math.round(ratio * 100);
+    }
+
+    function triggerPronunciationConfetti() {
+      // Lightweight visual celebratory sparkle effect
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.top = '25%';
+      container.style.left = '50%';
+      container.style.transform = 'translate(-50%, -50%)';
+      container.style.pointerEvents = 'none';
+      container.style.zIndex = '9999';
+      container.className = 'flex items-center gap-2 text-2xl animate-bounce';
+      container.innerHTML = '✨ 🎯 🌟 🎯 ✨';
+      document.body.appendChild(container);
+      setTimeout(() => container.remove(), 1800);
     }
 
     function startSpeechEvaluation(context) {
@@ -3640,22 +4196,24 @@
 
       recognition.onresult = function(event) {
         const transcript = event.results[0][0].transcript;
-        const cleanSpoken = normalizeSpeechText(transcript);
-        const cleanTarget = normalizeSpeechText(targetText);
-
-        const isMatch = cleanSpoken === cleanTarget ||
-                        cleanTarget.split(' ').includes(cleanSpoken) ||
-                        (cleanSpoken.length > 3 && cleanTarget.includes(cleanSpoken));
+        const score = calculateSimilarity(transcript, targetText);
 
         if (btnEl) btnEl.classList.remove('animate-pulse', 'border-rose-500', 'text-rose-400');
 
         if (context === 'flashcard') {
-          if (isMatch) {
-            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 inline-flex items-center gap-1.5 shadow-sm';
-            feedbackEl.innerHTML = '<span>🎯</span> <span>Harika Telaffuz!</span>';
+          if (score >= 85) {
+            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 inline-flex items-center gap-1.5 shadow-md shadow-emerald-500/20';
+            feedbackEl.innerHTML = `<span>🎯</span> <span>Harika Telaffuz! (%${score})</span>`;
+            triggerPronunciationConfetti();
+            incrementDictionCount();
+            logHeatmapActivity(1);
+          } else if (score >= 60) {
+            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40 inline-flex items-center gap-1.5 shadow-sm';
+            feedbackEl.innerHTML = `<span>👍</span> <span>Anlaşılır, biraz daha net söyleyebilirsin (%${score})</span>`;
+            logHeatmapActivity(1);
           } else {
-            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-rose-500/20 text-rose-300 border border-rose-500/30 inline-flex items-center gap-1.5 shadow-sm';
-            feedbackEl.innerHTML = `<span>👂</span> <span>Duyulan: "${escapeHtmlAttr(transcript)}" — Tekrar Dene</span>`;
+            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-rose-950/40 text-rose-300 border border-rose-500/30 inline-flex items-center gap-1.5 shadow-sm';
+            feedbackEl.innerHTML = `<span>🔄</span> <span>Duyulan: "${escapeHtmlAttr(transcript)}" — Tekrar Dene (%${score})</span>`;
           }
           setTimeout(() => {
             if (feedbackEl && !feedbackEl.classList.contains('hidden')) {
@@ -3665,9 +4223,9 @@
                 feedbackEl.classList.remove('opacity-0');
               }, 400);
             }
-          }, 4000);
+          }, 4500);
         } else if (context === 'scramble') {
-          if (isMatch) {
+          if (score >= 80) {
             const q = sentenceScrambleData[scrambleIndex];
             scramblePlacedTokens = q.correct.split(" ");
             scrambleAvailableTokens = [];
@@ -3675,11 +4233,14 @@
             checkScrambleSentence();
             const speechNote = document.createElement('div');
             speechNote.className = 'text-xs text-emerald-300 font-semibold flex items-center gap-1.5 pt-1 border-t border-emerald-500/20';
-            speechNote.innerHTML = '<span>🎯</span> <span>Harika Telaffuz! Cümle ses ile başarıyla kuruldu.</span>';
+            speechNote.innerHTML = `<span>🎯</span> <span>Harika Telaffuz! Cümle %${score} doğrulukla kuruldu.</span>`;
             feedbackEl.appendChild(speechNote);
+            triggerPronunciationConfetti();
+            incrementDictionCount();
+            logHeatmapActivity(1);
           } else {
             feedbackEl.className = 'p-3 rounded-xl bg-rose-950/30 border border-rose-500/30 text-xs text-rose-300 text-left space-y-1';
-            feedbackEl.innerHTML = `<div>❌ <strong>Duyulan:</strong> "${escapeHtmlAttr(transcript)}"</div><div class="text-[11px] text-[#a8998c]">Hedef cümleyi tekrar telaffuz etmeyi deneyin.</div>`;
+            feedbackEl.innerHTML = `<div>❌ <strong>Duyulan:</strong> "${escapeHtmlAttr(transcript)}" (%${score})</div><div class="text-[11px] text-[#a8998c]">Cümleyi tekrar ve daha net seslendirmeyi deneyin.</div>`;
           }
         }
       };
@@ -3781,24 +4342,185 @@
       if (countEl) countEl.innerText = dueWords.length;
     }
 
-    // ==================== 12. READING LAB & SMART HIGHLIGHTER ====================
+    // ==================== 12. READING LAB 2.0 & COMPREHENSION WORKSTATION ====================
     const readingPresets = [
       {
-        title: "Artificial Intelligence and Ethics",
-        text: "The rapid expansion of artificial intelligence presents a significant dilemma for contemporary society. While autonomous systems can analyze substantial amounts of data and enhance productivity, they also generate critical ethical concerns. Algorithms may unintentionally reinforce social bias or make decisions that lack transparency. Therefore, researchers argue that it is crucial to establish strict regulations and ethical frameworks to govern algorithmic decision-making and mitigate potential harm to vulnerable communities."
+        id: "b1-habits",
+        level: "B1",
+        levelBadge: "B1 • Orta Seviye (Intermediate)",
+        title: "The Science of Daily Habits and Mindset",
+        text: "Human behavior is largely driven by small, repetitive habits that shape our daily routines. When we perform an action consistently, our brain forms neural pathways that make the task automatic over time. Psychologists explain that developing a positive mindset begins with manageable steps rather than dramatic changes. For example, reading ten pages of a book every morning or practicing vocabulary for fifteen minutes can yield remarkable long-term results. By understanding how environmental cues trigger our habits, we can intentionally replace unproductive tendencies with constructive practices that foster personal growth and mental resilience.",
+        questions: [
+          {
+            id: 1,
+            prompt: "What is the primary purpose of the passage?",
+            options: [
+              { key: "A", text: "To explain how small consistent habits gradually shape automatic behaviors and long-term success." },
+              { key: "B", text: "To argue that only dramatic life changes can lead to psychological improvement." },
+              { key: "C", text: "To criticize modern society for lacking daily routines." },
+              { key: "D", text: "To prove that reading books is the only way to build mental resilience." }
+            ],
+            answer: "A",
+            explanation: "Metnin ana fikri, küçük ve düzenli alışkanlıkların zamanla beyinde otomatik yollar oluşturarak uzun vadeli başarı ve zihinsel direnç sağladığıdır."
+          },
+          {
+            id: 2,
+            prompt: "According to the text, how does the brain make tasks automatic?",
+            options: [
+              { key: "A", text: "By eliminating all emotional reactions." },
+              { key: "B", text: "By forming neural pathways through consistent repetition." },
+              { key: "C", text: "By forcing individuals to take dramatic risks." },
+              { key: "D", text: "By avoiding any environmental cues." }
+            ],
+            answer: "B",
+            explanation: "'When we perform an action consistently, our brain forms neural pathways that make the task automatic over time' cümlesi B şıkkını doğrudan kanıtlar."
+          },
+          {
+            id: 3,
+            prompt: "In the text, the word <strong>'yield'</strong> is closest in meaning to:",
+            options: [
+              { key: "A", text: "surrender" },
+              { key: "B", text: "produce or generate" },
+              { key: "C", text: "postpone" },
+              { key: "D", text: "forbid" }
+            ],
+            answer: "B",
+            explanation: "'Yield remarkable long-term results' bağlamında 'yield' fiili 'meydana getirmek, üretmek, kazanç/sonuç sağlamak' (produce, generate) anlamındadır."
+          },
+          {
+            id: 4,
+            prompt: "What can be inferred about changing unproductive tendencies?",
+            options: [
+              { key: "A", text: "It is impossible without medical intervention." },
+              { key: "B", text: "It requires recognizing and altering the environmental cues that trigger them." },
+              { key: "C", text: "It should be accomplished within 24 hours." },
+              { key: "D", text: "It has no relationship with personal habits." }
+            ],
+            answer: "B",
+            explanation: "Son cümlede 'By understanding how environmental cues trigger our habits, we can intentionally replace unproductive tendencies' ifadesiyle çevresel tetikleyicileri anlamanın önemi vurgulanmıştır."
+          }
+        ]
       },
       {
-        title: "Global Climate Mechanisms",
-        text: "Global climate patterns are driven by complex interactions between atmospheric currents and oceanic circulation. When greenhouse gas emissions increase, thermal energy is trapped within the atmosphere, precipitating notable shifts in precipitation and weather stability. Scientists emphasize that mitigating these adverse impacts requires comprehensive international collaboration, substantial investments in renewable energy, and innovative technologies to absorb and store carbon emissions efficiently."
+        id: "b2-ai-ethics",
+        level: "B2",
+        levelBadge: "B2 • Yetkin / Muafiyet Standardı",
+        title: "Artificial Intelligence, Algorithms, and Contemporary Ethics",
+        text: "The rapid expansion of artificial intelligence presents a significant dilemma for contemporary society. While autonomous systems can analyze substantial amounts of data and enhance industrial productivity, they simultaneously generate critical ethical concerns. Machine-learning algorithms may unintentionally reinforce historical biases or make decisions that lack transparency. Furthermore, the opacity of deep neural networks—frequently described as the black box problem—hampers accountability and institutional oversight. Therefore, researchers and policymakers argue that it is crucial to establish strict regulations and transparent frameworks to govern algorithmic decision-making and mitigate potential harm to vulnerable communities.",
+        questions: [
+          {
+            id: 1,
+            prompt: "The passage is primarily concerned with:",
+            options: [
+              { key: "A", text: "The technological impossibility of developing autonomous systems." },
+              { key: "B", text: "The dual nature of AI as an efficiency tool and a source of serious ethical and social challenges." },
+              { key: "C", text: "The commercial profits generated by artificial intelligence companies." },
+              { key: "D", text: "The historical evolution of criminal justice systems before computers." }
+            ],
+            answer: "B",
+            explanation: "Paragraf, yapay zekanın sağladığı endüstriyel verimlilik ile beraberinde getirdiği derin etik açmazları (taraflı algoritmalar, şeffaflık eksikliği) birlikte ele almaktadır."
+          },
+          {
+            id: 2,
+            prompt: "The phrase <strong>'black box problem'</strong> refers to:",
+            options: [
+              { key: "A", text: "Physical damage occurring in airplane flight recorders." },
+              { key: "B", text: "The inability of computers to process large datasets quickly." },
+              { key: "C", text: "The lack of interpretability and transparency in deep learning decisions." },
+              { key: "D", text: "The high monetary cost of purchasing artificial intelligence hardware." }
+            ],
+            answer: "C",
+            explanation: "'The opacity of deep neural networks—frequently described as the black box problem—hampers accountability' ifadesi, sistemlerin karar mekanizmasının şeffaf ve anlaşılabilir olmamasını tanımlar."
+          },
+          {
+            id: 3,
+            prompt: "According to the author, why do AI systems produce biased outcomes?",
+            options: [
+              { key: "A", text: "They reflect and magnify historical prejudices embedded in training data." },
+              { key: "B", text: "Computer programmers intentionally write malicious code." },
+              { key: "C", text: "Governments refuse to purchase modern microchips." },
+              { key: "D", text: "Users do not spend enough time training the software." }
+            ],
+            answer: "A",
+            explanation: "Metinde açıkça 'algorithms may unintentionally reinforce historical biases' ifadesi kullanılmıştır."
+          },
+          {
+            id: 4,
+            prompt: "Which of the following can be inferred from the last sentence?",
+            options: [
+              { key: "A", text: "Artificial intelligence research should be outlawed globally." },
+              { key: "B", text: "Civic trust and safety can be preserved if AI progress is paired with strict oversight and transparency." },
+              { key: "C", text: "Auditing algorithms has been proven completely ineffective." },
+              { key: "D", text: "International treaties are no longer necessary in technology." }
+            ],
+            answer: "B",
+            explanation: "Son cümlede ilerlemenin denetim ve şeffaf yasal çerçevelerle desteklenmesi gerektiği, aksi halde savunmasız toplulukların zarar görebileceği belirtilmiştir."
+          }
+        ]
       },
       {
-        title: "Behavioral Economics and Decision Making",
-        text: "Behavioral economics demonstrates that human decision-making frequently deviates from rational choice theory. Cognitive biases and emotional responses often cause individuals to prioritize immediate gratification over long-term financial security. By examining how subtle environmental cues influence consumer behavior, economists can design interventions that facilitate better choices without restricting personal freedom or imposing arbitrary constraints."
+        id: "c1-climate",
+        level: "C1",
+        levelBadge: "C1 • İleri Akademik (Advanced)",
+        title: "Global Climate Mechanisms and Oceanic Circulation",
+        text: "Global climate patterns are driven by complex thermodynamic interactions between atmospheric currents and oceanic circulation. When anthropogenic greenhouse gas emissions increase, thermal energy is trapped within the atmosphere, precipitating notable shifts in precipitation and weather stability. A critical component of this planetary system is thermohaline circulation, which acts as a global conveyor belt transporting thermal energy toward polar latitudes. Accelerated melting of Arctic ice sheets injects low-density freshwater into the ocean, diluting salinity and inhibiting the sinking of dense surface water. Paleoclimatological records suggest that a protracted deceleration of this convective loop could trigger abrupt climatic destabilization across continents.",
+        questions: [
+          {
+            id: 1,
+            prompt: "Which statement best expresses the central thesis of the excerpt?",
+            options: [
+              { key: "A", text: "Arctic ice sheets are expanding due to unexpected planetary cold fronts." },
+              { key: "B", text: "Disruptions to oceanic thermohaline circulation caused by warming threaten severe climate destabilization." },
+              { key: "C", text: "Oceanic currents are solely governed by surface wind velocities." },
+              { key: "D", text: "Agricultural output across continents is unaffected by oceanic temperatures." }
+            ],
+            answer: "B",
+            explanation: "Metnin ana düşüncesi, insan kaynaklı sera gazlarının okyanus termohalin akıntılarını yavaşlatarak küresel ölçekte ani iklimsel bozulmalara yol açma tehlikesidir."
+          },
+          {
+            id: 2,
+            prompt: "The influx of freshwater into the Arctic ocean causes concern primarily because it:",
+            options: [
+              { key: "A", text: "Raises water temperatures to boiling points." },
+              { key: "B", text: "Dilutes salinity and prevents dense surface water from sinking." },
+              { key: "C", text: "Permanently stops all marine animal migration within days." },
+              { key: "D", text: "Blocks commercial vessel navigation completely." }
+            ],
+            answer: "B",
+            explanation: "Metindeki 'diluting salinity and inhibiting the sinking of dense surface water' ifadesi B şıkkının birebir doğruluğunu gösterir."
+          },
+          {
+            id: 3,
+            prompt: "The word <strong>'precipitating'</strong> in the text is closest in meaning to:",
+            options: [
+              { key: "A", text: "triggering or bringing about" },
+              { key: "B", text: "peacefully resolving" },
+              { key: "C", text: "carefully averting" },
+              { key: "D", text: "measuring precisely" }
+            ],
+            answer: "A",
+            explanation: "'Precipitating notable shifts in precipitation' cümlesinde 'precipitate', 'hızla tetiklemek, sebep olmak' (triggering, bringing about) anlamında kullanılmıştır."
+          },
+          {
+            id: 4,
+            prompt: "What can be deduced from paleoclimatological records mentioned in the text?",
+            options: [
+              { key: "A", text: "Earth has never experienced shifts in oceanic temperatures." },
+              { key: "B", text: "Historical deceleration of oceanic circulation loops has triggered abrupt climatic disruptions." },
+              { key: "C", text: "Freshwater has no measurable impact on water density." },
+              { key: "D", text: "Atmospheric currents operate independently of planetary thermodynamics." }
+            ],
+            answer: "B",
+            explanation: "Son cümlede 'Paleoclimatological records suggest that a protracted deceleration of this convective loop could trigger abrupt climatic destabilization' denmiştir."
+          }
+        ]
       }
     ];
 
     let currentReadingTextIndex = 0;
     let readingLookupMap = null;
+    let currentReadingQuestions = [];
+    let readingUserAnswers = {}; // { qIndex: 'A' | 'B' | 'C' | 'D' }
 
     function getReadingLookupMap() {
       if (!readingLookupMap) {
@@ -3811,6 +4533,81 @@
         });
       }
       return readingLookupMap;
+    }
+
+    // Advanced Morphological Lemmatizer (Zero empty/broken word clicks)
+    function lookupWordMeaning(rawToken) {
+      if (!rawToken) return null;
+      const clean = rawToken.replace(/[^A-Za-z'-]/g, '').toLowerCase().trim();
+      if (!clean || clean.length < 2) return null;
+
+      const lookup = getReadingLookupMap();
+
+      // 1. Direct exact match
+      if (lookup.has(clean)) return lookup.get(clean);
+
+      // 2. Strip possessive
+      const noPoss = clean.replace(/'s$/, '').replace(/'$/, '');
+      if (lookup.has(noPoss)) return lookup.get(noPoss);
+
+      // 3. Morphological variations
+      const candidates = [];
+      if (clean.endsWith('ies') && clean.length > 4) {
+        candidates.push(clean.slice(0, -3) + 'y');
+      }
+      if (clean.endsWith('es') && clean.length > 3) {
+        candidates.push(clean.slice(0, -2));
+        candidates.push(clean.slice(0, -1));
+      }
+      if (clean.endsWith('s') && clean.length > 3) {
+        candidates.push(clean.slice(0, -1));
+      }
+      if (clean.endsWith('ing') && clean.length > 5) {
+        candidates.push(clean.slice(0, -3));
+        candidates.push(clean.slice(0, -3) + 'e');
+        if (clean.length > 5 && clean[clean.length - 4] === clean[clean.length - 5]) {
+          candidates.push(clean.slice(0, -4));
+        }
+      }
+      if (clean.endsWith('ed') && clean.length > 4) {
+        candidates.push(clean.slice(0, -2));
+        candidates.push(clean.slice(0, -1));
+        if (clean.length > 5 && clean[clean.length - 3] === clean[clean.length - 4]) {
+          candidates.push(clean.slice(0, -3));
+        }
+      }
+      if (clean.endsWith('ly') && clean.length > 4) {
+        candidates.push(clean.slice(0, -2));
+        candidates.push(clean.slice(0, -2) + 'e');
+        if (clean.endsWith('ily')) candidates.push(clean.slice(0, -3) + 'y');
+      }
+      if (clean.endsWith('ation') && clean.length > 6) {
+        candidates.push(clean.slice(0, -5) + 'ate');
+      }
+
+      for (const cand of candidates) {
+        if (lookup.has(cand)) return lookup.get(cand);
+      }
+
+      // 4. Prefix stem fallback
+      if (clean.length >= 4) {
+        for (const [wKey, wordObj] of lookup.entries()) {
+          if (wKey.length >= 4 && (clean.startsWith(wKey) || wKey.startsWith(clean))) {
+            return wordObj;
+          }
+        }
+      }
+
+      // 5. Intelligent Fallback for rare uncatalogued words
+      return {
+        w: rawToken,
+        pos: "academic",
+        lvl: "C1",
+        isAwl: true,
+        tr: "Akademik bağlamsal ifade (Detaylı sözlük araması)",
+        ipa: "",
+        ex: ""
+      };
     }
 
     function initReadingLab() {
@@ -3826,10 +4623,10 @@
       const btnU = document.getElementById('subtab-upgrader');
       if (btnH && btnU) {
         btnH.className = isHighlighter
-          ? 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition bg-rose-900/70 text-white border border-rose-500/30 shadow-sm flex items-center justify-center gap-1.5'
+          ? 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition btn-primary-glow shadow-sm flex items-center justify-center gap-1.5'
           : 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
         btnU.className = !isHighlighter
-          ? 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition bg-rose-900/70 text-white border border-rose-500/30 shadow-sm flex items-center justify-center gap-1.5'
+          ? 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition btn-primary-glow shadow-sm flex items-center justify-center gap-1.5'
           : 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
       }
     }
@@ -3840,15 +4637,15 @@
         const btn = document.getElementById('readingPreset-' + i);
         if (btn) {
           btn.className = i === idx
-            ? 'px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-rose-900/60 border-rose-500/30 text-white'
-            : 'px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06]';
+            ? 'px-3 py-1.5 rounded-xl text-xs font-medium border transition btn-primary-glow whitespace-nowrap'
+            : 'px-3 py-1.5 rounded-xl text-xs font-medium border transition bg-white/[0.03] border-white/5 text-slate-300 hover:text-white hover:bg-white/[0.06] whitespace-nowrap';
         }
       });
       const pasteBox = document.getElementById('readingCustomPasteBox');
       if (pasteBox) pasteBox.classList.add('hidden');
 
       const preset = readingPresets[idx] || readingPresets[0];
-      renderReadingArticle(preset.title, preset.text);
+      renderReadingArticle(preset.title, preset.text, preset.levelBadge, preset.questions);
     }
 
     function toggleCustomPasteArea() {
@@ -3870,20 +4667,18 @@
         return;
       }
       const title = text.slice(0, 45).trim() + (text.length > 45 ? '...' : '');
-      renderReadingArticle(title, text);
+      renderReadingArticle(title, text, "Özel Metin (Custom)", []);
       const box = document.getElementById('readingCustomPasteBox');
       if (box) box.classList.add('hidden');
     }
 
-    function renderReadingArticle(title, text) {
+    function renderReadingArticle(title, text, levelBadge, questions) {
       document.getElementById('readingTextTitle').innerText = title;
-      const container = document.getElementById('readingRenderedContainer');
-      const lookup = getReadingLookupMap();
+      const lvlEl = document.getElementById('readingPassageLevelBadge');
+      if (lvlEl) lvlEl.innerText = levelBadge || 'B2 • Hazırlık Muafiyet';
 
-      const tokens = text.split(/(\b[A-Za-z'-]+\b)/);
-      let totalWords = 0;
-      let b2c1Words = 0;
-      let awlWords = 0;
+      const container = document.getElementById('readingRenderedContainer');
+      const tokens = text.split(/([A-Za-z'-]+)/);
 
       const renderedHtml = tokens.map(token => {
         const isWord = /^[A-Za-z'-]+$/.test(token);
@@ -3891,35 +4686,14 @@
           return escapeHtmlAttr(token);
         }
 
-        totalWords++;
-        const lower = token.toLowerCase();
-        let matched = lookup.get(lower);
-
-        if (!matched && lower.endsWith('s') && lower.length > 3) {
-          matched = lookup.get(lower.slice(0, -1));
-        }
-        if (!matched && lower.endsWith('ed') && lower.length > 4) {
-          matched = lookup.get(lower.slice(0, -2));
-        }
-
+        const matched = lookupWordMeaning(token);
         if (matched) {
-          const isAwl = matched.isAwl;
-          const lvl = matched.lvl || 'B1';
-          if (lvl === 'B2' || lvl === 'C1') b2c1Words++;
-          if (isAwl) awlWords++;
+          const isTarget = matched.isAwl || matched.lvl === 'B2' || matched.lvl === 'C1';
+          const highlightClass = isTarget
+            ? 'border-b border-rose-500/40 text-rose-200 hover:text-white hover:border-rose-400 font-medium cursor-pointer transition px-0.5 rounded-sm'
+            : 'hover:text-rose-300 hover:underline cursor-pointer transition';
 
-          let highlightClass = '';
-          if (isAwl) {
-            highlightClass = 'bg-pink-500/20 text-pink-300 border-b border-pink-500/50 font-bold font-mono px-1 py-0.5 rounded cursor-pointer hover:bg-pink-500/35 transition';
-          } else if (lvl === 'C1') {
-            highlightClass = 'bg-rose-500/15 text-rose-300 border-b border-rose-500/40 font-medium px-1 py-0.5 rounded cursor-pointer hover:bg-rose-500/25 transition';
-          } else if (lvl === 'B1' || lvl === 'B2') {
-            highlightClass = 'bg-amber-500/15 text-amber-200 border-b border-amber-500/30 font-medium px-1 py-0.5 rounded cursor-pointer hover:bg-amber-500/25 transition';
-          } else {
-            highlightClass = 'border-b border-sky-400/50 text-sky-200 px-0.5 rounded cursor-pointer hover:bg-sky-400/15 transition';
-          }
-
-          return `<span class="${highlightClass} word-highlight inline-block" onclick="showReadingWordPopover(this)" data-word="${escapeHtmlAttr(matched.w)}" data-tr="${escapeHtmlAttr(matched.tr)}" data-ipa="${escapeHtmlAttr(matched.ipa || '')}" data-lvl="${escapeHtmlAttr(matched.lvl || '')}" data-awl="${isAwl ? '1' : '0'}" data-pos="${escapeHtmlAttr(matched.pos || '')}" data-ex="${escapeHtmlAttr(matched.ex || '')}">${escapeHtmlAttr(token)}</span>`;
+          return `<span class="${highlightClass}" onclick="inspectReadingWord(this)" data-word="${escapeHtmlAttr(matched.w)}" data-tr="${escapeHtmlAttr(matched.tr)}" data-ipa="${escapeHtmlAttr(matched.ipa || '')}" data-lvl="${escapeHtmlAttr(matched.lvl || 'B2')}" data-awl="${matched.isAwl ? '1' : '0'}" data-pos="${escapeHtmlAttr(matched.pos || '')}" data-ex="${escapeHtmlAttr(matched.ex || '')}">${escapeHtmlAttr(token)}</span>`;
         }
 
         return escapeHtmlAttr(token);
@@ -3927,16 +4701,106 @@
 
       container.innerHTML = renderedHtml;
 
-      const b2c1Ratio = totalWords > 0 ? Math.round((b2c1Words / totalWords) * 100) : 0;
-      const awlRatio = totalWords > 0 ? Math.round((awlWords / totalWords) * 100) : 0;
+      // Render Questions
+      currentReadingQuestions = questions || [];
+      readingUserAnswers = {};
+      renderReadingQuestionsUI();
+    }
 
-      const statTotal = document.getElementById('statTotalWords');
-      const statB2C1 = document.getElementById('statB2C1Ratio');
-      const statAwl = document.getElementById('statAwlRatio');
+    function renderReadingQuestionsUI() {
+      const container = document.getElementById('readingQuestionsContainer');
+      const scoreDisplay = document.getElementById('readingScoreDisplay');
+      const feedbackEl = document.getElementById('readingFeedbackSummary');
+      if (!container) return;
 
-      if (statTotal) statTotal.innerText = totalWords;
-      if (statB2C1) statB2C1.innerText = '%' + b2c1Ratio;
-      if (statAwl) statAwl.innerText = '%' + awlRatio;
+      if (!currentReadingQuestions || currentReadingQuestions.length === 0) {
+        container.innerHTML = `
+          <div class="p-4 rounded-xl bg-black/40 border border-white/[0.06] text-center text-xs text-[#a8998c] space-y-1">
+            <p>📋 Bu metin için özel soru havuzu bulunmuyor.</p>
+            <p class="text-[11px] text-[#d6c7b2]/60">Metindeki kelimelerin üzerine tıklayarak anlam ve telaffuz çalışabilirsiniz.</p>
+          </div>
+        `;
+        if (scoreDisplay) scoreDisplay.innerText = '-';
+        if (feedbackEl) feedbackEl.innerText = '';
+        return;
+      }
+
+      let correctCount = 0;
+      let totalAnswered = 0;
+
+      container.innerHTML = currentReadingQuestions.map((q, idx) => {
+        const userChoice = readingUserAnswers[idx];
+        const isAnswered = userChoice !== undefined;
+        if (isAnswered) totalAnswered++;
+        const isCorrect = userChoice === q.answer;
+        if (isAnswered && isCorrect) correctCount++;
+
+        return `
+          <div class="p-4 rounded-xl bg-black/40 border border-white/[0.06] space-y-3 text-left">
+            <div class="text-xs font-semibold text-[#fdf6ee] leading-relaxed flex items-start gap-2">
+              <span class="w-5 h-5 rounded-md bg-white/10 font-mono text-[11px] font-bold text-slate-300 flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+              <div>${q.prompt}</div>
+            </div>
+
+            <div class="space-y-1.5">
+              ${q.options.map(opt => {
+                let btnStyle = 'bg-white/[0.03] hover:bg-white/[0.07] border-white/[0.08] text-slate-300 hover:text-white';
+                if (isAnswered) {
+                  if (opt.key === q.answer) {
+                    btnStyle = 'bg-emerald-600/30 border-emerald-500/70 text-emerald-200 font-semibold ring-1 ring-emerald-500/40';
+                  } else if (opt.key === userChoice) {
+                    btnStyle = 'bg-rose-600/30 border-rose-500/70 text-rose-200 font-semibold ring-1 ring-rose-500/40 line-through opacity-80';
+                  } else {
+                    btnStyle = 'bg-white/[0.02] border-white/5 text-slate-500 opacity-60';
+                  }
+                }
+
+                return `
+                  <button type="button" onclick="answerReadingQuestion(${idx}, '${opt.key}')" ${isAnswered ? 'disabled' : ''} class="w-full p-2.5 rounded-lg border text-xs text-left transition flex items-start gap-2.5 ${btnStyle}">
+                    <span class="w-5 h-5 rounded flex items-center justify-center font-mono text-[10px] font-bold shrink-0 ${opt.key === userChoice ? 'bg-rose-500 text-white' : 'bg-white/10 text-slate-400'}">${opt.key}</span>
+                    <span class="leading-relaxed pt-0.5">${escapeHtmlAttr(opt.text)}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+
+            ${isAnswered ? `
+              <div class="pt-2 text-[11px] leading-relaxed border-t border-white/[0.06] ${isCorrect ? 'text-emerald-300' : 'text-rose-300'}">
+                <strong>${isCorrect ? '✅ Doğru!' : '❌ Yanlış Cevap:'}</strong> ${q.explanation}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+
+      if (scoreDisplay) scoreDisplay.innerText = `${correctCount} / ${currentReadingQuestions.length} Doğru`;
+      if (feedbackEl && totalAnswered === currentReadingQuestions.length) {
+        feedbackEl.innerText = correctCount >= 3 ? '🎉 Harika anlama performansı!' : '📚 Metni tekrar okuyup pekiştirebilirsin.';
+      }
+    }
+
+    function answerReadingQuestion(qIdx, optKey) {
+      if (readingUserAnswers[qIdx] !== undefined) return;
+      readingUserAnswers[qIdx] = optKey;
+      renderReadingQuestionsUI();
+      logHeatmapActivity(1);
+    }
+
+    function resetReadingQuestions() {
+      readingUserAnswers = {};
+      renderReadingQuestionsUI();
+    }
+
+    function speakCurrentReadingPassage() {
+      const preset = readingPresets[currentReadingTextIndex];
+      if (preset && preset.text) {
+        speakText(preset.text);
+      }
+    }
+
+    function inspectReadingWord(el) {
+      if (!el || !el.dataset) return;
+      showReadingWordPopover(el);
     }
 
     function showReadingWordPopover(el) {
@@ -3950,7 +4814,7 @@
       const ex = el.dataset.ex;
 
       document.getElementById('rModalWord').innerText = word;
-      document.getElementById('rModalLvl').innerText = lvl || 'B1';
+      document.getElementById('rModalLvl').innerText = lvl || 'B2';
       document.getElementById('rModalAwl').classList.toggle('hidden', !isAwl);
       document.getElementById('rModalIpa').innerText = ipa || '';
       document.getElementById('rModalPos').innerText = pos || '';
@@ -3994,7 +4858,6 @@
         learnBtn.innerHTML = '<span>✅</span> <span>Tekrar Listesine Eklendi!</span>';
       }
     }
-
     // ==================== 13. ACADEMIC WRITING VOCABULARY UPGRADER ====================
     const academicUpgradeMap = {
       "think": {
@@ -4217,6 +5080,1014 @@
       } else {
         alert('Cümle kopyalandı:\n\n' + text);
       }
+    }
+
+
+
+    // ==================== 14. ACTIVITY HEATMAP & ACHIEVEMENT BADGES ====================
+    const STORAGE_HEATMAP_KEY = 'voxlearn_activity_heatmap_v1';
+    const STORAGE_DICTION_COUNT_KEY = 'voxlearn_badge_diction_count';
+    const STORAGE_EXAM_BEST_KEY = 'voxlearn_best_exam_score';
+    const STORAGE_UPGRADES_COUNT_KEY = 'voxlearn_upgrades_count';
+
+    function logHeatmapActivity(count = 1) {
+      try {
+        const today = getTodayString();
+        const data = JSON.parse(localStorage.getItem(STORAGE_HEATMAP_KEY) || '{}');
+        data[today] = (data[today] || 0) + count;
+        localStorage.setItem(STORAGE_HEATMAP_KEY, JSON.stringify(data));
+
+        // Check if nocturnal bird badge should trigger (activity after 23:00)
+        const currentHour = new Date().getHours();
+        if (currentHour >= 23 || currentHour < 4) {
+          localStorage.setItem('voxlearn_badge_night_owl', '1');
+        }
+      } catch(e) {
+        console.warn("Heatmap log error:", e);
+      }
+    }
+
+    function incrementDictionCount() {
+      try {
+        const cur = parseInt(localStorage.getItem(STORAGE_DICTION_COUNT_KEY) || '0', 10);
+        localStorage.setItem(STORAGE_DICTION_COUNT_KEY, String(cur + 1));
+      } catch(e) {}
+    }
+
+    function renderActivityHeatmap() {
+      const grid = document.getElementById('activityHeatmapGrid');
+      if (!grid) return;
+
+      let heatmapData = {};
+      try {
+        heatmapData = JSON.parse(localStorage.getItem(STORAGE_HEATMAP_KEY) || '{}');
+      } catch(e) { heatmapData = {}; }
+
+      // Build past 14 weeks (98 days)
+      const daysCount = 98;
+      const today = new Date();
+      const dayList = [];
+      let totalActivities = 0;
+
+      for (let i = daysCount - 1; i >= 0; i--) {
+        const d = new Date(today);
+        d.setDate(d.getDate() - i);
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const dateKey = `${y}-${m}-${day}`;
+        const count = heatmapData[dateKey] || 0;
+        totalActivities += count;
+        dayList.push({ date: dateKey, count: count });
+      }
+
+      const totalTextEl = document.getElementById('heatmapTotalCountText');
+      if (totalTextEl) totalTextEl.innerText = `${totalActivities} Toplam Aktivite`;
+
+      // Group into 14 columns of 7 days
+      const weeks = [];
+      for (let i = 0; i < dayList.length; i += 7) {
+        weeks.push(dayList.slice(i, i + 7));
+      }
+
+      grid.innerHTML = weeks.map(week => {
+        const cells = week.map(cell => {
+          let bg = '#1c0d12';
+          let border = 'border-[#2d151c]';
+          if (cell.count >= 30) {
+            bg = '#fb7185';
+            border = 'border-rose-300';
+          } else if (cell.count >= 16) {
+            bg = '#e11d48';
+            border = 'border-rose-500';
+          } else if (cell.count >= 6) {
+            bg = '#9f1239';
+            border = 'border-rose-700';
+          } else if (cell.count >= 1) {
+            bg = '#5c1626';
+            border = 'border-rose-900';
+          }
+
+          return `<div class="w-3 h-3 rounded-sm border ${border} transition hover:scale-125 cursor-pointer relative group" style="background-color: ${bg};" title="${cell.date}: ${cell.count} aktivite"></div>`;
+        }).join('');
+        return `<div class="flex flex-col gap-1">${cells}</div>`;
+      }).join('');
+    }
+
+    function checkAndRenderBadges() {
+      const container = document.getElementById('badgesContainer');
+      if (!container) return;
+
+      // 1. Akademisyen: 50 AWL words in Box 5
+      let awlInBox5 = 0;
+      allWords.forEach(w => {
+        if (w.isAwl && leitnerBoxes[w.w] && leitnerBoxes[w.w].box === 5) {
+          awlInBox5++;
+        }
+      });
+      const badge1Earned = awlInBox5 >= 50;
+
+      // 2. Süper Seri: 15 days streak
+      const badge2Earned = streakCount >= 15;
+
+      // 3. Diksiyon Ustası: 20 speech evaluations >= 85%
+      const dictionCount = parseInt(localStorage.getItem(STORAGE_DICTION_COUNT_KEY) || '0', 10);
+      const badge3Earned = dictionCount >= 20;
+
+      // 4. Gece Kuşu: Activity after 23:00
+      const badge4Earned = localStorage.getItem('voxlearn_badge_night_owl') === '1';
+
+      // 5. Sınav Fatihi: 80+ in mock exam
+      const bestExamScore = parseInt(localStorage.getItem(STORAGE_EXAM_BEST_KEY) || '0', 10);
+      const badge5Earned = bestExamScore >= 80;
+
+      // 6. Kelime Mimarı: 15 sentence upgrades
+      const upgradesCount = parseInt(localStorage.getItem(STORAGE_UPGRADES_COUNT_KEY) || '0', 10);
+      const badge6Earned = upgradesCount >= 15;
+
+      const badges = [
+        {
+          icon: "🎓",
+          name: "Akademisyen",
+          desc: "50 AWL kelimesini Kutu 5'e taşı",
+          progress: `${awlInBox5}/50`,
+          earned: badge1Earned
+        },
+        {
+          icon: "⚡",
+          name: "Süper Seri",
+          desc: "Aralıksız 15 gün çalış",
+          progress: `${streakCount}/15 gün`,
+          earned: badge2Earned
+        },
+        {
+          icon: "🎙️",
+          name: "Diksiyon Ustası",
+          desc: "20 kelimeyi mikrofondan %85+ oku",
+          progress: `${dictionCount}/20`,
+          earned: badge3Earned
+        },
+        {
+          icon: "🦉",
+          name: "Gece Kuşu",
+          desc: "Gece 23:00'ten sonra çalışma yap",
+          progress: badge4Earned ? "Tamamlandı" : "23:00+",
+          earned: badge4Earned
+        },
+        {
+          icon: "🏆",
+          name: "Sınav Fatihi",
+          desc: "Deneme sınavından 80+ puan al",
+          progress: `En iyi: ${bestExamScore}`,
+          earned: badge5Earned
+        },
+        {
+          icon: "✍️",
+          name: "Kelime Mimarı",
+          desc: "15 cümleyi akademik seviyeye yükselt",
+          progress: `${upgradesCount}/15`,
+          earned: badge6Earned
+        }
+      ];
+
+      container.innerHTML = badges.map(b => {
+        if (b.earned) {
+          return `
+            <div class="p-2.5 rounded-xl border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-rose-950/40 text-amber-200 shadow-md shadow-amber-500/10 flex flex-col justify-between space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xl">${b.icon}</span>
+                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded-full bg-amber-400 text-black font-bold">KAZANILDI</span>
+              </div>
+              <div class="text-xs font-bold text-white">${b.name}</div>
+              <div class="text-[10px] text-[#d6c7b2]/75 leading-tight">${b.desc}</div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="p-2.5 rounded-xl border border-white/5 bg-white/[0.02] opacity-40 grayscale hover:grayscale-0 hover:opacity-80 transition flex flex-col justify-between space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xl">${b.icon}</span>
+                <span class="text-[9px] font-mono text-slate-500">${b.progress}</span>
+              </div>
+              <div class="text-xs font-bold text-slate-300">${b.name}</div>
+              <div class="text-[10px] text-slate-500 leading-tight">${b.desc}</div>
+            </div>
+          `;
+        }
+      }).join('');
+    }
+
+    // ==================== 15. SPELING & DICTATION LAB ====================
+    let isDictationModeActive = false;
+    let dictationCurrentWord = null;
+    let dictationScoreCount = 0;
+    let dictationQuestionIndex = 0;
+    let dictationRevealedIndices = new Set();
+
+    function toggleDictationMode() {
+      isDictationModeActive = !isDictationModeActive;
+      const labPanel = document.getElementById('dictationLabPanel');
+      const dictGrid = document.getElementById('dictGrid');
+      const toggleBtn = document.getElementById('dictationToggleBtn');
+      const loadBtn = document.getElementById('dictLoadMoreBtn');
+
+      if (isDictationModeActive) {
+        if (labPanel) labPanel.classList.remove('hidden');
+        if (dictGrid) dictGrid.classList.add('hidden');
+        if (loadBtn) loadBtn.classList.add('hidden');
+        if (toggleBtn) {
+          toggleBtn.className = 'px-3.5 py-2 rounded-2xl bg-rose-900/70 text-white font-medium text-xs border border-rose-500/30 transition shadow-sm flex items-center gap-1.5 shrink-0';
+          toggleBtn.innerHTML = '<span>📖</span> <span>Sözlük Görünümü</span>';
+        }
+        initDictationLab();
+      } else {
+        if (labPanel) labPanel.classList.add('hidden');
+        if (dictGrid) dictGrid.classList.remove('hidden');
+        if (loadBtn) loadBtn.classList.remove('hidden');
+        if (toggleBtn) {
+          toggleBtn.className = 'px-3.5 py-2 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white font-medium text-xs border border-white/5 transition flex items-center gap-1.5 shrink-0';
+          toggleBtn.innerHTML = '<span>🎧</span> <span>Dikte Modu</span>';
+        }
+        renderDict();
+      }
+    }
+
+    function initDictationLab() {
+      dictationQuestionIndex = 0;
+      dictationScoreCount = 0;
+      document.getElementById('dictationScore').innerText = dictationScoreCount;
+      loadNextDictationWord();
+
+      const input = document.getElementById('dictationInput');
+      if (input) {
+        input.onkeydown = function(e) {
+          if (e.key === 'Enter') {
+            checkDictationAnswer();
+          }
+        };
+      }
+    }
+
+    function loadNextDictationWord() {
+      const pool = getFilteredWords();
+      if (!pool || pool.length === 0) return;
+
+      dictationRevealedIndices = new Set();
+      dictationQuestionIndex++;
+      document.getElementById('dictationCurrentNum').innerText = dictationQuestionIndex;
+
+      // Pick random word
+      const randIdx = Math.floor(Math.random() * pool.length);
+      dictationCurrentWord = pool[randIdx];
+
+      document.getElementById('dictationHintTr').innerText = `Türkçe Anlam: ${dictationCurrentWord.tr}`;
+      document.getElementById('dictationPos').innerText = dictationCurrentWord.pos || 'word';
+      document.getElementById('dictationLength').innerText = `${dictationCurrentWord.w.length} Harf`;
+
+      const input = document.getElementById('dictationInput');
+      if (input) {
+        input.value = '';
+        input.disabled = false;
+        setTimeout(() => input.focus(), 80);
+      }
+
+      const fb = document.getElementById('dictationFeedback');
+      if (fb) {
+        fb.classList.add('hidden');
+        fb.innerHTML = '';
+      }
+
+      const nextBtn = document.getElementById('dictationNextBtn');
+      if (nextBtn) nextBtn.classList.add('hidden');
+
+      renderDictationSlots();
+
+      // Play word pronunciation
+      setTimeout(() => {
+        playDictationWordAudio();
+      }, 300);
+    }
+
+    function renderDictationSlots() {
+      const container = document.getElementById('dictationSlotsContainer');
+      if (!container || !dictationCurrentWord) return;
+
+      const letters = dictationCurrentWord.w.split('');
+      container.innerHTML = letters.map((char, idx) => {
+        if (char === ' ') {
+          return `<span class="w-4"></span>`;
+        }
+        if (char === '-' || char === "'") {
+          return `<span class="w-7 h-9 flex items-center justify-center font-mono font-bold text-slate-400 text-sm">${char}</span>`;
+        }
+        const isRevealed = dictationRevealedIndices.has(idx);
+        return `<span class="w-7 h-9 sm:w-8 sm:h-10 rounded-lg bg-black/60 border ${isRevealed ? 'border-amber-500/60 text-amber-300 font-bold' : 'border-white/10 text-slate-500'} flex items-center justify-center font-mono text-sm sm:text-base transition">${isRevealed ? char : '_'}</span>`;
+      }).join('');
+    }
+
+    function giveDictationHintLetter() {
+      if (!dictationCurrentWord) return;
+      const word = dictationCurrentWord.w;
+      for (let i = 0; i < word.length; i++) {
+        if (!dictationRevealedIndices.has(i) && word[i] !== ' ' && word[i] !== '-' && word[i] !== "'") {
+          dictationRevealedIndices.add(i);
+          break;
+        }
+      }
+      renderDictationSlots();
+    }
+
+    function playDictationWordAudio() {
+      if (dictationCurrentWord) {
+        speakText(dictationCurrentWord.w);
+      }
+    }
+
+    function playDictationSentenceAudio() {
+      if (dictationCurrentWord && dictationCurrentWord.ex) {
+        speakText(dictationCurrentWord.ex);
+      } else if (dictationCurrentWord) {
+        speakText(dictationCurrentWord.w);
+      }
+    }
+
+    function checkDictationAnswer() {
+      if (!dictationCurrentWord) return;
+      const input = document.getElementById('dictationInput');
+      const val = input ? input.value.trim().toLowerCase() : '';
+      const target = dictationCurrentWord.w.trim().toLowerCase();
+      const fb = document.getElementById('dictationFeedback');
+      const nextBtn = document.getElementById('dictationNextBtn');
+
+      if (!val) return;
+
+      if (val === target) {
+        dictationScoreCount++;
+        document.getElementById('dictationScore').innerText = dictationScoreCount;
+        input.disabled = true;
+
+        if (fb) {
+          fb.className = 'text-xs py-2 px-3 rounded-xl font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 inline-flex items-center gap-1.5 shadow-md';
+          fb.innerHTML = '<span>✅</span> <span>Kusursuz Yazım! Harika iş çıkardın.</span>';
+          fb.classList.remove('hidden');
+        }
+
+        // Reveal all slots green
+        const container = document.getElementById('dictationSlotsContainer');
+        if (container) {
+          container.innerHTML = dictationCurrentWord.w.split('').map(char => {
+            return `<span class="w-7 h-9 sm:w-8 sm:h-10 rounded-lg bg-emerald-500/20 border border-emerald-400 text-emerald-300 font-bold flex items-center justify-center font-mono text-sm sm:text-base">${char}</span>`;
+          }).join('');
+        }
+
+        logHeatmapActivity(1);
+        recordWordStatus(dictationCurrentWord.w, true);
+        if (nextBtn) nextBtn.classList.remove('hidden');
+      } else {
+        if (fb) {
+          fb.className = 'text-xs py-2 px-3 rounded-xl font-medium bg-rose-950/40 text-rose-300 border border-rose-500/30 text-left space-y-1 block';
+          fb.innerHTML = `<div>❌ <strong>Hatalı Yazım:</strong> Doğrusu: <strong class="text-white font-mono underline">${escapeHtmlAttr(dictationCurrentWord.w)}</strong></div><div class="text-[11px] text-[#a8998c]">Kelime tekrar listenize eklendi. Tekrar deneyin veya sonrakine geçin.</div>`;
+          fb.classList.remove('hidden');
+        }
+        recordWordStatus(dictationCurrentWord.w, false);
+        if (nextBtn) nextBtn.classList.remove('hidden');
+      }
+    }
+
+    function nextDictationWord() {
+      loadNextDictationWord();
+    }
+
+    // ==================== 16. PROFICIENCY MOCK EXAM ENGINE ====================
+    const mockExamPool = [
+      // 1. Vocabulary in Context (6 Questions)
+      {
+        id: 1,
+        category: "Vocabulary in Context",
+        prompt: "The university decided to adopt a more <strong>comprehensive</strong> approach to student mental health, encompassing counseling, academic accommodations, and peer support programs.",
+        options: [
+          { key: "A", text: "superficial and temporary" },
+          { key: "B", text: "all-inclusive and thorough" },
+          { key: "C", text: "sporadic and irregular" },
+          { key: "D", text: "controversial and hostile" }
+        ],
+        answer: "B",
+        explanation: "'Comprehensive' kelimesi 'kapsamlı, etraflı, her şeyi içeren' (thorough, extensive, all-inclusive) anlamına gelir. Cümledeki danışmanlık, akademik uyarlama ve akran desteğini bir arada sunan yaklaşım bunu doğrular."
+      },
+      {
+        id: 2,
+        category: "Vocabulary in Context",
+        prompt: "To <strong>mitigate</strong> the detrimental effects of rapid urban growth on biodiversity, city planners established extensive green corridors connecting forested zones.",
+        options: [
+          { key: "A", text: "alleviate and reduce" },
+          { key: "B", text: "intensify and heighten" },
+          { key: "C", text: "overlook and ignore" },
+          { key: "D", text: "simulate and mimic" }
+        ],
+        answer: "A",
+        explanation: "'Mitigate' fiili olumsuz etkileri 'hafifletmek, azaltmak, yatıştırmak' (alleviate, lessen, reduce) demektir. Şehir plancıları zararlı etkileri azaltmak için yeşil koridorlar kurmuştur."
+      },
+      {
+        id: 3,
+        category: "Vocabulary in Context",
+        prompt: "Prominent economists <strong>advocate</strong> substantial investments in renewable energy infrastructure as a means to foster sustainable economic expansion.",
+        options: [
+          { key: "A", text: "discourage and impede" },
+          { key: "B", text: "publicly support and recommend" },
+          { key: "C", text: "hesitantly question" },
+          { key: "D", text: "completely terminate" }
+        ],
+        answer: "B",
+        explanation: "'Advocate' fiili bir fikri veya politikayı 'açıkça desteklemek, savunmak, tavsiye etmek' (support, endorse, champion) anlamına gelir."
+      },
+      {
+        id: 4,
+        category: "Vocabulary in Context",
+        prompt: "The committee's decision appeared completely <strong>arbitrary</strong>, as it seemed to depend on subjective mood rather than any systematic evaluation criteria.",
+        options: [
+          { key: "A", text: "rigorously methodical" },
+          { key: "B", text: "scientifically verified" },
+          { key: "C", text: "random and whimsical" },
+          { key: "D", text: "universally acknowledged" }
+        ],
+        answer: "C",
+        explanation: "'Arbitrary' sözcüğü 'keyfi, rastgele, somut bir kurala veya sisteme dayanmayan' (random, unjustified, whimsical) anlamına gelir."
+      },
+      {
+        id: 5,
+        category: "Vocabulary in Context",
+        prompt: "Despite receiving multiple job offers from international corporations, she was <strong>reluctant</strong> to relocate abroad due to her deep family ties.",
+        options: [
+          { key: "A", text: "eager and enthusiastic" },
+          { key: "B", text: "hesitant and unwilling" },
+          { key: "C", text: "legally obligated" },
+          { key: "D", text: "intellectually incapable" }
+        ],
+        answer: "B",
+        explanation: "'Reluctant' sıfatı 'isteksiz, tereddüt eden, gönülsüz' (unwilling, hesitant) anlamındadır."
+      },
+      {
+        id: 6,
+        category: "Vocabulary in Context",
+        prompt: "Developing specialized cybersecurity software has proven to be an extraordinarily <strong>lucrative</strong> endeavor for technological startups.",
+        options: [
+          { key: "A", text: "financially hazardous" },
+          { key: "B", text: "highly profitable" },
+          { key: "C", text: "socially destructive" },
+          { key: "D", text: "academically irrelevant" }
+        ],
+        answer: "B",
+        explanation: "'Lucrative' sıfatı 'yüksek karlı, çok kazanç getiren' (profitable, remunerative) anlamındadır."
+      },
+
+      // 2. Cloze Passage (4 Questions linked to 1 Academic Passage)
+      {
+        id: 7,
+        category: "Cloze Passage",
+        passage: "Metropolitan centers across the globe are confronting unprecedented transportation crises. <strong>[7]</strong> substantial investments have been directed toward public transit, private vehicle congestion continues to surge. Consequently, urban authorities must <strong>[8]</strong> alternative mobility schemes, including micro-mobility and cycling expressways, <strong>[9]</strong> could markedly diminish carbon footprints. The successful <strong>[10]</strong> of such multimodal networks hinges directly on civic cooperation and infrastructure readiness.",
+        prompt: "Boşluk [7] için en uygun bağlaç hangisidir?",
+        options: [
+          { key: "A", text: "Although" },
+          { key: "B", text: "Because" },
+          { key: "C", text: "Therefore" },
+          { key: "D", text: "Unless" }
+        ],
+        answer: "A",
+        explanation: "'Although' (her ne kadar ... ise de / -e rağmen) zıtlık bildirir. Toplu taşımaya ciddi yatırım yapılmasına rağmen özel araç yoğunluğunun sürmesi bir tezatlıktır."
+      },
+      {
+        id: 8,
+        category: "Cloze Passage",
+        passage: "Metropolitan centers across the globe are confronting unprecedented transportation crises. <strong>[7]</strong> substantial investments have been directed toward public transit, private vehicle congestion continues to surge. Consequently, urban authorities must <strong>[8]</strong> alternative mobility schemes, including micro-mobility and cycling expressways, <strong>[9]</strong> could markedly diminish carbon footprints. The successful <strong>[10]</strong> of such multimodal networks hinges directly on civic cooperation and infrastructure readiness.",
+        prompt: "Boşluk [8] için en uygun fiil hangisidir?",
+        options: [
+          { key: "A", text: "accommodate" },
+          { key: "B", text: "abolish" },
+          { key: "C", text: "obstruct" },
+          { key: "D", text: "deteriorate" }
+        ],
+        answer: "A",
+        explanation: "'Accommodate' burada 'yer açmak, bünyesine katmak, olanak tanımak' (facilitate, make room for) anlamında en uygun fiildir."
+      },
+      {
+        id: 9,
+        category: "Cloze Passage",
+        passage: "Metropolitan centers across the globe are confronting unprecedented transportation crises. <strong>[7]</strong> substantial investments have been directed toward public transit, private vehicle congestion continues to surge. Consequently, urban authorities must <strong>[8]</strong> alternative mobility schemes, including micro-mobility and cycling expressways, <strong>[9]</strong> could markedly diminish carbon footprints. The successful <strong>[10]</strong> of such multimodal networks hinges directly on civic cooperation and infrastructure readiness.",
+        prompt: "Boşluk [9] için en uygun ilgi zamiri (relative pronoun) hangisidir?",
+        options: [
+          { key: "A", text: "who" },
+          { key: "B", text: "which" },
+          { key: "C", text: "where" },
+          { key: "D", text: "whom" }
+        ],
+        answer: "B",
+        explanation: "Virgülden sonra gelen ve 'alternative mobility schemes' (cansız çoğul kavram) niteleyen non-defining relative clause yapısında 'which' kullanılır."
+      },
+      {
+        id: 10,
+        category: "Cloze Passage",
+        passage: "Metropolitan centers across the globe are confronting unprecedented transportation crises. <strong>[7]</strong> substantial investments have been directed toward public transit, private vehicle congestion continues to surge. Consequently, urban authorities must <strong>[8]</strong> alternative mobility schemes, including micro-mobility and cycling expressways, <strong>[9]</strong> could markedly diminish carbon footprints. The successful <strong>[10]</strong> of such multimodal networks hinges directly on civic cooperation and infrastructure readiness.",
+        prompt: "Boşluk [10] için en uygun isim hangisidir?",
+        options: [
+          { key: "A", text: "implementation" },
+          { key: "B", text: "hesitation" },
+          { key: "C", text: "decline" },
+          { key: "D", text: "reversal" }
+        ],
+        answer: "A",
+        explanation: "'Implementation' (uygulama, yürürlüğe koyma) sözcüğü bu ağların başarılı bir şekilde hayata geçirilmesini ifade eder."
+      },
+
+      // 3. Restatement / Eşdeğer Cümle (5 Questions)
+      {
+        id: 11,
+        category: "Restatement",
+        prompt: "<strong>Verilen cümlenin en yakın anlamlısını bulunuz:</strong><br><br><em>&lsquo;Had the team received the research grant earlier, they could have completed the clinical trials before the global supply shortage occurred.&rsquo;</em>",
+        options: [
+          { key: "A", text: "The team finished the clinical trials despite the severe supply shortage because the research grant arrived ahead of schedule." },
+          { key: "B", text: "Because the funding was delayed, the researchers were unable to conclude their clinical trials prior to the emergence of supply disruptions." },
+          { key: "C", text: "The global supply shortage made it virtually impossible for the team to apply for the necessary research grant on time." },
+          { key: "D", text: "Even if the grant had been provided without delay, the team would still have suffered from the global supply shortage." }
+        ],
+        answer: "B",
+        explanation: "Orijinal cümle 3. Tip Koşul Cümlesidir (Past Unreal): 'Eğer bursu daha erken alsalardı, klinik deneyleri krizden önce bitirebilirlerdi.' Buradan fonun geciktiği ve bu yüzden deneylerin kriz öncesinde tamamlanamadığı (B şıkkı) kesin olarak çıkar."
+      },
+      {
+        id: 12,
+        category: "Restatement",
+        prompt: "<strong>Verilen cümlenin en yakın anlamlısını bulunuz:</strong><br><br><em>&lsquo;Few scientific innovations have transformed human communication as profoundly as the advent of fiber-optic technology.&rsquo;</em>",
+        options: [
+          { key: "A", text: "Fiber-optic technology is one of the very few innovations that have barely affected human interaction." },
+          { key: "B", text: "Hardly any scientific breakthrough has altered communication among humans to the extent that fiber-optic technology has." },
+          { key: "C", text: "Most scientific innovations in communication were developed immediately following the emergence of fiber optics." },
+          { key: "D", text: "Human communication was transformed primarily by earlier inventions rather than modern fiber optics." }
+        ],
+        answer: "B",
+        explanation: "'Few ... as profoundly as' yapısı 'hemen hemen hiçbir buluş fiber-optik kadar derinden dönüştürmemiştir' anlamına gelir. 'Hardly any ... to the extent that' (B şıkkı) tam eşdeğeridir."
+      },
+      {
+        id: 13,
+        category: "Restatement",
+        prompt: "<strong>Verilen cümlenin en yakın anlamlısını bulunuz:</strong><br><br><em>&lsquo;It is mandatory for all graduate researchers to undergo ethics training prior to initiating any field experiments involving human subjects.&rsquo;</em>",
+        options: [
+          { key: "A", text: "Graduate students are encouraged, though not strictly required, to attend ethics courses during their field experiments." },
+          { key: "B", text: "Conducting field research on human participants is prohibited unless researchers have already achieved graduate degree status." },
+          { key: "C", text: "Before starting field studies that include humans, all graduate researchers are obligated to complete training in ethics." },
+          { key: "D", text: "Researchers who have completed ethics training are solely permitted to conduct experiments on animals rather than humans." }
+        ],
+        answer: "C",
+        explanation: "'It is mandatory ... prior to initiating' = 'are obligated to complete ... before starting'. C seçeneği zorunluluk (mandatory = obligated) ve zaman ilişkisini kusursuz korumuştur."
+      },
+      {
+        id: 14,
+        category: "Restatement",
+        prompt: "<strong>Verilen cümlenin en yakın anlamlısını bulunuz:</strong><br><br><em>&lsquo;So severe was the drought in the eastern provinces that local authorities had to enforce stringent water rationing measures.&rsquo;</em>",
+        options: [
+          { key: "A", text: "Because the drought in the eastern regions was exceptionally acute, strict restrictions on water usage were imposed by local officials." },
+          { key: "B", text: "Local authorities managed to avoid water rationing even though the drought in the east was worse than anticipated." },
+          { key: "C", text: "Stringent water measures in the eastern provinces failed to prevent the occurrence of severe drought conditions." },
+          { key: "D", text: "Drought conditions were relatively mild, yet municipal leaders decided to restrict water availability unnecessarily." }
+        ],
+        answer: "A",
+        explanation: "Devrik 'So [adjective] was X that Y' sebep-sonuç yapısıdır: 'Kuraklık o kadar şiddetliydi ki yetkililer su kısıtlaması getirmek zorunda kaldı.' A seçeneğindeki 'Because ... was exceptionally acute ... strict restrictions were imposed' tam karşılığıdır."
+      },
+      {
+        id: 15,
+        category: "Restatement",
+        prompt: "<strong>Verilen cümlenin en yakın anlamlısını bulunuz:</strong><br><br><em>&lsquo;Contrary to common perception, moderate physical exercise does not deplete cognitive energy; rather, it stimulates neurochemical release that sharpens focus.&rsquo;</em>",
+        options: [
+          { key: "A", text: "People generally believe that exercise improves concentration, but in reality, it drains critical mental reserves." },
+          { key: "B", text: "Though widely thought otherwise, moderate workouts do not exhaust mental energy but instead promote chemicals in the brain that enhance attention." },
+          { key: "C", text: "Cognitive energy cannot be sustained during exercise unless the physical activity is kept strictly at an effortless level." },
+          { key: "D", text: "Neurochemical release occurs exclusively when individuals engage in intense and exhausting athletic routines." }
+        ],
+        answer: "B",
+        explanation: "'Contrary to common perception' = 'Though widely thought otherwise'; 'does not deplete ... rather stimulates ... that sharpens' = 'do not exhaust ... but instead promote ... that enhance'. B seçeneği birebir örtüşür."
+      },
+
+      // 4. Reading Comprehension (5 Questions linked to 1 Academic Passage)
+      {
+        id: 16,
+        category: "Reading Comprehension",
+        passage: "For decades, conventional neurological dogma maintained that the adult human brain was a rigid, unalterable organ whose capacity for cellular reorganization ceased shortly after adolescence. However, modern neuroimaging technologies have shattered this static assumption, revealing a phenomenon known as neuroplasticity—the nervous system's remarkable ability to reorganize its structure, functions, and connections in response to experiential learning and environmental demands.<br><br>This adaptive capacity is particularly evident in the realm of second language acquisition among adults. While children internalize phonology and syntax implicitly through immersive socialization, adult learners rely more heavily on explicit cognitive mechanisms, recruiting prefrontal cortical regions responsible for executive control and analytical problem-solving. Neuroscientists have observed that intensive language training induces measurable increases in gray matter density within the left inferior frontal gyrus and enhances the structural integrity of white matter tracts connecting distant cerebral hemispheres. Crucially, these neuroplastic alterations are not merely cosmetic; they directly correlate with cognitive resilience, providing a documented buffering effect against age-related neurodegenerative pathologies such as Alzheimer's disease.",
+        prompt: "What is the primary objective of the author in this passage?",
+        options: [
+          { key: "A", text: "To challenge outdated beliefs about the adult brain and elucidate how language learning exemplifies neuroplasticity." },
+          { key: "B", text: "To argue that children and adults learn languages using identical neurological pathways." },
+          { key: "C", text: "To prove that neuroimaging tools are overly expensive and ineffective for educational analysis." },
+          { key: "D", text: "To demonstrate that Alzheimer's disease can be completely eradicated through vocabulary memorization." }
+        ],
+        answer: "A",
+        explanation: "Yazar ilk paragrafta yetişkin beyninin değişmez olduğu şeklindeki eski dogmayı çürütmekte, ardından ikinci paragrafta yetişkinlerde dil öğreniminin nöroplastisiteyi nasıl kanıtladığını ve bilişsel faydalarını açıklamaktadır (A şıkkı)."
+      },
+      {
+        id: 17,
+        category: "Reading Comprehension",
+        passage: "For decades, conventional neurological dogma maintained that the adult human brain was a rigid, unalterable organ whose capacity for cellular reorganization ceased shortly after adolescence. However, modern neuroimaging technologies have shattered this static assumption, revealing a phenomenon known as neuroplasticity—the nervous system's remarkable ability to reorganize its structure, functions, and connections in response to experiential learning and environmental demands.<br><br>This adaptive capacity is particularly evident in the realm of second language acquisition among adults. While children internalize phonology and syntax implicitly through immersive socialization, adult learners rely more heavily on explicit cognitive mechanisms, recruiting prefrontal cortical regions responsible for executive control and analytical problem-solving. Neuroscientists have observed that intensive language training induces measurable increases in gray matter density within the left inferior frontal gyrus and enhances the structural integrity of white matter tracts connecting distant cerebral hemispheres. Crucially, these neuroplastic alterations are not merely cosmetic; they directly correlate with cognitive resilience, providing a documented buffering effect against age-related neurodegenerative pathologies such as Alzheimer's disease.",
+        prompt: "According to the passage, how does language learning differ between children and adults?",
+        options: [
+          { key: "A", text: "Children rely on executive prefrontal regions, while adults learn predominantly through unconscious imitation." },
+          { key: "B", text: "Children acquire grammar and phonetics implicitly, whereas adult learners depend more on explicit, analytical mechanisms." },
+          { key: "C", text: "Adults are unable to develop white matter integrity compared to adolescent learners." },
+          { key: "D", text: "Children require intensive medical neuroimaging to internalize second language vocabulary." }
+        ],
+        answer: "B",
+        explanation: "İkinci paragrafın 2. cümlesinde açıkça belirtilmiştir: 'While children internalize phonology and syntax implicitly ... adult learners rely more heavily on explicit cognitive mechanisms ... and analytical problem-solving.'"
+      },
+      {
+        id: 18,
+        category: "Reading Comprehension",
+        passage: "For decades, conventional neurological dogma maintained that the adult human brain was a rigid, unalterable organ whose capacity for cellular reorganization ceased shortly after adolescence. However, modern neuroimaging technologies have shattered this static assumption, revealing a phenomenon known as neuroplasticity—the nervous system's remarkable ability to reorganize its structure, functions, and connections in response to experiential learning and environmental demands.<br><br>This adaptive capacity is particularly evident in the realm of second language acquisition among adults. While children internalize phonology and syntax implicitly through immersive socialization, adult learners rely more heavily on explicit cognitive mechanisms, recruiting prefrontal cortical regions responsible for executive control and analytical problem-solving. Neuroscientists have observed that intensive language training induces measurable increases in gray matter density within the left inferior frontal gyrus and enhances the structural integrity of white matter tracts connecting distant cerebral hemispheres. Crucially, these neuroplastic alterations are not merely cosmetic; they directly correlate with cognitive resilience, providing a documented buffering effect against age-related neurodegenerative pathologies such as Alzheimer's disease.",
+        prompt: "The word <strong>&lsquo;shattered&rsquo;</strong> in the first paragraph is closest in meaning to:",
+        options: [
+          { key: "A", text: "demolished and disproved" },
+          { key: "B", text: "carefully documented" },
+          { key: "C", text: "temporarily suspended" },
+          { key: "D", text: "statistically reinforced" }
+        ],
+        answer: "A",
+        explanation: "'Shattered this static assumption' ifadesinde shatter, eski ve statik varsayımı 'tuzla buz etmek, kökten çürütüp yıkmak' (demolished, dismantled, disproved) anlamında kullanılmıştır."
+      },
+      {
+        id: 19,
+        category: "Reading Comprehension",
+        passage: "For decades, conventional neurological dogma maintained that the adult human brain was a rigid, unalterable organ whose capacity for cellular reorganization ceased shortly after adolescence. However, modern neuroimaging technologies have shattered this static assumption, revealing a phenomenon known as neuroplasticity—the nervous system's remarkable ability to reorganize its structure, functions, and connections in response to experiential learning and environmental demands.<br><br>This adaptive capacity is particularly evident in the realm of second language acquisition among adults. While children internalize phonology and syntax implicitly through immersive socialization, adult learners rely more heavily on explicit cognitive mechanisms, recruiting prefrontal cortical regions responsible for executive control and analytical problem-solving. Neuroscientists have observed that intensive language training induces measurable increases in gray matter density within the left inferior frontal gyrus and enhances the structural integrity of white matter tracts connecting distant cerebral hemispheres. Crucially, these neuroplastic alterations are not merely cosmetic; they directly correlate with cognitive resilience, providing a documented buffering effect against age-related neurodegenerative pathologies such as Alzheimer's disease.",
+        prompt: "It can be inferred from the second paragraph that acquiring a new language in adulthood:",
+        options: [
+          { key: "A", text: "Provides tangible structural enhancements to the brain that can help delay or mitigate cognitive decline." },
+          { key: "B", text: "Is unlikely to produce any noticeable neuroanatomical benefits unless started before age twenty." },
+          { key: "C", text: "Weakens white matter connections by overburdening prefrontal cortical networks." },
+          { key: "D", text: "Causes severe mental exhaustion that hastens the onset of memory disorders." }
+        ],
+        answer: "A",
+        explanation: "Metnin son iki cümlesinden, yetişkinlikte dil öğreniminin beyinde gri madde yoğunluğunu ve ak madde bağlantılarını artırdığı ve bunun Alzheimer gibi yaşa bağlı dejenerasyonlara karşı koruyucu/tampon (buffering effect) sağladığı açıkça çıkarılır."
+      },
+      {
+        id: 20,
+        category: "Reading Comprehension",
+        passage: "For decades, conventional neurological dogma maintained that the adult human brain was a rigid, unalterable organ whose capacity for cellular reorganization ceased shortly after adolescence. However, modern neuroimaging technologies have shattered this static assumption, revealing a phenomenon known as neuroplasticity—the nervous system's remarkable ability to reorganize its structure, functions, and connections in response to experiential learning and environmental demands.<br><br>This adaptive capacity is particularly evident in the realm of second language acquisition among adults. While children internalize phonology and syntax implicitly through immersive socialization, adult learners rely more heavily on explicit cognitive mechanisms, recruiting prefrontal cortical regions responsible for executive control and analytical problem-solving. Neuroscientists have observed that intensive language training induces measurable increases in gray matter density within the left inferior frontal gyrus and enhances the structural integrity of white matter tracts connecting distant cerebral hemispheres. Crucially, these neuroplastic alterations are not merely cosmetic; they directly correlate with cognitive resilience, providing a documented buffering effect against age-related neurodegenerative pathologies such as Alzheimer's disease.",
+        prompt: "The author's tone toward modern neuroplasticity research can best be described as:",
+        options: [
+          { key: "A", text: "cynical and dismissive" },
+          { key: "B", text: "appreciative and scientifically enthusiastic" },
+          { key: "C", text: "pessimistic and skeptical" },
+          { key: "D", text: "neutral and completely unconcerned" }
+        ],
+        answer: "B",
+        explanation: "Yazar 'remarkable ability', 'shattered static assumptions', 'crucially ... not merely cosmetic' gibi güçlü ifadelerle modern nöroplastisite araştırmalarına karşı bilimsel bir takdir ve heyecan (appreciative & scientifically enthusiastic) taşımaktadır."
+      }
+    ];
+
+    let examCurrentIndex = 0;
+    let examUserAnswers = {}; // { qIndex: 'A' | 'B' | 'C' | 'D' }
+    let examFlagged = new Set();
+    let examTimeRemaining = 1800;
+    let examTimerInterval = null;
+    let examIsActive = false;
+    let selectedExamLevel = 'B2';
+    let mockExamQuestions = mockExamPool; // Active question set
+
+    function selectExamLevel(lvl) {
+      selectedExamLevel = lvl;
+      ['B1', 'B2', 'C1', 'ALL'].forEach(l => {
+        const btn = document.getElementById('examLvlBtn-' + l);
+        if (btn) {
+          if (l === lvl) {
+            btn.className = 'exam-lvl-pill p-3 rounded-xl border transition text-left space-y-1 bg-rose-900/40 border-rose-500/60 text-white ring-1 ring-rose-500/50 shadow-md';
+          } else {
+            btn.className = 'exam-lvl-pill p-3 rounded-xl border transition text-left space-y-1 bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/20 hover:bg-white/[0.06]';
+          }
+        }
+      });
+      const labelEl = document.getElementById('examSelectedLevelName');
+      const startLabelEl = document.getElementById('examStartBtnLabel');
+      const names = {
+        'B1': 'B1 (Orta Düzey)',
+        'B2': 'B2 (Yetkin / Muafiyet)',
+        'C1': 'C1 (İleri Akademik)',
+        'ALL': 'Tam Deneme (Karma)'
+      };
+      if (labelEl) labelEl.innerText = names[lvl] || lvl;
+      if (startLabelEl) {
+        startLabelEl.innerText = lvl === 'B1' ? 'Sınavı Başlat (20:00)' : 'Sınavı Başlat (30:00)';
+      }
+    }
+
+    function initExamArena() {
+      if (!examIsActive) {
+        document.getElementById('examIntroScreen').classList.remove('hidden');
+        document.getElementById('examActiveScreen').classList.add('hidden');
+        selectExamLevel(selectedExamLevel);
+      }
+    }
+
+    function startMockExam() {
+      examIsActive = true;
+      examCurrentIndex = 0;
+      examUserAnswers = {};
+      examFlagged = new Set();
+
+      // Configure questions and time by level
+      if (selectedExamLevel === 'B1') {
+        mockExamQuestions = mockExamPool.slice(0, 15);
+        examTimeRemaining = 1200; // 20 minutes
+      } else {
+        mockExamQuestions = mockExamPool;
+        examTimeRemaining = 1800; // 30 minutes
+      }
+
+      document.getElementById('examIntroScreen').classList.add('hidden');
+      document.getElementById('examActiveScreen').classList.remove('hidden');
+
+      if (examTimerInterval) clearInterval(examTimerInterval);
+      examTimerInterval = setInterval(updateExamTimerTick, 1000);
+      updateExamTimerDisplay();
+
+      renderExamQuestion();
+      renderExamQuestionGrid();
+    }
+
+    function updateExamTimerTick() {
+      if (examTimeRemaining > 0) {
+        examTimeRemaining--;
+        updateExamTimerDisplay();
+      } else {
+        clearInterval(examTimerInterval);
+        alert('Süreniz doldu! Sınavınız otomatik olarak sonlandırılıyor ve karne hesaplanıyor.');
+        finishExam();
+      }
+    }
+
+    function updateExamTimerDisplay() {
+      const minutes = Math.floor(examTimeRemaining / 60);
+      const seconds = examTimeRemaining % 60;
+      const displayStr = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      const el = document.getElementById('examTimerDisplay');
+      const container = document.getElementById('examTimerContainer');
+      if (el) el.innerText = displayStr;
+
+      if (container) {
+        // Last 5 minutes warning
+        if (examTimeRemaining <= 300) {
+          container.className = 'px-4 py-1.5 rounded-xl bg-rose-950/60 border border-rose-500/80 font-mono text-sm font-bold text-rose-300 flex items-center gap-2 shadow-inner animate-pulse';
+        } else {
+          container.className = 'px-4 py-1.5 rounded-xl bg-black/50 border border-white/10 font-mono text-sm font-bold text-amber-300 flex items-center gap-2 shadow-inner';
+        }
+      }
+    }
+
+    function renderExamQuestion() {
+      const q = mockExamQuestions[examCurrentIndex];
+      if (!q) return;
+
+      document.getElementById('examCurrentNum').innerText = examCurrentIndex + 1;
+      document.getElementById('examCategoryBadge').innerText = q.category;
+
+      const passageBox = document.getElementById('examPassageBox');
+      const passageText = document.getElementById('examPassageText');
+      if (q.passage) {
+        passageText.innerHTML = q.passage;
+        passageBox.classList.remove('hidden');
+      } else {
+        passageBox.classList.add('hidden');
+      }
+
+      document.getElementById('examQuestionPrompt').innerHTML = q.prompt;
+
+      // Flag button status
+      const flagBtn = document.getElementById('examFlagBtn');
+      const flagIcon = document.getElementById('examFlagIcon');
+      if (examFlagged.has(examCurrentIndex)) {
+        flagBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-medium border border-amber-500/60 bg-amber-500/20 text-amber-200 transition flex items-center gap-1 shadow-sm';
+        flagIcon.innerText = '🚩';
+      } else {
+        flagBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-medium border border-white/10 bg-white/[0.03] text-slate-300 hover:text-white transition flex items-center gap-1';
+        flagIcon.innerText = '🏳️';
+      }
+
+      // Render Options
+      const optionsContainer = document.getElementById('examOptionsContainer');
+      const currentSelected = examUserAnswers[examCurrentIndex];
+
+      optionsContainer.innerHTML = q.options.map(opt => {
+        const isSelected = currentSelected === opt.key;
+        return `
+          <button onclick="selectExamOption('${opt.key}')" class="w-full p-4 rounded-xl text-left text-xs sm:text-sm transition flex items-start gap-3 border ${isSelected ? 'bg-rose-900/60 border-rose-500/70 text-white font-semibold shadow-lg shadow-rose-950/40 ring-1 ring-rose-400' : 'bg-black/40 hover:bg-white/[0.04] border-white/[0.06] text-slate-300 hover:text-white'}">
+            <span class="w-6 h-6 rounded-lg flex items-center justify-center font-mono text-xs font-bold shrink-0 ${isSelected ? 'bg-rose-500 text-white' : 'bg-white/10 text-slate-400'}">${opt.key}</span>
+            <span class="pt-0.5 leading-relaxed">${escapeHtmlAttr(opt.text)}</span>
+          </button>
+        `;
+      }).join('');
+
+      // Prev / Next button states
+      const prevBtn = document.getElementById('examPrevBtn');
+      const nextBtn = document.getElementById('examNextBtn');
+      if (prevBtn) prevBtn.disabled = examCurrentIndex === 0;
+      if (nextBtn) {
+        if (examCurrentIndex === mockExamQuestions.length - 1) {
+          nextBtn.innerHTML = '<span>Sınavı Bitir</span> <span>🏁</span>';
+          nextBtn.onclick = confirmFinishExam;
+        } else {
+          nextBtn.innerHTML = '<span>Sonraki Soru</span> <span>➡️</span>';
+          nextBtn.onclick = nextExamQuestion;
+        }
+      }
+
+      renderExamQuestionGrid();
+    }
+
+    function renderExamQuestionGrid() {
+      const grid = document.getElementById('examQuestionGrid');
+      if (!grid) return;
+
+      grid.innerHTML = mockExamQuestions.map((_, idx) => {
+        const isCurrent = idx === examCurrentIndex;
+        const isAnswered = examUserAnswers[idx] !== undefined;
+        const isFlagged = examFlagged.has(idx);
+
+        let cellStyle = 'bg-black/50 border-white/10 text-slate-400';
+        if (isFlagged) {
+          cellStyle = 'bg-amber-600/80 border-amber-400 text-white font-bold';
+        } else if (isAnswered) {
+          cellStyle = 'bg-emerald-600/80 border-emerald-400 text-white font-bold';
+        }
+
+        const ring = isCurrent ? 'ring-2 ring-white ring-offset-2 ring-offset-[#140609]' : '';
+
+        return `
+          <button onclick="jumpToExamQuestion(${idx})" class="h-8 rounded-lg border text-xs font-mono font-medium flex items-center justify-center transition hover:scale-105 ${cellStyle} ${ring}">
+            ${idx + 1}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectExamOption(key) {
+      examUserAnswers[examCurrentIndex] = key;
+      renderExamQuestion();
+    }
+
+    function toggleExamFlag() {
+      if (examFlagged.has(examCurrentIndex)) {
+        examFlagged.delete(examCurrentIndex);
+      } else {
+        examFlagged.add(examCurrentIndex);
+      }
+      renderExamQuestion();
+    }
+
+    function prevExamQuestion() {
+      if (examCurrentIndex > 0) {
+        examCurrentIndex--;
+        renderExamQuestion();
+      }
+    }
+
+    function nextExamQuestion() {
+      if (examCurrentIndex < mockExamQuestions.length - 1) {
+        examCurrentIndex++;
+        renderExamQuestion();
+      }
+    }
+
+    function jumpToExamQuestion(idx) {
+      if (idx >= 0 && idx < mockExamQuestions.length) {
+        examCurrentIndex = idx;
+        renderExamQuestion();
+      }
+    }
+
+    function confirmFinishExam() {
+      const answeredCount = Object.keys(examUserAnswers).length;
+      const total = mockExamQuestions.length;
+      if (answeredCount < total) {
+        if (!confirm(`${total} sorudan henüz sadece ${answeredCount} tanesini cevapladınız. Sınavı şimdi bitirmek istediğinize emin misiniz?`)) {
+          return;
+        }
+      } else {
+        if (!confirm('Sınavı sonlandırıp karnenizi görüntülemek istiyor musunuz?')) {
+          return;
+        }
+      }
+      finishExam();
+    }
+
+    function finishExam() {
+      if (examTimerInterval) clearInterval(examTimerInterval);
+      examIsActive = false;
+
+      let correctCount = 0;
+      let vocabCorrect = 0;
+      let grammarCorrect = 0;
+      let readingCorrect = 0;
+
+      mockExamQuestions.forEach((q, idx) => {
+        const userChoice = examUserAnswers[idx];
+        const isRight = userChoice === q.answer;
+        if (isRight) {
+          correctCount++;
+          if (q.category === 'Vocabulary in Context') vocabCorrect++;
+          else if (q.category === 'Cloze Passage' || q.category === 'Restatement') grammarCorrect++;
+          else if (q.category === 'Reading Comprehension') readingCorrect++;
+        }
+      });
+
+      const netScore = Math.round((correctCount / mockExamQuestions.length) * 100);
+      const vocabRate = Math.round((vocabCorrect / 6) * 100);
+      const grammarRate = Math.round((grammarCorrect / 9) * 100);
+      const readingRate = Math.round((readingCorrect / 5) * 100);
+
+      // Best score storage
+      try {
+        const prevBest = parseInt(localStorage.getItem(STORAGE_EXAM_BEST_KEY) || '0', 10);
+        if (netScore > prevBest) {
+          localStorage.setItem(STORAGE_EXAM_BEST_KEY, String(netScore));
+        }
+      } catch(e) {}
+
+      // Log heatmap activity
+      logHeatmapActivity(correctCount + 2);
+
+      // Populate Scorecard
+      document.getElementById('scorecardNetScore').innerText = netScore;
+
+      const cefrBadge = document.getElementById('examCefrBadge');
+      const statusText = document.getElementById('scorecardStatusText');
+
+      if (netScore >= 85) {
+        cefrBadge.className = 'inline-block px-4 py-1 rounded-full text-xs font-bold font-mono uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30';
+        cefrBadge.innerText = 'Düzey Tahmini: C1 İleri (Muafiyet Garantili)';
+        statusText.innerText = '🎉 Muhteşem Başarı! Uluslararası akademik muafiyet ve hazırlık atlama barajının üzerindesiniz.';
+      } else if (netScore >= 70) {
+        cefrBadge.className = 'inline-block px-4 py-1 rounded-full text-xs font-bold font-mono uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        cefrBadge.innerText = 'Düzey Tahmini: B2 Yetkin (Hazırlık Muaf)';
+        statusText.innerText = '✅ Tebrikler! Üniversite Hazırlık Muafiyet barajını (70+) başarıyla geçtiniz.';
+      } else {
+        cefrBadge.className = 'inline-block px-4 py-1 rounded-full text-xs font-bold font-mono uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        cefrBadge.innerText = 'Düzey Tahmini: B1 Orta (Geliştirilmeli)';
+        statusText.innerText = '⚠️ Muafiyet barajına yaklaştınız (70 altı). Kelime ve okuma pratikleriyle eksiklerinizi kapatabilirsiniz.';
+      }
+
+      document.getElementById('scVocabRate').innerText = `%${vocabRate}`;
+      document.getElementById('scVocabBar').style.width = `${vocabRate}%`;
+
+      document.getElementById('scGrammarRate').innerText = `%${grammarRate}`;
+      document.getElementById('scGrammarBar').style.width = `${grammarRate}%`;
+
+      document.getElementById('scReadingRate').innerText = `%${readingRate}`;
+      document.getElementById('scReadingBar').style.width = `${readingRate}%`;
+
+      // Render Review Items
+      renderExamReviewItems();
+
+      // Show scorecard modal
+      document.getElementById('examScorecardModal').classList.remove('hidden');
+    }
+
+    function renderExamReviewItems() {
+      const container = document.getElementById('examReviewContainer');
+      if (!container) return;
+
+      container.innerHTML = mockExamQuestions.map((q, idx) => {
+        const userChoice = examUserAnswers[idx] || 'Boş';
+        const isRight = userChoice === q.answer;
+
+        return `
+          <div class="p-4 rounded-xl border text-left text-xs space-y-2 ${isRight ? 'bg-emerald-950/20 border-emerald-500/30' : 'bg-rose-950/20 border-rose-500/30'}">
+            <div class="flex items-center justify-between font-mono text-[11px]">
+              <span class="font-bold text-white">Soru ${idx + 1} • ${q.category}</span>
+              <span class="${isRight ? 'text-emerald-400 font-bold' : 'text-rose-400 font-bold'}">${isRight ? '✅ Doğru (+5 Puan)' : '❌ Yanlış'}</span>
+            </div>
+            <div class="text-[#fdf6ee] font-medium leading-relaxed">${q.prompt}</div>
+            <div class="flex items-center gap-4 text-xs font-mono pt-1">
+              <span class="${isRight ? 'text-emerald-300' : 'text-rose-300'}">Senin Cevabın: <strong>${userChoice}</strong></span>
+              <span class="text-emerald-400">Doğru Cevap: <strong>${q.answer}</strong></span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-black/50 border border-white/5 text-[11px] text-[#d6c7b2]/90 leading-relaxed">
+              <strong class="text-amber-300 font-mono">Çözüm & Açıklama:</strong> ${escapeHtmlAttr(q.explanation)}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleExamReviewMode() {
+      const container = document.getElementById('examReviewContainer');
+      const icon = document.getElementById('examReviewToggleIcon');
+      if (container) {
+        container.classList.toggle('hidden');
+        if (icon) icon.innerText = container.classList.contains('hidden') ? '▼' : '▲';
+      }
+    }
+
+    function closeExamScorecardModal() {
+      document.getElementById('examScorecardModal').classList.add('hidden');
+      initExamArena();
+    }
+
+    function restartMockExam() {
+      closeExamScorecardModal();
+      startMockExam();
     }
 
 
