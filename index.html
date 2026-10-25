@@ -429,41 +429,7 @@
       padding-bottom: max(env(safe-area-inset-bottom), 10px);
     }
 
-    /* Native Bottom Navigation Styles */
-    .bottom-nav-btn {
-      touch-action: manipulation;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .bottom-nav-btn.active {
-      color: #fb7185 !important;
-    }
-    .bottom-nav-btn.active .bottom-nav-icon {
-      transform: translateY(-2px) scale(1.12);
-      filter: drop-shadow(0 2px 8px rgba(225, 29, 72, 0.65));
-    }
-    .bottom-nav-btn.active .bottom-nav-indicator {
-      opacity: 1 !important;
-      transform: scaleX(1) !important;
-    }
-    [data-theme="parchment"] .bottom-nav-btn.active {
-      color: #f59e0b !important;
-    }
-    [data-theme="parchment"] .bottom-nav-btn.active .bottom-nav-icon {
-      filter: drop-shadow(0 2px 8px rgba(217, 119, 6, 0.65));
-    }
-    [data-theme="parchment"] .bottom-nav-btn.active .bottom-nav-indicator {
-      background-color: #f59e0b !important;
-    }
-    [data-theme="emerald"] .bottom-nav-btn.active {
-      color: #34d399 !important;
-    }
-    [data-theme="emerald"] .bottom-nav-btn.active .bottom-nav-icon {
-      filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.65));
-    }
-    [data-theme="emerald"] .bottom-nav-btn.active .bottom-nav-indicator {
-      background-color: #34d399 !important;
-    }
+    
 
   </style>
 </head>
@@ -505,117 +471,89 @@
     </div>
   </div>
 
-  <!-- Sticky Sleek Navbar (Mobile: 52px Single Row Header | Desktop: Full Hubs) -->
-  <nav class="sticky top-0 z-40 bg-[#0e0407]/95 backdrop-blur-xl border-b border-rose-950/40 px-3 sm:px-4 py-2 sm:py-2.5 transition-all">
-    <div class="max-w-6xl mx-auto flex items-center justify-between gap-2 sm:gap-4 h-9 sm:h-auto">
+    <!-- Sticky Clean Single-Row Navbar (Ultra-Sleek, Zero Clutter) -->
+  <nav class="sticky top-0 z-40 bg-[#0e0407]/95 backdrop-blur-xl border-b border-rose-950/40 px-3 sm:px-5 py-2 sm:py-2.5 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
       
-      <!-- Left: Brand Logo & Title -->
-      <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
-        <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-rose-950/60 border border-rose-500/30 flex items-center justify-center text-rose-300 font-serif-hero text-base sm:text-lg font-semibold italic shadow-sm shrink-0">
-          Ox
+      <!-- Sol (Left): Logo & Seviye Seçici -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div onclick="selectMode('flashcards')" class="flex items-center gap-2 cursor-pointer group shrink-0" title="Ana Sayfa (Kartlar)">
+          <div class="w-8 h-8 rounded-xl bg-rose-950/60 border border-rose-500/30 flex items-center justify-center text-rose-300 font-serif-hero text-base sm:text-lg font-semibold italic shadow-sm group-hover:border-rose-400 group-hover:scale-105 transition">
+            Ox
+          </div>
+          <div class="hidden sm:flex flex-col">
+            <span class="font-serif-hero tracking-tight text-sm sm:text-base font-semibold text-[#fbf4eb] whitespace-nowrap leading-tight">Oxford Lexicon</span>
+            <span class="text-[9px] font-mono tracking-widest uppercase text-[#d6c7b2]/60">Academic Prep</span>
+          </div>
         </div>
-        <div class="flex items-center gap-1.5 sm:gap-2">
-          <span class="font-serif-hero tracking-tight text-sm sm:text-base font-semibold text-[#fbf4eb] whitespace-nowrap">Oxford Lexicon</span>
-          <span class="text-[8px] sm:text-[9px] font-mono tracking-widest uppercase px-1.5 py-0.5 rounded bg-white/[0.05] text-[#d6c7b2]/75 border border-white/[0.08] hidden xs:inline-block">Academic</span>
+
+        <!-- Desktop Quick Level Pills ([ALL] [B1]...) -->
+        <div class="hidden md:flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/[0.08] text-xs font-mono">
+          <button type="button" onclick="setLevelFilter('ALL')" id="navLvl-ALL" class="nav-lvl-pill px-2.5 py-0.5 rounded-lg bg-white/10 text-white font-medium transition text-[11px]">ALL</button>
+          <button type="button" onclick="setLevelFilter('A1')" id="navLvl-A1" class="nav-lvl-pill px-2 py-0.5 rounded-lg text-slate-400 hover:text-emerald-400 transition text-[11px]">A1</button>
+          <button type="button" onclick="setLevelFilter('A2')" id="navLvl-A2" class="nav-lvl-pill px-2 py-0.5 rounded-lg text-slate-400 hover:text-sky-400 transition text-[11px]">A2</button>
+          <button type="button" onclick="setLevelFilter('B1')" id="navLvl-B1" class="nav-lvl-pill px-2 py-0.5 rounded-lg text-slate-400 hover:text-purple-400 transition text-[11px]">B1</button>
+          <button type="button" onclick="setLevelFilter('B2')" id="navLvl-B2" class="nav-lvl-pill px-2 py-0.5 rounded-lg text-slate-400 hover:text-amber-400 transition text-[11px]">B2</button>
+          <button type="button" onclick="setLevelFilter('C1')" id="navLvl-C1" class="nav-lvl-pill px-2 py-0.5 rounded-lg text-slate-400 hover:text-rose-400 transition text-[11px]">C1</button>
+          <button type="button" onclick="setLevelFilter('AWL')" id="navLvl-AWL" class="nav-lvl-pill px-2 py-0.5 rounded-lg text-rose-300/80 hover:text-rose-300 transition text-[11px]">AWL</button>
         </div>
+
+        <!-- Mobile Level Dropdown -->
+        <select id="quickLevelSelect" onchange="setLevelFilter(this.value)" class="md:hidden bg-black/60 border border-white/[0.08] text-[#d6c7b2] text-[11px] rounded-lg px-2 py-1 focus:outline-none focus:border-rose-500/50 font-mono">
+          <option value="ALL">Tümü (3.600)</option>
+          <option value="A1">A1 Temel</option>
+          <option value="A2">A2 Başlangıç</option>
+          <option value="B1">B1 Orta</option>
+          <option value="B2">B2 İleri</option>
+          <option value="C1">C1 Yetkin</option>
+          <option value="AWL">AWL Akademik</option>
+        </select>
       </div>
 
-      <!-- Center Desktop Only: 3-Hub Focus Navigation (Hidden on mobile, thumb reaches bottom bar instead) -->
-      <div class="hidden md:flex flex-col gap-1 shrink-0">
-        <!-- Level 1: 3 Core Hubs -->
-        <div class="flex items-center gap-1 bg-black/50 p-1 rounded-xl border border-white/[0.08] text-xs font-semibold">
-          <button type="button" onclick="switchHub('learn')" id="hubBtn-learn" class="hub-pill active px-3 py-1 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap active:scale-95 text-white">
-            <span>🧠</span> <span>Öğren & Keşfet</span>
-          </button>
-          <button type="button" onclick="switchHub('practice')" id="hubBtn-practice" class="hub-pill px-3 py-1 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95">
-            <span>🎮</span> <span>Pratik & Oyun</span>
-          </button>
-          <button type="button" onclick="switchHub('arena')" id="hubBtn-arena" class="hub-pill px-3 py-1 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95">
-            <span>🏆</span> <span>Sınav & Arena</span>
-          </button>
-        </div>
-
-        <!-- Level 2: Sub-pills for Active Hub -->
-        <div class="flex items-center gap-1 bg-black/30 p-1 rounded-lg border border-white/[0.05] text-xs overflow-x-auto scrollbar-none">
-          <!-- Hub: Learn Sub-pills -->
-          <div id="subHub-learn" class="flex items-center gap-1">
-            <button onclick="switchTab('flashcards')" id="tab-flashcards" class="tab-btn active px-2.5 py-0.5 rounded-md text-white font-medium transition shrink-0 whitespace-nowrap">
-              🃏 Kartlar
-            </button>
-            <button onclick="switchTab('dict')" id="tab-dict" class="tab-btn px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
-              📚 Sözlük
-            </button>
-            <button onclick="switchTab('reading')" id="tab-reading" class="tab-btn px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
-              📖 Okuma Labı
-            </button>
-          </div>
-
-          <!-- Hub: Practice Sub-pills -->
-          <div id="subHub-practice" class="hidden flex items-center gap-1">
-            <button onclick="switchTab('cloze')" id="tab-cloze" class="tab-btn px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
-              ✍️ Boşluk Doldurma
-            </button>
-            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
-              🎯 Test
-            </button>
-            <button onclick="switchTab('match')" id="tab-match" class="tab-btn px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
-              🔄 Eşleştirme & Synonym
-            </button>
-          </div>
-
-          <!-- Hub: Arena Sub-pills -->
-          <div id="subHub-arena" class="hidden flex items-center gap-1">
-            <button onclick="switchTab('exam')" id="tab-exam" class="tab-btn px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
-              🏆 Deneme Sınavı
-            </button>
-            <button onclick="switchTab('grammar')" id="tab-grammar" class="tab-btn px-2.5 py-0.5 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap">
-              📋 Gramer & Preposition
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Compact Badges & Action Controls -->
-      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-        <!-- Known / Learn stats (Desktop only) -->
-        <span title="Öğrendiğin Kelimeler" class="hidden lg:flex px-2 py-1 rounded-lg bg-emerald-500/[0.06] border border-emerald-500/20 text-emerald-400 items-center gap-1 font-mono text-[11px]">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-          <span id="navKnownCount">0</span>
-        </span>
-        <span title="Tekrar Edilecek Kelimeler" class="hidden lg:flex px-2 py-1 rounded-lg bg-rose-500/[0.06] border border-rose-500/20 text-rose-300 items-center gap-1 font-mono text-[11px]">
-          <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
-          <span id="navLearnCount">0</span>
-        </span>
-
-        <!-- Mistake Vault Button -->
-        <button onclick="toggleMistakeVaultModal()" id="navVaultBtn" title="Kişisel Hata Kasası" class="px-2 sm:px-2.5 py-1 rounded-lg bg-rose-950/50 border border-rose-500/30 text-rose-300 flex items-center gap-1 hover:border-rose-400/60 transition cursor-pointer font-mono text-[11px] whitespace-nowrap shadow-sm active:scale-95">
-          <span>🩸</span>
-          <span class="text-[#d6c7b2]/75 hidden sm:inline">Kasa:</span>
-          <span id="navVaultCount" class="font-bold text-white">0</span>
-        </button>
-
+      <!-- Orta (Center): Sayaçlar (🔥 Seri, 🩸 Hata Kasası, Öğrenilen/Tekrar) -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
         <!-- Daily Streak Button -->
-        <button onclick="toggleStreakModal()" title="Günlük Seri (Tıkla)" class="px-2 sm:px-2.5 py-1 rounded-lg bg-amber-500/[0.06] border border-amber-500/20 text-amber-300 flex items-center gap-1 hover:border-amber-400/40 transition cursor-pointer font-mono text-[11px] active:scale-95">
+        <button type="button" onclick="toggleStreakModal()" title="Günlük Seri (Tıkla)" class="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-xl bg-amber-500/[0.06] border border-amber-500/20 text-amber-300 flex items-center gap-1 hover:border-amber-400/40 transition cursor-pointer font-mono text-xs active:scale-95 shadow-sm">
           <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
           <span>🔥</span>
           <span id="navStreakCount" class="font-bold">0</span>
+          <span class="text-[#d6c7b2]/60 hidden md:inline text-[10px]">gün</span>
         </button>
 
+        <!-- Mistake Vault Button -->
+        <button type="button" onclick="toggleMistakeVaultModal()" id="navVaultBtn" title="Kişisel Hata Kasası" class="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-xl bg-rose-950/50 border border-rose-500/30 text-rose-300 flex items-center gap-1 hover:border-rose-400/60 transition cursor-pointer font-mono text-xs whitespace-nowrap shadow-sm active:scale-95">
+          <span>🩸</span>
+          <span class="text-[#d6c7b2]/75 hidden lg:inline text-[11px]">Kasa:</span>
+          <span id="navVaultCount" class="font-bold text-white">0</span>
+        </button>
+
+        <!-- Öğrenilen / Tekrar Sayacı (Desktop/Tablet) -->
+        <div class="hidden sm:flex items-center gap-1.5 font-mono text-xs">
+          <!-- Known Count -->
+          <span title="Öğrendiğin Kelimeler" class="px-2 py-1 rounded-lg bg-emerald-500/[0.06] border border-emerald-500/20 text-emerald-400 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span id="navKnownCount">0</span>
+          </span>
+          <!-- Learning Count -->
+          <span title="Tekrar Edilecek Kelimeler" class="px-2 py-1 rounded-lg bg-rose-500/[0.06] border border-rose-500/20 text-rose-300 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+            <span id="navLearnCount">0</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Sağ (Right): Tema + Modlar Ana Butonu (🧭 Modlar ▾) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
         <!-- Theme Switcher Button -->
-        <button onclick="toggleThemeModal()" id="btnThemeToggle" title="Tema Değiştir (🎨)" class="p-1.5 sm:p-2 bg-black/40 hover:bg-white/[0.06] border border-white/[0.08] text-[#d6c7b2] hover:text-white rounded-lg transition flex items-center justify-center text-xs active:scale-95">
+        <button type="button" onclick="toggleThemeModal()" id="btnThemeToggle" title="Tema Değiştir (🎨)" class="p-1.5 sm:p-2 bg-black/40 hover:bg-white/[0.06] border border-white/[0.08] text-[#d6c7b2] hover:text-white rounded-xl transition flex items-center justify-center text-xs active:scale-95">
           <span>🎨</span>
         </button>
 
-        <!-- Voice Selector (Tablet/Desktop) -->
-        <select id="globalVoice" class="hidden sm:block bg-black/40 border border-white/[0.08] text-[#d6c7b2] text-xs rounded-lg px-2 py-1 focus:outline-none focus:border-rose-500/50 transition cursor-pointer font-sans">
-          <option value="us">US</option>
-          <option value="uk">UK</option>
-          <option value="mute">Sessiz</option>
-        </select>
-
-        <!-- Zen Mode (Desktop only) -->
-        <button onclick="toggleZenMode()" title="Zen Odak Modu (F)" class="hidden md:flex p-1.5 sm:p-2 bg-black/40 hover:bg-white/[0.06] border border-white/[0.08] text-slate-400 hover:text-white rounded-lg transition items-center justify-center">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+        <!-- Modlar Ana Menü Butonu (🧭 Modlar ▾) -->
+        <button type="button" onclick="toggleModeSelectModal()" id="btnModeSelector" title="Çalışma Modları Menüsü (Tıkla)" class="px-3 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-900/80 via-rose-800/80 to-rose-950/80 hover:from-rose-800 hover:to-rose-700 border border-rose-500/40 text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 shadow-md shadow-rose-950/50 transition active:scale-95">
+          <span id="activeModeIcon" class="text-sm">🃏</span>
+          <span id="activeModeText" class="font-semibold tracking-tight">Kartlar</span>
+          <span class="text-rose-300 text-[10px] ml-0.5">▾</span>
         </button>
       </div>
 
@@ -657,7 +595,7 @@
   </div>
 
   <!-- Main Content Body -->
-  <main class="flex-1 max-w-4xl w-full mx-auto p-3 sm:p-6 pb-24 md:pb-12 space-y-6 relative z-10">
+  <main class="flex-1 max-w-4xl w-full mx-auto p-3 sm:p-6 pb-12 space-y-6 relative z-10">
 
     <!-- ==================== 1. FLASHCARDS (3D TILT & TINDER SWIPE & HEAT COMBO) ==================== -->
     <section id="view-flashcards" class="max-w-lg mx-auto space-y-5 text-center">
@@ -2175,6 +2113,160 @@
   </div>
 
 
+
+  <!-- ==================== AKILLI MOD SEÇİCİ MENÜSÜ (DRAWER / OVERLAY) ==================== -->
+  <div id="modeSelectModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md transition-all duration-200">
+    <!-- Click backdrop to close without state reset -->
+    <div class="absolute inset-0" onclick="closeModeSelectModal()"></div>
+
+    <div class="bg-[#140609] border border-white/10 rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden relative z-10 animate-in fade-in zoom-in-95">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-white/[0.08] flex items-center justify-between bg-black/40">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-rose-950/80 border border-rose-500/40 flex items-center justify-center text-lg shadow-sm">
+            🧭
+          </div>
+          <div>
+            <h3 class="font-serif-hero text-lg sm:text-xl font-bold text-[#fdf6ee] leading-tight">Çalışma & Sınav Modları</h3>
+            <p class="text-xs text-[#a8998c]">İlerlemek istediğiniz modülü seçin:</p>
+          </div>
+        </div>
+        <button onclick="closeModeSelectModal()" title="Kapat (ESC)" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition text-sm flex items-center justify-center w-8 h-8">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body: 3 Clear Columns / Sections -->
+      <div class="p-4 sm:p-6 overflow-y-auto space-y-6 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-5 scrollbar-thin">
+        
+        <!-- SÜTUN 1: 🧠 ÖĞREN & KEŞFET -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-2 pb-1.5 border-b border-rose-900/40 text-xs font-mono uppercase tracking-wider text-rose-300 font-bold">
+            <span>🧠</span> <span>1. Öğren & Keşfet</span>
+          </div>
+
+          <!-- 1.1 Kelime Kartları -->
+          <button type="button" onclick="selectMode('flashcards')" id="modeCard-flashcards" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-rose-950/30 border border-white/[0.08] hover:border-rose-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-rose-950/60 border border-rose-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🃏</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-rose-200 transition">Kelime Kartları</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">3D Leitner 5-Kutulu aralıklı tekrar hafıza motoru</div>
+            </div>
+          </button>
+
+          <!-- 1.2 Sözlük & Atlas -->
+          <button type="button" onclick="selectMode('dict')" id="modeCard-dict" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-rose-950/30 border border-white/[0.08] hover:border-rose-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-rose-950/60 border border-rose-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">📚</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-rose-200 transition">Sözlük & Atlas</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">3.600+ kelime, IPA fonetik, telaffuz ve özel defter</div>
+            </div>
+          </button>
+
+          <!-- 1.3 Okuma Laboratuvarı -->
+          <button type="button" onclick="selectMode('reading')" id="modeCard-reading" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-rose-950/30 border border-white/[0.08] hover:border-rose-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-rose-950/60 border border-rose-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">📖</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-rose-200 transition">Okuma Laboratuvarı</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">12 akademik metin, kelime analizi ve onaylı sorular</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- SÜTUN 2: 🎮 TEST & PRATİK -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-2 pb-1.5 border-b border-amber-900/40 text-xs font-mono uppercase tracking-wider text-amber-300 font-bold">
+            <span>🎮</span> <span>2. Test & Pratik</span>
+          </div>
+
+          <!-- 2.1 Boşluk Doldurma -->
+          <button type="button" onclick="selectMode('cloze')" id="modeCard-cloze" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-amber-950/30 border border-white/[0.08] hover:border-amber-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-amber-950/60 border border-amber-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">✍️</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-amber-200 transition">Boşluk Doldurma</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Cümle içi bağlam, şıklar ve klavye yazım modu</div>
+            </div>
+          </button>
+
+          <!-- 2.2 Kelime Testi (Quiz) -->
+          <button type="button" onclick="selectMode('quiz')" id="modeCard-quiz" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-amber-950/30 border border-white/[0.08] hover:border-amber-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-amber-950/60 border border-amber-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🎯</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-amber-200 transition">Kelime Testi (Quiz)</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">4 şıklı seri çoktan seçmeli kelime testi</div>
+            </div>
+          </button>
+
+          <!-- 2.3 Eşleştirme & Synonym -->
+          <button type="button" onclick="selectMode('match')" id="modeCard-match" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-amber-950/30 border border-white/[0.08] hover:border-amber-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-amber-950/60 border border-amber-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🔄</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-amber-200 transition">Eşleştirme & Synonym</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Hafıza kartları, EN-TR ve akademik eşanlam</div>
+            </div>
+          </button>
+
+          <!-- 2.4 Dikte & Yazım Labı -->
+          <button type="button" onclick="openDictationFromMenu()" id="modeCard-dictation" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-amber-950/30 border border-white/[0.08] hover:border-amber-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-amber-950/60 border border-amber-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🎧</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-amber-200 transition">Dikte & Yazım Labı</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Sesli harf tamamlama ve telaffuz kulak testi</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- SÜTUN 3: 🏆 SINAV & GELİŞİM -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-2 pb-1.5 border-b border-emerald-900/40 text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold">
+            <span>🏆</span> <span>3. Sınav & Gelişim</span>
+          </div>
+
+          <!-- 3.1 Üniversite Deneme Sınavı -->
+          <button type="button" onclick="selectMode('exam')" id="modeCard-exam" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-emerald-950/30 border border-white/[0.08] hover:border-emerald-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🏆</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-emerald-200 transition">Üniversite Deneme Sınavı</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Proficiency / EPE / YDS formatında zamanlı sınav</div>
+            </div>
+          </button>
+
+          <!-- 3.2 Gramer & Kalıp Arenası -->
+          <button type="button" onclick="selectMode('grammar')" id="modeCard-grammar" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-emerald-950/30 border border-white/[0.08] hover:border-emerald-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">📋</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-emerald-200 transition">Gramer & Kalıp Arenası</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Konular, Hata Avcısı, Prepositions ve Versus</div>
+            </div>
+          </button>
+
+          <!-- 3.3 60sn Fiil Refleksi -->
+          <button type="button" onclick="openBlitzFromMenu()" id="modeCard-blitz" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-emerald-950/30 border border-white/[0.08] hover:border-emerald-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-emerald-950/60 border border-emerald-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">⚡</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-emerald-200 transition">60sn Fiil Refleksi</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Düzensiz fiiller (Irregular Verbs) zaman yarışı</div>
+            </div>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-3 sm:p-4 bg-black/50 border-t border-white/[0.06] flex items-center justify-between text-xs text-[#a8998c]">
+        <div class="flex items-center gap-1.5 font-mono text-[11px]">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Seçilen mod anında yüklenir ve durumunuz korunur.</span>
+        </div>
+        <button type="button" onclick="closeModeSelectModal()" class="px-3.5 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white transition text-xs font-medium">
+          Vazgeç
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ==================== THEME SWITCHER MODAL ==================== -->
   <div id="themeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="bg-[#140609] border border-white/[0.08] rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative text-left">
@@ -2947,8 +3039,24 @@
     }
 
     function setLevelFilter(lvl) {
-      activeLevelFilter = lvl;
+activeLevelFilter = lvl;
       saveMemory();
+
+      // Sync Mobile Dropdown
+      const qSel = document.getElementById('quickLevelSelect');
+      if (qSel) qSel.value = lvl;
+
+      // Sync Desktop Pills
+      ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1', 'AWL'].forEach(k => {
+        const pBtn = document.getElementById('navLvl-' + k);
+        if (pBtn) {
+          if (k === lvl) {
+            pBtn.className = 'nav-lvl-pill px-2.5 py-0.5 rounded-lg bg-rose-900/60 border border-rose-500/40 text-white font-semibold transition text-[11px]';
+          } else {
+            pBtn.className = 'nav-lvl-pill px-2 py-0.5 rounded-lg text-slate-400 hover:text-white transition text-[11px]';
+          }
+        }
+      });
 
       ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1', 'AWL'].forEach(k => {
         const btn = document.getElementById('lvlBtn-' + k);
@@ -3181,96 +3289,115 @@
       });
     }
 
-    // ==================== 3-HUB FOCUS NAVIGATION SYSTEM ====================
-    const HUB_MAP = {
-      learn: ['flashcards', 'dict', 'reading'],
-      practice: ['cloze', 'quiz', 'match'],
-      arena: ['exam', 'grammar']
+    // ==================== AKILLI MOD MENÜSÜ & SEKMELER MOTORU ====================
+    let currentActiveTabId = 'flashcards';
+
+    const MODE_METADATA = {
+      flashcards: { icon: '🃏', name: 'Kelime Kartları', short: 'Kartlar' },
+      dict: { icon: '📚', name: 'Sözlük & Atlas', short: 'Sözlük' },
+      reading: { icon: '📖', name: 'Okuma Labı', short: 'Okuma' },
+      cloze: { icon: '✍️', name: 'Boşluk Doldurma', short: 'Boşluk' },
+      quiz: { icon: '🎯', name: 'Kelime Testi', short: 'Test' },
+      match: { icon: '🔄', name: 'Eşleştirme', short: 'Eşleştirme' },
+      exam: { icon: '🏆', name: 'Deneme Sınavı', short: 'Deneme Sınavı' },
+      grammar: { icon: '📋', name: 'Gramer Arenası', short: 'Gramer' }
     };
 
-    function switchHub(hubId) {
-      ['learn', 'practice', 'arena'].forEach(h => {
-        const btn = document.getElementById('hubBtn-' + h);
-        const sub = document.getElementById('subHub-' + h);
-        const isActive = (h === hubId);
-        if (btn) {
-          if (isActive) {
-            btn.className = 'hub-pill active px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap active:scale-95 text-white';
-          } else {
-            btn.className = 'hub-pill px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95';
-          }
-        }
-        if (sub) {
-          sub.classList.toggle('hidden', !isActive);
-          if (isActive) sub.classList.add('flex');
-        }
-      });
-
-      const currentTab = getCurrentActiveTab();
-      const tabsInHub = HUB_MAP[hubId] || [];
-      if (!tabsInHub.includes(currentTab)) {
-        switchTab(tabsInHub[0]);
-      }
+    function toggleModeSelectModal() {
+      const modal = document.getElementById('modeSelectModal');
+      if (!modal) return;
+      triggerHaptic('tap');
+      modal.classList.toggle('hidden');
     }
 
-    function getCurrentActiveTab() {
-      const tabs = ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'exam', 'grammar'];
-      for (const t of tabs) {
-        const v = document.getElementById('view-' + t);
-        if (v && !v.classList.contains('hidden')) return t;
-      }
-      return 'flashcards';
+    function closeModeSelectModal() {
+      const modal = document.getElementById('modeSelectModal');
+      if (modal) modal.classList.add('hidden');
     }
 
-    function switchTab(tabId) {
-      let targetHub = 'learn';
-      for (const [hub, tabs] of Object.entries(HUB_MAP)) {
-        if (tabs.includes(tabId)) {
-          targetHub = hub;
-          break;
-        }
-      }
+    function updateActiveModeButton(tabId) {
+      const meta = MODE_METADATA[tabId] || { icon: '🧭', name: 'Modlar', short: 'Modlar' };
+      const iconEl = document.getElementById('activeModeIcon');
+      const textEl = document.getElementById('activeModeText');
+      if (iconEl) iconEl.innerText = meta.icon;
+      if (textEl) textEl.innerText = meta.short;
 
-      // Update Hub Pill & Sub-Hub Container
-      ['learn', 'practice', 'arena'].forEach(h => {
-        const btn = document.getElementById('hubBtn-' + h);
-        const sub = document.getElementById('subHub-' + h);
-        const isActive = (h === targetHub);
-        if (btn) {
-          if (isActive) {
-            btn.className = 'hub-pill active px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap active:scale-95 text-white';
+      // Highlight active mode card in modal
+      Object.keys(MODE_METADATA).forEach(mId => {
+        const card = document.getElementById('modeCard-' + mId);
+        if (card) {
+          if (mId === tabId) {
+            card.classList.add('border-rose-500/80', 'bg-rose-950/40', 'ring-1', 'ring-rose-500/40');
+            card.classList.remove('border-white/[0.08]', 'bg-black/40');
           } else {
-            btn.className = 'hub-pill px-3 sm:px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap text-slate-400 hover:text-white active:scale-95';
+            card.classList.remove('border-rose-500/80', 'bg-rose-950/40', 'ring-1', 'ring-rose-500/40');
+            card.classList.add('border-white/[0.08]', 'bg-black/40');
           }
         }
-        if (sub) {
-          sub.classList.toggle('hidden', !isActive);
-          if (isActive) sub.classList.add('flex');
-        }
       });
+    }
 
-      // Hide all views and reset sub-tab buttons
+    function selectMode(tabId) {
+      closeModeSelectModal();
+      if (currentActiveTabId === tabId) {
+        // STATE PRESERVATION: Already in this tab, do NOT reset active game or exam!
+        updateActiveModeButton(tabId);
+        return;
+      }
+      switchTab(tabId);
+    }
+
+    function openDictationFromMenu() {
+      closeModeSelectModal();
+      switchTab('dict');
+      if (!isDictationModeActive) {
+        toggleDictationMode();
+      }
+      const iconEl = document.getElementById('activeModeIcon');
+      const textEl = document.getElementById('activeModeText');
+      if (iconEl) iconEl.innerText = '🎧';
+      if (textEl) textEl.innerText = 'Dikte Labı';
+    }
+
+    function openBlitzFromMenu() {
+      closeModeSelectModal();
+      switchTab('grammar');
+      startIrregularBlitz();
+      const iconEl = document.getElementById('activeModeIcon');
+      const textEl = document.getElementById('activeModeText');
+      if (iconEl) iconEl.innerText = '⚡';
+      if (textEl) textEl.innerText = 'Fiil Refleksi';
+    }
+
+    function switchTab(tabId, forceInit = false) {
+      // 1. STATE PRESERVATION: If already in this tab, do NOT re-initialize or reset ongoing session!
+      if (currentActiveTabId === tabId && !forceInit) {
+        updateActiveModeButton(tabId);
+        return;
+      }
+      currentActiveTabId = tabId;
+
+      // 2. Hide all view sections completely (Zero sub-tab leaking)
       ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'exam', 'grammar'].forEach(t => {
         const view = document.getElementById('view-' + t);
-        const tab = document.getElementById('tab-' + t);
         if (view) view.classList.add('hidden');
-        if (tab) tab.className = 'tab-btn px-2.5 sm:px-3 py-1 rounded-md text-slate-400 hover:text-white transition shrink-0 whitespace-nowrap';
       });
 
-      // Activate target view & sub-tab
+      // 3. Show target view
       const activeView = document.getElementById('view-' + tabId);
-      const activeTab = document.getElementById('tab-' + tabId);
       if (activeView) activeView.classList.remove('hidden');
-      if (activeTab) activeTab.className = 'tab-btn active px-2.5 sm:px-3 py-1 rounded-md bg-rose-900/60 border border-rose-500/30 text-white font-medium transition shrink-0 whitespace-nowrap';
 
-      updateBottomNavUI(tabId);
+      // 4. Update Header Mode Button
+      updateActiveModeButton(tabId);
       triggerHaptic('tap');
 
+      // 5. Toggle level filter bar visibility (hide for grammar, reading, exam)
       const filterBar = document.getElementById('levelFilterBar');
       if (filterBar) {
         filterBar.classList.toggle('hidden', tabId === 'grammar' || tabId === 'reading' || tabId === 'exam');
       }
 
+      // 6. Initialize only newly entered tab
       if (tabId === 'flashcards') renderFlashcard();
       if (tabId === 'cloze') startClozeTest();
       if (tabId === 'quiz') startQuiz();
@@ -3279,6 +3406,12 @@
       if (tabId === 'reading') initReadingLab();
       if (tabId === 'exam') initExamArena();
       if (tabId === 'grammar') renderGrammarView();
+    }
+
+    // Backward compatibility for switchHub
+    function switchHub(hubId) {
+      const hubDefaults = { learn: 'flashcards', practice: 'cloze', arena: 'exam' };
+      selectMode(hubDefaults[hubId] || 'flashcards');
     }
 
     // ==================== 3 ATMOSPHERIC THEMES ENGINE ====================
@@ -11874,83 +12007,7 @@
 
   </script>
 
-  <!-- ==================== MOBILE NATIVE BOTTOM NAVIGATION BAR (md:hidden) ==================== -->
-  <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0e0407]/95 backdrop-blur-xl border-t border-white/10 pb-safe shadow-[0_-8px_30px_rgba(0,0,0,0.7)]">
-    
-    <!-- Mini Practice Popover / Sheet (Toggled by 'Pratik' button) -->
-    <div id="mobilePracticeMenu" class="hidden absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-[#140609] border border-white/10 rounded-2xl p-2.5 shadow-2xl space-y-1 backdrop-blur-2xl">
-      <div class="px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-[#d6c7b2]/60 flex items-center justify-between border-b border-white/[0.06]">
-        <span>Pratik & Oyun Modları</span>
-        <button onclick="toggleMobilePracticeMenu(false)" class="text-slate-400 hover:text-white text-xs p-1">✕</button>
-      </div>
-      <button onclick="switchTab('cloze'); toggleMobilePracticeMenu(false);" class="w-full p-2 rounded-xl text-xs flex items-center gap-2.5 text-left text-slate-200 hover:bg-white/[0.06] transition active:scale-95">
-        <span class="w-7 h-7 rounded-lg bg-rose-950/60 border border-rose-500/30 flex items-center justify-center text-sm">✍️</span>
-        <div>
-          <div class="font-semibold text-white">Boşluk Doldurma</div>
-          <div class="text-[10px] text-[#a8998c]">Cümle içi bağlam tamamlama</div>
-        </div>
-      </button>
-      <button onclick="switchTab('quiz'); toggleMobilePracticeMenu(false);" class="w-full p-2 rounded-xl text-xs flex items-center gap-2.5 text-left text-slate-200 hover:bg-white/[0.06] transition active:scale-95">
-        <span class="w-7 h-7 rounded-lg bg-rose-950/60 border border-rose-500/30 flex items-center justify-center text-sm">🎯</span>
-        <div>
-          <div class="font-semibold text-white">Çoktan Seçmeli Test</div>
-          <div class="text-[10px] text-[#a8998c]">4 şıklı kelime testi</div>
-        </div>
-      </button>
-      <button onclick="switchTab('match'); toggleMobilePracticeMenu(false);" class="w-full p-2 rounded-xl text-xs flex items-center gap-2.5 text-left text-slate-200 hover:bg-white/[0.06] transition active:scale-95">
-        <span class="w-7 h-7 rounded-lg bg-rose-950/60 border border-rose-500/30 flex items-center justify-center text-sm">🔄</span>
-        <div>
-          <div class="font-semibold text-white">Eşleştirme & Synonym</div>
-          <div class="text-[10px] text-[#a8998c]">Hafıza kart eşleştirmesi</div>
-        </div>
-      </button>
-      <button onclick="switchTab('dict'); toggleMobilePracticeMenu(false);" class="w-full p-2 rounded-xl text-xs flex items-center gap-2.5 text-left text-slate-200 hover:bg-white/[0.06] transition active:scale-95 border-t border-white/[0.04]">
-        <span class="w-7 h-7 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center text-sm">📚</span>
-        <div>
-          <div class="font-semibold text-[#fdf6ee]">Sözlük & Kelime Atlası</div>
-          <div class="text-[10px] text-[#a8998c]">3.609 kelime & özel kelimeler</div>
-        </div>
-      </button>
-    </div>
-
-    <!-- 5 Core Bottom Touch Buttons -->
-    <div class="grid grid-cols-5 h-16 items-center px-1">
-      <!-- 1. Kartlar -->
-      <button onclick="switchTab('flashcards')" id="bottomNav-flashcards" class="bottom-nav-btn active flex flex-col items-center justify-center gap-0.5 py-1 text-slate-400 hover:text-white transition relative active:scale-95">
-        <span class="bottom-nav-icon text-lg transition-transform duration-200">🃏</span>
-        <span class="text-[10px] font-medium tracking-tight">Kartlar</span>
-        <span class="bottom-nav-indicator absolute top-0 w-8 h-0.5 bg-rose-500 rounded-full transition-opacity duration-200"></span>
-      </button>
-
-      <!-- 2. Okuma Labı -->
-      <button onclick="switchTab('reading')" id="bottomNav-reading" class="bottom-nav-btn flex flex-col items-center justify-center gap-0.5 py-1 text-slate-400 hover:text-white transition relative active:scale-95">
-        <span class="bottom-nav-icon text-lg transition-transform duration-200">📖</span>
-        <span class="text-[10px] font-medium tracking-tight">Okuma</span>
-        <span class="bottom-nav-indicator absolute top-0 w-8 h-0.5 bg-rose-500 rounded-full opacity-0 transition-opacity duration-200"></span>
-      </button>
-
-      <!-- 3. Pratik Hub (Opens Sheet) -->
-      <button onclick="toggleMobilePracticeMenu()" id="bottomNav-practice" class="bottom-nav-btn flex flex-col items-center justify-center gap-0.5 py-1 text-slate-400 hover:text-white transition relative active:scale-95">
-        <span class="bottom-nav-icon text-lg transition-transform duration-200">🎮</span>
-        <span class="text-[10px] font-medium tracking-tight">Pratik</span>
-        <span class="bottom-nav-indicator absolute top-0 w-8 h-0.5 bg-rose-500 rounded-full opacity-0 transition-opacity duration-200"></span>
-      </button>
-
-      <!-- 4. Sınav Arena -->
-      <button onclick="switchTab('exam')" id="bottomNav-exam" class="bottom-nav-btn flex flex-col items-center justify-center gap-0.5 py-1 text-slate-400 hover:text-white transition relative active:scale-95">
-        <span class="bottom-nav-icon text-lg transition-transform duration-200">🏆</span>
-        <span class="text-[10px] font-medium tracking-tight">Sınav</span>
-        <span class="bottom-nav-indicator absolute top-0 w-8 h-0.5 bg-rose-500 rounded-full opacity-0 transition-opacity duration-200"></span>
-      </button>
-
-      <!-- 5. Gramer -->
-      <button onclick="switchTab('grammar')" id="bottomNav-grammar" class="bottom-nav-btn flex flex-col items-center justify-center gap-0.5 py-1 text-slate-400 hover:text-white transition relative active:scale-95">
-        <span class="bottom-nav-icon text-lg transition-transform duration-200">📋</span>
-        <span class="text-[10px] font-medium tracking-tight">Gramer</span>
-        <span class="bottom-nav-indicator absolute top-0 w-8 h-0.5 bg-rose-500 rounded-full opacity-0 transition-opacity duration-200"></span>
-      </button>
-    </div>
-  </nav>
+  
 
 </body>
 </html>
