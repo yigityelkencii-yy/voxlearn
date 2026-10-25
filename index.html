@@ -14,6 +14,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
+    html {
+      scrollbar-gutter: stable;
+    }
     :root {
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
@@ -574,13 +577,7 @@
       <div class="text-[11px] text-[#a8998c]/60 shrink-0 font-mono hidden md:block">
         Oxford 3000™ & Academic Word List
       </div>
-    
-        <button type="button" onclick="selectMode('morphology')" id="btnQuickAcadLab" title="Akademik Laboratuvar & Düello" class="ml-auto shrink-0 px-3 py-1.5 rounded-xl bg-indigo-950/80 hover:bg-indigo-900/90 border border-indigo-500/40 text-indigo-200 hover:text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm active:scale-95 transition">
-          <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-          <span>🧪 Akademik Lab</span>
-          <span class="text-[10px] text-indigo-300">➔</span>
-        </button>
-      </div>
+    </div>
   </div>
 
   <!-- Main Content Body -->
@@ -660,14 +657,12 @@
                     <button type="button" onclick="event.stopPropagation(); speakCurrentCard();" title="Telaffuz Dinle" class="p-1.5 rounded-lg text-[#d6c7b2]/70 hover:text-white hover:bg-white/[0.06] transition">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
                     </button>
-                    <button type="button" id="fcSpeechBtn" onclick="event.stopPropagation(); startSpeechEvaluation('flashcard');" title="Telaffuz Et (Mikrofon)" class="px-2 py-1 rounded-lg text-xs bg-white/[0.04] hover:bg-rose-500/20 text-[#d6c7b2]/80 hover:text-white border border-white/5 transition flex items-center gap-1">
-                      <span>🎙️</span> <span class="text-[11px] font-sans">Telaffuz Et</span>
-                    </button>
+                    
                   </div>
                 </div>
 
                 <div class="my-auto space-y-3.5 text-center">
-                  <div id="fcSpeechFeedback" class="hidden text-xs px-3 py-1.5 rounded-xl mx-auto font-medium transition-all duration-300"></div>
+                  
                   <h2 id="fcWord" class="font-serif-hero text-5xl sm:text-6xl font-normal text-[#fdf6ee] tracking-[-0.025em] select-text">Word</h2>
                   <div class="flex items-center justify-center gap-2">
                     <div id="fcIpa" class="text-[#d6c7b2]/75 font-mono text-sm sm:text-base font-normal tracking-wide">/wɜːd/</div>
@@ -1951,9 +1946,7 @@
             <button onclick="checkScrambleSentence()" id="scrambleCheckBtn" class="px-5 py-2 rounded-xl bg-rose-900/70 hover:bg-rose-800 text-white font-medium text-xs sm:text-sm transition border border-rose-500/30 shadow-lg shadow-rose-950/50">
               Kontrol Et
             </button>
-            <button onclick="startSpeechEvaluation('scramble')" id="scrambleSpeechBtn" class="px-3.5 py-2 rounded-xl bg-white/[0.04] hover:bg-rose-500/20 text-slate-300 hover:text-white font-medium text-xs transition border border-white/5 flex items-center gap-1.5" title="Cümleyi Seslendirerek Çöz">
-              <span>🎙️</span> <span>Telaffuz Et</span>
-            </button>
+            
             <button onclick="nextScrambleQuestion()" id="scrambleNextBtn" class="hidden px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs sm:text-sm transition shadow-lg">
               Sonraki ➔
             </button>
@@ -2536,62 +2529,71 @@
       <div class="p-6 sm:p-8 bg-gradient-to-b from-[#10081d] to-[#07030c] border border-indigo-500/30 rounded-3xl shadow-2xl space-y-6 relative overflow-hidden">
         <div class="absolute -top-16 -left-16 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- Tartışmalı Konu Başlığı -->
-        <div class="text-center space-y-1 pb-4 border-b border-indigo-950/60">
-          <div class="text-[11px] font-mono tracking-widest text-indigo-300/80 uppercase">Münazara Tezi</div>
-          <h3 id="defenderTopicTitle" class="font-serif-hero text-xl sm:text-2xl font-bold text-white">Yapay Zeka Üniversite Eğitimi</h3>
-          <p id="defenderTopicEn" class="text-xs text-indigo-200/70 italic"></p>
-        </div>
+        <div id="defenderArenaMainContent" class="space-y-6">
+          <!-- Tartışmalı Konu Başlığı -->
+          <div class="text-center space-y-1 pb-4 border-b border-indigo-950/60">
+            <div class="text-[11px] font-mono tracking-widest text-indigo-300/80 uppercase">Münazara Tezi</div>
+            <h3 id="defenderTopicTitle" class="font-serif-hero text-xl sm:text-2xl font-bold text-white">Yapay Zeka Üniversite Eğitimi</h3>
+            <p id="defenderTopicEn" class="text-xs text-indigo-200/70 italic"></p>
+          </div>
 
-        <!-- AI RAKİP KARTI (Opponent Argument) -->
-        <div class="p-5 sm:p-6 bg-gradient-to-r from-rose-950/40 via-black/60 to-black/60 border border-rose-500/40 rounded-2xl shadow-xl space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <span id="defenderRivalAvatar" class="text-2xl p-2 rounded-xl bg-rose-950/80 border border-rose-500/40">🤖</span>
-              <div>
-                <div id="defenderRivalName" class="text-xs sm:text-sm font-bold text-rose-300">Dr. Marcus Vance (Akademik Savunma Sözcüsü)</div>
-                <div class="text-[11px] text-slate-400">Rakip İddia (Counter-Claim):</div>
+          <!-- AI RAKİP KARTI (Opponent Argument) -->
+          <div class="p-5 sm:p-6 bg-gradient-to-r from-rose-950/40 via-black/60 to-black/60 border border-rose-500/40 rounded-2xl shadow-xl space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <span id="defenderRivalAvatar" class="text-2xl p-2 rounded-xl bg-rose-950/80 border border-rose-500/40">🤖</span>
+                <div>
+                  <div id="defenderRivalName" class="text-xs sm:text-sm font-bold text-rose-300">Dr. Marcus Vance (Akademik Savunma Sözcüsü)</div>
+                  <div class="text-[11px] text-slate-400">Rakip İddia (Counter-Claim):</div>
+                </div>
               </div>
+              <button type="button" onclick="speakDefenderClaim()" title="Rakibin Argümanını Dinle" class="p-2 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-300 hover:text-white transition text-xs">
+                🔊
+              </button>
             </div>
-            <button type="button" onclick="speakDefenderClaim()" title="Rakibin Argümanını Dinle" class="p-2 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-300 hover:text-white transition text-xs">
-              🔊
+
+            <div class="p-4 rounded-xl bg-black/60 border border-rose-500/20 text-xs sm:text-sm text-slate-100 italic leading-relaxed font-serif-hero" id="defenderRivalClaim">
+              <!-- Opponent claim injected here -->
+            </div>
+            <p id="defenderRivalClaimTr" class="text-[11px] text-slate-400"></p>
+          </div>
+
+          <!-- OYUNCUNUN ELİNDEKİ KOZ KARTLARI (Cards in Hand - 4 Cards) -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="text-xs font-mono uppercase tracking-wider text-indigo-300 font-bold flex items-center gap-1.5">
+                <span>🃏</span> <span>Elindeki Akademik Koz Kartları (Tek Hamle Kuralı):</span>
+              </div>
+              <span class="text-[11px] text-slate-400 font-mono">1 Geçerli Çürütme, 3 Safsata</span>
+            </div>
+
+            <div id="defenderHandCards" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <!-- 4 Trump Cards injected here -->
+            </div>
+          </div>
+
+          <!-- DÜELLO SONUÇ / GERİ BİLDİRİM ALANI -->
+          <div id="defenderFeedbackCard" class="hidden p-5 rounded-2xl border transition-all space-y-2">
+            <!-- Result feedback injected here -->
+          </div>
+
+          <!-- Eylem Butonları (Sonraki Raunt / Tekrar Dene) -->
+          <div class="flex items-center justify-end gap-3 pt-2">
+            <button type="button" onclick="retryDefenderRound()" id="btnRetryDefenderRound" class="hidden px-5 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] text-slate-200 font-medium text-xs sm:text-sm transition flex items-center gap-2 border border-white/10 shadow-md">
+              <span>🔄</span> <span>Bu Rauntta Tekrar Dene</span>
+            </button>
+            <button type="button" onclick="nextDefenderRound()" id="btnNextDefenderRound" class="hidden px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2 shadow-lg shadow-indigo-950/50">
+              <span>Sonraki Raunt</span> <span>▶</span>
             </button>
           </div>
-
-          <div class="p-4 rounded-xl bg-black/60 border border-rose-500/20 text-xs sm:text-sm text-slate-100 italic leading-relaxed font-serif-hero" id="defenderRivalClaim">
-            <!-- Opponent claim injected here -->
-          </div>
-          <p id="defenderRivalClaimTr" class="text-[11px] text-slate-400"></p>
         </div>
 
-        <!-- OYUNCUNUN ELİNDEKİ KOZ KARTLARI (Cards in Hand - 4 Cards) -->
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="text-xs font-mono uppercase tracking-wider text-indigo-300 font-bold flex items-center gap-1.5">
-              <span>🃏</span> <span>Elindeki Akademik Koz Kartları (Doğru Argümanı Seç):</span>
-            </div>
-            <span class="text-[11px] text-slate-400 font-mono">1 Hatalı Koz Bulunur</span>
-          </div>
-
-          <div id="defenderHandCards" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <!-- 4 Trump Cards injected here -->
-          </div>
-        </div>
-
-        <!-- DÜELLO SONUÇ / GERİ BİLDİRİM ALANI -->
-        <div id="defenderFeedbackCard" class="hidden p-5 rounded-2xl border transition-all space-y-2">
-          <!-- Result feedback injected here -->
-        </div>
-
-        <!-- Sonraki Tur Butonu -->
-        <div class="flex justify-end pt-2">
-          <button type="button" onclick="nextDefenderRound()" id="btnNextDefenderRound" class="hidden px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm transition flex items-center gap-2 shadow-lg">
-            <span>Sonraki Tez Savunması</span> <span>▶</span>
-          </button>
+        <!-- MÜNAZARA KARNESİ MODAL ALANI -->
+        <div id="defenderScorecardModal" class="hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#180e29] to-[#0a0512] border border-amber-500/40 text-center space-y-5 shadow-2xl">
+          <!-- Dynamically populated scorecard -->
         </div>
 
       </div>
-
     </section>
 
   
@@ -2717,7 +2719,7 @@
   <!-- ==================== AKILLI MOD SEÇİCİ MENÜSÜ (DRAWER / OVERLAY) ==================== -->
   <div id="modeSelectModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md transition-all duration-200">
     <!-- Click backdrop to close without state reset -->
-    <div class="absolute inset-0" onclick="closeModeSelectModal()"></div>
+    <div class="absolute inset-0" onclick="closeModeSelectModal(event)"></div>
 
     <div class="bg-[#140609] border border-white/10 rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden relative z-10 animate-in fade-in zoom-in-95">
       
@@ -3390,7 +3392,6 @@
 
         // ==================== PURE COLOR AMBIENCE ENGINE (SAF RENK ANİMASYONU - SIFIR YAZI) ====================
     function updateHeatStreak(isCorrect) {
-      const prevCombo = heatCombo;
       if (isCorrect) {
         heatCombo++;
       } else {
@@ -3403,121 +3404,25 @@
       const vignette = document.getElementById('heatVignette');
       const cardFlipper = document.getElementById('cardFlipper');
 
-      if (!auraWarm || !auraFire || !auraBlueFlame || !vignette) return;
+      // TEMA KORUMASI: Arka planı değiştiren tam ekran katmanların opaklığı 0 tutulur.
+      // Sitenin arkaplan rengi kullanıcının seçtiği temanın dışına çıkmaz ve gözü yormaz.
+      if (auraWarm) auraWarm.style.opacity = '0';
+      if (auraFire) auraFire.style.opacity = '0';
+      if (auraBlueFlame) auraBlueFlame.style.opacity = '0';
+      if (vignette) vignette.style.opacity = '0';
 
-      if (isCorrect) {
-        // Doğru cevaplarda hızlı ve tatmin edici alev parlaması
-        auraWarm.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-        auraFire.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-        auraBlueFlame.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-        vignette.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-
-        if (heatCombo === 1) {
-          // Kıvılcım & Kor başlangıcı (Tatlı kızarma)
-          auraWarm.style.opacity = '0.7';
-          auraFire.style.opacity = '0';
-          auraBlueFlame.style.opacity = '0';
-          vignette.style.boxShadow = 'inset 0 0 110px rgba(225, 29, 72, 0.20)';
-          vignette.style.opacity = '0.22';
-          if (cardFlipper) {
-            cardFlipper.classList.add('card-heat-warm');
-            cardFlipper.classList.remove('card-heat-fire', 'card-heat-blueflame');
-          }
-        } else if (heatCombo === 2) {
-          // Kor iyice ısınıyor
-          auraWarm.style.opacity = '1';
-          auraFire.style.opacity = '0.35';
-          auraBlueFlame.style.opacity = '0';
-          vignette.style.boxShadow = 'inset 0 0 120px rgba(239, 68, 68, 0.28)';
-          vignette.style.opacity = '0.38';
-          if (cardFlipper) {
-            cardFlipper.classList.add('card-heat-warm');
-            cardFlipper.classList.remove('card-heat-fire', 'card-heat-blueflame');
-          }
-        } else if (heatCombo === 3) {
-          // Ateş Kırmızısı + Sarı/Turuncu Alevler
-          auraWarm.style.opacity = '1';
-          auraFire.style.opacity = '0.85';
-          auraBlueFlame.style.opacity = '0';
-          vignette.style.boxShadow = 'inset 0 0 140px rgba(249, 115, 22, 0.35)';
-          vignette.style.opacity = '0.55';
-          if (cardFlipper) {
-            cardFlipper.classList.add('card-heat-fire');
-            cardFlipper.classList.remove('card-heat-warm', 'card-heat-blueflame');
-          }
-        } else if (heatCombo === 4) {
-          // Yoğun Ateş & Alev korları
-          auraWarm.style.opacity = '1';
-          auraFire.style.opacity = '1';
-          auraBlueFlame.style.opacity = '0.15';
-          vignette.style.boxShadow = 'inset 0 0 150px rgba(249, 115, 22, 0.45)';
-          vignette.style.opacity = '0.68';
-          if (cardFlipper) {
-            cardFlipper.classList.add('card-heat-fire');
-            cardFlipper.classList.remove('card-heat-warm', 'card-heat-blueflame');
-          }
+      if (cardFlipper) {
+        if (isCorrect && heatCombo >= 5) {
+          cardFlipper.classList.add('card-heat-blueflame');
+          cardFlipper.classList.remove('card-heat-warm', 'card-heat-fire');
+        } else if (isCorrect && heatCombo >= 3) {
+          cardFlipper.classList.add('card-heat-fire');
+          cardFlipper.classList.remove('card-heat-warm', 'card-heat-blueflame');
+        } else if (isCorrect && heatCombo >= 1) {
+          cardFlipper.classList.add('card-heat-warm');
+          cardFlipper.classList.remove('card-heat-fire', 'card-heat-blueflame');
         } else {
-          // 5+ Streak: EN SICAK ALEV - ATEŞ MAVİYE DÖNÜYOR (Electric Cyan & Plasma Blue)
-          auraWarm.style.opacity = '0.6';
-          auraFire.style.opacity = '0.35';
-          auraBlueFlame.style.opacity = '1';
-          vignette.style.boxShadow = 'inset 0 0 170px rgba(6, 182, 212, 0.38)';
-          vignette.style.opacity = '0.78';
-          if (cardFlipper) {
-            cardFlipper.classList.add('card-heat-blueflame');
-            cardFlipper.classList.remove('card-heat-warm', 'card-heat-fire');
-          }
-        }
-      } else {
-        // SERİ BOZULUNCA: BİRDEN KESİLMEK YERİNE ANİMASYONLU YUMUŞAK SOĞUMA
-        if (prevCombo >= 5) {
-          // Mavi alevden kor kırmızısına kademeli soğuma:
-          // Mavi alev 1.1s'de sönümlenirken, altındaki kor 1.7s parlar, ardından 2.3s'de baz bordoya döner
-          auraBlueFlame.style.transition = 'opacity 1.1s cubic-bezier(0.25, 0.9, 0.3, 1)';
-          auraBlueFlame.style.opacity = '0';
-
-          auraFire.style.transition = 'opacity 1.7s cubic-bezier(0.25, 0.9, 0.3, 1)';
-          auraFire.style.opacity = '0';
-
-          auraWarm.style.transition = 'opacity 2.3s cubic-bezier(0.25, 0.9, 0.3, 1)';
-          auraWarm.style.opacity = '0';
-
-          vignette.style.transition = 'opacity 1.8s ease, box-shadow 1.8s ease';
-          vignette.style.opacity = '0';
-
-          if (cardFlipper) {
-            cardFlipper.classList.remove('card-heat-blueflame', 'card-heat-fire', 'card-heat-warm');
-          }
-        } else if (prevCombo >= 3) {
-          // Ateşten kor sönümüne yumuşak geçiş
-          auraBlueFlame.style.opacity = '0';
-
-          auraFire.style.transition = 'opacity 1.3s cubic-bezier(0.25, 0.9, 0.3, 1)';
-          auraFire.style.opacity = '0';
-
-          auraWarm.style.transition = 'opacity 1.9s cubic-bezier(0.25, 0.9, 0.3, 1)';
-          auraWarm.style.opacity = '0';
-
-          vignette.style.transition = 'opacity 1.5s ease, box-shadow 1.5s ease';
-          vignette.style.opacity = '0';
-
-          if (cardFlipper) {
-            cardFlipper.classList.remove('card-heat-blueflame', 'card-heat-fire', 'card-heat-warm');
-          }
-        } else {
-          // Hafif kordan baz kırmızıya sönüm
-          auraBlueFlame.style.opacity = '0';
-          auraFire.style.opacity = '0';
-
-          auraWarm.style.transition = 'opacity 1.2s ease';
-          auraWarm.style.opacity = '0';
-
-          vignette.style.transition = 'opacity 1.2s ease, box-shadow 1.2s ease';
-          vignette.style.opacity = '0';
-
-          if (cardFlipper) {
-            cardFlipper.classList.remove('card-heat-blueflame', 'card-heat-fire', 'card-heat-warm');
-          }
+          cardFlipper.classList.remove('card-heat-warm', 'card-heat-fire', 'card-heat-blueflame');
         }
       }
     }
@@ -3710,6 +3615,10 @@
       if (lvlLabel) lvlLabel.innerText = lvl === 'ALL' ? 'Tümü' : (lvl === 'AWL' ? 'AWL' : lvl);
 
       batchIndex = 0;
+      fcSavedIndices = { batch: 0, learn: 0, due: 0 };
+      quizQuestions = null;
+      clozeQuestions = null;
+      matchCards = null;
       setFcSource('batch');
 
       // Aktif mod hangisiyse testi veya kartları anında yeni kur ile yeniden başlat
@@ -3938,12 +3847,20 @@
       const modal = document.getElementById('modeSelectModal');
       if (!modal) return;
       triggerHaptic('tap');
+      const isOpening = modal.classList.contains('hidden');
       modal.classList.toggle('hidden');
+      if (isOpening) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     }
 
-    function closeModeSelectModal() {
+    function closeModeSelectModal(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
       const modal = document.getElementById('modeSelectModal');
       if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = '';
     }
 
     function updateActiveModeButton(tabId) {
@@ -3970,6 +3887,7 @@
 
     function selectMode(tabId) {
       closeModeSelectModal();
+      window.scrollTo({ top: 0, behavior: 'instant' });
       if (currentActiveTabId === tabId) {
         // STATE PRESERVATION: Already in this tab, do NOT reset active game or exam!
         updateActiveModeButton(tabId);
@@ -4034,12 +3952,20 @@
         }
       }
 
-      // 6. Initialize only newly entered tab
+      // 6. Initialize only newly entered tab (Mevcut aktif oturumu sıfırlamaz!)
       if (tabId === 'flashcards') renderFlashcard();
-      if (tabId === 'cloze') startClozeTest();
-      if (tabId === 'quiz') startQuiz();
-      if (tabId === 'match') startMatchGame();
-      if (tabId === 'dict') renderDict();
+      if (tabId === 'cloze') {
+        if (!clozeQuestions || clozeQuestions.length === 0) startClozeTest();
+      }
+      if (tabId === 'quiz') {
+        if (!quizQuestions || quizQuestions.length === 0) startQuiz();
+      }
+      if (tabId === 'match') {
+        if (!matchCards || matchCards.length === 0) startMatchGame();
+      }
+      if (tabId === 'dict') {
+        if (!dictationCurrentWord) renderDict();
+      }
       if (tabId === 'reading') initReadingLab();
       if (tabId === 'exam') initExamArena();
       if (tabId === 'grammar') renderGrammarView();
@@ -4104,6 +4030,7 @@
     let fcSourceMode = 'batch';
     let currentBatchWords = [];
     let fcIndex = 0;
+    let fcSavedIndices = { batch: 0, learn: 0, due: 0 };
     let isFlipped = false;
     let isSwiping = false;
 
@@ -4193,6 +4120,9 @@
     }
 
     function setFcSource(mode) {
+      if (fcSourceMode && typeof fcIndex === 'number') {
+        fcSavedIndices[fcSourceMode] = fcIndex;
+      }
       fcSourceMode = mode;
       document.getElementById('fcSource-batch').className = mode === 'batch' ? 'flex-1 py-1.5 px-3 rounded-lg font-medium transition bg-rose-900/60 border border-rose-500/30 text-white shadow-sm' : 'flex-1 py-1.5 px-3 rounded-lg font-medium transition text-slate-400 hover:bg-white/[0.04]';
       document.getElementById('fcSource-learn').className = mode === 'learn' ? 'flex-1 py-1.5 px-3 rounded-lg font-medium transition bg-rose-900/60 border border-rose-500/30 text-white shadow-sm flex items-center justify-center gap-1.5' : 'flex-1 py-1.5 px-3 rounded-lg font-medium transition text-rose-300 hover:bg-white/[0.04] flex items-center justify-center gap-1.5';
@@ -4205,8 +4135,12 @@
         const pool = getFilteredWords();
         const missed = pool.filter(w => learnSet.has(w.w));
         if (missed.length === 0) {
-          alert('Bu filtrede henüz bilmediğin olarak işaretlenmiş bir kelime yok! Normal desteden devam ediliyor.');
-          setFcSource('batch');
+          currentBatchWords = [];
+          fcIndex = 0;
+          fcSavedIndices['learn'] = 0;
+          document.getElementById('fcPlayArea').classList.remove('hidden');
+          document.getElementById('fcBatchCompleteBox').classList.add('hidden');
+          renderEmptyLearnState();
           return;
         }
         currentBatchWords = isShuffleMode ? shuffleArray(missed) : [...missed];
@@ -4229,7 +4163,13 @@
         }
       }
 
-      fcIndex = 0;
+      // Hafızadaki son indekse dön (Tekrar ile 20lik tur arasında gidip gelince baştan başlamaz!)
+      fcIndex = fcSavedIndices[mode] || 0;
+      if (fcIndex >= currentBatchWords.length) {
+        fcIndex = Math.max(0, currentBatchWords.length - 1);
+      }
+      fcSavedIndices[mode] = fcIndex;
+
       document.getElementById('fcCurrentBatch').innerText = batchIndex + 1;
       document.getElementById('fcPlayArea').classList.remove('hidden');
       document.getElementById('fcBatchCompleteBox').classList.add('hidden');
@@ -4247,6 +4187,7 @@
           fcShuffledPool = shuffleArray(basePool);
         }
       }
+      fcSavedIndices['batch'] = 0;
       saveBatchIndex();
       setFcSource('batch');
     }
@@ -4262,6 +4203,31 @@
       renderFlashcard();
     }
 
+    
+    function renderEmptyLearnState() {
+      const cardFront = document.querySelector('.card-front');
+      const cardBack = document.querySelector('.card-back');
+      if (cardFront) {
+        cardFront.innerHTML = `
+          <div class="my-auto space-y-4 text-center p-6">
+            <div class="text-4xl">🎉</div>
+            <h3 class="font-serif-hero text-2xl font-bold text-[#fdf6ee]">Tekrar Listeniz Boş!</h3>
+            <p class="text-xs sm:text-sm text-[#a8998c] max-w-xs mx-auto leading-relaxed">
+              Bu kurda bilmediğiniz olarak işaretlenmiş kelime bulunmuyor. Normal destedeki kartları sola kaydırarak bilmediğiniz kelimeleri buraya ekleyebilirsiniz.
+            </p>
+            <button type="button" onclick="setFcSource('batch')" class="px-5 py-2.5 rounded-xl btn-primary-glow text-white text-xs font-semibold shadow-lg">
+              Normal Desteye Dön ➔
+            </button>
+          </div>
+        `;
+      }
+      if (cardBack) {
+        cardBack.innerHTML = cardFront ? cardFront.innerHTML : '';
+      }
+      const progressEl = document.getElementById('fcProgressCount');
+      if (progressEl) progressEl.innerText = '0 / 0';
+    }
+
     function renderFlashcard() {
       if (fcIndex >= currentBatchWords.length) {
         if (isAutoPlayActive) stopAutoPlay();
@@ -4271,16 +4237,6 @@
 
       isFlipped = false;
       isSwiping = false;
-
-      const speechFb = document.getElementById('fcSpeechFeedback');
-      if (speechFb) {
-        speechFb.classList.add('hidden');
-        speechFb.innerHTML = '';
-      }
-      if (activeSpeechRecognition) {
-        try { activeSpeechRecognition.abort(); } catch(e) {}
-        activeSpeechRecognition = null;
-      }
 
       const card = currentBatchWords[fcIndex];
       const flipper = document.getElementById('cardFlipper');
@@ -4510,6 +4466,10 @@
 
       setTimeout(() => {
         fcIndex++;
+        if (fcSourceMode === 'learn') {
+          fcIndex = Math.min(fcIndex, currentBatchWords.length);
+        }
+        fcSavedIndices[fcSourceMode] = fcIndex;
         renderFlashcard();
       }, 300);
     }
@@ -5675,7 +5635,7 @@
     }
 
     // ==================== 9. SPEECH RECOGNITION & LEVENSHTEIN SIMILARITY AI ====================
-    let activeSpeechRecognition = null;
+    
 
     function normalizeSpeechText(str) {
       return (str || '')
@@ -5729,143 +5689,7 @@
       setTimeout(() => container.remove(), 1800);
     }
 
-    function startSpeechEvaluation(context) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        alert("Tarayıcınız ses tanıma (Speech Recognition) API'sini desteklemiyor. Lütfen Chrome, Edge veya Safari gibi güncel bir tarayıcı kullanın.");
-        return;
-      }
-
-      if (activeSpeechRecognition) {
-        try { activeSpeechRecognition.abort(); } catch(e) {}
-        activeSpeechRecognition = null;
-      }
-
-      let targetText = '';
-      let feedbackEl = null;
-      let btnEl = null;
-
-      if (context === 'flashcard') {
-        const card = currentBatchWords[fcIndex];
-        if (!card) return;
-        targetText = card.w;
-        feedbackEl = document.getElementById('fcSpeechFeedback');
-        btnEl = document.getElementById('fcSpeechBtn');
-      } else if (context === 'scramble') {
-        const q = sentenceScrambleData[scrambleIndex];
-        if (!q) return;
-        targetText = q.correct;
-        feedbackEl = document.getElementById('scrambleFeedbackBox');
-        btnEl = document.getElementById('scrambleSpeechBtn');
-      }
-
-      if (!feedbackEl) return;
-
-      const recognition = new SpeechRecognition();
-      activeSpeechRecognition = recognition;
-      recognition.lang = 'en-US';
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
-
-      if (btnEl) btnEl.classList.add('animate-pulse', 'border-rose-500', 'text-rose-400');
-
-      if (context === 'flashcard') {
-        feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30 animate-pulse inline-flex items-center gap-1.5';
-        feedbackEl.innerHTML = '<span>🔴</span> <span>Dinleniyor... İngilizce söyleyin</span>';
-        feedbackEl.classList.remove('hidden');
-      } else if (context === 'scramble') {
-        feedbackEl.className = 'p-3 rounded-xl bg-amber-950/30 border border-amber-500/30 text-xs text-amber-300 text-left animate-pulse flex items-center gap-2';
-        feedbackEl.innerHTML = '<span>🔴</span> <span>Dinleniyor... Cümleyi İngilizce seslendirin</span>';
-        feedbackEl.classList.remove('hidden');
-      }
-
-      recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        const score = calculateSimilarity(transcript, targetText);
-
-        if (btnEl) btnEl.classList.remove('animate-pulse', 'border-rose-500', 'text-rose-400');
-
-        if (context === 'flashcard') {
-          if (score >= 85) {
-            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 inline-flex items-center gap-1.5 shadow-md shadow-emerald-500/20';
-            feedbackEl.innerHTML = `<span>🎯</span> <span>Harika Telaffuz! (%${score})</span>`;
-            triggerPronunciationConfetti();
-            incrementDictionCount();
-            logHeatmapActivity(1);
-          } else if (score >= 60) {
-            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-amber-500/20 text-amber-300 border border-amber-500/40 inline-flex items-center gap-1.5 shadow-sm';
-            feedbackEl.innerHTML = `<span>👍</span> <span>Anlaşılır, biraz daha net söyleyebilirsin (%${score})</span>`;
-            logHeatmapActivity(1);
-          } else {
-            feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-rose-950/40 text-rose-300 border border-rose-500/30 inline-flex items-center gap-1.5 shadow-sm';
-            feedbackEl.innerHTML = `<span>🔄</span> <span>Duyulan: "${escapeHtmlAttr(transcript)}" — Tekrar Dene (%${score})</span>`;
-          }
-          setTimeout(() => {
-            if (feedbackEl && !feedbackEl.classList.contains('hidden')) {
-              feedbackEl.classList.add('opacity-0');
-              setTimeout(() => {
-                feedbackEl.classList.add('hidden');
-                feedbackEl.classList.remove('opacity-0');
-              }, 400);
-            }
-          }, 4500);
-        } else if (context === 'scramble') {
-          if (score >= 80) {
-            const q = sentenceScrambleData[scrambleIndex];
-            scramblePlacedTokens = q.correct.split(" ");
-            scrambleAvailableTokens = [];
-            renderScrambleContainers();
-            checkScrambleSentence();
-            const speechNote = document.createElement('div');
-            speechNote.className = 'text-xs text-emerald-300 font-semibold flex items-center gap-1.5 pt-1 border-t border-emerald-500/20';
-            speechNote.innerHTML = `<span>🎯</span> <span>Harika Telaffuz! Cümle %${score} doğrulukla kuruldu.</span>`;
-            feedbackEl.appendChild(speechNote);
-            triggerPronunciationConfetti();
-            incrementDictionCount();
-            logHeatmapActivity(1);
-          } else {
-            feedbackEl.className = 'p-3 rounded-xl bg-rose-950/30 border border-rose-500/30 text-xs text-rose-300 text-left space-y-1';
-            feedbackEl.innerHTML = `<div>❌ <strong>Duyulan:</strong> "${escapeHtmlAttr(transcript)}" (%${score})</div><div class="text-[11px] text-[#a8998c]">Cümleyi tekrar ve daha net seslendirmeyi deneyin.</div>`;
-          }
-        }
-      };
-
-      recognition.onerror = function(event) {
-        if (btnEl) btnEl.classList.remove('animate-pulse', 'border-rose-500', 'text-rose-400');
-        console.warn("Speech recognition warning:", event.error);
-        let msg = "Mikrofon hatası: ";
-        if (event.error === 'not-allowed') {
-          msg = "Mikrofon izni verilmedi. Lütfen tarayıcı ayarlarından mikrofona izin verin.";
-        } else if (event.error === 'no-speech') {
-          msg = "Ses algılanamadı. Lütfen tekrar deneyin.";
-        } else {
-          msg += event.error;
-        }
-
-        if (context === 'flashcard') {
-          feedbackEl.className = 'text-xs px-3 py-1.5 rounded-xl mx-auto font-medium bg-rose-500/20 text-rose-300 border border-rose-500/30 inline-flex items-center gap-1.5';
-          feedbackEl.innerHTML = `<span>⚠️</span> <span>${escapeHtmlAttr(msg)}</span>`;
-          setTimeout(() => {
-            if (feedbackEl) feedbackEl.classList.add('hidden');
-          }, 3500);
-        } else {
-          feedbackEl.className = 'p-3 rounded-xl bg-rose-950/30 border border-rose-500/30 text-xs text-rose-300 text-left';
-          feedbackEl.innerHTML = `<span>⚠️ ${escapeHtmlAttr(msg)}</span>`;
-        }
-      };
-
-      recognition.onend = function() {
-        if (btnEl) btnEl.classList.remove('animate-pulse', 'border-rose-500', 'text-rose-400');
-        activeSpeechRecognition = null;
-      };
-
-      try {
-        recognition.start();
-      } catch(err) {
-        console.warn("Speech recognition start failed:", err);
-        if (btnEl) btnEl.classList.remove('animate-pulse', 'border-rose-500', 'text-rose-400');
-      }
-    }
+    
 
 
     // ==================== 11. LEITNER 5-BOX SPACED REPETITION ENGINE ====================
@@ -7899,13 +7723,6 @@
       }
     }
 
-    function incrementDictionCount() {
-      try {
-        const cur = parseInt(localStorage.getItem(STORAGE_DICTION_COUNT_KEY) || '0', 10);
-        localStorage.setItem(STORAGE_DICTION_COUNT_KEY, String(cur + 1));
-      } catch(e) {}
-    }
-
     function renderActivityHeatmap() {
       const grid = document.getElementById('activityHeatmapGrid');
       if (!grid) return;
@@ -7982,20 +7799,16 @@
       // 2. Süper Seri: 15 days streak
       const badge2Earned = streakCount >= 15;
 
-      // 3. Diksiyon Ustası: 20 speech evaluations >= 85%
-      const dictionCount = parseInt(localStorage.getItem(STORAGE_DICTION_COUNT_KEY) || '0', 10);
-      const badge3Earned = dictionCount >= 20;
+      // 3. Gece Kuşu: Activity after 23:00
+      const badge3Earned = localStorage.getItem('voxlearn_badge_night_owl') === '1';
 
-      // 4. Gece Kuşu: Activity after 23:00
-      const badge4Earned = localStorage.getItem('voxlearn_badge_night_owl') === '1';
-
-      // 5. Sınav Fatihi: 80+ in mock exam
+      // 4. Sınav Fatihi: 80+ in mock exam
       const bestExamScore = parseInt(localStorage.getItem(STORAGE_EXAM_BEST_KEY) || '0', 10);
-      const badge5Earned = bestExamScore >= 80;
+      const badge4Earned = bestExamScore >= 80;
 
-      // 6. Kelime Mimarı: 15 sentence upgrades
+      // 5. Kelime Mimarı: 15 sentence upgrades
       const upgradesCount = parseInt(localStorage.getItem(STORAGE_UPGRADES_COUNT_KEY) || '0', 10);
-      const badge6Earned = upgradesCount >= 15;
+      const badge5Earned = upgradesCount >= 15;
 
       const badges = [
         {
@@ -8013,32 +7826,25 @@
           earned: badge2Earned
         },
         {
-          icon: "🎙️",
-          name: "Diksiyon Ustası",
-          desc: "20 kelimeyi mikrofondan %85+ oku",
-          progress: `${dictionCount}/20`,
-          earned: badge3Earned
-        },
-        {
           icon: "🦉",
           name: "Gece Kuşu",
           desc: "Gece 23:00'ten sonra çalışma yap",
-          progress: badge4Earned ? "Tamamlandı" : "23:00+",
-          earned: badge4Earned
+          progress: badge3Earned ? "Tamamlandı" : "23:00+",
+          earned: badge3Earned
         },
         {
           icon: "🏆",
           name: "Sınav Fatihi",
           desc: "Deneme sınavından 80+ puan al",
           progress: `En iyi: ${bestExamScore}`,
-          earned: badge5Earned
+          earned: badge4Earned
         },
         {
           icon: "✍️",
           name: "Kelime Mimarı",
           desc: "15 cümleyi akademik seviyeye yükselt",
           progress: `${upgradesCount}/15`,
-          earned: badge6Earned
+          earned: badge5Earned
         }
       ];
 
@@ -11413,7 +11219,7 @@
 
     let grammarActiveLevel = 'A1';
     let grammarActiveSubTab = 'topics';
-    let grammarExpandedTopics = new Set(['a1-to-be']); // Default first topic open
+    let grammarExpandedTopics = new Set(); // All topics collapsed by default
 
     function renderGrammarView() {
       setGrammarSubTab(grammarActiveSubTab);
@@ -11427,6 +11233,8 @@
     let scrambleIndex = 0;
     let scrambleScore = 0;
     let scramblePlacedTokens = [];
+    let scrambleSlots = [];
+    let scrambleSlotStatus = [];
     let scrambleAvailableTokens = [];
     let scrambleChecked = false;
 
@@ -11672,8 +11480,11 @@
       const q = sentenceScrambleData[scrambleIndex];
       if (!q) return;
 
-      scramblePlacedTokens = [];
-      scrambleAvailableTokens = [...q.words].sort(() => Math.random() - 0.5);
+      const correctWords = q.correct.trim().split(/\s+/);
+      const N = correctWords.length;
+      scrambleSlots = new Array(N).fill(null);
+      scrambleSlotStatus = new Array(N).fill('neutral');
+      scrambleAvailableTokens = shuffleArray([...q.words]);
 
       const curEl = document.getElementById('scrambleCurrentQ');
       const totEl = document.getElementById('scrambleTotalQ');
@@ -11704,40 +11515,85 @@
       const availContainer = document.getElementById('scrambleAvailableContainer');
 
       if (placedContainer) {
-        if (scramblePlacedTokens.length === 0) {
-          placedContainer.innerHTML = `<span class="text-xs text-[#a8998c]/50 italic p-2 select-none">Kelimelere tıklayarak cümleni oluştur...</span>`;
-        } else {
-          placedContainer.innerHTML = scramblePlacedTokens.map((w, idx) => `
-            <button onclick="handleScramblePlacedClick(${idx})"
-                    class="px-3 py-1.5 rounded-lg bg-rose-900/60 border border-rose-500/40 text-white font-medium text-xs sm:text-sm transition hover:bg-rose-800 shadow-sm flex items-center gap-1.5 active:scale-95">
-              <span>${w}</span>
+        placedContainer.innerHTML = scrambleSlots.map((w, idx) => {
+          const status = scrambleSlotStatus[idx];
+          if (w === null) {
+            return `
+              <div class="h-11 min-w-[56px] px-3 py-1.5 rounded-xl border-2 border-dashed border-white/20 bg-white/[0.02] flex items-center justify-center text-xs font-mono text-slate-500 select-none shadow-inner">
+                <span>[ ${idx + 1} ]</span>
+              </div>
+            `;
+          }
+
+          if (status === 'correct') {
+            return `
+              <div class="h-11 px-3.5 py-1.5 rounded-xl border border-emerald-500 bg-emerald-950/60 text-emerald-300 font-medium text-xs sm:text-sm flex items-center gap-1.5 shadow-md shadow-emerald-950/50 select-none">
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/30 text-emerald-200 font-bold">${idx + 1}</span>
+                <span>${escapeHtmlAttr(w)}</span>
+                <span class="text-xs">🔒</span>
+              </div>
+            `;
+          }
+
+          if (status === 'wrong') {
+            return `
+              <button type="button" onclick="handleScrambleSlotClick(${idx})" class="h-11 px-3.5 py-1.5 rounded-xl border-2 border-rose-500 bg-rose-950/70 text-rose-200 font-medium text-xs sm:text-sm flex items-center gap-1.5 shadow-md shadow-rose-950/50 active:scale-95 transition hover:bg-rose-900/80 animate-pulse">
+                <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-rose-500/40 text-rose-100 font-bold">${idx + 1}</span>
+                <span>${escapeHtmlAttr(w)}</span>
+                <span class="text-[10px] opacity-80">✕</span>
+              </button>
+            `;
+          }
+
+          return `
+            <button type="button" onclick="handleScrambleSlotClick(${idx})" class="h-11 px-3.5 py-1.5 rounded-xl bg-rose-900/60 border border-rose-500/40 text-white font-medium text-xs sm:text-sm transition hover:bg-rose-800 shadow-sm flex items-center gap-1.5 active:scale-95">
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/40 text-rose-300 font-bold">${idx + 1}</span>
+              <span>${escapeHtmlAttr(w)}</span>
               <span class="text-[10px] text-rose-300 opacity-60">✕</span>
             </button>
-          `).join('');
-        }
+          `;
+        }).join('');
       }
 
       if (availContainer) {
-        availContainer.innerHTML = scrambleAvailableTokens.map((w, idx) => `
-          <button onclick="handleScrambleAvailableClick(${idx})"
-                  class="px-3 py-1.5 rounded-lg bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-slate-200 hover:text-white font-medium text-xs sm:text-sm transition active:scale-95 shadow-sm">
-            ${w}
-          </button>
-        `).join('');
+        if (scrambleAvailableTokens.length === 0) {
+          availContainer.innerHTML = `<span class="text-xs text-slate-500 italic py-2">Tüm kelimeler yuvalara yerleştirildi. "Kontrol Et" butonuna basarak dizilimi test edin.</span>`;
+        } else {
+          availContainer.innerHTML = scrambleAvailableTokens.map((w, idx) => `
+            <button type="button" onclick="handleScrambleAvailableClick(${idx})"
+                    class="px-3.5 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] hover:border-rose-400 text-slate-200 hover:text-white font-medium text-xs sm:text-sm transition active:scale-95 shadow-sm">
+              ${escapeHtmlAttr(w)}
+            </button>
+          `).join('');
+        }
       }
     }
 
     function handleScrambleAvailableClick(idx) {
       if (scrambleChecked) return;
+      const emptySlotIdx = scrambleSlots.indexOf(null);
+      if (emptySlotIdx === -1) return;
+
       const word = scrambleAvailableTokens.splice(idx, 1)[0];
-      scramblePlacedTokens.push(word);
+      scrambleSlots[emptySlotIdx] = word;
+      scrambleSlotStatus[emptySlotIdx] = 'neutral';
+      playAudioTone('click');
+      triggerHaptic('tap');
       renderScrambleContainers();
     }
 
-    function handleScramblePlacedClick(idx) {
+    function handleScrambleSlotClick(idx) {
       if (scrambleChecked) return;
-      const word = scramblePlacedTokens.splice(idx, 1)[0];
+      if (scrambleSlotStatus[idx] === 'correct') return; // Doğrulanmış kelimeler kilitlidir
+
+      const word = scrambleSlots[idx];
+      if (!word) return;
+
+      scrambleSlots[idx] = null;
+      scrambleSlotStatus[idx] = 'neutral';
       scrambleAvailableTokens.push(word);
+      playAudioTone('click');
+      triggerHaptic('tap');
       renderScrambleContainers();
     }
 
@@ -11745,44 +11601,70 @@
       const q = sentenceScrambleData[scrambleIndex];
       if (!q) return;
       scrambleChecked = false;
-      scramblePlacedTokens = [];
-      scrambleAvailableTokens = [...q.words].sort(() => Math.random() - 0.5);
+      const correctWords = q.correct.trim().split(/\s+/);
+      scrambleSlots = new Array(correctWords.length).fill(null);
+      scrambleSlotStatus = new Array(correctWords.length).fill('neutral');
+      scrambleAvailableTokens = shuffleArray([...q.words]);
       const feedbackBox = document.getElementById('scrambleFeedbackBox');
       if (feedbackBox) feedbackBox.classList.add('hidden');
+      playAudioTone('click');
       renderScrambleContainers();
     }
 
     function checkScrambleSentence() {
       const q = sentenceScrambleData[scrambleIndex];
-      if (!q || scramblePlacedTokens.length === 0) return;
+      if (!q) return;
 
-      const userSentence = scramblePlacedTokens.join(' ').trim();
-      const isCorrect = userSentence.toLowerCase() === q.correct.toLowerCase();
       const feedbackBox = document.getElementById('scrambleFeedbackBox');
       const checkBtn = document.getElementById('scrambleCheckBtn');
       const nextBtn = document.getElementById('scrambleNextBtn');
 
-      if (isCorrect) {
+      if (scrambleSlots.some(s => s === null)) {
+        if (feedbackBox) {
+          feedbackBox.className = 'p-3 rounded-xl bg-amber-950/40 border border-amber-500/40 text-xs text-amber-200 text-left';
+          feedbackBox.innerHTML = `<span>⚠️ Lütfen cümlenin tüm kelimelerini numaralı yuvalara yerleştirin.</span>`;
+          feedbackBox.classList.remove('hidden');
+        }
+        playAudioTone('error');
+        triggerHaptic('warning');
+        return;
+      }
+
+      const correctWords = q.correct.trim().split(/\s+/);
+      let allCorrect = true;
+      let wrongIndices = [];
+
+      for (let i = 0; i < correctWords.length; i++) {
+        if (scrambleSlots[i].toLowerCase() === correctWords[i].toLowerCase()) {
+          scrambleSlotStatus[i] = 'correct';
+        } else {
+          scrambleSlotStatus[i] = 'wrong';
+          allCorrect = false;
+          wrongIndices.push(i);
+        }
+      }
+
+      renderScrambleContainers();
+
+      if (allCorrect) {
         scrambleChecked = true;
         scrambleScore++;
         const scoreEl = document.getElementById('scrambleScoreCount');
         if (scoreEl) scoreEl.innerText = scrambleScore;
 
+        playAudioTone('success');
+        triggerHaptic('success');
+        triggerConfetti();
         speakText(q.correct);
 
         if (feedbackBox) {
-          feedbackBox.className = 'p-4 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-xs sm:text-sm space-y-1.5 text-left';
+          feedbackBox.className = 'p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs sm:text-sm space-y-1.5 text-left';
           feedbackBox.innerHTML = `
             <div class="text-emerald-400 font-bold flex items-center justify-between">
-              <span>✅ Tebrikler! Cümle dizilimi kusursuz.</span>
-              <div class="flex items-center gap-1.5">
-                <button onclick="speakText(this.dataset.sentence)" data-sentence="${escapeHtmlAttr(q.correct)}" class="p-1 text-slate-300 hover:text-white transition" title="Cümleyi Dinle">🔊</button>
-                <button onclick="startSpeechEvaluation('scramble')" class="px-2 py-0.5 rounded-md bg-white/[0.08] hover:bg-rose-500/20 text-slate-300 hover:text-white text-xs transition flex items-center gap-1" title="Cümleyi Seslendir">
-                  <span>🎙️</span> <span>Telaffuz Et</span>
-                </button>
-              </div>
+              <span>✅ Tebrikler! Numaralı tüm yuvalar doğru ve kilitlendi.</span>
+              <button onclick="speakText(this.dataset.sentence)" data-sentence="${escapeHtmlAttr(q.correct)}" class="p-1 text-slate-300 hover:text-white transition" title="Cümleyi Dinle">🔊</button>
             </div>
-            <div class="text-white font-medium text-sm sm:text-base tracking-wide">${escapeHtmlAttr(q.correct)}</div>
+            <div class="text-white font-medium text-sm sm:text-base tracking-wide font-serif-hero">${escapeHtmlAttr(q.correct)}</div>
           `;
           feedbackBox.classList.remove('hidden');
         }
@@ -11790,9 +11672,27 @@
         if (checkBtn) checkBtn.classList.add('hidden');
         if (nextBtn) nextBtn.classList.remove('hidden');
       } else {
+        playAudioTone('error');
+        triggerHaptic('error');
+
+        let hintMsg = "Kırmızı yanan yuvalardaki kelimelere dokunarak yerlerini değiştirebilirsiniz.";
+        if (wrongIndices.includes(0)) {
+          hintMsg = "Cümlenin öznesi veya başlangıç kalıbı (1. yuva) hatalı! Doğru başlangıç ögesini yerleştirin.";
+        } else if (wrongIndices.includes(correctWords.length - 1)) {
+          hintMsg = "Cümle sonundaki zaman zarfı, edat veya nesne ögesinin konumu hatalı!";
+        } else {
+          hintMsg = "Özne yerinde, ancak yardımcı fiil veya fiil tümleci diziliminde hata var.";
+        }
+
         if (feedbackBox) {
-          feedbackBox.className = 'p-3 rounded-xl bg-black/40 border border-rose-500/25 text-xs text-rose-300 text-left';
-          feedbackBox.innerHTML = `<span>❌ Kelime diziliminde bir hata var. Özneyi, yardımcı fiili ve zaman zarflarını tekrar gözden geçir!</span>`;
+          feedbackBox.className = 'p-3.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs text-rose-200 text-left space-y-1';
+          feedbackBox.innerHTML = `
+            <div class="font-bold flex items-center gap-1.5 text-rose-300">
+              <span>❌</span> <span>${wrongIndices.length} adet kelimenin yeri hatalı (Kırmızı ile işaretlendi).</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-relaxed">${hintMsg}</p>
+            <div class="text-[10px] text-rose-300/80 font-mono">İpucu: Yeşil yanan doğru kelimeleriniz kilitlendi; sadece kırmızı yuvalara tıklayıp düzeltin.</div>
+          `;
           feedbackBox.classList.remove('hidden');
         }
       }
@@ -11815,8 +11715,6 @@
           `;
           feedbackBox.classList.remove('hidden');
         }
-        const nextBtn = document.getElementById('scrambleNextBtn');
-        if (nextBtn) nextBtn.classList.add('hidden');
       }
     }
 
@@ -11911,9 +11809,7 @@
       });
 
       // Default expand first item for A1 and A2
-      if (lvl === 'A1') grammarExpandedTopics = new Set(['a1-to-be']);
-      else if (lvl === 'A2') grammarExpandedTopics = new Set(['a2-past-simple']);
-      else grammarExpandedTopics = new Set();
+      grammarExpandedTopics = new Set(); // Kurlar arası geçişte tüm konular kapalı başlar
 
       renderGrammarTopics();
     }
@@ -12586,12 +12482,13 @@
       if (modal) modal.classList.add('hidden');
     }
 
+    let blitzAnswerLocked = false;
+
     function renderBlitzQuestion() {
       if (blitzCurrentIndex >= blitzShuffledPool.length) {
         blitzCurrentIndex = 0;
         blitzShuffledPool.sort(() => Math.random() - 0.5);
       }
-
       const v = blitzShuffledPool[blitzCurrentIndex];
       if (!v) return;
 
@@ -12600,36 +12497,61 @@
       if (v1El) v1El.innerText = v.v1;
       if (v1Tr) v1Tr.innerText = `(${v.tr})`;
 
-      const correctForm = `${v.v2} - ${v.v3}`;
+      const correctForm = `${v.v2} - ${v.v3}`.trim();
+      const optionSet = new Set([correctForm]);
 
-      // Distractors
-      const distractor1 = `${v.v1}ed - ${v.v1}en`;
-      const distractor2 = `${v.v2} - ${v.v2}`;
-      const options = [correctForm, distractor1, distractor2].sort(() => Math.random() - 0.5);
+      // Benzersiz 4 şık üretimi: Diğer fiillerin v2-v3 eşleşmelerini benzersiz havuza al
+      const candidateForms = Array.from(new Set(
+        irregularVerbsData
+          .map(item => `${item.v2} - ${item.v3}`.trim())
+          .filter(form => form && form !== correctForm)
+      )).sort(() => Math.random() - 0.5);
 
+      for (const form of candidateForms) {
+        optionSet.add(form);
+        if (optionSet.size >= 4) break;
+      }
+
+      const options = Array.from(optionSet).sort(() => Math.random() - 0.5);
       const grid = document.getElementById('blitzOptionsGrid');
       if (grid) {
         grid.innerHTML = options.map(opt => `
-          <button onclick="handleBlitzAnswer('${escapeHtmlAttr(opt)}', '${escapeHtmlAttr(correctForm)}')" class="blitz-opt-btn w-full p-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] text-white font-mono font-semibold text-sm transition active:scale-98 shadow-sm">
+          <button onclick="handleBlitzAnswer('${escapeHtmlAttr(opt)}', '${escapeHtmlAttr(correctForm)}', this)" 
+                  class="blitz-opt-btn w-full p-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.07] text-white font-mono font-semibold text-sm transition active:scale-98 shadow-sm">
             ${escapeHtmlAttr(opt)}
           </button>
         `).join('');
       }
     }
 
-    function handleBlitzAnswer(chosen, correct) {
+    function handleBlitzAnswer(chosen, correct, btnEl) {
+      if (blitzAnswerLocked) return;
+      blitzAnswerLocked = true;
+
       const isCorrect = chosen === correct;
       if (isCorrect) {
         blitzCorrect++;
-        updateHeatStreak(true);
+        playAudioTone('success');
+        triggerHaptic('success');
+        if (btnEl) {
+          btnEl.className = 'blitz-opt-btn w-full p-3.5 rounded-xl border border-emerald-500 bg-emerald-950/80 text-emerald-200 font-mono font-semibold text-sm transition shadow-sm';
+        }
       } else {
         blitzWrong++;
-        updateHeatStreak(false);
+        playAudioTone('error');
+        triggerHaptic('error');
+        if (btnEl) {
+          btnEl.className = 'blitz-opt-btn w-full p-3.5 rounded-xl border border-rose-500 bg-rose-950/80 text-rose-200 font-mono font-semibold text-sm transition shadow-sm';
+        }
       }
 
-      blitzCurrentIndex++;
       updateBlitzTimerDisplay();
-      renderBlitzQuestion();
+
+      setTimeout(() => {
+        blitzCurrentIndex++;
+        blitzAnswerLocked = false;
+        renderBlitzQuestion();
+      }, 180);
     }
 
     function finishIrregularBlitz() {
@@ -12726,10 +12648,16 @@
         word: "indestructible",
         phonetic: "/ˌɪndɪˈstrʌktəbl/",
         meaning: "Yok edilemez, parçalanamaz, yıkılması imkansız",
-        prefix: { text: "in-", origin: "Latince", type: "Önek", meaning: "Değil / Olumsuzluk eki" },
-        root: { text: "struct", origin: "Latince (struere / structura)", type: "Kök", meaning: "İnşa etmek, kurmak, yapmak" },
+        parts: [
+          { text: "in-", origin: "Latince", type: "Önek (1)", role: "ÖNEK 1 (PREFIX)", meaning: "Değil / Olumsuzluk eki", color: "blue" },
+          { text: "de-", origin: "Latince", type: "Önek (2)", role: "ÖNEK 2 (PREFIX)", meaning: "Aşağı, tersine, yıkma", color: "sky" },
+          { text: "struct", origin: "Latince (struere / structura)", type: "Kök", role: "KÖK (ROOT)", meaning: "İnşa etmek, kurmak, yapmak", color: "rose" },
+          { text: "-ible", origin: "Latince (-ibilis)", type: "Sonek", role: "SONEK (SUFFIX)", meaning: "Sıfat yapan: -ebilen / yetisi olan", color: "emerald" }
+        ],
+        prefix: { text: "in- & de-", origin: "Latince", type: "Önekler", meaning: "Değil + Yıkma (Tersine Çevirme)" },
+        root: { text: "struct", origin: "Latince (struere)", type: "Kök", meaning: "İnşa etmek, kurmak" },
         suffix: { text: "-ible", origin: "Latince (-ibilis)", type: "Sonek", meaning: "Sıfat yapan: -ebilen / yetisi olan" },
-        formula: "[in- (Olumsuz)] + [struct (İnşa Etmek)] + [-ible (Yetisi Olan)] = 'Yok Edilemez, Yıkılamaz'",
+        formula: "[in- (Değil)] + [de- (Yıkma)] + [struct (İnşa)] + [-ible (Yetisi Olan)] = 'Yok Edilemez, Yıkılamaz'",
         sentence: "The research team constructed a protective shelter from an indestructible carbon composite.",
         sentenceTr: "Araştırma ekibi yok edilemez bir karbon kompozitinden koruyucu sığınak inşa etti.",
         family: ["structure", "destruction", "constructive", "instructor"]
@@ -13047,46 +12975,44 @@
       if (phoneticEl) phoneticEl.textContent = item.phonetic;
       if (trMeaningEl) trMeaningEl.textContent = item.meaning;
 
-      // Render 3 anatomical blocks (Prefix, Root, Suffix)
+      // Dinamik Anatomi Blokları (Önekler, Kök ve Sonekler - Çok parçalı kelimeleri eksiksiz gösterir)
       const partsContainer = document.getElementById('morphPartsContainer');
       if (partsContainer) {
-        partsContainer.innerHTML = `
-          <!-- 🔵 Önek -->
-          <div class="p-3.5 rounded-2xl bg-blue-950/30 border border-blue-500/40 space-y-1">
-            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-blue-300 font-bold">
-              <span>🔵 ÖNEK (PREFIX)</span>
-              <span>${item.prefix.origin}</span>
-            </div>
-            <div class="text-xl font-bold font-mono text-blue-200">${item.prefix.text}</div>
-            <div class="text-xs text-blue-300/80 leading-snug">${item.prefix.meaning}</div>
-          </div>
+        const parts = item.parts || [
+          { text: item.prefix.text, origin: item.prefix.origin, role: "ÖNEK (PREFIX)", meaning: item.prefix.meaning, color: "blue" },
+          { text: item.root.text, origin: item.root.origin, role: "KÖK (ROOT)", meaning: item.root.meaning, color: "rose" },
+          { text: item.suffix.text, origin: item.suffix.origin || 'Latince', role: "SONEK (SUFFIX)", meaning: item.suffix.meaning, color: "emerald" }
+        ];
 
-          <!-- 🔴 Kök -->
-          <div class="p-3.5 rounded-2xl bg-rose-950/30 border border-rose-500/40 space-y-1">
-            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-rose-300 font-bold">
-              <span>🔴 KÖK (ROOT)</span>
-              <span>${item.root.origin}</span>
-            </div>
-            <div class="text-xl font-bold font-mono text-rose-200">${item.root.text}</div>
-            <div class="text-xs text-rose-300/80 leading-snug">${item.root.meaning}</div>
-          </div>
+        const colorMap = {
+          blue: { bg: 'bg-blue-950/30', border: 'border-blue-500/40', text: 'text-blue-200', title: 'text-blue-300', dot: '🔵' },
+          sky: { bg: 'bg-sky-950/30', border: 'border-sky-500/40', text: 'text-sky-200', title: 'text-sky-300', dot: '🔹' },
+          rose: { bg: 'bg-rose-950/30', border: 'border-rose-500/40', text: 'text-rose-200', title: 'text-rose-300', dot: '🔴' },
+          emerald: { bg: 'bg-emerald-950/30', border: 'border-emerald-500/40', text: 'text-emerald-200', title: 'text-emerald-300', dot: '🟢' }
+        };
 
-          <!-- 🟢 Sonek -->
-          <div class="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 space-y-1">
-            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-emerald-300 font-bold">
-              <span>🟢 SONEK (SUFFIX)</span>
-              <span>${item.suffix.origin || 'Ek'}</span>
+        const gridColsClass = parts.length >= 4 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-3';
+        partsContainer.className = `grid ${gridColsClass} gap-3 sm:gap-4`;
+
+        partsContainer.innerHTML = parts.map(p => {
+          const c = colorMap[p.color] || colorMap.blue;
+          return `
+            <div class="p-3.5 rounded-2xl ${c.bg} border ${c.border} space-y-1 shadow-sm">
+              <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider ${c.title} font-bold">
+                <span>${c.dot} ${p.role || 'BÖLÜM'}</span>
+                <span class="text-[9px] opacity-75">${p.origin || ''}</span>
+              </div>
+              <div class="text-xl font-bold font-mono ${c.text}">${p.text}</div>
+              <div class="text-xs ${c.title}/80 leading-snug">${p.meaning}</div>
             </div>
-            <div class="text-xl font-bold font-mono text-emerald-200">${item.suffix.text}</div>
-            <div class="text-xs text-emerald-300/80 leading-snug">${item.suffix.meaning}</div>
-          </div>
-        `;
+          `;
+        }).join('');
       }
 
       // Formula
       const formulaEl = document.getElementById('morphFormulaBox');
       if (formulaEl) {
-        formulaEl.innerHTML = `<span class="text-indigo-400 font-bold">⚡ Formül:</span> ${item.formula}`;
+        formulaEl.innerHTML = `<span class="text-indigo-400 font-bold">⚡ Morfolojik Formül:</span> ${item.formula}`;
       }
 
       // Context sentence
@@ -13152,19 +13078,24 @@
 
       const cluesContainer = document.getElementById('morphQuizClues');
       if (cluesContainer) {
-        cluesContainer.innerHTML = `
-          <div class="px-3 py-1.5 rounded-xl bg-blue-950/60 border border-blue-500/40 text-blue-200 font-mono text-xs">
-            🔵 ${target.prefix.text} <span class="text-[10px] opacity-75">(${target.prefix.meaning})</span>
-          </div>
-          <span class="text-slate-500 font-bold">+</span>
-          <div class="px-3 py-1.5 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-200 font-mono text-xs">
-            🔴 ${target.root.text} <span class="text-[10px] opacity-75">(${target.root.meaning})</span>
-          </div>
-          <span class="text-slate-500 font-bold">+</span>
-          <div class="px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-200 font-mono text-xs">
-            🟢 ${target.suffix.text} <span class="text-[10px] opacity-75">(${target.suffix.meaning})</span>
-          </div>
-        `;
+        const parts = target.parts || [
+          { text: target.prefix.text, meaning: target.prefix.meaning, color: 'blue' },
+          { text: target.root.text, meaning: target.root.meaning, color: 'rose' },
+          { text: target.suffix.text, meaning: target.suffix.meaning, color: 'emerald' }
+        ];
+
+        cluesContainer.innerHTML = parts.map(p => {
+          const bg = p.color === 'blue' ? 'bg-blue-950/60 border-blue-500/40 text-blue-200' :
+                     p.color === 'sky' ? 'bg-sky-950/60 border-sky-500/40 text-sky-200' :
+                     p.color === 'rose' ? 'bg-rose-950/60 border-rose-500/40 text-rose-200' :
+                     'bg-emerald-950/60 border-emerald-500/40 text-emerald-200';
+          const icon = p.color === 'blue' ? '🔵' : p.color === 'sky' ? '🔹' : p.color === 'rose' ? '🔴' : '🟢';
+          return `
+            <div class="px-3 py-1.5 rounded-xl ${bg} border font-mono text-xs shadow-sm">
+              ${icon} ${p.text} <span class="text-[10px] opacity-75">(${p.meaning})</span>
+            </div>
+          `;
+        }).join('<span class="text-slate-500 font-bold">+</span>');
       }
 
       const choicesContainer = document.getElementById('morphQuizChoices');
@@ -13927,388 +13858,604 @@
     const defenderTopics = [
       {
         id: 1,
-        topicTitle: "Yapay Zeka Üniversite Eğitimi",
-        topicEn: "Should AI completely replace human university professors?",
+        topicTitle: "Yapay Zeka ve Üniversite Eğitimi",
+        topicEn: "Should AI systems replace human university faculty?",
         opponentName: "Dr. Marcus Vance (Akademik Savunma Sözcüsü)",
         opponentAvatar: "🤖",
-        opponentClaim: "AI inherently lacks emotional empathy, personalized mentorship capacity, and nuanced ethical judgment, rendering it fundamentally incapable of replacing human academic faculty.",
-        opponentClaimTr: "Yapay zeka özü gereği duygusal empatiden, kişiselleştirilmiş rehberlik kapasitesinden ve incelikli etik muhakemeden yoksundur; bu da onu insan akademisyenlerin yerini almaktan temelde aciz kılar.",
-        cards: [
+        rounds: [
           {
-            id: "c1",
-            keyword: "mitigate",
-            title: "Erişilebilirlik Telafisi (Mitigate)",
-            text: "7/24 kesintisiz erişim ve anlık kişiselleştirilmiş geri bildirim imkanı, duygusal empatideki eksikliği fazlasıyla 'mitigate' eder ve öğrenme hızını katlar.",
-            isCorrect: true,
-            academicPowerWord: "mitigate (hafifletmek / telafi etmek)",
-            explanation: "Mükemmel Savunma! 'Mitigate' argümanı, rakibin ileri sürdüğü empati kısıtının yapay zekanın kesintisiz erişilebilirliği ile nasıl dengelendiğini kanıtladı."
+            roundNumber: 1,
+            phaseName: "Giriş İddiası",
+            opponentClaim: "AI cannot replace professors because it inherently lacks emotional empathy, ethical mentorship, and authentic human connection.",
+            opponentClaimTr: "Yapay zeka özü gereği duygusal empatiden, etik rehberlikten ve gerçek insani bağdan yoksun olduğu için akademisyenlerin yerini alamaz.",
+            cards: [
+              {
+                id: "m1_r1_c1",
+                keyword: "mitigate",
+                title: "Pedagojik Destek ve Anlık Geri Bildirim",
+                thesisEn: "24/7 asynchronous accessibility and immediate formative feedback mitigate the empathy deficit by delivering tailored pedagogical support.",
+                thesisTr: "Kesintisiz 7/24 erişim ve anlık biçimlendirici geri bildirim, kişiye özel pedagojik destek sunarak empati açığını telafi eder.",
+                isCorrect: true,
+                academicPowerWord: "mitigate (telafi etmek / hafifletmek)",
+                explanation: "Kusursuz Karşı Tez! Yapay zekanın sonsuz sabırla sunduğu anlık pedagojik desteğin, geleneksel empati kısıtlamalarını nasıl dengelediğini kanıtladınız."
+              },
+              {
+                id: "m1_r1_c2",
+                keyword: "tu quoque",
+                title: "Öğretim Üyesi Davranış İtirazı",
+                thesisEn: "Human professors frequently cancel office hours and show zero empathy to undergraduate students anyway.",
+                thesisTr: "İnsan profesörler de çoğu zaman görüşme saatlerini iptal ediyor ve öğrencilere hiç empati göstermiyor.",
+                isCorrect: false,
+                fallacyType: "Kişisel Kusur Yansıtma (Tu Quoque)",
+                explanation: "Hatalı Akıl Yürütme! Rakibin sistemik tezine karşı profesörlerin bireysel eksikliklerini öne sürmek tezinizi zayıflatır ve iddiayı çürütmez."
+              },
+              {
+                id: "m1_r1_c3",
+                keyword: "red herring",
+                title: "Altyapı ve Sunucu Maliyeti Analizi",
+                thesisEn: "Cloud GPU server clusters consume excessive electrical energy and strain public university budgets.",
+                thesisTr: "Bulut sunucuları aşırı elektrik tüketir ve devlet üniversitelerinin bütçelerini çok zorlar.",
+                isCorrect: false,
+                fallacyType: "Hedef Saptırma (Red Herring)",
+                explanation: "Konu Dışı Safsata! Elektrik ve sunucu masrafı tartışması, yapay zekanın empati ve mentorluk kapasitesi argümanına doğrudan bir yanıt oluşturmaz."
+              },
+              {
+                id: "m1_r1_c4",
+                keyword: "strawman",
+                title: "Geleneksel Metodoloji Karşıtlığı",
+                thesisEn: "Opponents of AI want all students to study exclusively with medieval chalkboards and paper notebooks.",
+                thesisTr: "Yapay zeka karşıtları tüm öğrencilerin yalnızca ortaçağ kara tahtaları ve kağıt defterlerle okumasını istiyor.",
+                isCorrect: false,
+                fallacyType: "Saman Adam (Strawman Fallacy)",
+                explanation: "Saman Adam Yanılgısı! Rakibin makul argümanını aşırı ve absürt bir karikatüre dönüştürerek tartışmayı akademik ciddiyetten uzaklaştırdınız."
+              }
+            ]
           },
           {
-            id: "c2",
-            keyword: "empirical data",
-            title: "Ampirik Başarı Kanıtı (Empirical Data)",
-            text: "Kapsamlı 'empirical data', yapay zeka destekli adaptif müfredat kullanan öğrencilerin standart sınavlarda %30 daha yüksek başarı elde ettiğini kanıtlıyor.",
-            isCorrect: true,
-            academicPowerWord: "empirical data (deneysel / ampirik veri)",
-            explanation: "Kusursuz Hamle! Rakibin sübjektif endişesini sert ampirik verilerle çürüttünüz."
+            roundNumber: 2,
+            phaseName: "Karşı Kanıt & Metodoloji",
+            opponentClaim: "Generative AI produces frequent hallucinations and factually unreliable citations, making it unfit for scholarly research.",
+            opponentClaimTr: "Üretken yapay zeka sıklıkla uydurma bilgiler ve hatalı kaynaklar üretir; bu da onu bilimsel araştırma için elverişsiz kılar.",
+            cards: [
+              {
+                id: "m1_r2_c1",
+                keyword: "substantiate",
+                title: "Doğrulanmış Kaynak ve Literatür Taraması",
+                thesisEn: "Retrieval-augmented generation and verifiable citation pipelines substantiate that AI matches human fact-checking accuracy.",
+                thesisTr: "Erişimle güçlendirilmiş üretim modelleri ve doğrulanabilir atıf boru hatları, yapay zekanın insan doğruluk oranını yakaladığını kanıtlar.",
+                isCorrect: true,
+                academicPowerWord: "substantiate (somut kanıtlarla doğrulamak)",
+                explanation: "Harika Bilimsel Çürütme! Modern RAG ve doğrulanabilir bilgi altyapısı argümanıyla halüsinasyon riskinin teknik olarak nasıl aşıldığını ispatladınız."
+              },
+              {
+                id: "m1_r2_c2",
+                keyword: "hasty generalization",
+                title: "İlk Nesil Model Deneyimleri",
+                thesisEn: "Because one early chatbot failed a bar exam in 2022, no neural network can ever conduct legal research.",
+                thesisTr: "2022'de bir sohbet botu baro sınavında başarısız olduğu için hiçbir yapay zeka hukuk araştırması yapamaz.",
+                isCorrect: false,
+                fallacyType: "Aceleci Genelleme (Hasty Generalization)",
+                explanation: "Aceleci Genelleme! Eski bir prototipin hatasından tüm yapay zeka mimarilerini yetersiz ilan etmek geçersiz bir safsatadır."
+              },
+              {
+                id: "m1_r2_c3",
+                keyword: "anecdotal fallacy",
+                title: "Bireysel Kullanıcı Deneyimi",
+                thesisEn: "My personal experience with AI research assistants has always been completely flawless without single typo.",
+                thesisTr: "Yapay zeka asistanlarıyla şahsi deneyimim şimdiye dek tek bir yazım hatası olmaksızın kusursuz geçti.",
+                isCorrect: false,
+                fallacyType: "Anekdot Safsatası (Anecdotal Fallacy)",
+                explanation: "Anekdot Yanılgısı! Bilimsel metodoloji tartışmasında tek bir kişinin öznel ve rastlantısal tecrübesi kanıt olarak kabul edilemez."
+              },
+              {
+                id: "m1_r2_c4",
+                keyword: "appeal to authority",
+                title: "Sektör Temsilcisi Beyanatı",
+                thesisEn: "A famous tech CEO tweeted that AI is never wrong, so we do not need to audit any algorithms.",
+                thesisTr: "Ünlü bir teknoloji CEO'su yapay zekanın asla yanılmadığını tweetledi, bu yüzden denetime gerek yok.",
+                isCorrect: false,
+                fallacyType: "Yersiz Otoriteye Başvuru",
+                explanation: "Otorite Yanılgısı! Bir iş insanının tweeti veya reklam beyanı, hakemli akademik araştırmalarda meşru bir tez dayanağı olamaz."
+              }
+            ]
           },
           {
-            id: "c3",
-            keyword: "scalability",
-            title: "Demokratik Ölçeklenebilirlik (Scalability)",
-            text: "Yapay zeka 'scalability' avantajıyla, dünyanın en yoksul bölgelerindeki milyonlarca dezavantajlı öğrenciye elit kalitede eğitimi sıfır maliyetle ulaştırabilir.",
-            isCorrect: true,
-            academicPowerWord: "scalability (ölçeklenebilirlik)",
-            explanation: "Harika Koz! Rakibin geleneksel akademi modelini küresel ölçeklenebilirlik ve fırsat eşitliği argümanıyla saf dışı bıraktınız."
-          },
-          {
-            id: "c4",
-            keyword: "algorithmic bias",
-            title: "Algoritmik Önyargı Riski (Distractor)",
-            text: "Yapay zeka modelleri eğitim verilerindeki ırksal ve cinsiyetçi önyargıları pekiştirir ve eşitsizliği artırır.",
-            isCorrect: false,
-            academicPowerWord: "algorithmic bias (yanlış koz / aleyhte argüman)",
-            explanation: "Hatalı Akıl Yürütme (Logical Fallacy)! Bu kart kendi tezinizi desteklemiyor; tam aksine rakibinizin akademisyenleri savunma argümanına güç kazandırıyor!"
+            roundNumber: 3,
+            phaseName: "Kapanış & Nihai Çürütme",
+            opponentClaim: "Total dependence on automated tutoring will inevitably lead to cognitive atrophy and intellectual passivity in university graduates.",
+            opponentClaimTr: "Otomatik eğitmenlere mutlak bağımlılık, üniversite mezunlarında bilişsel körelmeye ve entelektüel pasifliğe yol açacaktır.",
+            cards: [
+              {
+                id: "m1_r3_c1",
+                keyword: "augment",
+                title: "Bilişsel Güçlendirme ve Analitik Derinlik",
+                thesisEn: "Far from inducing intellectual passivity, structured AI Socratic dialogue augments critical inquiry and higher-order problem solving.",
+                thesisTr: "Entelektüel pasiflik yaratmak şöyle dursun, yapılandırılmış Sokrates tarzı yapay zeka diyaloğu eleştirel sorgulamayı ve üst düzey problem çözmeyi güçlendirir.",
+                isCorrect: true,
+                academicPowerWord: "augment (bilişsel olarak güçlendirmek / artırmak)",
+                explanation: "Muazzam Zafer! Yapay zekayı bir ezber aracı değil, Sokratesvari bir düşünce ortağı olarak konumlandırarak rakibin tüm tezini yerle bir ettiniz!"
+              },
+              {
+                id: "m1_r3_c2",
+                keyword: "slippery slope",
+                title: "Bilişsel Körelme Hipotezi",
+                thesisEn: "If students use spellcheck or calculators, human intelligence will be completely eradicated by next century.",
+                thesisTr: "Öğrenciler yazım denetimi veya hesap makinesi kullanırsa insan zekası gelecek yüzyıla kadar tamamen yok olacaktır.",
+                isCorrect: false,
+                fallacyType: "Kaygan Zemin (Slippery Slope)",
+                explanation: "Kaygan Zemin Safsatası! Bir teknoloji kullanımından hareketle kanıtsız bir distopik felaket senaryosu kurgulamak mantıksal bir yanılgıdır."
+              },
+              {
+                id: "m1_r3_c3",
+                keyword: "circular reasoning",
+                title: "Zihinsel Egzersiz Savı",
+                thesisEn: "AI cannot cause cognitive atrophy because modern intelligent students are inherently cognitive and active.",
+                thesisTr: "Yapay zeka bilişsel körelmeye yol açamaz çünkü zeki öğrenciler zaten doğaları gereği bilişsel ve aktiftir.",
+                isCorrect: false,
+                fallacyType: "Kısır Döngü (Circular Reasoning)",
+                explanation: "Kısır Döngü! İddia edilen sonucu öncül olarak varsayarak argüman üretmek mantıksal açıdan hiçbir şey kanıtlamaz."
+              },
+              {
+                id: "m1_r3_c4",
+                keyword: "false dilemma",
+                title: "Dijital Araç Sınırlaması",
+                thesisEn: "We must either ban all digital devices entirely or accept the complete collapse of human civilization.",
+                thesisTr: "Ya tüm dijital cihazları tamamen yasaklamalıyız ya da insan medeniyetinin çöküşünü kabul etmeliyiz.",
+                isCorrect: false,
+                fallacyType: "Yanlış İkilem (False Dilemma)",
+                explanation: "Yanlış İkilem! Gerçekte var olan yapıcı sentez ve denetimli entegrasyon çözümlerini görmezden gelip meseleyi siyah-beyaza indirgediniz."
+              }
+            ]
           }
         ]
       },
       {
         id: 2,
         topicTitle: "İklim Krizi ve Nükleer Enerji",
-        topicEn: "Is nuclear energy indispensable for achieving net-zero carbon emissions?",
-        opponentName: "Dr. Elena Rostova (Ekolojik Savunma)",
+        topicEn: "Is nuclear power indispensable for achieving global net-zero emissions?",
+        opponentName: "Dr. Elena Rostova (Ekolojik Savunma Enstitüsü)",
         opponentAvatar: "☢️",
-        opponentClaim: "Nuclear energy creates catastrophic radioactive waste liabilities and catastrophic reactor meltdown hazards, proving it is too hazardous for a sustainable future.",
-        opponentClaimTr: "Nükleer enerji felaket boyutunda radyoaktif atık sorumlulukları ve reaktör erime tehlikeleri yaratır; bu da onun sürdürülebilir bir gelecek için çok riskli olduğunu kanıtlar.",
-        cards: [
+        rounds: [
           {
-            id: "c1",
-            keyword: "baseload reliability",
-            title: "Temel Yük Güvenilirliği (Baseload)",
-            text: "Rüzgar ve güneşin kesintili yapısına karşın, modern nükleer santraller sıfır karbonla kesintisiz 'baseload reliability' sunan tek kaynaktır.",
-            isCorrect: true,
-            academicPowerWord: "baseload reliability (temel yük güvenilirliği)",
-            explanation: "Tam İsabet! Rüzgar ve güneşin hava koşullarına bağımlılığını nükleerin kesintisiz şebeke omurgasıyla çürüttünüz."
+            roundNumber: 1,
+            phaseName: "Giriş İddiası",
+            opponentClaim: "Nuclear energy creates unacceptable millenary radioactive waste hazards that impose intolerable ethical burdens on future generations.",
+            opponentClaimTr: "Nükleer enerji, gelecek nesillere kabul edilemez etik yükler bindiren bin yıllık radyoaktif atık tehlikeleri yaratır.",
+            cards: [
+              {
+                id: "m2_r1_c1",
+                keyword: "geological repository",
+                title: "Derin Jeolojik İzolasyon Teknolojisi",
+                thesisEn: "Deep-geological disposal in stable subterranean vitrification safely isolates nuclear fuel with zero biosphere contamination.",
+                thesisTr: "Kararlı yer altı camlaştırma havzalarındaki derin jeolojik depolama, nükleer yakıtı biyosfere sıfır sızıntıyla güvenle izole eder.",
+                isCorrect: true,
+                academicPowerWord: "geological repository (jeolojik depolama)",
+                explanation: "Kusursuz Mühendislik Tezi! Modern camlaştırma ve İskandinav derin jeolojik yataklarıyla atık riskinin jeolojik ölçekte nasıl bertaraf edildiğini kanıtladınız."
+              },
+              {
+                id: "m2_r1_c2",
+                keyword: "appeal to emotion",
+                title: "Toplumsal Risk Algısı",
+                thesisEn: "Radiation sounds terrifying in horror films, so all reactors must be immediately demolished regardless of power needs.",
+                thesisTr: "Radyasyon korku filmlerinde dehşet verici duyuluyor, bu yüzden enerji ihtiyacına bakılmaksızın tüm reaktörler yıkılmalıdır.",
+                isCorrect: false,
+                fallacyType: "Duygulara Başvuru (Appeal to Emotion)",
+                explanation: "Duygusal Manipülasyon! Bilimsel enerji planlamasında korku filmi klişeleri veya panik dili meşru bir mühendislik argümanı olamaz."
+              },
+              {
+                id: "m2_r1_c3",
+                keyword: "red herring",
+                title: "Emtia Piyasası Fiyat Dalgalanması",
+                thesisEn: "International uranium commodity future contracts experienced high financial volatility last quarter.",
+                thesisTr: "Uluslararası uranyum vadeli kontratları geçen çeyrekte yüksek finansal dalgalanma yaşadı.",
+                isCorrect: false,
+                fallacyType: "Hedef Saptırma (Red Herring)",
+                explanation: "Konu Dışı! Emtia borsasındaki kısa vadeli fiyat dalgalanması, nükleer atığın uzun vadeli fiziksel izolasyonu tartışmasını yanıtlamaz."
+              },
+              {
+                id: "m2_r1_c4",
+                keyword: "ad hominem",
+                title: "Araştırmacı Tarafsızlığı Tezi",
+                thesisEn: "Environmental researchers are corrupt lobby agents funded by solar panel manufacturers.",
+                thesisTr: "Çevre araştırmacıları güneş paneli üreticileri tarafından fonlanan yozlaşmış lobi ajanlarıdır.",
+                isCorrect: false,
+                fallacyType: "Kişiye Saldırı (Ad Hominem)",
+                explanation: "Ad Hominem! Karşı tarafın bilim insanlarını karalamak yerine ileri sürdükleri atık argümanını bilimsel verilerle çürütmeniz gerekirdi."
+              }
+            ]
           },
           {
-            id: "c2",
-            keyword: "safety protocols",
-            title: "Yeni Nesil Güvenlik (Passive Safety)",
-            text: "4. Nesil modüler reaktörler (SMR), elektrik kesilse bile kendi kendini soğutan pasif 'safety protocols' ile erime riskini fiziksel olarak imkansız kılar.",
-            isCorrect: true,
-            academicPowerWord: "passive safety protocols (pasif güvenlik protokolleri)",
-            explanation: "Harika Tez! Rakibin eski Çernobil çağı korkularını modern 4. Nesil SMR pasif fizik kurallarıyla çürüttünüz."
+            roundNumber: 2,
+            phaseName: "Karşı Kanıt & Şebeke Stabilitesi",
+            opponentClaim: "Wind, solar, and battery storage alone can power the entire grid without relying on hazardous fission.",
+            opponentClaimTr: "Yalnızca rüzgar, güneş ve batarya depolaması, tehlikeli fisyona ihtiyaç duymadan tüm şebekeyi besleyebilir.",
+            cards: [
+              {
+                id: "m2_r2_c1",
+                keyword: "baseload reliability",
+                title: "Şebeke Kararlılığı ve Kesintisiz Üretim",
+                thesisEn: "Unlike intermittent renewables subject to meteorological volatility, nuclear provides zero-emission baseload reliability 24/7.",
+                thesisTr: "Meteorolojik değişkenliğe tabi kesintili yenilenebilir kaynakların aksine, nükleer 7/24 kesintisiz temel yük güvenilirliği sağlar.",
+                isCorrect: true,
+                academicPowerWord: "baseload reliability (temel yük güvenilirliği)",
+                explanation: "Stratejik Şebeke Zaferi! Rüzgar ve güneşin hava koşullarına bağımlılığını (dunkelflaute) nükleerin kesintisiz omurga gücüyle çürüttünüz."
+              },
+              {
+                id: "m2_r2_c2",
+                keyword: "wishful thinking",
+                title: "Gelecek Nesil Depolama Varsayımı",
+                thesisEn: "Battery technology will magically become 10,000 times denser next year without any mineral limits.",
+                thesisTr: "Batarya teknolojisi gelecek yıl hiçbir mineral kısıtı olmadan mucizevi biçimde 10.000 kat yoğunlaşacaktır.",
+                isCorrect: false,
+                fallacyType: "Gerçekdışı Temenni (Wishful Thinking)",
+                explanation: "Hatalı Temenni! Fizik kurallarını ve lityum/kobalt tedarik kısıtlarını yok sayan temenniler akademik savunmada geçersizdir."
+              },
+              {
+                id: "m2_r2_c3",
+                keyword: "bandwagon",
+                title: "Kamuoyu Eğilimleri ve Popülerlik",
+                thesisEn: "Solar panels are trendy on social media, so every country must abandon all other energy sources.",
+                thesisTr: "Güneş panelleri sosyal medyada çok popüler, bu yüzden her ülke diğer tüm enerji kaynaklarını bırakmalıdır.",
+                isCorrect: false,
+                fallacyType: "Popülarite Yanılgısı (Bandwagon)",
+                explanation: "Popülarite Safsatası! Sosyal medya trendleri ulusal elektrik iletim şebekelerinin mühendislik stabilitesini temin edemez."
+              },
+              {
+                id: "m2_r2_c4",
+                keyword: "false equivalence",
+                title: "Mikro Ölçekli Karşılaştırma",
+                thesisEn: "A rooftop solar panel is identical in grid stability and load capacity to a 1,000 MW gigawatt plant.",
+                thesisTr: "Bir evin çatısındaki güneş paneli, şebeke kapasitesi açısından 1.000 MW'lık dev reaktörle birebir aynıdır.",
+                isCorrect: false,
+                fallacyType: "Hatalı Denklik (False Equivalence)",
+                explanation: "Hatalı Denklik! Bireysel çatı fotovoltiklerini ağır sanayi besleyen nükleer santrallerle denk tutmak teknik bir safsatadır."
+              }
+            ]
           },
           {
-            id: "c3",
-            keyword: "energy density",
-            title: "Olağanüstü Enerji Yoğunluğu (Density)",
-            text: "Uranyumun muazzam 'energy density' özelliği, kömür ve güneş panellerine kıyasla binlerce kat daha az arazi tahribatı ve madencilik atığı anlamına gelir.",
-            isCorrect: true,
-            academicPowerWord: "energy density (enerji yoğunluğu)",
-            explanation: "Mükemmel Savunma! Arazi ve çevre tahribatı kıyaslamasında nükleerin mikroskobik ayak izini kanıtladınız."
-          },
-          {
-            id: "c4",
-            keyword: "fossil fuel lobbying",
-            title: "Fosil Yakıt Finansmanı (Distractor)",
-            text: "Kömür ve gaz şirketleri yenilenebilir enerjinin yaygınlaşmasını engellemek için her yıl milyarlarca dolar harcıyor.",
-            isCorrect: false,
-            academicPowerWord: "red herring (hedef saptırma)",
-            explanation: "Hedef Saptırma (Red Herring)! Fosil yakıt lobileri gerçek olsa da, rakibinizin nükleer atık ve radyasyon argümanına doğrudan bir cevap teşkil etmiyor."
+            roundNumber: 3,
+            phaseName: "Kapanış & Nihai Çürütme",
+            opponentClaim: "The existential threat of catastrophic core meltdowns outweighs any potential decarbonization benefit.",
+            opponentClaimTr: "Reaktör çekirdeği erimesinin yarattığı varoluşsal tehdit, nükleerin sağlayacağı her türlü karbon azaltım faydasından daha ağırdır.",
+            cards: [
+              {
+                id: "m2_r3_c1",
+                keyword: "passive safety systems",
+                title: "Pasif Güvenlik ve Doğal Soğutma",
+                thesisEn: "Generation IV small modular reactors incorporate passive physical safety systems that render meltdowns physically impossible.",
+                thesisTr: "4. Nesil küçük modüler reaktörler (SMR), elektrik kesilse dahi erimeyi fiziksel olarak imkansız kılan pasif soğutma sistemlerine sahiptir.",
+                isCorrect: true,
+                academicPowerWord: "passive safety systems (pasif güvenlik sistemleri)",
+                explanation: "Mükemmel Mühendislik Karşı Hamlesi! Eski Sovyet dönemi reaktör korkularını modern termodinamik pasif güvenlik yasalarıyla çürüttünüz!"
+              },
+              {
+                id: "m2_r3_c2",
+                keyword: "appeal to tradition",
+                title: "Tarihsel Süreklilik Savı",
+                thesisEn: "Our ancestors burned wood and coal for thousands of years, so modern nuclear tech is unnatural.",
+                thesisTr: "Atalarımız binlerce yıldır odun ve kömür yaktı, bu yüzden modern nükleer teknoloji doğaya aykırıdır.",
+                isCorrect: false,
+                fallacyType: "Gelenekçilik Yanılgısı (Appeal to Tradition)",
+                explanation: "Gelenekçilik Safsatası! İlkel fosil yakıt geçmişini doğal kabul edip ileri teknolojik çözümleri yapay diye reddetmek geçersizdir."
+              },
+              {
+                id: "m2_r3_c3",
+                keyword: "guilt by association",
+                title: "Jeopolitik Güvenlik Tezi",
+                thesisEn: "Because nuclear weapons exist in military silos, civilian energy reactors are fundamentally weaponized.",
+                thesisTr: "Askeri silolarda nükleer silahlar bulunduğu için sivil enerji reaktörleri de temelde birer silahtır.",
+                isCorrect: false,
+                fallacyType: "Hatalı İlişkilendirme",
+                explanation: "Hatalı İlişkilendirme! Sivil nükleer enerji üretimi ile askeri silahlanmayı birbirine karıştırmak analitik bir hatadır."
+              },
+              {
+                id: "m2_r3_c4",
+                keyword: "appeal to ignorance",
+                title: "Gelecek Öngörü Belirsizliği",
+                thesisEn: "Because we cannot predict the weather 500 years from now, no modern reactor design can be tested.",
+                thesisTr: "500 yıl sonra havanın nasıl olacağını bilemediğimiz için hiçbir modern reaktör tasarımı test edilemez.",
+                isCorrect: false,
+                fallacyType: "Cehalete Başvuru (Appeal to Ignorance)",
+                explanation: "Cehalet Yanılgısı! Mutlak geleceği bilememe argümanını güncel nükleer fizik güvenlik testlerini inkar etmek için kullanamazsınız."
+              }
+            ]
           }
         ]
       },
       {
         id: 3,
         topicTitle: "Uzaktan Çalışma ve Kurumsal Verimlilik",
-        topicEn: "Does permanent remote work undermine corporate productivity and team cohesion?",
+        topicEn: "Does permanent remote work undermine corporate productivity and innovation?",
         opponentName: "Julian Sterling (Kurumsal Yönetim Kurulu Başkanı)",
         opponentAvatar: "🏢",
-        opponentClaim: "Permanent remote work breeds chronic employee isolation, erodes spontaneous office collaboration, and destroys long-term organizational loyalty.",
-        opponentClaimTr: "Kalıcı uzaktan çalışma kronik çalışan yalnızlığı doğurur, spontane ofis içi işbirliğini aşındırır ve uzun vadeli kurumsal sadakati yok eder.",
-        cards: [
+        rounds: [
           {
-            id: "c1",
-            keyword: "asynchronous workflow",
-            title: "Asenkron Üretkenlik (Asynchronous)",
-            text: "Gereksiz ofis toplantılarının elenmesi ve 'asynchronous workflow' kültürü, çalışanların derin odaklanma süresini ve çıktı kalitesini %35 artırır.",
-            isCorrect: true,
-            academicPowerWord: "asynchronous workflow (asenkron iş akışı)",
-            explanation: "Müthiş Argüman! Ofis gevezelikleri yerine derin odaklanmanın somut üretkenlik getirisini savundunuz."
+            roundNumber: 1,
+            phaseName: "Giriş İddiası",
+            opponentClaim: "Permanent telecommuting erodes corporate culture, team cohesion, and the spontaneous collaboration that drives breakthrough innovation.",
+            opponentClaimTr: "Kalıcı uzaktan çalışma kurumsal kültürü, ekip bağlılığını ve yenilikçiliği tetikleyen spontane ofis işbirliğini aşındırır.",
+            cards: [
+              {
+                id: "m3_r1_c1",
+                keyword: "asynchronous workflow",
+                title: "Asenkron Çalışma ve Derin Odaklanma",
+                thesisEn: "Structured asynchronous documentation and transparent workflows foster higher cognitive focus than superficial watercooler chats.",
+                thesisTr: "Yapılandırılmış asenkron dokümantasyon ve şeffaf iş akışları, yüzeysel ofis sohbetlerinden çok daha yüksek bir zihinsel odaklanma sağlar.",
+                isCorrect: true,
+                academicPowerWord: "asynchronous workflow (asenkron iş akışı)",
+                explanation: "Güçlü Karşı Duruş! Ofis gevezeliği nostaljisini asenkron derin çalışma (deep work) ve şeffaf kurumsal hafıza argümanıyla çürüttünüz."
+              },
+              {
+                id: "m3_r1_c2",
+                keyword: "appeal to authority",
+                title: "Yönetimsel Tercih ve Otorite",
+                thesisEn: "A traditional executive stated that everyone must wear business suits in cubicles to be creative.",
+                thesisTr: "Geleneksel bir yönetici yaratıcı olmak için herkesin ofis bölmelerinde takım elbiseyle oturması gerektiğini söyledi.",
+                isCorrect: false,
+                fallacyType: "Eski Otoriteye Başvuru",
+                explanation: "Otorite Safsatası! Bir yöneticinin alışkanlıkları ve nostaljik ofis talepleri çağdaş üretkenlik analizlerinde delil olamaz."
+              },
+              {
+                id: "m3_r1_c3",
+                keyword: "false dilemma",
+                title: "Kurumsal Verimlilik İkilemi",
+                thesisEn: "Companies must either force 100% office attendance five days a week or face total corporate bankruptcy.",
+                thesisTr: "Şirketler ya haftada beş gün %100 ofis zorunluluğu getirmeli ya da kurumsal iflasla yüzleşmelidir.",
+                isCorrect: false,
+                fallacyType: "Sahte İkilem (False Dilemma)",
+                explanation: "Sahte İkilem! Hibrit ve esnek çalışma modellerini yok sayıp ofisi ölüm-kalım meselesine indirgemek mantık dışıdır."
+              },
+              {
+                id: "m3_r1_c4",
+                keyword: "ad hominem",
+                title: "Çalışan Disiplini Gözlemi",
+                thesisEn: "All remote workers are secretly playing video games in their pajamas instead of writing code.",
+                thesisTr: "Tüm uzaktan çalışanlar gizlice kod yazmak yerine pijamalarıyla bilgisayar oyunu oynamaktadır.",
+                isCorrect: false,
+                fallacyType: "Kişiye Saldırı (Ad Hominem)",
+                explanation: "Ad Hominem! Çalışanların kişisel ahlakına yönelik temelsiz genellemeler üretkenlik metrikleri karşısında geçersizdir."
+              }
+            ]
           },
           {
-            id: "c2",
-            keyword: "talent acquisition",
-            title: "Küresel Yetenek Havuzu (Talent Acquisition)",
-            text: "Coğrafi sınırları kaldıran uzaktan çalışma modeli, şirketlerin dünya genelindeki en parlak uzmanları işe alarak 'talent acquisition' gücünü zirveye taşır.",
-            isCorrect: true,
-            academicPowerWord: "talent acquisition (nitelikli iş gücü kazanımı)",
-            explanation: "Kusursuz Savunma! Rakibin dar ofis vizyonunu küresel yetenek mıknatısı argümanıyla alaşağı ettiniz."
+            roundNumber: 2,
+            phaseName: "Karşı Kanıt & Çalışan Sağlığı",
+            opponentClaim: "Remote workers experience acute isolation, blurred work-life boundaries, and escalating psychological burnout.",
+            opponentClaimTr: "Uzaktan çalışanlar akut yalnızlık, iş-yaşam sınırlarının silinmesi ve tırmanan psikolojik tükenmişlik yaşar.",
+            cards: [
+              {
+                id: "m3_r2_c1",
+                keyword: "well-being correlation",
+                title: "Çalışan Esenliği ve Yaşam Kalitesi",
+                thesisEn: "Eliminating commute stress and offering geographic autonomy directly correlate with reduced attrition and heightened employee well-being.",
+                thesisTr: "Trafik stresinin kalkması ve coğrafi özgürlük, doğrudan personel kaybının azalması ve çalışan esenliğinin artmasıyla korelasyon gösterir.",
+                isCorrect: true,
+                academicPowerWord: "well-being correlation (esenlik korelasyonu)",
+                explanation: "Ampirik İnsan Kaynakları Zaferi! Zorla ofise tıkılan çalışanların mutsuzluğunu, otonominin getirdiği bağlılık ve enerji verileriyle kanıtladınız."
+              },
+              {
+                id: "m3_r2_c2",
+                keyword: "circular reasoning",
+                title: "Fiziksel Etkileşim Hipotezi",
+                thesisEn: "Offices are mentally healthy because physically going to an office provides mental health.",
+                thesisTr: "Ofisler ruhsal olarak sağlıklıdır çünkü fiziksel olarak bir ofise gitmek insana ruh sağlığı verir.",
+                isCorrect: false,
+                fallacyType: "Kısır Döngü (Circular Reasoning)",
+                explanation: "Kısır Döngü! Kanıtlanması gereken iddiayı kendi gerekçesi olarak sunmak retorik bir yanılgıdır."
+              },
+              {
+                id: "m3_r2_c3",
+                keyword: "anecdotal fallacy",
+                title: "Bireysel İzolasyon Gözlemi",
+                thesisEn: "My cousin felt lonely working from home one afternoon, proving that remote work destroys humanity.",
+                thesisTr: "Kuzenim bir öğleden sonra evde çalışırken sıkıldı, bu da uzaktan çalışmanın insanlığı yok ettiğini kanıtlar.",
+                isCorrect: false,
+                fallacyType: "Anekdot Yanılgısı (Anecdotal Fallacy)",
+                explanation: "Anekdot Safsatası! Tek bir bireysel ruh hali dalgalanması, küresel iş gücü psikolojisi araştırmalarının yerine konamaz."
+              },
+              {
+                id: "m3_r2_c4",
+                keyword: "red herring",
+                title: "Çalışma Alanı Ergonomisi",
+                thesisEn: "Corporate ergonomic desks and coffee machines are extremely expensive to leave unused.",
+                thesisTr: "Şirketin ergonomik masaları ve kahve makineleri kullanılmadan bırakılmak için çok pahalıdır.",
+                isCorrect: false,
+                fallacyType: "Batık Maliyet (Sunk Cost Fallacy)",
+                explanation: "Batık Maliyet Safsatası! Geçmişte alınan masa ve kahve makineleri, modern iş gücünün ruh sağlığı analizini gölgeleyemez."
+              }
+            ]
           },
           {
-            id: "c3",
-            keyword: "well-being correlation",
-            title: "Yaşam Kalitesi & Bağlılık (Well-being)",
-            text: "Trafik stresinin sıfırlanması ve esnek çalışma, çalışanların 'well-being' seviyesini yükselterek tükenmişlik oranlarını ve personel devrini düşürür.",
-            isCorrect: true,
-            academicPowerWord: "well-being correlation (esenlik korelasyonu)",
-            explanation: "Harika Karşı Duruş! Ofiste mutsuz tutulan çalışanların yerine, özgür ve enerjik çalışanların kuruma daha sadık olduğunu kanıtladınız."
-          },
-          {
-            id: "c4",
-            keyword: "cybersecurity breaches",
-            title: "Siber Güvenlik Zafiyeti (Distractor)",
-            text: "Ev ağlarından şirket veritabanına bağlanan çalışanlar siber saldırılara ve veri hırsızlığına davetiye çıkarır.",
-            isCorrect: false,
-            academicPowerWord: "adverse argument (aleyhte argüman)",
-            explanation: "Yanlış Koz! Bu kart uzaktan çalışmayı savunmuyor, bilakis şirket yönetiminin ofise dönme baskısını haklı çıkaracak bir zafiyeti dile getiriyor!"
-          }
-        ]
-      },
-      {
-        id: 4,
-        topicTitle: "Sosyal Medya ve Gençlik Yasakları",
-        topicEn: "Should governments enforce strict age bans on social media for minors under 16?",
-        opponentName: "Prof. Clara Higgins (Dijital Özgürlükler Savunucusu)",
-        opponentAvatar: "📱",
-        opponentClaim: "State-enforced social media bans infringe upon young people's fundamental right to digital communication, self-expression, and decentralized civic discovery.",
-        opponentClaimTr: "Devlet eliyle getirilen sosyal medya yasakları, gençlerin temel dijital iletişim, kendini ifade etme ve bağımsız sivil keşif haklarını ihlal eder.",
-        cards: [
-          {
-            id: "c1",
-            keyword: "dopaminergic addiction",
-            title: "Nörolojik Bağımlılık Mimarisi (Addiction)",
-            text: "Sosyal medya algoritmaları kâr amacıyla 'dopaminergic addiction' yaratacak şekilde tasarlanmıştır; ergen beyni henüz bu manipülasyona karşı biyolojik savunmaya sahip değildir.",
-            isCorrect: true,
-            academicPowerWord: "dopaminergic addiction (dopaminerjik bağımlılık)",
-            explanation: "Bilimsel Zafer! Rakibin romantik 'özgürlük' argümanını nörobiyolojik bağımlılık ve kâr odaklı manipülasyon gerçeğiyle çürüttünüz."
-          },
-          {
-            id: "c2",
-            keyword: "epidemiological crisis",
-            title: "Akıl Sağlığı Krizi (Epidemiological)",
-            text: "Veriler, akıllı telefon patlamasıyla gençlerdeki anksiyete, depresyon ve kendine zarar verme oranları arasında doğrudan 'epidemiological correlation' olduğunu gösteriyor.",
-            isCorrect: true,
-            academicPowerWord: "epidemiological crisis (epidemiyolojik kriz)",
-            explanation: "Çarpıcı Kanıt! İfade özgürlüğü tartışmasını doğrudan gençlik depresyonu ve halk sağlığı krizine bağlayarak kazandınız."
-          },
-          {
-            id: "c3",
-            keyword: "state duty of care",
-            title: "Devletin Koruma Sorumluluğu (Duty of Care)",
-            text: "Tıpkı tütün ve alkolde olduğu gibi, devletin gelişme çağındaki çocukları korumak için yasal bir 'duty of care' (gözetim ve koruma yükümlülüğü) mevcuttur.",
-            isCorrect: true,
-            academicPowerWord: "state duty of care (kamusal gözetim yükümlülüğü)",
-            explanation: "Hukuki Nakavt! Tütün ve alkol benzetmesiyle, yaş sınırının sansür değil meşru bir kamusal koruma kalkanı olduğunu kanıtladınız."
-          },
-          {
-            id: "c4",
-            keyword: "privacy surveillance",
-            title: "Gizlilik İhlali & Takip (Distractor)",
-            text: "Büyük teknoloji şirketleri kullanıcıların konum ve mesaj verilerini satarak mahremiyet haklarını çiğnemektedir.",
-            isCorrect: false,
-            academicPowerWord: "irrelevant claim (konu dışı argüman)",
-            explanation: "Konu Dışı (Non Sequitur)! Veri gizliliği önemli bir problem olsa da, çocuklara yönelik sosyal medya yaş sınırını savunmak için geçerli bir gerekçe değildir."
-          }
-        ]
-      },
-      {
-        id: 5,
-        topicTitle: "Gen Düzenleme ve İnsan Biyoetiği",
-        topicEn: "Should germline CRISPR genetic editing in humans be globally legalized?",
-        opponentName: "Dr. Arthur Pendelton (Biyoetik Enstitüsü)",
-        opponentAvatar: "🧬",
-        opponentClaim: "Human germline genetic editing crosses an irrevocable ethical boundary, opening the dystopian floodgates to genetic caste systems and eugenic discrimination.",
-        opponentClaimTr: "İnsan üreme hücrelerinde genetik düzenleme yapmak geri dönülemez bir etik sınırı aşar; genetik kast sistemlerine ve öjenik ayrımcılığa distopik kapılar açar.",
-        cards: [
-          {
-            id: "c1",
-            keyword: "hereditary eradication",
-            title: "Kalıtsal Hastalıkların Yok Edilmesi",
-            text: "Kistik fibrozis, Huntington ve orak hücre anemisi gibi yüzlerce ölümcül genetik hastalığı nesiller boyu 'hereditary eradication' ile tamamen yeryüzünden silebiliriz.",
-            isCorrect: true,
-            academicPowerWord: "hereditary eradication (kalıtsal hastalıkların kökünün kazınması)",
-            explanation: "Muazzam İnsani Savunma! Soyut distopya korkularını, yüz binlerce çocuğun ölümcül hastalıklardan sonsuza dek kurtulması gerçeğiyle alt ettiniz."
-          },
-          {
-            id: "c2",
-            keyword: "preventive economics",
-            title: "Milyarlarca Dolarlık Sağlık Tasarrufu",
-            text: "Kronik genetik hastalıkların doğmadan engellenmesi, küresel sağlık bütçelerindeki 'preventive economics' verimliliğini trilyonlarca dolar artıracaktır.",
-            isCorrect: true,
-            academicPowerWord: "preventive economics (önleyici sağlık ekonomisi)",
-            explanation: "Güçlü Ekonomik Argüman! Sağlık sistemlerinin sürdürülebilirliği ve tedavi masraflarının ortadan kalkması tezini başarıyla sundunuz."
-          },
-          {
-            id: "c3",
-            keyword: "strict regulatory oversight",
-            title: "Sıkı Düzenleyici Denetim (Oversight)",
-            text: "Yasaklamak yerine 'strict regulatory oversight' kurarak, kozmetik zenginleşmeyi engelleyip teknolojiyi yalnızca hayati tıbbi tedavilerle sınırlandırmak mümkündür.",
-            isCorrect: true,
-            academicPowerWord: "strict regulatory oversight (sıkı denetim ve regülasyon)",
-            explanation: "Akıllıca Politika Hamlesi! 'Kast sistemi' tehlikesini mutlak yasakla değil, katı uluslararası regülasyon ve tıp etiği denetimiyle bertaraf ettiniz."
-          },
-          {
-            id: "c4",
-            keyword: "laboratory cost",
-            title: "Yüksek Laboratuvar Maliyeti (Distractor)",
-            text: "CRISPR ve gen dizileme makineleri aşırı pahalıdır ve üniversite bütçelerini çok zorlamaktadır.",
-            isCorrect: false,
-            academicPowerWord: "trivial objection (önemsiz / zayıf itiraz)",
-            explanation: "Zayıf & Geçersiz Argüman! Laboratuvar ekipman fiyatı felsefi ve biyoetik insan gen düzenlemesi tartışmasında geçerli bir koz olamaz."
-          }
-        ]
-      },
-      {
-        id: 6,
-        topicTitle: "Kripto Para ve Finansal İstikrar",
-        topicEn: "Do decentralized cryptocurrencies threaten sovereign financial stability?",
-        opponentName: "Sir Gregory Thorne (Merkez Bankaları Birliği)",
-        opponentAvatar: "🏛️",
-        opponentClaim: "Cryptocurrencies facilitate unregulated illicit financial capital flight, exacerbate speculative asset bubbles, and fundamentally undermine central banks' monetary policy autonomy.",
-        opponentClaimTr: "Kripto paralar yasa dışı sermaye kaçışını kolaylaştırır, spekülatif varlık balonlarını körükler ve merkez bankalarının para politikası özerkliğini temelde baltalar.",
-        cards: [
-          {
-            id: "c1",
-            keyword: "cryptographic transparency",
-            title: "Şeffaf Defter Mimarisi (Transparency)",
-            text: "Blokzincirin 'cryptographic transparency' yapısı, geleneksel off-shore bankacılıktaki kara para aklamayı imkansız kılan açık ve denetlenebilir bir kayıt defteri sunar.",
-            isCorrect: true,
-            academicPowerWord: "cryptographic transparency (kriptografik şeffaflık)",
-            explanation: "Müthiş Karşı Hamle! Rakibin 'yasa dışı sermaye' iddiasını halka açık blokzincir defterlerinin şeffaf denetlenebilirliği ile çürüttünüz."
-          },
-          {
-            id: "c2",
-            keyword: "financial inclusion",
-            title: "Bankasız Toplumlara Erişim (Inclusion)",
-            text: "Merkeziyetsiz protokoller küresel 'financial inclusion' devrimi yaratarak banka hesabı olmayan 1.4 milyar insana düşük maliyetli küresel sermaye erişimi sağlar.",
-            isCorrect: true,
-            academicPowerWord: "financial inclusion (finansal kapsayıcılık)",
-            explanation: "Harika Tez! Bürokrasi ve merkez bankası tekellerine karşı küresel finansal erişim ve özgürlük argümanını savundunuz."
-          },
-          {
-            id: "c3",
-            keyword: "inflation hedge",
-            title: "Enflasyona Karşı Güvenli Liman (Hedge)",
-            text: "Sınırlı arza sahip matematiksel varlıklar, sorumsuz para basımına ve hiperenflasyona karşı vatandaşlar için meşru bir 'inflation hedge' görevi görür.",
-            isCorrect: true,
-            academicPowerWord: "inflation hedge (enflasyondan korunma kalkanı)",
-            explanation: "Ekonomik Zafer! Sınırsız para basımının yarattığı satın alma gücü erimesine karşı matematiksel kural kalkanını başarıyla sundunuz."
-          },
-          {
-            id: "c4",
-            keyword: "mining hardware cost",
-            title: "Madencilik Donanım Fiyatları (Distractor)",
-            text: "Ekran kartı ve ASIC çip fiyatlarındaki artış kripto madencilerinin maliyetlerini yükseltmektedir.",
-            isCorrect: false,
-            academicPowerWord: "trivial technicality (önemsiz teknik itiraz)",
-            explanation: "Zayıf & Alakasız Koz! Donanım maliyetleri makroekonomik finansal istikrar ve para politikası tartışmasında geçerli bir koz değildir."
+            roundNumber: 3,
+            phaseName: "Kapanış & Nihai Çürütme",
+            opponentClaim: "Without constant physical surveillance, executives cannot measure authentic productivity, risking systemic operational decay.",
+            opponentClaimTr: "Sürekli fiziksel gözetim olmaksızın yöneticiler gerçek verimliliği ölçemez; bu da sistemik operasyonel çöküş riski doğurur.",
+            cards: [
+              {
+                id: "m3_r3_c1",
+                keyword: "objective deliverables",
+                title: "Nesnel Çıktı ve Performans Kriterleri",
+                thesisEn: "Evaluating rigorous objective deliverables and code output eliminates superficial presenteeism and optimizes true performance.",
+                thesisTr: "Somut teslim edilebilir çıktılara ve performansa odaklanmak, sahte ofiste görünme kültürünü (presenteeism) bitirir ve gerçek başarıyı ödüllendirir.",
+                isCorrect: true,
+                academicPowerWord: "objective deliverables (somut teslim edilebilir çıktılar)",
+                explanation: "Mükemmel Yönetim Bilimi Zaferi! Koltukta oturma süresi illüzyonunu (presenteeism), nesnel KPI ve teslimat kalitesiyle alaşağı ettiniz!"
+              },
+              {
+                id: "m3_r3_c2",
+                keyword: "appeal to fear",
+                title: "Gözetim ve Kontrol Kaygısı",
+                thesisEn: "If managers cannot watch screens directly, every company will be infiltrated by foreign spies.",
+                thesisTr: "Yöneticiler ekranları doğrudan izleyemezse her şirket yabancı casusların eline geçecektir.",
+                isCorrect: false,
+                fallacyType: "Korkuya Başvuru (Appeal to Fear)",
+                explanation: "Korku Tellallığı! Paranoyakça komplo teorileriyle kurumsal verimlilik metodolojisini savunmak geçersizdir."
+              },
+              {
+                id: "m3_r3_c3",
+                keyword: "strawman",
+                title: "Özerklik ve Denetim İtirazı",
+                thesisEn: "Remote work proponents demand that employees never report progress or answer emails.",
+                thesisTr: "Uzaktan çalışma taraftarları çalışanların hiçbir zaman rapor vermemesini ve maillere yanıt vermemesini istiyor.",
+                isCorrect: false,
+                fallacyType: "Saman Adam (Strawman)",
+                explanation: "Saman Adam! Performans takibini 'tam başıboşluk' gibi göstererek karşı tezi çarpıtmak mantıksal bir hatadır."
+              },
+              {
+                id: "m3_r3_c4",
+                keyword: "slippery slope",
+                title: "Sosyal Doku Dönüşümü",
+                thesisEn: "Working from home will lead to the extinction of commercial real estate and destroy the entire global banking system.",
+                thesisTr: "Evden çalışmak ticari gayrimenkullerin yok olmasına ve tüm küresel bankacılık sisteminin çökmesine yol açacaktır.",
+                isCorrect: false,
+                fallacyType: "Kaygan Zemin (Slippery Slope)",
+                explanation: "Kaygan Zemin Safsatası! Şirketlerin ofis küçültmesini küresel bankacılığın sonu olarak sunmak felaket tellallığıdır."
+              }
+            ]
           }
         ]
       }
     ];
 
     let currentDefenderTopicIdx = 0;
+    let currentDefenderRoundIdx = 0;
     let defenderScore = 0;
-    let defenderRoundAnswered = false;
+    let defenderRoundLocked = false;
+    let defenderRoundsWon = 0;
 
     function initThesisDefender() {
       const pillsContainer = document.getElementById('defenderTopicPills');
       if (pillsContainer) {
         pillsContainer.innerHTML = defenderTopics.map((t, idx) => `
-          <button type="button" onclick="selectDefenderTopic(${idx})" id="defenderTopicPill-${idx}" class="px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 ${idx === currentDefenderTopicIdx ? 'bg-indigo-900/60 border border-indigo-500/40 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">
-            Tez ${idx + 1}
+          <button type="button" onclick="selectDefenderTopic(${idx})" id="defenderTopicPill-${idx}" class="px-3.5 py-1.5 rounded-xl text-xs font-mono transition shrink-0 ${idx === currentDefenderTopicIdx ? 'bg-indigo-900/60 border border-indigo-500/40 text-white shadow-sm ring-1 ring-indigo-400' : 'text-slate-400 hover:text-white'}">
+            Münazara ${idx + 1}
           </button>
         `).join('');
       }
-      renderDefenderTopic();
+      currentDefenderRoundIdx = 0;
+      defenderRoundLocked = false;
+      renderDefenderRound();
     }
 
     function selectDefenderTopic(idx) {
       playAudioTone('click');
       triggerHaptic('tap');
       currentDefenderTopicIdx = idx;
-      defenderRoundAnswered = false;
-      renderDefenderTopic();
+      currentDefenderRoundIdx = 0;
+      defenderRoundLocked = false;
+      renderDefenderRound();
     }
 
-    function renderDefenderTopic() {
-      const t = defenderTopics[currentDefenderTopicIdx];
-      if (!t) return;
+    function renderDefenderRound() {
+      const match = defenderTopics[currentDefenderTopicIdx];
+      if (!match) return;
 
-      // Update pills
+      const round = match.rounds[currentDefenderRoundIdx];
+      if (!round) return;
+
+      // Update topic pills
       defenderTopics.forEach((_, idx) => {
         const p = document.getElementById('defenderTopicPill-' + idx);
         if (p) {
           if (idx === currentDefenderTopicIdx) {
-            p.className = 'px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 bg-indigo-900/60 border border-indigo-500/40 text-white shadow-sm';
+            p.className = 'px-3.5 py-1.5 rounded-xl text-xs font-mono transition shrink-0 bg-indigo-900/60 border border-indigo-500/40 text-white shadow-sm ring-1 ring-indigo-400 font-bold';
           } else {
-            p.className = 'px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 text-slate-400 hover:text-white';
+            p.className = 'px-3.5 py-1.5 rounded-xl text-xs font-mono transition shrink-0 text-slate-400 hover:text-white';
           }
         }
       });
 
       const roundText = document.getElementById('defenderRoundText');
       const scoreText = document.getElementById('defenderScoreText');
-      if (roundText) roundText.textContent = `Tur ${currentDefenderTopicIdx + 1} / ${defenderTopics.length}`;
+      if (roundText) roundText.textContent = `Raunt ${round.roundNumber} / 3: ${round.phaseName}`;
       if (scoreText) scoreText.textContent = defenderScore;
 
       const titleEl = document.getElementById('defenderTopicTitle');
       const topicEnEl = document.getElementById('defenderTopicEn');
-      if (titleEl) titleEl.textContent = t.topicTitle;
-      if (topicEnEl) topicEnEl.textContent = `"${t.topicEn}"`;
+      if (titleEl) titleEl.textContent = match.topicTitle;
+      if (topicEnEl) topicEnEl.textContent = `"${match.topicEn}"`;
 
       const rivalAvatar = document.getElementById('defenderRivalAvatar');
       const rivalName = document.getElementById('defenderRivalName');
       const rivalClaim = document.getElementById('defenderRivalClaim');
       const rivalClaimTr = document.getElementById('defenderRivalClaimTr');
 
-      if (rivalAvatar) rivalAvatar.textContent = t.opponentAvatar;
-      if (rivalName) rivalName.textContent = t.opponentName;
-      if (rivalClaim) rivalClaim.textContent = `"${t.opponentClaim}"`;
-      if (rivalClaimTr) rivalClaimTr.textContent = `TR: ${t.opponentClaimTr}`;
+      if (rivalAvatar) rivalAvatar.textContent = match.opponentAvatar;
+      if (rivalName) rivalName.textContent = match.opponentName;
+      if (rivalClaim) rivalClaim.textContent = `"${round.opponentClaim}"`;
+      if (rivalClaimTr) rivalClaimTr.textContent = `TR: ${round.opponentClaimTr}`;
 
-      // Render 4 player cards
+      // Reset feedback and action buttons
+      const feedback = document.getElementById('defenderFeedbackCard');
+      if (feedback) {
+        feedback.classList.add('hidden');
+        feedback.innerHTML = '';
+      }
+
+      const nextBtn = document.getElementById('btnNextDefenderRound');
+      const retryBtn = document.getElementById('btnRetryDefenderRound');
+      if (nextBtn) nextBtn.classList.add('hidden');
+      if (retryBtn) retryBtn.classList.add('hidden');
+
+      const scorecardModal = document.getElementById('defenderScorecardModal');
+      if (scorecardModal) scorecardModal.classList.add('hidden');
+
+      const arenaMain = document.getElementById('defenderArenaMainContent');
+      if (arenaMain) arenaMain.classList.remove('hidden');
+
+      defenderRoundLocked = false;
+
+      // Render 4 counter-argument cards
       const handContainer = document.getElementById('defenderHandCards');
       if (handContainer) {
-        handContainer.innerHTML = t.cards.map((c, idx) => `
+        handContainer.innerHTML = round.cards.map((c, idx) => `
           <button type="button" onclick="playDefenderCard('${c.id}')" id="defenderCardBtn-${c.id}" class="p-4 rounded-2xl bg-black/40 hover:bg-white/[0.05] border border-white/[0.1] hover:border-indigo-500/50 text-left transition-all group flex flex-col justify-between space-y-2 relative active:scale-[0.98]">
-            <div class="space-y-1">
+            <div class="space-y-1.5">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-white group-hover:text-indigo-200 transition font-mono">${c.title}</span>
                 <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.05] text-indigo-300">Koz #${idx + 1}</span>
               </div>
-              <p class="text-xs text-slate-300 leading-snug">${c.text}</p>
+              <p class="text-xs sm:text-sm text-slate-100 font-serif-hero leading-snug italic">"${c.thesisEn}"</p>
+              <p class="text-[11px] text-slate-400 leading-snug">${c.thesisTr}</p>
             </div>
-            <div class="text-[10px] font-mono text-indigo-300/80 border-t border-white/[0.06] pt-1.5 flex items-center gap-1">
-              <span>⚡ Güç Kelimesi:</span> <span class="font-bold">${c.keyword}</span>
+            <div class="text-[10px] font-mono text-indigo-300/80 border-t border-white/[0.06] pt-1.5 flex items-center justify-between">
+              <span>⚡ Akademik Koz:</span> <span class="font-bold text-white">${c.keyword}</span>
             </div>
           </button>
         `).join('');
       }
-
-      const feedback = document.getElementById('defenderFeedbackCard');
-      if (feedback) feedback.classList.add('hidden');
-      const nextBtn = document.getElementById('btnNextDefenderRound');
-      if (nextBtn) nextBtn.classList.add('hidden');
     }
 
     function playDefenderCard(cardId) {
-      if (defenderRoundAnswered) return;
-      const t = defenderTopics[currentDefenderTopicIdx];
-      if (!t) return;
+      if (defenderRoundLocked) return;
+      defenderRoundLocked = true; // SINGLE-MOVE LOCKING: Kilitlendi!
 
-      const card = t.cards.find(c => c.id === cardId);
+      const match = defenderTopics[currentDefenderTopicIdx];
+      if (!match) return;
+      const round = match.rounds[currentDefenderRoundIdx];
+      if (!round) return;
+
+      const card = round.cards.find(c => c.id === cardId);
       if (!card) return;
 
-      const btn = document.getElementById('defenderCardBtn-' + cardId);
+      const chosenBtn = document.getElementById('defenderCardBtn-' + cardId);
       const feedback = document.getElementById('defenderFeedbackCard');
       const nextBtn = document.getElementById('btnNextDefenderRound');
+      const retryBtn = document.getElementById('btnRetryDefenderRound');
+
+      // Dim non-chosen cards
+      round.cards.forEach(c => {
+        if (c.id !== cardId) {
+          const otherBtn = document.getElementById('defenderCardBtn-' + c.id);
+          if (otherBtn) {
+            otherBtn.classList.add('opacity-40', 'pointer-events-none');
+          }
+        }
+      });
 
       if (card.isCorrect) {
-        defenderRoundAnswered = true;
         defenderScore += 25;
+        defenderRoundsWon++;
         playAudioTone('success');
         triggerHaptic('success');
         triggerConfetti();
@@ -14316,57 +14463,170 @@
         const scoreText = document.getElementById('defenderScoreText');
         if (scoreText) scoreText.textContent = defenderScore;
 
-        if (btn) {
-          btn.classList.add('border-emerald-500', 'bg-emerald-950/40', 'ring-2', 'ring-emerald-400');
+        if (chosenBtn) {
+          chosenBtn.className = 'p-4 rounded-2xl bg-emerald-950/70 border-2 border-emerald-500 text-left transition-all flex flex-col justify-between space-y-2 relative ring-2 ring-emerald-400 shadow-xl shadow-emerald-950/50';
         }
 
+        const isLastRound = currentDefenderRoundIdx === 2;
+
         if (feedback) {
-          feedback.className = 'p-5 rounded-2xl border border-emerald-500/50 bg-gradient-to-r from-emerald-950/40 via-emerald-900/20 to-black/60 text-emerald-100 text-xs sm:text-sm font-medium space-y-2';
+          feedback.className = 'p-5 rounded-2xl border border-emerald-500/50 bg-gradient-to-r from-emerald-950/60 via-emerald-900/30 to-black/80 text-emerald-100 text-xs sm:text-sm font-medium space-y-2 animate-in fade-in';
           feedback.innerHTML = `
-            <div class="flex items-center gap-2 font-bold text-sm text-emerald-300">
-              <span>🏆</span> <span>Zafer! +25 Münazara Puanı Kazandın!</span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2 font-bold text-sm text-emerald-300">
+                <span>🏆</span> <span>Raunt Kazanıldı! (+25 Münazara Puanı)</span>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-500/30">GEÇERLİ SAVUNMA</span>
             </div>
-            <div>${card.explanation}</div>
-            <div class="p-3 rounded-xl bg-black/50 border border-emerald-500/30 text-[11px] font-mono text-emerald-200">
-              🔑 Akademik Güç Kalıbı: <span class="text-white font-bold">${card.academicPowerWord}</span>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${card.explanation}</p>
+            <div class="p-3 rounded-xl bg-black/60 border border-emerald-500/30 text-[11px] font-mono text-emerald-200 flex items-center gap-2">
+              <span>🔑 Akademik Güç Kalıbı:</span> <strong class="text-white">${card.academicPowerWord}</strong>
             </div>
           `;
           feedback.classList.remove('hidden');
         }
 
-        if (nextBtn) nextBtn.classList.remove('hidden');
+        if (isLastRound) {
+          if (nextBtn) {
+            nextBtn.innerHTML = '<span>🏆 Münazara Karnesini Gör</span> <span>▶</span>';
+            nextBtn.classList.remove('hidden');
+          }
+        } else {
+          if (nextBtn) {
+            nextBtn.innerHTML = `<span>Sonraki Raunt (${currentDefenderRoundIdx + 2}/3)</span> <span>▶</span>`;
+            nextBtn.classList.remove('hidden');
+          }
+        }
       } else {
+        // WRONG: Rakip kazandı, -10 puan
+        defenderScore = Math.max(0, defenderScore - 10);
         playAudioTone('error');
         triggerHaptic('error');
-        if (btn) {
-          btn.classList.add('border-rose-500', 'bg-rose-950/40', 'ring-2', 'ring-rose-400');
+
+        const scoreText = document.getElementById('defenderScoreText');
+        if (scoreText) scoreText.textContent = defenderScore;
+
+        if (chosenBtn) {
+          chosenBtn.className = 'p-4 rounded-2xl bg-rose-950/70 border-2 border-rose-500 text-left transition-all flex flex-col justify-between space-y-2 relative ring-2 ring-rose-400 shadow-xl shadow-rose-950/50 animate-pulse';
         }
 
         if (feedback) {
-          feedback.className = 'p-5 rounded-2xl border border-rose-500/50 bg-gradient-to-r from-rose-950/40 via-rose-900/20 to-black/60 text-rose-100 text-xs sm:text-sm font-medium space-y-2';
+          feedback.className = 'p-5 rounded-2xl border border-rose-500/50 bg-gradient-to-r from-rose-950/60 via-rose-900/30 to-black/80 text-rose-100 text-xs sm:text-sm font-medium space-y-2 animate-in fade-in';
           feedback.innerHTML = `
-            <div class="flex items-center gap-2 font-bold text-sm text-rose-300">
-              <span>⚠️</span> <span>Hatalı Koz / Yanılgı!</span>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2 font-bold text-sm text-rose-300">
+                <span>⚠️</span> <span>Raunt Kaybedildi! (-10 Puan)</span>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-200 border border-rose-500/30">${card.fallacyType || 'SAFDATA'}</span>
             </div>
-            <div>${card.explanation}</div>
-            <div class="text-[11px] text-slate-300">Farklı bir koz seçerek rakibi çürütmeyi deneyin.</div>
+            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">${card.explanation}</p>
+            <div class="text-[11px] text-amber-200/90 font-mono">
+              💡 Münazara Kuralı: Sallamasyon engeli devrede. Bu rauntta tekrar deneyerek doğru karşı tezi bulun.
+            </div>
           `;
           feedback.classList.remove('hidden');
         }
+
+        if (retryBtn) retryBtn.classList.remove('hidden');
       }
+    }
+
+    function retryDefenderRound() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      defenderRoundLocked = false;
+      renderDefenderRound();
     }
 
     function nextDefenderRound() {
       playAudioTone('click');
       triggerHaptic('tap');
-      defenderRoundAnswered = false;
+
+      if (currentDefenderRoundIdx < 2) {
+        currentDefenderRoundIdx++;
+        defenderRoundLocked = false;
+        renderDefenderRound();
+      } else {
+        // 3 raunt bitti -> Karneni göster!
+        showDefenderScorecard();
+      }
+    }
+
+    function showDefenderScorecard() {
+      triggerConfetti();
+      playAudioTone('success');
+      const arenaMain = document.getElementById('defenderArenaMainContent');
+      const scorecard = document.getElementById('defenderScorecardModal');
+
+      if (arenaMain) arenaMain.classList.add('hidden');
+      if (scorecard) {
+        const accuracy = Math.round((defenderRoundsWon / 3) * 100);
+        let titleBadge = "Oxford Onur Derecesi Münazara Şampiyonu 🏅";
+        let titleColor = "text-amber-400";
+        if (accuracy < 60) {
+          titleBadge = "Gelişmekte Olan Münazır (Junior Debater) 📖";
+          titleColor = "text-indigo-300";
+        } else if (accuracy < 100) {
+          titleBadge = "Yetkin Akademik Hatip (Senior Debater) 🎓";
+          titleColor = "text-emerald-400";
+        }
+
+        scorecard.innerHTML = `
+          <div class="space-y-3">
+            <div class="text-4xl">🏆</div>
+            <div class="text-xs font-mono uppercase tracking-widest text-amber-300/80 font-bold">Münazara Karnesi (Official Scorecard)</div>
+            <h3 class="font-serif-hero text-2xl sm:text-3xl font-bold text-white">Münazara Karşılaşması Tamamlandı!</h3>
+            <div class="text-sm ${titleColor} font-bold font-mono">${titleBadge}</div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 max-w-md mx-auto pt-2">
+            <div class="p-3.5 rounded-2xl bg-black/60 border border-white/[0.08] text-center">
+              <div class="text-2xl font-bold font-mono text-indigo-300">${defenderScore}</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Toplam Puan</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-black/60 border border-white/[0.08] text-center">
+              <div class="text-2xl font-bold font-mono text-emerald-400">${defenderRoundsWon} / 3</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Kazanılan Raunt</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-black/60 border border-white/[0.08] text-center">
+              <div class="text-2xl font-bold font-mono text-amber-400">%${accuracy}</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Başarı Oranı</div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
+            <button type="button" onclick="restartDefenderMatch()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] text-slate-200 text-xs font-medium transition border border-white/10 flex items-center justify-center gap-2">
+              <span>🔄</span> <span>Bu Münazarayı Baştan Oyna</span>
+            </button>
+            <button type="button" onclick="advanceNextDefenderMatch()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-bold transition shadow-lg shadow-indigo-950/50 flex items-center justify-center gap-2">
+              <span>Sıradaki Münazaraya Geç</span> <span>➔</span>
+            </button>
+          </div>
+        `;
+        scorecard.classList.remove('hidden');
+      }
+    }
+
+    function restartDefenderMatch() {
+      playAudioTone('click');
+      currentDefenderRoundIdx = 0;
+      defenderRoundLocked = false;
+      renderDefenderRound();
+    }
+
+    function advanceNextDefenderMatch() {
+      playAudioTone('click');
       currentDefenderTopicIdx = (currentDefenderTopicIdx + 1) % defenderTopics.length;
-      renderDefenderTopic();
+      currentDefenderRoundIdx = 0;
+      defenderRoundLocked = false;
+      renderDefenderRound();
     }
 
     function speakDefenderClaim() {
-      const t = defenderTopics[currentDefenderTopicIdx];
-      if (t) speakText(t.opponentClaim);
+      const match = defenderTopics[currentDefenderTopicIdx];
+      if (!match) return;
+      const round = match.rounds[currentDefenderRoundIdx];
+      if (round) speakText(round.opponentClaim);
     }
 
 
