@@ -6709,6 +6709,25 @@ activeLevelFilter = lvl;
       loadPresetReadingText(currentReadingTextIndex);
     }
 
+    function switchReadingSubTab(tab) {
+      const isHighlighter = tab === 'highlighter';
+      const panelH = document.getElementById('panel-reading-highlighter');
+      const panelU = document.getElementById('panel-reading-upgrader');
+      if (panelH) panelH.classList.toggle('hidden', !isHighlighter);
+      if (panelU) panelU.classList.toggle('hidden', isHighlighter);
+      const btnH = document.getElementById('subtab-highlighter');
+      const btnU = document.getElementById('subtab-upgrader');
+      if (btnH && btnU) {
+        if (isHighlighter) {
+          btnH.className = 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition btn-primary-glow flex items-center justify-center gap-1.5 shadow-sm';
+          btnU.className = 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
+        } else {
+          btnU.className = 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition btn-primary-glow flex items-center justify-center gap-1.5 shadow-sm';
+          btnH.className = 'flex-1 sm:flex-initial px-3.5 py-2 rounded-lg font-medium transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5';
+        }
+      }
+    }
+
     function loadPresetReadingText(idx) {
       currentReadingTextIndex = idx;
       renderReadingPresetButtons();
