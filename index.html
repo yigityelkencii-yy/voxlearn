@@ -534,8 +534,8 @@
 
         <!-- Modlar Ana Menü Butonu (🧭 Modlar ▾) -->
         <button type="button" onclick="toggleModeSelectModal()" id="btnModeSelector" title="Çalışma Modları Menüsü (Tıkla)" class="px-3 sm:px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-900/80 via-rose-800/80 to-rose-950/80 hover:from-rose-800 hover:to-rose-700 border border-rose-500/40 text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 shadow-md shadow-rose-950/50 transition active:scale-95">
-          <span id="activeModeIcon" class="text-sm">🃏</span>
-          <span id="activeModeText" class="font-semibold tracking-tight">Kartlar</span>
+          <span id="activeModeIcon" class="text-sm">🧭</span>
+          <span class="font-semibold tracking-tight">Mod: <span id="activeModeText">Kartlar</span></span>
           <span class="text-rose-300 text-[10px] ml-0.5">▾</span>
         </button>
       </div>
@@ -574,7 +574,13 @@
       <div class="text-[11px] text-[#a8998c]/60 shrink-0 font-mono hidden md:block">
         Oxford 3000™ & Academic Word List
       </div>
-    </div>
+    
+        <button type="button" onclick="selectMode('morphology')" id="btnQuickAcadLab" title="Akademik Laboratuvar & Düello" class="ml-auto shrink-0 px-3 py-1.5 rounded-xl bg-indigo-950/80 hover:bg-indigo-900/90 border border-indigo-500/40 text-indigo-200 hover:text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm active:scale-95 transition">
+          <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+          <span>🧪 Akademik Lab</span>
+          <span class="text-[10px] text-indigo-300">➔</span>
+        </button>
+      </div>
   </div>
 
   <!-- Main Content Body -->
@@ -1977,6 +1983,617 @@
 
     </section>
 
+    <!-- ==================== 7. MORPHOLOGY LAB (KELİME RÖNTGENİ) ==================== -->
+    <section id="view-morphology" class="hidden max-w-4xl mx-auto space-y-6">
+      <!-- Akademik Lab Ortak Üst Sekme Barı -->
+      <div class="flex items-center justify-between gap-2 p-2 bg-gradient-to-r from-indigo-950/60 via-black/80 to-indigo-950/60 border border-indigo-500/40 rounded-2xl backdrop-blur-md shadow-xl overflow-x-auto scrollbar-none">
+        <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+          <button type="button" onclick="switchTab('morphology')" id="acadTab-morphology-morphology" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-indigo-600 text-white shadow-md ring-1 ring-indigo-400">
+        <span>🧩</span> <span>Kelime Röntgeni</span>
+      </button>
+      <button type="button" onclick="switchTab('autopsy')" id="acadTab-autopsy-morphology" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🔪</span> <span>Cümle Ameliyatı</span>
+      </button>
+      <button type="button" onclick="switchTab('toneshifter')" id="acadTab-toneshifter-morphology" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🧪</span> <span>Ton Çevirici</span>
+      </button>
+      <button type="button" onclick="switchTab('defender')" id="acadTab-defender-morphology" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>⚖️</span> <span>Tez Savunması</span>
+      </button>
+        </div>
+        <button type="button" onclick="selectMode('flashcards')" class="px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white text-xs font-mono shrink-0 transition flex items-center gap-1 active:scale-95">
+          <span>◀</span> <span class="hidden sm:inline">Kartlara Dön</span>
+        </button>
+      </div>
+
+      
+      <!-- Üst Başlık & Alt Sekmeler -->
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-3 border-b border-indigo-950/40">
+        <div>
+          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Dilbilim & Morfoloji Laboratuvarı</div>
+          <h2 class="font-serif-hero text-2xl sm:text-3xl font-medium text-[#fdf6ee] flex items-center gap-2.5">
+            <span>Kelime Röntgeni</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-sans font-medium">C1 Akademik</span>
+          </h2>
+          <p class="text-[#a8998c] text-xs sm:text-sm mt-1">
+            Hiç bilmediğiniz 15 harfli akademik kelimelerin şifresini Latin ve Grek köklerinden çözün.
+          </p>
+        </div>
+
+        <!-- Alt Sekme Seçici -->
+        <div class="flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/[0.08] text-xs font-medium overflow-x-auto max-w-full scrollbar-none">
+          <button type="button" onclick="setMorphologySubTab('table')" id="mSubTab-table" class="px-3.5 py-1.5 rounded-lg bg-indigo-900/60 border border-indigo-500/30 text-white font-medium transition shrink-0 shadow-sm flex items-center gap-1.5">
+            <span>🔬</span> <span>Röntgen Masası</span>
+          </button>
+          <button type="button" onclick="setMorphologySubTab('quiz')" id="mSubTab-quiz" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0 flex items-center gap-1.5">
+            <span>🎮</span> <span>Röntgen Pratiği</span>
+          </button>
+          <button type="button" onclick="setMorphologySubTab('roots')" id="mSubTab-roots" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0 flex items-center gap-1.5">
+            <span>📜</span> <span>12 Temel Kök Atlası</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL 1: İnteraktif Röntgen Masası -->
+      <div id="panel-morph-table" class="space-y-5">
+        <!-- Hızlı Kelime Seçici & Navigasyon -->
+        <div class="flex items-center justify-between gap-2 p-3 bg-black/40 border border-white/[0.08] rounded-2xl">
+          <button type="button" onclick="prevMorphWord()" class="px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-medium text-slate-300 flex items-center gap-1">
+            <span>◀</span> <span class="hidden sm:inline">Önceki</span>
+          </button>
+          
+          <!-- Kelime Dropdown & İndeks -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono text-indigo-300/80" id="morphWordCounter">1 / 16</span>
+            <select id="morphWordSelect" onchange="selectMorphWord(parseInt(this.value, 10))" class="bg-black/60 border border-indigo-500/30 text-white text-xs sm:text-sm rounded-xl px-3 py-1.5 outline-none focus:border-indigo-400">
+              <!-- Dynamically populated options -->
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="randomMorphWord()" title="Rastgele Kelime" class="p-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white text-xs">
+              🎲
+            </button>
+            <button type="button" onclick="nextMorphWord()" class="px-3 py-1.5 rounded-xl bg-indigo-600/60 hover:bg-indigo-600 border border-indigo-500/40 text-xs font-medium text-white flex items-center gap-1">
+              <span class="hidden sm:inline">Sonraki</span> <span>▶</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ana Röntgen Kartı -->
+        <div class="p-6 sm:p-8 bg-gradient-to-b from-[#12081f] to-[#0a0412] border border-indigo-500/30 rounded-3xl shadow-2xl space-y-6 relative overflow-hidden">
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <!-- Kelime Başlığı & Telaffuz -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-indigo-950/60">
+            <div>
+              <div class="flex items-center gap-3">
+                <h3 id="morphMainWord" class="font-serif-hero text-3xl sm:text-4xl font-bold tracking-tight text-white">indestructible</h3>
+                <button type="button" onclick="speakMorphCurrentWord()" title="Telaffuzu Dinle" class="w-9 h-9 rounded-full bg-indigo-950/80 border border-indigo-500/40 hover:bg-indigo-600/40 text-indigo-300 flex items-center justify-center transition">
+                  🔊
+                </button>
+              </div>
+              <div class="flex items-center gap-2 mt-1">
+                <span id="morphPhonetic" class="font-mono text-xs text-indigo-300/80">/ˌɪndɪˈstrʌktəbl/</span>
+                <span class="text-xs text-slate-500">•</span>
+                <span id="morphTrMeaning" class="text-xs sm:text-sm text-slate-300 font-medium">Yok edilemez, parçalanamaz</span>
+              </div>
+            </div>
+            <div class="px-3 py-1.5 rounded-xl bg-black/40 border border-indigo-500/20 text-[11px] font-mono text-indigo-200">
+              ⚡ Morfolojik Ayrıştırma Masası
+            </div>
+          </div>
+
+          <!-- Röntgen Blokları (Önek - Kök - Sonek) -->
+          <div class="space-y-2">
+            <div class="text-xs font-mono uppercase tracking-wider text-slate-400">1. Anatomik Parçalar</div>
+            <div id="morphPartsContainer" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <!-- Prefix, Root, Suffix Cards Injected Here -->
+            </div>
+          </div>
+
+          <!-- Formül Kartı -->
+          <div class="space-y-2">
+            <div class="text-xs font-mono uppercase tracking-wider text-slate-400">2. Anlamsal Çözüm Formülü</div>
+            <div id="morphFormulaBox" class="p-4 rounded-2xl bg-black/60 border border-indigo-500/40 text-xs sm:text-sm font-mono text-indigo-200 leading-relaxed shadow-inner">
+              <!-- Formula injected here -->
+            </div>
+          </div>
+
+          <!-- Örnek Cümle & Kelime Ailesi -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-2">
+              <div class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <span>📖</span> <span>Akademik Bağlam</span>
+              </div>
+              <p id="morphSentenceEn" class="text-sm text-[#fdf6ee] leading-relaxed italic"></p>
+              <p id="morphSentenceTr" class="text-xs text-[#a8998c] leading-relaxed"></p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-2">
+              <div class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <span>🌳</span> <span>Aynı Kökten Türeyen Aile</span>
+              </div>
+              <div id="morphFamilyContainer" class="flex flex-wrap gap-2 pt-1">
+                <!-- Word pills injected here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 2: Röntgen Pratiği Mini Oyunu -->
+      <div id="panel-morph-quiz" class="hidden space-y-5">
+        <div class="p-6 sm:p-8 bg-gradient-to-b from-[#140b24] to-[#0d0517] border border-indigo-500/30 rounded-3xl shadow-2xl space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-indigo-950/60">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🎮</span>
+              <h3 class="font-serif-hero text-xl font-bold text-white">Röntgen Pratiği / Kök Tahmin Testi</h3>
+            </div>
+            <div class="flex items-center gap-2 font-mono text-xs">
+              <span class="text-slate-400">Puan:</span>
+              <span id="morphQuizScore" class="px-2.5 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-bold">0</span>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="text-xs font-mono text-indigo-300/80">Soru: Aşağıdaki morfolojik parçaları birleştirdiğinizde hangi kelime ve anlam ortaya çıkar?</div>
+            
+            <!-- Clue Pieces Container -->
+            <div id="morphQuizClues" class="flex flex-wrap items-center justify-center gap-3 p-5 bg-black/50 border border-indigo-500/30 rounded-2xl shadow-inner">
+              <!-- Clues injected here -->
+            </div>
+
+            <!-- Choices Container -->
+            <div id="morphQuizChoices" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <!-- 4 buttons injected here -->
+            </div>
+
+            <!-- Quiz Feedback Area -->
+            <div id="morphQuizFeedback" class="hidden p-4 rounded-2xl border text-xs sm:text-sm font-medium transition-all"></div>
+
+            <!-- Next Question Button -->
+            <div class="flex justify-end pt-2">
+              <button type="button" onclick="nextMorphQuizQuestion()" id="btnNextMorphQuiz" class="hidden px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm transition flex items-center gap-2 shadow-lg">
+                <span>Sonraki Soru</span> <span>▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: 12 Temel Kök Atlası -->
+      <div id="panel-morph-roots" class="hidden space-y-4">
+        <div class="text-xs text-slate-400 font-mono">İngilizce akademik ve C1 kelimelerin %65'i bu 12 temel Latin/Grek kökünden türetilmiştir:</div>
+        <div id="morphRootsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- 12 cards injected here -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 8. SENTENCE AUTOPSY (CÜMLE AMELİYATI) ==================== -->
+    <section id="view-autopsy" class="hidden max-w-4xl mx-auto space-y-6">
+      <!-- Akademik Lab Ortak Üst Sekme Barı -->
+      <div class="flex items-center justify-between gap-2 p-2 bg-gradient-to-r from-indigo-950/60 via-black/80 to-indigo-950/60 border border-indigo-500/40 rounded-2xl backdrop-blur-md shadow-xl overflow-x-auto scrollbar-none">
+        <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+          <button type="button" onclick="switchTab('morphology')" id="acadTab-morphology-autopsy" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🧩</span> <span>Kelime Röntgeni</span>
+      </button>
+      <button type="button" onclick="switchTab('autopsy')" id="acadTab-autopsy-autopsy" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-indigo-600 text-white shadow-md ring-1 ring-indigo-400">
+        <span>🔪</span> <span>Cümle Ameliyatı</span>
+      </button>
+      <button type="button" onclick="switchTab('toneshifter')" id="acadTab-toneshifter-autopsy" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🧪</span> <span>Ton Çevirici</span>
+      </button>
+      <button type="button" onclick="switchTab('defender')" id="acadTab-defender-autopsy" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>⚖️</span> <span>Tez Savunması</span>
+      </button>
+        </div>
+        <button type="button" onclick="selectMode('flashcards')" class="px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white text-xs font-mono shrink-0 transition flex items-center gap-1 active:scale-95">
+          <span>◀</span> <span class="hidden sm:inline">Kartlara Dön</span>
+        </button>
+      </div>
+
+      
+      <!-- Üst Başlık & Mod Bilgisi -->
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-3 border-b border-rose-950/40">
+        <div>
+          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Akademik Cümle Analizi</div>
+          <h2 class="font-serif-hero text-2xl sm:text-3xl font-medium text-[#fdf6ee] flex items-center gap-2.5">
+            <span>Cümle Ameliyatı</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-sans font-medium">3-4 Satırlık C1 Cümleleri</span>
+          </h2>
+          <p class="text-[#a8998c] text-xs sm:text-sm mt-1">
+            Göz korkutan devasa akademik cümleleri tek tıkla lazer filtreleriyle iskeletine ayırın.
+          </p>
+        </div>
+
+        <!-- Cümle Seçici Haplar -->
+        <div class="flex items-center gap-1.5 bg-black/40 p-1.5 rounded-2xl border border-white/[0.08] overflow-x-auto max-w-full scrollbar-none" id="autopsySentencePills">
+          <!-- C1, C2, C3 ... C8 pills injected here -->
+        </div>
+      </div>
+
+      <!-- Lazer Filtre Kontrol Barı -->
+      <div class="p-3 bg-black/50 border border-white/[0.08] rounded-2xl flex flex-wrap items-center justify-between gap-2.5">
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <span class="text-[11px] font-mono text-slate-400 mr-1 hidden sm:inline">Lazer Filtreleri:</span>
+          
+          <button type="button" onclick="toggleAutopsyLayer('subject')" id="laserBtn-subject" class="px-2.5 py-1.5 rounded-xl border border-blue-500/50 bg-blue-500/20 text-blue-300 font-medium transition flex items-center gap-1.5 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+            <span>🔵 Özne</span>
+          </button>
+          
+          <button type="button" onclick="toggleAutopsyLayer('verb')" id="laserBtn-verb" class="px-2.5 py-1.5 rounded-xl border border-rose-500/50 bg-rose-500/20 text-rose-300 font-medium transition flex items-center gap-1.5 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>
+            <span>🔴 Ana Yüklem</span>
+          </button>
+
+          <button type="button" onclick="toggleAutopsyLayer('clause')" id="laserBtn-clause" class="px-2.5 py-1.5 rounded-xl border border-emerald-500/50 bg-emerald-500/20 text-emerald-300 font-medium transition flex items-center gap-1.5 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>🟢 Yan Cümlecik</span>
+          </button>
+
+          <button type="button" onclick="toggleAutopsyLayer('conn')" id="laserBtn-conn" class="px-2.5 py-1.5 rounded-xl border border-amber-500/50 bg-amber-500/20 text-amber-300 font-medium transition flex items-center gap-1.5 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <span>🟡 Bağlaç</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- Cümlenin Özünü Göster Butonu -->
+          <button type="button" onclick="toggleSkeletalView()" id="btnSkeletalView" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-200 font-medium text-xs transition flex items-center gap-1.5 shadow-md">
+            <span>⚡</span> <span>Cümlenin Özünü Göster</span>
+          </button>
+
+          <button type="button" onclick="speakAutopsySentence()" title="Cümleyi Dinle" class="p-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white transition text-xs">
+            🔊
+          </button>
+        </div>
+      </div>
+
+      <!-- Ameliyat Masası (Ana Cümle Alanı) -->
+      <div class="p-6 sm:p-8 bg-gradient-to-b from-[#14070a] to-[#0a0305] border border-rose-500/30 rounded-3xl shadow-2xl space-y-6 relative">
+        
+        <!-- Cümle Başlığı & Seviye -->
+        <div class="flex items-center justify-between pb-3 border-b border-rose-950/60">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🔪</span>
+            <h3 id="autopsyTitle" class="font-serif-hero text-lg sm:text-xl font-bold text-white">Çevre Komitesi ve Madencilik Teklifi</h3>
+          </div>
+          <span class="text-xs font-mono text-rose-300/80" id="autopsySentenceId">Örnek 1 / 8</span>
+        </div>
+
+        <!-- İnteraktif Cümle Metni (Kelimeler ve Katmanlar) -->
+        <div class="p-5 sm:p-6 bg-black/60 border border-white/[0.08] rounded-2xl shadow-inner min-h-[110px] flex items-center">
+          <p id="autopsyInteractiveSentence" class="text-base sm:text-lg text-slate-200 leading-relaxed font-serif-hero tracking-wide">
+            <!-- Tokens injected with dynamic styles here -->
+          </p>
+        </div>
+
+        <!-- Cümlenin Özü / İskelet Kartı (Skeletal Reveal) -->
+        <div id="autopsySkeletalCard" class="hidden p-5 rounded-2xl bg-gradient-to-r from-amber-950/40 via-amber-900/20 to-transparent border border-amber-500/40 space-y-2 animate-in fade-in">
+          <div class="flex items-center gap-2 text-xs font-mono text-amber-300 font-bold uppercase tracking-wider">
+            <span>⚡</span> <span>Cümlenin Çıplak İskeleti (The Skeletal Core):</span>
+          </div>
+          <div id="autopsySkeletalText" class="text-lg sm:text-xl font-bold font-serif-hero text-amber-100">
+            <!-- Skeletal text injected here -->
+          </div>
+          <p class="text-xs text-amber-200/80">
+            Fark ettiniz mi? Tüm o korkutucu 4 satırlık cümle aslında sadece bu iki parçadan ibaret!
+          </p>
+        </div>
+
+        <!-- Cerrahi Rapor (Parça Dağılımı & Sınav İpucu) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          
+          <!-- Parça Dökümü -->
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-3">
+            <div class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span>🧬</span> <span>Bileşen Dökümü</span>
+            </div>
+            <div class="space-y-2 text-xs" id="autopsyBreakdownList">
+              <!-- Subject, Verb, Clause details injected here -->
+            </div>
+          </div>
+
+          <!-- Türkçe Çeviri & Sınav İpucu -->
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] space-y-3">
+            <div class="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span>🇹🇷</span> <span>Türkçe Çeviri & Sınav Stratejisi</span>
+            </div>
+            <p id="autopsyTrSentence" class="text-xs sm:text-sm text-slate-200 italic leading-relaxed"></p>
+            <div class="p-3 rounded-xl bg-rose-950/30 border border-rose-500/30 space-y-1">
+              <div class="text-[11px] font-mono text-rose-300 font-bold">💡 YDS / TOEFL / Hazırlık Taktığı:</div>
+              <p id="autopsyExamTip" class="text-[11px] text-slate-300 leading-snug"></p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sonraki / Önceki Navigasyon Barı -->
+        <div class="flex items-center justify-between pt-2 border-t border-rose-950/40">
+          <button type="button" onclick="prevAutopsySentence()" class="px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-medium text-slate-300 flex items-center gap-1.5">
+            <span>◀</span> <span>Önceki Cümle</span>
+          </button>
+          <button type="button" onclick="nextAutopsySentence()" class="px-4 py-2 rounded-xl btn-primary-glow text-xs font-medium text-white flex items-center gap-1.5 shadow-md">
+            <span>Sonraki Cümle</span> <span>▶</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== 9. ACADEMIC TONE SHIFTER (AKADEMİK TON ÇEVİRİCİ) ==================== -->
+    <section id="view-toneshifter" class="hidden max-w-4xl mx-auto space-y-6">
+      <!-- Akademik Lab Ortak Üst Sekme Barı -->
+      <div class="flex items-center justify-between gap-2 p-2 bg-gradient-to-r from-indigo-950/60 via-black/80 to-indigo-950/60 border border-indigo-500/40 rounded-2xl backdrop-blur-md shadow-xl overflow-x-auto scrollbar-none">
+        <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+          <button type="button" onclick="switchTab('morphology')" id="acadTab-morphology-toneshifter" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🧩</span> <span>Kelime Röntgeni</span>
+      </button>
+      <button type="button" onclick="switchTab('autopsy')" id="acadTab-autopsy-toneshifter" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🔪</span> <span>Cümle Ameliyatı</span>
+      </button>
+      <button type="button" onclick="switchTab('toneshifter')" id="acadTab-toneshifter-toneshifter" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-indigo-600 text-white shadow-md ring-1 ring-indigo-400">
+        <span>🧪</span> <span>Ton Çevirici</span>
+      </button>
+      <button type="button" onclick="switchTab('defender')" id="acadTab-defender-toneshifter" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>⚖️</span> <span>Tez Savunması</span>
+      </button>
+        </div>
+        <button type="button" onclick="selectMode('flashcards')" class="px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white text-xs font-mono shrink-0 transition flex items-center gap-1 active:scale-95">
+          <span>◀</span> <span class="hidden sm:inline">Kartlara Dön</span>
+        </button>
+      </div>
+
+      
+      <!-- Üst Başlık & Bilgi -->
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-3 border-b border-amber-950/40">
+        <div>
+          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Üniversite Essay & Kurumsal İletişim</div>
+          <h2 class="font-serif-hero text-2xl sm:text-3xl font-medium text-[#fdf6ee] flex items-center gap-2.5">
+            <span>Akademik Ton Çevirici</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-950/80 border border-amber-500/40 text-amber-300 font-sans font-medium">Street ➔ Academic</span>
+          </h2>
+          <p class="text-[#a8998c] text-xs sm:text-sm mt-1">
+            Basit sokak veya günlük konuşma İngilizcesini essay, iş dünyası ve diplomasi seviyesine dönüştürün.
+          </p>
+        </div>
+      </div>
+
+      <!-- Giriş Alanı & Hazır Senaryolar -->
+      <div class="p-6 bg-gradient-to-b from-[#180e06] to-[#0c0703] border border-amber-500/30 rounded-3xl shadow-2xl space-y-5">
+        
+        <!-- Hazır Senaryo Hapları -->
+        <div class="space-y-2">
+          <div class="text-xs font-mono uppercase tracking-wider text-amber-300/80 flex items-center gap-1.5">
+            <span>⚡</span> <span>10 Yaygın Sokak/Öğrenci Cümlesi (Seçin veya Kendiniz Yazın):</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5" id="tonePresetChips">
+            <!-- 10 pills injected here -->
+          </div>
+        </div>
+
+        <!-- Serbest Metin Textarea -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-mono text-slate-400">Giriş Cümlesi (Basit / Günlük İngilizce):</label>
+            <span id="toneInputTrLabel" class="text-xs text-amber-200/60 italic truncate max-w-[280px]"></span>
+          </div>
+          <textarea id="toneInputText" rows="3" class="w-full bg-black/60 border border-amber-500/30 rounded-2xl p-4 text-sm sm:text-base text-white outline-none focus:border-amber-400 placeholder-slate-600 shadow-inner resize-y" placeholder="Buraya basit bir İngilizce cümle yazın veya yukarıdaki senaryolardan birini seçin..."></textarea>
+        </div>
+
+        <!-- Çevirme Butonu -->
+        <div class="flex justify-end">
+          <button type="button" onclick="shiftToneAction()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium text-xs sm:text-sm transition flex items-center gap-2 shadow-lg">
+            <span>🧪</span> <span>Akademik Seviyelere Dönüştür</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 3 Farklı Akademik Ton Çıktı Kartları (Grid 1x3) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- KART 1: Üniversite Essay Tonu -->
+        <div class="p-5 bg-gradient-to-b from-[#100b21] to-[#070512] border border-indigo-500/30 rounded-3xl space-y-4 shadow-xl flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-indigo-900/50">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">🎓</span>
+                <h4 class="font-bold text-white text-sm">Üniversite Essay Tonu</h4>
+              </div>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-mono">Scholarly</span>
+            </div>
+            <p id="toneCardEssay" class="text-xs sm:text-sm text-indigo-100 leading-relaxed font-serif-hero"></p>
+          </div>
+          <div class="pt-3 border-t border-indigo-950/50 flex items-center justify-between">
+            <span class="text-[10px] text-indigo-300/60 font-mono">Objektif & Pasif Çatı</span>
+            <div class="flex items-center gap-1.5">
+              <button type="button" onclick="speakToneResult('essay')" title="Dinle" class="p-1.5 rounded-lg bg-indigo-950/60 text-indigo-300 hover:text-white text-xs">🔊</button>
+              <button type="button" onclick="copyToneResult('essay')" title="Kopyala" class="p-1.5 rounded-lg bg-indigo-950/60 text-indigo-300 hover:text-white text-xs">📋</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KART 2: İş Dünyası / Yönetici Tonu -->
+        <div class="p-5 bg-gradient-to-b from-[#09151c] to-[#040c10] border border-cyan-500/30 rounded-3xl space-y-4 shadow-xl flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-cyan-900/50">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">💼</span>
+                <h4 class="font-bold text-white text-sm">İş Dünyası / Yönetici</h4>
+              </div>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-mono">Executive</span>
+            </div>
+            <p id="toneCardBusiness" class="text-xs sm:text-sm text-cyan-100 leading-relaxed font-serif-hero"></p>
+          </div>
+          <div class="pt-3 border-t border-cyan-950/50 flex items-center justify-between">
+            <span class="text-[10px] text-cyan-300/60 font-mono">Stratejik Risk & Sermaye</span>
+            <div class="flex items-center gap-1.5">
+              <button type="button" onclick="speakToneResult('business')" title="Dinle" class="p-1.5 rounded-lg bg-cyan-950/60 text-cyan-300 hover:text-white text-xs">🔊</button>
+              <button type="button" onclick="copyToneResult('business')" title="Kopyala" class="p-1.5 rounded-lg bg-cyan-950/60 text-cyan-300 hover:text-white text-xs">📋</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KART 3: Diplomatik / Resmi Ton -->
+        <div class="p-5 bg-gradient-to-b from-[#191508] to-[#0c0a03] border border-amber-500/30 rounded-3xl space-y-4 shadow-xl flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-amber-900/50">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">🏛️</span>
+                <h4 class="font-bold text-white text-sm">Diplomatik / Resmi</h4>
+              </div>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-950/80 border border-amber-500/40 text-amber-300 font-mono">Policy</span>
+            </div>
+            <p id="toneCardDiplomatic" class="text-xs sm:text-sm text-amber-100 leading-relaxed font-serif-hero"></p>
+          </div>
+          <div class="pt-3 border-t border-amber-950/50 flex items-center justify-between">
+            <span class="text-[10px] text-amber-300/60 font-mono">Yumuşatma & Protokol Dili</span>
+            <div class="flex items-center gap-1.5">
+              <button type="button" onclick="speakToneResult('diplomatic')" title="Dinle" class="p-1.5 rounded-lg bg-amber-950/60 text-amber-300 hover:text-white text-xs">🔊</button>
+              <button type="button" onclick="copyToneResult('diplomatic')" title="Kopyala" class="p-1.5 rounded-lg bg-amber-950/60 text-amber-300 hover:text-white text-xs">📋</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- "Neler Değişti?" (Vocabulary Shift Diff Bar) -->
+      <div class="p-6 bg-black/50 border border-white/[0.08] rounded-3xl space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🔍</span>
+            <h4 class="font-bold text-white text-sm">"Neler Değişti?" Kelime & Yapı Analiz Çubuğu</h4>
+          </div>
+          <span class="text-xs font-mono text-slate-400">Sokak ➔ Akademi Karşılaştırması</span>
+        </div>
+        <div id="toneDiffContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Diff items injected here -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== 10. THESIS DEFENDER (AKADEMİK TEZ SAVUNMASI) ==================== -->
+    <section id="view-defender" class="hidden max-w-4xl mx-auto space-y-6">
+      <!-- Akademik Lab Ortak Üst Sekme Barı -->
+      <div class="flex items-center justify-between gap-2 p-2 bg-gradient-to-r from-indigo-950/60 via-black/80 to-indigo-950/60 border border-indigo-500/40 rounded-2xl backdrop-blur-md shadow-xl overflow-x-auto scrollbar-none">
+        <div class="flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+          <button type="button" onclick="switchTab('morphology')" id="acadTab-morphology-defender" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🧩</span> <span>Kelime Röntgeni</span>
+      </button>
+      <button type="button" onclick="switchTab('autopsy')" id="acadTab-autopsy-defender" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🔪</span> <span>Cümle Ameliyatı</span>
+      </button>
+      <button type="button" onclick="switchTab('toneshifter')" id="acadTab-toneshifter-defender" class="px-3 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-1.5 shrink-0 text-slate-400 hover:text-white hover:bg-white/[0.05]">
+        <span>🧪</span> <span>Ton Çevirici</span>
+      </button>
+      <button type="button" onclick="switchTab('defender')" id="acadTab-defender-defender" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-indigo-600 text-white shadow-md ring-1 ring-indigo-400">
+        <span>⚖️</span> <span>Tez Savunması</span>
+      </button>
+        </div>
+        <button type="button" onclick="selectMode('flashcards')" class="px-3 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white text-xs font-mono shrink-0 transition flex items-center gap-1 active:scale-95">
+          <span>◀</span> <span class="hidden sm:inline">Kartlara Dön</span>
+        </button>
+      </div>
+
+      
+      <!-- Üst Başlık & Puan Skorbordu -->
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-3 border-b border-indigo-950/40">
+        <div>
+          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Münazara & Argüman Düellosu</div>
+          <h2 class="font-serif-hero text-2xl sm:text-3xl font-medium text-[#fdf6ee] flex items-center gap-2.5">
+            <span>Tez Savunması</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-sans font-medium">Thesis Defender</span>
+          </h2>
+          <p class="text-[#a8998c] text-xs sm:text-sm mt-1">
+            TOEFL/IELTS ve Hazırlık Speaking/Writing sınavlarında akademik koz kartlarıyla rakip tezi çürütün.
+          </p>
+        </div>
+
+        <!-- Skorbord & Tur Rozeti -->
+        <div class="flex items-center gap-2 bg-black/60 p-2 rounded-2xl border border-indigo-500/30">
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-950/80 border border-indigo-500/40 text-xs font-mono">
+            <span>🏆</span> <span class="text-slate-400">Skor:</span> <span id="defenderScoreText" class="text-indigo-300 font-bold">0</span>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.05] text-xs font-mono text-slate-300">
+            <span>🎯</span> <span id="defenderRoundText">Tur 1 / 5</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Konu Seçici Haplar -->
+      <div class="flex items-center gap-1.5 bg-black/40 p-1.5 rounded-2xl border border-white/[0.08] overflow-x-auto max-w-full scrollbar-none" id="defenderTopicPills">
+        <!-- 5 topic pills injected here -->
+      </div>
+
+      <!-- ARENA SAHNESİ -->
+      <div class="p-6 sm:p-8 bg-gradient-to-b from-[#10081d] to-[#07030c] border border-indigo-500/30 rounded-3xl shadow-2xl space-y-6 relative overflow-hidden">
+        <div class="absolute -top-16 -left-16 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Tartışmalı Konu Başlığı -->
+        <div class="text-center space-y-1 pb-4 border-b border-indigo-950/60">
+          <div class="text-[11px] font-mono tracking-widest text-indigo-300/80 uppercase">Münazara Tezi</div>
+          <h3 id="defenderTopicTitle" class="font-serif-hero text-xl sm:text-2xl font-bold text-white">Yapay Zeka Üniversite Eğitimi</h3>
+          <p id="defenderTopicEn" class="text-xs text-indigo-200/70 italic"></p>
+        </div>
+
+        <!-- AI RAKİP KARTI (Opponent Argument) -->
+        <div class="p-5 sm:p-6 bg-gradient-to-r from-rose-950/40 via-black/60 to-black/60 border border-rose-500/40 rounded-2xl shadow-xl space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span id="defenderRivalAvatar" class="text-2xl p-2 rounded-xl bg-rose-950/80 border border-rose-500/40">🤖</span>
+              <div>
+                <div id="defenderRivalName" class="text-xs sm:text-sm font-bold text-rose-300">Dr. Marcus Vance (Akademik Savunma Sözcüsü)</div>
+                <div class="text-[11px] text-slate-400">Rakip İddia (Counter-Claim):</div>
+              </div>
+            </div>
+            <button type="button" onclick="speakDefenderClaim()" title="Rakibin Argümanını Dinle" class="p-2 rounded-xl bg-rose-950/60 border border-rose-500/30 text-rose-300 hover:text-white transition text-xs">
+              🔊
+            </button>
+          </div>
+
+          <div class="p-4 rounded-xl bg-black/60 border border-rose-500/20 text-xs sm:text-sm text-slate-100 italic leading-relaxed font-serif-hero" id="defenderRivalClaim">
+            <!-- Opponent claim injected here -->
+          </div>
+          <p id="defenderRivalClaimTr" class="text-[11px] text-slate-400"></p>
+        </div>
+
+        <!-- OYUNCUNUN ELİNDEKİ KOZ KARTLARI (Cards in Hand - 4 Cards) -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="text-xs font-mono uppercase tracking-wider text-indigo-300 font-bold flex items-center gap-1.5">
+              <span>🃏</span> <span>Elindeki Akademik Koz Kartları (Doğru Argümanı Seç):</span>
+            </div>
+            <span class="text-[11px] text-slate-400 font-mono">1 Hatalı Koz Bulunur</span>
+          </div>
+
+          <div id="defenderHandCards" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <!-- 4 Trump Cards injected here -->
+          </div>
+        </div>
+
+        <!-- DÜELLO SONUÇ / GERİ BİLDİRİM ALANI -->
+        <div id="defenderFeedbackCard" class="hidden p-5 rounded-2xl border transition-all space-y-2">
+          <!-- Result feedback injected here -->
+        </div>
+
+        <!-- Sonraki Tur Butonu -->
+        <div class="flex justify-end pt-2">
+          <button type="button" onclick="nextDefenderRound()" id="btnNextDefenderRound" class="hidden px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs sm:text-sm transition flex items-center gap-2 shadow-lg">
+            <span>Sonraki Tez Savunması</span> <span>▶</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
   
   <!-- ==================== MISTAKE VAULT (HATA KASASI) MODAL ==================== -->
   <div id="mistakeVaultModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
@@ -2102,7 +2719,7 @@
     <!-- Click backdrop to close without state reset -->
     <div class="absolute inset-0" onclick="closeModeSelectModal()"></div>
 
-    <div class="bg-[#140609] border border-white/10 rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden relative z-10 animate-in fade-in zoom-in-95">
+    <div class="bg-[#140609] border border-white/10 rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden relative z-10 animate-in fade-in zoom-in-95">
       
       <!-- Modal Header -->
       <div class="p-4 sm:p-5 border-b border-white/[0.08] flex items-center justify-between bg-black/40">
@@ -2121,7 +2738,7 @@
       </div>
 
       <!-- Modal Body: 3 Clear Columns / Sections -->
-      <div class="p-4 sm:p-6 overflow-y-auto space-y-6 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-5 scrollbar-thin">
+      <div class="p-4 sm:p-6 overflow-y-auto space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-4 scrollbar-thin">
         
         <!-- SÜTUN 1: 🧠 ÖĞREN & KEŞFET -->
         <div class="space-y-3">
@@ -2230,6 +2847,49 @@
             <div>
               <div class="text-sm font-bold text-white group-hover:text-emerald-200 transition">60sn Fiil Refleksi</div>
               <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Düzensiz fiiller (Irregular Verbs) zaman yarışı</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- SÜTUN 4: 🧪 AKADEMİK LABORATUVAR & DÜELLO -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-2 pb-1.5 border-b border-indigo-900/40 text-xs font-mono uppercase tracking-wider text-indigo-300 font-bold">
+            <span>🧪</span> <span>4. Akademik Lab & Düello</span>
+          </div>
+
+          <!-- 4.1 Kelime Röntgeni -->
+          <button type="button" onclick="selectMode('morphology')" id="modeCard-morphology" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-indigo-950/30 border border-white/[0.08] hover:border-indigo-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-indigo-950/60 border border-indigo-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🧩</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-indigo-200 transition">Kelime Röntgeni</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Kök & ek parçalama ve morfoloji laboratuvarı</div>
+            </div>
+          </button>
+
+          <!-- 4.2 Cümle Ameliyatı -->
+          <button type="button" onclick="selectMode('autopsy')" id="modeCard-autopsy" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-indigo-950/30 border border-white/[0.08] hover:border-indigo-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-indigo-950/60 border border-indigo-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🔪</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-indigo-200 transition">Cümle Ameliyatı</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">3-4 satırlık C1 cümleleri iskeletine ayırma</div>
+            </div>
+          </button>
+
+          <!-- 4.3 Akademik Ton Çevirici -->
+          <button type="button" onclick="selectMode('toneshifter')" id="modeCard-toneshifter" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-indigo-950/30 border border-white/[0.08] hover:border-indigo-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-indigo-950/60 border border-indigo-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">🧪</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-indigo-200 transition">Akademik Ton Çevirici</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Sokak dilini Essay, İş ve Diplomasiye çevir</div>
+            </div>
+          </button>
+
+          <!-- 4.4 Tez Savunması -->
+          <button type="button" onclick="selectMode('defender')" id="modeCard-defender" class="mode-card w-full p-3.5 rounded-2xl bg-black/40 hover:bg-indigo-950/30 border border-white/[0.08] hover:border-indigo-500/50 transition-all text-left flex items-start gap-3 active:scale-[0.98] group">
+            <span class="w-10 h-10 rounded-xl bg-indigo-950/60 border border-indigo-500/30 text-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">⚖️</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-indigo-200 transition">Tez Savunması</div>
+              <div class="text-[11px] text-[#a8998c] leading-snug mt-0.5">Akademik koz kartlarıyla argüman düellosu</div>
             </div>
           </button>
         </div>
@@ -3267,7 +3927,11 @@
       quiz: { icon: '🎯', name: 'Kelime Testi', short: 'Test' },
       match: { icon: '🔄', name: 'Eşleştirme', short: 'Eşleştirme' },
       exam: { icon: '🏆', name: 'Deneme Sınavı', short: 'Deneme Sınavı' },
-      grammar: { icon: '📋', name: 'Gramer Arenası', short: 'Gramer' }
+      grammar: { icon: '📋', name: 'Gramer Arenası', short: 'Gramer' },
+      morphology: { icon: '🧩', name: 'Kelime Röntgeni', short: 'Röntgen' },
+      autopsy: { icon: '🔪', name: 'Cümle Ameliyatı', short: 'Ameliyat' },
+      toneshifter: { icon: '🧪', name: 'Akademik Ton Çevirici', short: 'Ton Çevirici' },
+      defender: { icon: '⚖️', name: 'Tez Savunması', short: 'Tez Savunması' }
     };
 
     function toggleModeSelectModal() {
@@ -3345,7 +4009,7 @@
       currentActiveTabId = tabId;
 
       // 2. Hide all view sections completely (Zero sub-tab leaking)
-      ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'exam', 'grammar'].forEach(t => {
+      ['flashcards', 'cloze', 'quiz', 'match', 'dict', 'reading', 'exam', 'grammar', 'morphology', 'autopsy', 'toneshifter', 'defender'].forEach(t => {
         const view = document.getElementById('view-' + t);
         if (view) view.classList.add('hidden');
       });
@@ -3363,7 +4027,7 @@
       // Bu yüzden exam, reading ve grammar modlarında üst seviye barı gizlenir, diğer modlarda gösterilir.
       const filterBar = document.getElementById('levelFilterBar');
       if (filterBar) {
-        if (tabId === 'exam' || tabId === 'reading' || tabId === 'grammar') {
+        if (['exam', 'reading', 'grammar', 'morphology', 'autopsy', 'toneshifter', 'defender'].includes(tabId)) {
           filterBar.classList.add('hidden');
         } else {
           filterBar.classList.remove('hidden');
@@ -3379,6 +4043,10 @@
       if (tabId === 'reading') initReadingLab();
       if (tabId === 'exam') initExamArena();
       if (tabId === 'grammar') renderGrammarView();
+      if (tabId === 'morphology') initMorphologyLab();
+      if (tabId === 'autopsy') initAutopsyLab();
+      if (tabId === 'toneshifter') initToneShifter();
+      if (tabId === 'defender') initThesisDefender();
     }
 
     // Backward compatibility for switchHub
@@ -11985,6 +12653,1722 @@
       if (blitzCorrect >= 10) triggerConfetti();
       logHeatmapActivity(Math.max(1, Math.round(blitzCorrect / 2)));
     }
+
+
+    // =========================================================================
+    // 🧪 4. AKADEMİK ARAŞTIRMA & DİLBİLİM LABORATUVARI JAVASCRIPT MOTORU
+    // =========================================================================
+
+    // Web Audio Synthesizer Tone Helper
+    
+    // Floating Action Notification Toast Helper
+    function showActionNotification(msg) {
+      let toast = document.getElementById('actionNotificationToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'actionNotificationToast';
+        toast.className = 'fixed bottom-6 right-6 z-50 px-4 py-2.5 rounded-2xl bg-black/90 border border-white/20 text-white text-xs font-mono shadow-2xl backdrop-blur-md transition-all duration-300 pointer-events-none transform translate-y-0 opacity-100 flex items-center gap-2';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span>✨</span> <span>${msg}</span>`;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+      }, 2500);
+    }
+
+    function playAudioTone(type) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        if (type === 'success') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.08);
+          osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.16);
+          gain.gain.setValueAtTime(0.18, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.35);
+        } else if (type === 'error') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, ctx.currentTime);
+          osc.frequency.linearRampToValueAtTime(146.83, ctx.currentTime + 0.18);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.25);
+        } else if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(750, ctx.currentTime);
+          gain.gain.setValueAtTime(0.06, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.05);
+        }
+      } catch(e) {}
+    }
+
+    // -------------------------------------------------------------------------
+    // 1. KELİME RÖNTGENİ (MORPHOLOGY LAB) DATA & HANDLERS
+    // -------------------------------------------------------------------------
+    const morphologyWords = [
+      {
+        word: "indestructible",
+        phonetic: "/ˌɪndɪˈstrʌktəbl/",
+        meaning: "Yok edilemez, parçalanamaz, yıkılması imkansız",
+        prefix: { text: "in-", origin: "Latince", type: "Önek", meaning: "Değil / Olumsuzluk eki" },
+        root: { text: "struct", origin: "Latince (struere / structura)", type: "Kök", meaning: "İnşa etmek, kurmak, yapmak" },
+        suffix: { text: "-ible", origin: "Latince (-ibilis)", type: "Sonek", meaning: "Sıfat yapan: -ebilen / yetisi olan" },
+        formula: "[in- (Olumsuz)] + [struct (İnşa Etmek)] + [-ible (Yetisi Olan)] = 'Yok Edilemez, Yıkılamaz'",
+        sentence: "The research team constructed a protective shelter from an indestructible carbon composite.",
+        sentenceTr: "Araştırma ekibi yok edilemez bir karbon kompozitinden koruyucu sığınak inşa etti.",
+        family: ["structure", "destruction", "constructive", "instructor"]
+      },
+      {
+        word: "contradictory",
+        phonetic: "/ˌkɒntrəˈdɪktəri/",
+        meaning: "Çelişkili, birbirini tutmayan, zıt",
+        prefix: { text: "contra-", origin: "Latince", type: "Önek", meaning: "Karşı, zıt, aksine" },
+        root: { text: "dict", origin: "Latince (dicere)", type: "Kök", meaning: "Söylemek, konuşmak, bildirmek" },
+        suffix: { text: "-ory", origin: "Latince (-orius)", type: "Sonek", meaning: "Sıfat yapan: niteliğinde olan" },
+        formula: "[contra- (Zıt/Karşı)] + [dict (Söylemek)] + [-ory (İlgili)] = 'Birbiriyle Çelişen / Karşıt'",
+        sentence: "Witnesses provided completely contradictory statements regarding the sequence of events.",
+        sentenceTr: "Tanıklar olaylar dizisi hakkında tamamen çelişkili ifadeler verdiler.",
+        family: ["predict", "dictate", "verdict", "contradiction"]
+      },
+      {
+        word: "malnutrition",
+        phonetic: "/ˌmælnjuːˈtrɪʃn/",
+        meaning: "Yetersiz ve dengesiz beslenme",
+        prefix: { text: "mal-", origin: "Latince (malus)", type: "Önek", meaning: "Kötü, hatalı, yetersiz" },
+        root: { text: "nutri", origin: "Latince (nutrire)", type: "Kök", meaning: "Beslemek, doyurmak" },
+        suffix: { text: "-tion", origin: "Latince (-tio)", type: "Sonek", meaning: "İsim yapan: durum / eylem" },
+        formula: "[mal- (Kötü/Yetersiz)] + [nutri (Beslemek)] + [-tion (Durum)] = 'Yetersiz/Kötü Beslenme Hali'",
+        sentence: "Prolonged droughts in the region triggered widespread malnutrition among vulnerable children.",
+        sentenceTr: "Bölgedeki uzun süreli kuraklıklar savunmasız çocuklar arasında yaygın yetersiz beslenmeyi tetikledi.",
+        family: ["nutrition", "malfunction", "malpractice", "nutrient"]
+      },
+      {
+        word: "interconnected",
+        phonetic: "/ˌɪntəkəˈnektɪd/",
+        meaning: "Birbiriyle bağlantılı, kenetlenmiş, girift",
+        prefix: { text: "inter-", origin: "Latince", type: "Önek", meaning: "Arasında, karşılıklı" },
+        root: { text: "con-nect", origin: "Latince (nectere)", type: "Kök", meaning: "Birlikte bağlamak, düğümlemek" },
+        suffix: { text: "-ed", origin: "Eski İngilizce", type: "Sonek", meaning: "Sıfat / geçmiş durum eki" },
+        formula: "[inter- (Karşılıklı)] + [connect (Bağlamak)] + [-ed (Nitelik)] = 'Birbirine Sıkıca Bağlanmış'",
+        sentence: "Global financial markets are profoundly interconnected, amplifying systemic vulnerabilities.",
+        sentenceTr: "Küresel finans piyasaları derinden birbirine bağlıdır ve sistemik kırılganlıkları büyütür.",
+        family: ["connection", "disconnect", "intersection", "interstate"]
+      },
+      {
+        word: "benevolent",
+        phonetic: "/bəˈnevələnt/",
+        meaning: "İyiliksever, hayırhah, yardımsever",
+        prefix: { text: "bene-", origin: "Latince", type: "Önek", meaning: "İyi, hayırlı, doğru" },
+        root: { text: "vol", origin: "Latince (velle / volo)", type: "Kök", meaning: "İstemek, arzu etmek, irade" },
+        suffix: { text: "-ent", origin: "Latince (-ens)", type: "Sonek", meaning: "Sıfat yapan: -eden / yapıda olan" },
+        formula: "[bene- (İyi)] + [vol (İstemek/İrade)] + [-ent (Nitelik)] = 'İyilik Dileyen / Yardımsever'",
+        sentence: "The university received an anonymous endowment from a benevolent philanthropist.",
+        sentenceTr: "Üniversite, hayırsever bir bağışçıdan isimsiz bir fon bağışı aldı.",
+        family: ["benefit", "malevolent", "volunteer", "beneficial"]
+      },
+      {
+        word: "unprecedented",
+        phonetic: "/ʌnˈpresɪdentɪd/",
+        meaning: "Eşi benzeri görülmemiş, tarihte ilk defa olan",
+        prefix: { text: "un-", origin: "Germen/Latince", type: "Önek", meaning: "Olumsuzluk / -siz" },
+        root: { text: "pre-ced", origin: "Latince (prae- + cedere)", type: "Kök", meaning: "Önden gitmek, öncelikli olmak" },
+        suffix: { text: "-ent-ed", origin: "Latince/İngilizce", type: "Sonek", meaning: "Sıfat durumu" },
+        formula: "[un- (Olumsuz)] + [pre-ced (Önceden Yaşanmış)] + [-ed] = 'Önceden Hiç Örneği Olmayan'",
+        sentence: "The monetary authority intervened with unprecedented emergency liquidity measures.",
+        sentenceTr: "Para otoritesi eşi benzeri görülmemiş acil likidite önlemleriyle müdahale etti.",
+        family: ["precedent", "precede", "antecedent", "unprepared"]
+      },
+      {
+        word: "circumscribe",
+        phonetic: "/ˈsɜːkəmskraɪb/",
+        meaning: "Sınırlandırmak, çerçevesini çizmek, daraltmak",
+        prefix: { text: "circum-", origin: "Latince", type: "Önek", meaning: "Etrafında, çepeçevre" },
+        root: { text: "scribe", origin: "Latince (scribere)", type: "Kök", meaning: "Yazmak, çizmek" },
+        suffix: { text: "-e", origin: "Latince", type: "Sonek", meaning: "Fiil sonu" },
+        formula: "[circum- (Etrafında)] + [scribe (Çizmek)] = 'Etrafına Çizgi Çekerek Sınırlandırmak'",
+        sentence: "The constitution strictly circumscribes the emergency powers granted to the executive branch.",
+        sentenceTr: "Anayasa, yürütme organına tanınan olağanüstü yetkileri kesin biçimde sınırlandırır.",
+        family: ["circumstance", "describe", "inscribe", "transcript"]
+      },
+      {
+        word: "anachronistic",
+        phonetic: "/əˌnækrəˈnɪstɪk/",
+        meaning: "Çağdışı, zamanına uymayan, anakronik",
+        prefix: { text: "ana-", origin: "Grekçe", type: "Önek", meaning: "Geriye, zıt, ters" },
+        root: { text: "chron", origin: "Grekçe (chronos)", type: "Kök", meaning: "Zaman" },
+        suffix: { text: "-istic", origin: "Grekçe/Latince", type: "Sonek", meaning: "Sıfat yapan: niteliğinde" },
+        formula: "[ana- (Zıt/Geriye)] + [chron (Zaman)] + [-istic] = 'Kendi Zamanına Uymayan / Çağdışı'",
+        sentence: "Maintaining manual ledgers in a digital financial institution is totally anachronistic.",
+        sentenceTr: "Dijital bir finans kuruluşunda elle tutulan defterler kullanmak tamamen çağdışıdır.",
+        family: ["chronology", "synchronize", "chronic", "anachronism"]
+      },
+      {
+        word: "incredulous",
+        phonetic: "/ɪnˈkredjələs/",
+        meaning: "İnanmakta zorlanan, şüpheci, kuşkucu",
+        prefix: { text: "in-", origin: "Latince", type: "Önek", meaning: "Değil / Olumsuz" },
+        root: { text: "cred", origin: "Latince (credere)", type: "Kök", meaning: "İnanmak, güvenmek" },
+        suffix: { text: "-ulous", origin: "Latince (-ulosus)", type: "Sonek", meaning: "Sıfat yapan: eğiliminde olan" },
+        formula: "[in- (Olumsuz)] + [cred (İnanmak)] + [-ulous (Eğilimli)] = 'İnanmaya Yanaşmayan / Kuşkucu'",
+        sentence: "The investigative panel remained incredulous despite the defense counsel's elaborate alibi.",
+        sentenceTr: "Soruşturma heyeti, savunma avukatının detaylı mazeretine rağmen şüpheci kalmayı sürdürdü.",
+        family: ["credible", "creed", "incredible", "credentials"]
+      },
+      {
+        word: "reproducible",
+        phonetic: "/ˌriːprəˈdjuːsəbl/",
+        meaning: "Yeniden üretilebilir, tekrarlanabilir (bilimsel deney)",
+        prefix: { text: "re-", origin: "Latince", type: "Önek", meaning: "Tekrar, yeniden" },
+        root: { text: "pro-duc", origin: "Latince (ducere)", type: "Kök", meaning: "Öne sürmek, üretmek, sevk etmek" },
+        suffix: { text: "-ible", origin: "Latince", type: "Sonek", meaning: "Sıfat yapan: -ebilen" },
+        formula: "[re- (Tekrar)] + [pro-duc (Üretmek)] + [-ible (Yetisi Olan)] = 'Aynı Şekilde Tekrarlanabilir'",
+        sentence: "For a scientific hypothesis to be validated, the experimental results must be reproducible.",
+        sentenceTr: "Bilimsel bir hipotezin doğrulanması için deneysel sonuçların tekrarlanabilir olması gerekir.",
+        family: ["produce", "deduce", "conduct", "reduction"]
+      },
+      {
+        word: "extroverted",
+        phonetic: "/ˈekstrəvɜːtɪd/",
+        meaning: "Dışadönük, sosyal etkileşimi seven",
+        prefix: { text: "extro-", origin: "Latince (extra)", type: "Önek", meaning: "Dışarıya doğru" },
+        root: { text: "vert", origin: "Latince (vertere)", type: "Kök", meaning: "Dönmek, yönelmek" },
+        suffix: { text: "-ed", origin: "İngilizce", type: "Sonek", meaning: "Sıfat eki" },
+        formula: "[extro- (Dışarıya)] + [vert (Dönmek)] + [-ed] = 'İlgisi Dış Dünyaya Dönük Olan'",
+        sentence: "Extroverted leaders frequently excel at rallying collaborative cross-functional teams.",
+        sentenceTr: "Dışadönük liderler sıklıkla işbirlikçi fonksiyonlar arası ekipleri harekete geçirmede başarılı olur.",
+        family: ["introvert", "convert", "revert", "divert"]
+      },
+      {
+        word: "dispassionate",
+        phonetic: "/dɪsˈpæʃənət/",
+        meaning: "Tarafsız, duygularına kapılmayan, serinkanlı",
+        prefix: { text: "dis-", origin: "Latince", type: "Önek", meaning: "Uzak, ayrı, yoksun" },
+        root: { text: "passion", origin: "Latince (pati / passio)", type: "Kök", meaning: "Duygu, acı, tutku" },
+        suffix: { text: "-ate", origin: "Latince", type: "Sonek", meaning: "Sıfat eki: nitelikte" },
+        formula: "[dis- (Uzak/Yoksun)] + [passion (Kişisel Duygu)] + [-ate] = 'Duygularından Arınmış / Objektif'",
+        sentence: "A judge must offer a dispassionate evaluation of conflicting testimonies.",
+        sentenceTr: "Bir yargıç, çelişen tanık beyanlarına serinkanlı ve tarafsız bir değerlendirme sunmalıdır.",
+        family: ["compassion", "passive", "impassioned", "compatible"]
+      },
+      {
+        word: "polyvalent",
+        phonetic: "/ˌpɒliˈveɪlənt/",
+        meaning: "Çok yönlü, birden çok fonksiyona veya değere sahip",
+        prefix: { text: "poly-", origin: "Grekçe (polys)", type: "Önek", meaning: "Çok, birden fazla" },
+        root: { text: "val", origin: "Latince (valere)", type: "Kök", meaning: "Güç, değer, etki" },
+        suffix: { text: "-ent", origin: "Latince", type: "Sonek", meaning: "Sıfat yapan ek" },
+        formula: "[poly- (Çok)] + [val (Güç/Değer)] + [-ent] = 'Birden Fazla Değere / Güce Sahip'",
+        sentence: "The university seeks polyvalent scholars adept in both machine learning and ethical philosophy.",
+        sentenceTr: "Üniversite hem makine öğrenimi hem de etik felsefede yetkin çok yönlü araştırmacılar aramaktadır.",
+        family: ["prevalent", "equivalent", "evaluate", "validity"]
+      },
+      {
+        word: "introspective",
+        phonetic: "/ˌɪntrəˈspektɪv/",
+        meaning: "İç gözlemci, kendi iç dünyasını derinlemesine inceleyen",
+        prefix: { text: "intro-", origin: "Latince", type: "Önek", meaning: "İçeriye doğru" },
+        root: { text: "spect", origin: "Latince (specere)", type: "Kök", meaning: "Bakmak, görmek" },
+        suffix: { text: "-ive", origin: "Latince", type: "Sonek", meaning: "Sıfat yapan: eğilimli" },
+        formula: "[intro- (İçeriye)] + [spect (Bakmak)] + [-ive (Eğilimli)] = 'Kendi İçine Bakan / İç Gözlemci'",
+        sentence: "The author's introspective memoirs examine the psychological toll of political exile.",
+        sentenceTr: "Yazarın iç gözlemci anıları, siyasi sürgünün psikolojik bedelini mercek altına alıyor.",
+        family: ["inspect", "retrospect", "spectacle", "circumspect"]
+      },
+      {
+        word: "supersede",
+        phonetic: "/ˌsuːpəˈsiːd/",
+        meaning: "Yerini almak, geçerliliğini yitirtmek, ilga etmek",
+        prefix: { text: "super-", origin: "Latince", type: "Önek", meaning: "Üstünde, yukarısında" },
+        root: { text: "sede", origin: "Latince (sedere)", type: "Kök", meaning: "Oturmak, yerleşmek" },
+        suffix: { text: "-e", origin: "Latince", type: "Sonek", meaning: "Fiil yapısı" },
+        formula: "[super- (Üstünde)] + [sede (Oturmak)] = 'Üzerine Oturarak Eski Olanı Saf Dışı Bırakmak'",
+        sentence: "Next-generation quantum chips will ultimately supersede traditional silicon processors.",
+        sentenceTr: "Yeni nesil kuantum çipleri eninde sonunda geleneksel silikon işlemcilerin yerini alacaktır.",
+        family: ["sedentary", "preside", "residence", "subside"]
+      },
+      {
+        word: "interminable",
+        phonetic: "/ɪnˈtɜːmɪnəbl/",
+        meaning: "Bitmek tükenmek bilmeyen, sonsuz gibi gelen",
+        prefix: { text: "in-", origin: "Latince", type: "Önek", meaning: "Olumsuzluk / Değil" },
+        root: { text: "termin", origin: "Latince (terminus)", type: "Kök", meaning: "Son, sınır, uç" },
+        suffix: { text: "-able", origin: "Latince", type: "Sonek", meaning: "Sıfat eki: -ebilen" },
+        formula: "[in- (Olumsuz)] + [termin (Sınır/Son)] + [-able (Mümkün)] = 'Sona Ermesi Mümkün Görünmeyen'",
+        sentence: "The diplomatic delegations engaged in what seemed like an interminable negotiation session.",
+        sentenceTr: "Diplomatik delegasyonlar bitmek tükenmek bilmeyen bir müzakere oturumuna giriştiler.",
+        family: ["terminate", "terminal", "determine", "exterminate"]
+      }
+    ];
+
+    const rootsDirectory = [
+      { root: "struct", origin: "Latince (struere / structura)", meaning: "İnşa etmek, kurmak, düzenlemek", examples: [
+        { word: "construct", tr: "İnşa etmek, oluşturmak" },
+        { word: "destruction", tr: "Yıkım, imha" },
+        { word: "infrastructure", tr: "Altyapı" },
+        { word: "obstruct", tr: "Engellemek, tıkamak" }
+      ]},
+      { root: "tract", origin: "Latince (trahere)", meaning: "Çekmek, sürüklemek", examples: [
+        { word: "attract", tr: "Kendine çekmek, cezbetmek" },
+        { word: "distract", tr: "Dikkati dağıtmak" },
+        { word: "extract", tr: "Çıkarmak, özünü almak" },
+        { word: "contract", tr: "Sözleşme yapmak / Daralmak" }
+      ]},
+      { root: "dict", origin: "Latince (dicere)", meaning: "Söylemek, konuşmak, bildirmek", examples: [
+        { word: "predict", tr: "Öngörmek, tahmin etmek" },
+        { word: "contradict", tr: "Çelişmek, aksini söylemek" },
+        { word: "verdict", tr: "Mahkeme kararı, hüküm" },
+        { word: "dictate", tr: "Dikte etmek, zorla kabul ettirmek" }
+      ]},
+      { root: "ject", origin: "Latince (jacere)", meaning: "Fırlatmak, atmak, yöneltmek", examples: [
+        { word: "reject", tr: "Geri çevirmek, reddetmek" },
+        { word: "inject", tr: "Enjekte etmek, zerk etmek" },
+        { word: "trajectory", tr: "Yörünge, mermi yolu" },
+        { word: "projectile", tr: "Fırlatılan cisim, füze" }
+      ]},
+      { root: "port", origin: "Latince (portare)", meaning: "Taşımak, iletmek", examples: [
+        { word: "transport", tr: "Ulaştırmak, taşımak" },
+        { word: "portable", tr: "Taşınabilir, seyyar" },
+        { word: "export", tr: "İhraç etmek, dışa satmak" },
+        { word: "deport", tr: "Sınır dışı etmek" }
+      ]},
+      { root: "scrib / script", origin: "Latince (scribere)", meaning: "Yazmak, çizmek", examples: [
+        { word: "prescribe", tr: "Reçete yazmak / Emretmek" },
+        { word: "transcribe", tr: "Yazıya dökmek, kaydetmek" },
+        { word: "manuscript", tr: "El yazması eser" },
+        { word: "inscribe", tr: "Kazıyarak yazmak, ithaf etmek" }
+      ]},
+      { root: "duc / duct", origin: "Latince (ducere)", meaning: "Götürmek, yönlendirmek, üretmek", examples: [
+        { word: "conduct", tr: "Yürütmek, idare etmek" },
+        { word: "deduce", tr: "Tümdengelimle çıkarmak" },
+        { word: "induce", tr: "Neden olmak, tetiklemek" },
+        { word: "productive", tr: "Üretken, verimli" }
+      ]},
+      { root: "plic / ply", origin: "Latince (plicare)", meaning: "Katlamak, bükmek, sarmak", examples: [
+        { word: "imply", tr: "İma etmek, hissettirmek" },
+        { word: "explicit", tr: "Açık, net, dolaysız" },
+        { word: "complicate", tr: "Karmaşıklaştırmak" },
+        { word: "replicate", tr: "Birebir kopyalamak, çoğaltmak" }
+      ]},
+      { root: "mit / miss", origin: "Latince (mittere)", meaning: "Göndermek, salmak, bırakmak", examples: [
+        { word: "transmit", tr: "İletmek, aktarmak" },
+        { word: "dismiss", tr: "Göz ardı etmek / İşten kovmak" },
+        { word: "emit", tr: "Yaymak, salmak (gaz, ışık)" },
+        { word: "submit", tr: "Boyun eğmek / Teslim etmek" }
+      ]},
+      { root: "vis / spect", origin: "Latince (videre / specere)", meaning: "Görmek, bakmak, incelemek", examples: [
+        { word: "supervise", tr: "Denetlemek, gözetmek" },
+        { word: "retrospect", tr: "Geçmişe bakış, anımsama" },
+        { word: "spectator", tr: "Seyirci, izleyici" },
+        { word: "visionary", tr: "İleri görüşlü, vizyoner" }
+      ]},
+      { root: "cred", origin: "Latince (credere)", meaning: "İnanmak, güvenmek", examples: [
+        { word: "credible", tr: "İnanılır, güvenilir" },
+        { word: "incredulous", tr: "Kuşkucu, inanmakta zorlanan" },
+        { word: "credentials", tr: "Yetki belgeleri, nitelikler" },
+        { word: "creed", tr: "İnanç manifestosu, öğreti" }
+      ]},
+      { root: "chron", origin: "Grekçe (chronos)", meaning: "Zaman", examples: [
+        { word: "chronological", tr: "Kronolojik, zaman sırasına göre" },
+        { word: "synchronize", tr: "Aynı zamana getirmek" },
+        { word: "chronic", tr: "Süregen, müzmin" },
+        { word: "anachronism", tr: "Zaman hatası, çağa uyumsuzluk" }
+      ]}
+    ];
+
+    let currentMorphIdx = 0;
+    let morphQuizScore = 0;
+    let currentMorphQuiz = null;
+
+    function initMorphologyLab() {
+      // 1. Populate dropdown
+      const sel = document.getElementById('morphWordSelect');
+      if (sel && sel.options.length === 0) {
+        morphologyWords.forEach((item, idx) => {
+          const opt = document.createElement('option');
+          opt.value = idx;
+          opt.textContent = `${item.word} (${item.meaning.slice(0, 20)}...)`;
+          sel.appendChild(opt);
+        });
+      }
+      renderMorphologyCard(currentMorphIdx);
+      renderMorphRootsDirectory();
+      initMorphQuiz();
+    }
+
+    function setMorphologySubTab(tab) {
+      triggerHaptic('tap');
+      playAudioTone('click');
+      const tabs = ['table', 'quiz', 'roots'];
+      tabs.forEach(t => {
+        const panel = document.getElementById('panel-morph-' + t);
+        const btn = document.getElementById('mSubTab-' + t);
+        if (panel) panel.classList.toggle('hidden', t !== tab);
+        if (btn) {
+          if (t === tab) {
+            btn.className = 'px-3.5 py-1.5 rounded-lg bg-indigo-900/60 border border-indigo-500/30 text-white font-medium transition shrink-0 shadow-sm flex items-center gap-1.5';
+          } else {
+            btn.className = 'px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0 flex items-center gap-1.5';
+          }
+        }
+      });
+    }
+
+    function renderMorphologyCard(idx) {
+      if (idx < 0) idx = morphologyWords.length - 1;
+      if (idx >= morphologyWords.length) idx = 0;
+      currentMorphIdx = idx;
+
+      const item = morphologyWords[idx];
+      const counterEl = document.getElementById('morphWordCounter');
+      const selEl = document.getElementById('morphWordSelect');
+      if (counterEl) counterEl.textContent = `${idx + 1} / ${morphologyWords.length}`;
+      if (selEl) selEl.value = idx;
+
+      const wordEl = document.getElementById('morphMainWord');
+      const phoneticEl = document.getElementById('morphPhonetic');
+      const trMeaningEl = document.getElementById('morphTrMeaning');
+      if (wordEl) wordEl.textContent = item.word;
+      if (phoneticEl) phoneticEl.textContent = item.phonetic;
+      if (trMeaningEl) trMeaningEl.textContent = item.meaning;
+
+      // Render 3 anatomical blocks (Prefix, Root, Suffix)
+      const partsContainer = document.getElementById('morphPartsContainer');
+      if (partsContainer) {
+        partsContainer.innerHTML = `
+          <!-- 🔵 Önek -->
+          <div class="p-3.5 rounded-2xl bg-blue-950/30 border border-blue-500/40 space-y-1">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-blue-300 font-bold">
+              <span>🔵 ÖNEK (PREFIX)</span>
+              <span>${item.prefix.origin}</span>
+            </div>
+            <div class="text-xl font-bold font-mono text-blue-200">${item.prefix.text}</div>
+            <div class="text-xs text-blue-300/80 leading-snug">${item.prefix.meaning}</div>
+          </div>
+
+          <!-- 🔴 Kök -->
+          <div class="p-3.5 rounded-2xl bg-rose-950/30 border border-rose-500/40 space-y-1">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-rose-300 font-bold">
+              <span>🔴 KÖK (ROOT)</span>
+              <span>${item.root.origin}</span>
+            </div>
+            <div class="text-xl font-bold font-mono text-rose-200">${item.root.text}</div>
+            <div class="text-xs text-rose-300/80 leading-snug">${item.root.meaning}</div>
+          </div>
+
+          <!-- 🟢 Sonek -->
+          <div class="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-500/40 space-y-1">
+            <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-emerald-300 font-bold">
+              <span>🟢 SONEK (SUFFIX)</span>
+              <span>${item.suffix.origin || 'Ek'}</span>
+            </div>
+            <div class="text-xl font-bold font-mono text-emerald-200">${item.suffix.text}</div>
+            <div class="text-xs text-emerald-300/80 leading-snug">${item.suffix.meaning}</div>
+          </div>
+        `;
+      }
+
+      // Formula
+      const formulaEl = document.getElementById('morphFormulaBox');
+      if (formulaEl) {
+        formulaEl.innerHTML = `<span class="text-indigo-400 font-bold">⚡ Formül:</span> ${item.formula}`;
+      }
+
+      // Context sentence
+      const sentEn = document.getElementById('morphSentenceEn');
+      const sentTr = document.getElementById('morphSentenceTr');
+      if (sentEn) sentEn.textContent = `"${item.sentence}"`;
+      if (sentTr) sentTr.textContent = item.sentenceTr;
+
+      // Family words
+      const famContainer = document.getElementById('morphFamilyContainer');
+      if (famContainer) {
+        famContainer.innerHTML = item.family.map(f => `
+          <button type="button" onclick="speakText('${f}')" class="px-2.5 py-1 rounded-xl bg-white/[0.05] hover:bg-indigo-900/40 border border-white/[0.1] hover:border-indigo-400 text-xs font-mono text-indigo-200 transition flex items-center gap-1">
+            <span>${f}</span>
+            <span class="text-[10px] opacity-60">🔊</span>
+          </button>
+        `).join('');
+      }
+    }
+
+    function prevMorphWord() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      renderMorphologyCard(currentMorphIdx - 1);
+    }
+
+    function nextMorphWord() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      renderMorphologyCard(currentMorphIdx + 1);
+    }
+
+    function selectMorphWord(idx) {
+      playAudioTone('click');
+      renderMorphologyCard(idx);
+    }
+
+    function randomMorphWord() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      const rnd = Math.floor(Math.random() * morphologyWords.length);
+      renderMorphologyCard(rnd);
+    }
+
+    function speakMorphCurrentWord() {
+      const item = morphologyWords[currentMorphIdx];
+      if (item) speakText(item.word);
+    }
+
+    // Mini Quiz
+    function initMorphQuiz() {
+      const target = morphologyWords[Math.floor(Math.random() * morphologyWords.length)];
+      // Generate 3 distractors
+      const pool = morphologyWords.filter(m => m.word !== target.word);
+      const shuffled = [...pool].sort(() => 0.5 - Math.random()).slice(0, 3);
+      const choices = [target, ...shuffled].sort(() => 0.5 - Math.random());
+
+      currentMorphQuiz = {
+        target: target,
+        choices: choices,
+        answered: false
+      };
+
+      const cluesContainer = document.getElementById('morphQuizClues');
+      if (cluesContainer) {
+        cluesContainer.innerHTML = `
+          <div class="px-3 py-1.5 rounded-xl bg-blue-950/60 border border-blue-500/40 text-blue-200 font-mono text-xs">
+            🔵 ${target.prefix.text} <span class="text-[10px] opacity-75">(${target.prefix.meaning})</span>
+          </div>
+          <span class="text-slate-500 font-bold">+</span>
+          <div class="px-3 py-1.5 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-200 font-mono text-xs">
+            🔴 ${target.root.text} <span class="text-[10px] opacity-75">(${target.root.meaning})</span>
+          </div>
+          <span class="text-slate-500 font-bold">+</span>
+          <div class="px-3 py-1.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-200 font-mono text-xs">
+            🟢 ${target.suffix.text} <span class="text-[10px] opacity-75">(${target.suffix.meaning})</span>
+          </div>
+        `;
+      }
+
+      const choicesContainer = document.getElementById('morphQuizChoices');
+      if (choicesContainer) {
+        choicesContainer.innerHTML = choices.map((c, i) => `
+          <button type="button" onclick="handleMorphQuizAnswer(${i})" id="morphQuizBtn-${i}" class="p-3.5 rounded-2xl bg-black/40 hover:bg-white/[0.05] border border-white/[0.1] hover:border-indigo-500/50 text-left transition-all group flex items-start gap-3">
+            <span class="w-7 h-7 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center font-mono text-xs text-slate-300 shrink-0 group-hover:border-indigo-400">${['A', 'B', 'C', 'D'][i]}</span>
+            <div>
+              <div class="text-sm font-bold text-white group-hover:text-indigo-200 transition font-mono">${c.word}</div>
+              <div class="text-xs text-slate-400 mt-0.5 line-clamp-1">${c.meaning}</div>
+            </div>
+          </button>
+        `).join('');
+      }
+
+      const feedback = document.getElementById('morphQuizFeedback');
+      if (feedback) feedback.classList.add('hidden');
+      const nextBtn = document.getElementById('btnNextMorphQuiz');
+      if (nextBtn) nextBtn.classList.add('hidden');
+    }
+
+    function handleMorphQuizAnswer(chosenIdx) {
+      if (!currentMorphQuiz || currentMorphQuiz.answered) return;
+      currentMorphQuiz.answered = true;
+
+      const chosen = currentMorphQuiz.choices[chosenIdx];
+      const isCorrect = chosen.word === currentMorphQuiz.target.word;
+      const feedback = document.getElementById('morphQuizFeedback');
+      const nextBtn = document.getElementById('btnNextMorphQuiz');
+
+      // Highlight buttons
+      currentMorphQuiz.choices.forEach((c, idx) => {
+        const btn = document.getElementById('morphQuizBtn-' + idx);
+        if (btn) {
+          if (c.word === currentMorphQuiz.target.word) {
+            btn.classList.add('border-emerald-500', 'bg-emerald-950/40', 'ring-1', 'ring-emerald-500');
+          } else if (idx === chosenIdx) {
+            btn.classList.add('border-rose-500', 'bg-rose-950/40', 'ring-1', 'ring-rose-500');
+          }
+        }
+      });
+
+      if (isCorrect) {
+        morphQuizScore += 10;
+        playAudioTone('success');
+        triggerHaptic('success');
+        triggerConfetti();
+        const scoreEl = document.getElementById('morphQuizScore');
+        if (scoreEl) scoreEl.textContent = morphQuizScore;
+
+        if (feedback) {
+          feedback.className = 'p-4 rounded-2xl border border-emerald-500/40 bg-emerald-950/30 text-emerald-200 text-xs sm:text-sm font-medium';
+          feedback.innerHTML = `
+            <div class="flex items-center gap-2 font-bold mb-1">
+              <span>🎉</span> <span>Tebrikler, Doğru Çözümleme!</span>
+            </div>
+            <div>${currentMorphQuiz.target.formula}</div>
+          `;
+          feedback.classList.remove('hidden');
+        }
+      } else {
+        playAudioTone('error');
+        triggerHaptic('error');
+        if (feedback) {
+          feedback.className = 'p-4 rounded-2xl border border-rose-500/40 bg-rose-950/30 text-rose-200 text-xs sm:text-sm font-medium';
+          feedback.innerHTML = `
+            <div class="flex items-center gap-2 font-bold mb-1">
+              <span>❌</span> <span>Doğru Cevap: ${currentMorphQuiz.target.word}</span>
+            </div>
+            <div>${currentMorphQuiz.target.formula}</div>
+          `;
+          feedback.classList.remove('hidden');
+        }
+      }
+
+      if (nextBtn) nextBtn.classList.remove('hidden');
+    }
+
+    function nextMorphQuizQuestion() {
+      playAudioTone('click');
+      initMorphQuiz();
+    }
+
+    function renderMorphRootsDirectory() {
+      const grid = document.getElementById('morphRootsGrid');
+      if (!grid) return;
+      grid.innerHTML = rootsDirectory.map(r => `
+        <div class="p-4 rounded-2xl bg-black/50 border border-white/[0.08] hover:border-indigo-500/40 transition space-y-2.5">
+          <div class="flex items-center justify-between pb-1.5 border-b border-white/[0.06]">
+            <span class="font-mono text-base font-bold text-indigo-300">-${r.root}-</span>
+            <span class="text-[10px] font-mono text-slate-400">${r.origin}</span>
+          </div>
+          <div class="text-xs text-white font-medium">🎯 ${r.meaning}</div>
+          <div class="space-y-1 pt-1">
+            ${r.examples.map(ex => `
+              <div class="flex items-center justify-between text-[11px] text-slate-300 font-mono">
+                <span class="text-indigo-200 cursor-pointer hover:underline" onclick="speakText('${ex.word}')">${ex.word} 🔊</span>
+                <span class="text-slate-400 font-sans">${ex.tr}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. CÜMLE AMELİYATI (SENTENCE AUTOPSY) DATA & HANDLERS
+    // -------------------------------------------------------------------------
+    const autopsyData = [
+      {
+        id: 1,
+        title: "Çevre Komitesi ve Madencilik Teklifi",
+        sentenceRaw: "The newly appointed environmental committee, despite facing severe political resistance from industrial lobbies, has officially rejected the controversial mining proposal.",
+        skeletal: "The committee ... has rejected the proposal.",
+        skeletalHighlight: "The <span class='text-blue-400 font-bold'>committee</span> ... <span class='text-rose-400 font-bold'>has rejected</span> the <span class='text-emerald-400 font-bold'>proposal</span>.",
+        tokens: [
+          { text: "The newly appointed environmental committee", type: "subject" },
+          { text: ", ", type: "plain" },
+          { text: "despite facing severe political resistance from industrial lobbies", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "has officially rejected", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "the controversial mining proposal", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "Yeni atanan çevre komitesi, sanayi lobilerinden gelen yoğun siyasi dirence rağmen, tartışmalı madencilik teklifini resmen reddetti.",
+        analysis: {
+          subject: "The newly appointed environmental committee (Yeni atanan çevre komitesi)",
+          mainVerb: "has officially rejected (resmen reddetti)",
+          clause: "despite facing severe political resistance from industrial lobbies (zıtlık ara sözü)",
+          connectors: "despite (edat/bağlaç)",
+          examTip: "Virgüller arasına sıkıştırılmış 'despite...' yapısı dikkat dağıtıcı bir parantezdir. Sınavlarda özneyi gördükten sonra bu ara sözü zihnen atlayıp doğrudan 'has rejected' yüklemine bağlanın."
+        }
+      },
+      {
+        id: 2,
+        title: "Klinik Deneyler ve Nörobiyoloji Başarısı",
+        sentenceRaw: "Although initial clinical trials yielded ambiguous preliminary results, researchers at the neurobiology institute have ultimately confirmed the therapeutic efficacy of the newly developed compound.",
+        skeletal: "Researchers ... have confirmed the efficacy.",
+        skeletalHighlight: "<span class='text-blue-400 font-bold'>Researchers</span> ... <span class='text-rose-400 font-bold'>have confirmed</span> the <span class='text-emerald-400 font-bold'>efficacy</span>.",
+        tokens: [
+          { text: "Although", type: "conn" },
+          { text: " ", type: "plain" },
+          { text: "initial clinical trials yielded ambiguous preliminary results", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "researchers at the neurobiology institute", type: "subject" },
+          { text: " ", type: "plain" },
+          { text: "have ultimately confirmed", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "the therapeutic efficacy of the newly developed compound", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "İlk klinik denemeler muğlak ön sonuçlar vermesine rağmen, nörobiyoloji enstitüsündeki araştırmacılar yeni geliştirilen bileşiğin tedavi edici etkinliğini nihayet kanıtladılar.",
+        analysis: {
+          subject: "researchers at the neurobiology institute (nörobiyoloji enstitüsündeki araştırmacılar)",
+          mainVerb: "have ultimately confirmed (nihayet doğruladı / teyit etti)",
+          clause: "initial clinical trials yielded ambiguous results (ön denemelerin muğlak sonuç vermesi)",
+          connectors: "Although (-e rağmen bağlacı)",
+          examTip: "'Although' ile başlayan cümle ana cümle olamaz. Virgülü takip eden 'researchers' kelimesi cümlenin gerçek patronu olan ana öznedir."
+        }
+      },
+      {
+        id: 3,
+        title: "Ekonomik Durgunluk ve Satın Alma Gücü",
+        sentenceRaw: "The economic recession, which was exacerbated by prolonged international supply chain disruptions, substantially diminished consumer purchasing power across multiple developing nations.",
+        skeletal: "The recession ... diminished purchasing power.",
+        skeletalHighlight: "The <span class='text-blue-400 font-bold'>recession</span> ... <span class='text-rose-400 font-bold'>diminished</span> <span class='text-emerald-400 font-bold'>purchasing power</span>.",
+        tokens: [
+          { text: "The economic recession", type: "subject" },
+          { text: ", ", type: "plain" },
+          { text: "which", type: "conn" },
+          { text: " was exacerbated by prolonged international supply chain disruptions", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "substantially diminished", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "consumer purchasing power across multiple developing nations", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "Uluslararası tedarik zincirindeki uzun süreli aksamalarla daha da ağırlaşan ekonomik resesyon, gelişmekte olan birçok ülkede tüketicilerin alım gücünü önemli ölçüde zayıflattı.",
+        analysis: {
+          subject: "The economic recession (Ekonomik durgunluk)",
+          mainVerb: "substantially diminished (önemli ölçüde azalttı / zayıflattı)",
+          clause: "which was exacerbated by prolonged supply disruptions (sıfat cümleciği)",
+          connectors: "which (ilgi zamiri)",
+          examTip: "'which was exacerbated' kısmı sıfat cümleciğidir. Hızlı okurken bu kısmı parmağınızla kapatıp 'The recession diminished purchasing power' şeklinde okumalısınız."
+        }
+      },
+      {
+        id: 4,
+        title: "Tarihçiler ve Kraliyet Kronikleri",
+        sentenceRaw: "Skeptical historians, while acknowledging the charismatic leadership of ancient emperors, consistently dispute the veracity of official battle chronicles recorded by royal scribes.",
+        skeletal: "Historians ... dispute the veracity.",
+        skeletalHighlight: "<span class='text-blue-400 font-bold'>Historians</span> ... <span class='text-rose-400 font-bold'>dispute</span> the <span class='text-emerald-400 font-bold'>veracity</span>.",
+        tokens: [
+          { text: "Skeptical historians", type: "subject" },
+          { text: ", ", type: "plain" },
+          { text: "while", type: "conn" },
+          { text: " acknowledging the charismatic leadership of ancient emperors", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "consistently dispute", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "the veracity of official battle chronicles recorded by royal scribes", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "Şüpheci tarihçiler, antik imparatorların karizmatik liderliğini kabul etmekle birlikte, saray yazıcıları tarafından tutulan resmi savaş kroniklerinin doğruluğunu ısrarla sorgulamaktadır.",
+        analysis: {
+          subject: "Skeptical historians (Şüpheci tarihçiler)",
+          mainVerb: "consistently dispute (ısrarla sorgulamakta / itiraz etmektedir)",
+          clause: "while acknowledging charismatic leadership (kısaltılmış kabul cümleciği)",
+          connectors: "while (-e rağmen / iken)",
+          examTip: "'while acknowledging' bir ikincil kabul cümlesidir. Yazarın asıl ana argümanı virgülden sonraki 'dispute the veracity' (doğruluğunu tartışmaya açmak) eylemidir."
+        }
+      },
+      {
+        id: 5,
+        title: "Fosil Yakıt Tüketimi ve İklim Bilimciler",
+        sentenceRaw: "Because global fossil fuel consumption continues to accelerate at an alarming pace, leading environmental climatologists are urgently advocating for stringent international regulatory frameworks.",
+        skeletal: "Climatologists ... are advocating for frameworks.",
+        skeletalHighlight: "Leading <span class='text-blue-400 font-bold'>climatologists</span> ... <span class='text-rose-400 font-bold'>are advocating</span> for <span class='text-emerald-400 font-bold'>frameworks</span>.",
+        tokens: [
+          { text: "Because", type: "conn" },
+          { text: " ", type: "plain" },
+          { text: "global fossil fuel consumption continues to accelerate at an alarming pace", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "leading environmental climatologists", type: "subject" },
+          { text: " ", type: "plain" },
+          { text: "are urgently advocating", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "for stringent international regulatory frameworks", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "Küresel fosil yakıt tüketimi endişe verici bir hızla artmaya devam ettiği için, önde gelen çevre iklimbilimcileri acilen bağlayıcı uluslararası denetim çerçevelerinin getirilmesini savunmaktadır.",
+        analysis: {
+          subject: "leading environmental climatologists (önde gelen iklimbilimciler)",
+          mainVerb: "are urgently advocating (acilen savunmaktadır)",
+          clause: "Because global fossil fuel consumption continues to accelerate (sebep cümleciği)",
+          connectors: "Because (-dığı için bağlacı)",
+          examTip: "'Because' cümlesi sebebi kurar; virgülden sonra gelen ana cümlecik ise sonucu ve ana aksiyonu ifade eder."
+        }
+      },
+      {
+        id: 6,
+        title: "Kuantum Hesaplama Mimarisi",
+        sentenceRaw: "The breakthrough in quantum computational architecture, even though celebrated prematurely by sensational media outlets, undoubtedly marks a pivotal milestone in theoretical physics.",
+        skeletal: "The breakthrough ... marks a milestone.",
+        skeletalHighlight: "The <span class='text-blue-400 font-bold'>breakthrough</span> ... <span class='text-rose-400 font-bold'>marks</span> a <span class='text-emerald-400 font-bold'>milestone</span>.",
+        tokens: [
+          { text: "The breakthrough in quantum computational architecture", type: "subject" },
+          { text: ", ", type: "plain" },
+          { text: "even though", type: "conn" },
+          { text: " celebrated prematurely by sensational media outlets", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "undoubtedly marks", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "a pivotal milestone in theoretical physics", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "Kuantum hesaplama mimarisindeki büyük atılım, sansasyonel medya organlarınca vaktinden önce kutlanmış olsa bile, teorik fizikte şüphesiz çok kritik bir dönüm noktasıdır.",
+        analysis: {
+          subject: "The breakthrough in quantum computational architecture (Kuantum mimarisindeki devrim)",
+          mainVerb: "undoubtedly marks (şüphesiz bir dönüm noktası teşkil eder)",
+          clause: "even though celebrated prematurely (kısaltılmış yan cümlecik)",
+          connectors: "even though (-se bile)",
+          examTip: "'even though' ile başlayan pasif kısaltma aradan çıkarıldığında geriye yalın bir 'Breakthrough marks a milestone' kalır."
+        }
+      },
+      {
+        id: 7,
+        title: "Yapay Zeka ve Etik Muhakeme",
+        sentenceRaw: "While artificial intelligence algorithms demonstrate extraordinary proficiency in computational pattern recognition, they still fail fundamentally to replicate human ethical discernment.",
+        skeletal: "Algorithms ... fail to replicate discernment.",
+        skeletalHighlight: "<span class='text-blue-400 font-bold'>Algorithms</span> ... <span class='text-rose-400 font-bold'>fail to replicate</span> ethical <span class='text-emerald-400 font-bold'>discernment</span>.",
+        tokens: [
+          { text: "While", type: "conn" },
+          { text: " ", type: "plain" },
+          { text: "artificial intelligence algorithms demonstrate extraordinary proficiency in computational pattern recognition", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "they", type: "subject" },
+          { text: " ", type: "plain" },
+          { text: "still fail fundamentally", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "to replicate human ethical discernment", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "Yapay zeka algoritmaları hesaplamalı örüntü tanımada olağanüstü bir ustalık sergileseler de, insani etik muhakemeyi taklit etme konusunda temelde yetersiz kalmaktadırlar.",
+        analysis: {
+          subject: "they (algoritmaları temsil eden özne)",
+          mainVerb: "still fail fundamentally (temelde başarısız kalmaktadır)",
+          clause: "While AI algorithms demonstrate proficiency (zıtlık bağımlı cümleciği)",
+          connectors: "While (-e karşın / iken)",
+          examTip: "Akademik makalelerde 'While X is good, it fails at Y' en çok kullanılan kontrast kalıbıdır. Odak daima ikinci cümledeki eksikliktedir."
+        }
+      },
+      {
+        id: 8,
+        title: "Eğitim Reformu ve Öğrenci Katılımı",
+        sentenceRaw: "The progressive education reform, notwithstanding fierce criticism regarding standardized assessment procedures, has demonstrably elevated student engagement across underprivileged municipal districts.",
+        skeletal: "The reform ... has elevated engagement.",
+        skeletalHighlight: "The <span class='text-blue-400 font-bold'>reform</span> ... <span class='text-rose-400 font-bold'>has elevated</span> student <span class='text-emerald-400 font-bold'>engagement</span>.",
+        tokens: [
+          { text: "The progressive education reform", type: "subject" },
+          { text: ", ", type: "plain" },
+          { text: "notwithstanding", type: "conn" },
+          { text: " fierce criticism regarding standardized assessment procedures", type: "clause" },
+          { text: ", ", type: "plain" },
+          { text: "has demonstrably elevated", type: "verb" },
+          { text: " ", type: "plain" },
+          { text: "student engagement across underprivileged municipal districts", type: "clause" },
+          { text: ".", type: "plain" }
+        ],
+        turkish: "Standart sınav prosedürlerine yönelik şiddetli eleştirilere karşın, yenilikçi eğitim reformu imkanları kısıtlı belediye bölgelerinde öğrenci katılımını gözle görülür biçimde artırmıştır.",
+        analysis: {
+          subject: "The progressive education reform (İlerici eğitim reformu)",
+          mainVerb: "has demonstrably elevated (kanıtlanabilir biçimde yükseltmiştir)",
+          clause: "notwithstanding fierce criticism regarding tests (eleştirilere rağmen öbeği)",
+          connectors: "notwithstanding (-e karşın / rağmen)",
+          examTip: "'Notwithstanding' ileri düzey bir C1/C2 edatıdır ve 'despite' ile tam eşanlamlıdır. İki virgül arasında gördüğünüz an cümlenin özünden hemen izole edin."
+        }
+      }
+    ];
+
+    let currentAutopsyIdx = 0;
+    let isSkeletalViewActive = false;
+    let activeAutopsyLayers = {
+      subject: true,
+      verb: true,
+      clause: true,
+      conn: true
+    };
+
+    function initAutopsyLab() {
+      const pillsContainer = document.getElementById('autopsySentencePills');
+      if (pillsContainer) {
+        pillsContainer.innerHTML = autopsyData.map((s, idx) => `
+          <button type="button" onclick="selectAutopsySentence(${idx})" id="autopsyPill-${idx}" class="px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 ${idx === currentAutopsyIdx ? 'bg-rose-900/60 border border-rose-500/40 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">
+            C${idx + 1}
+          </button>
+        `).join('');
+      }
+      renderAutopsySentence();
+    }
+
+    function selectAutopsySentence(idx) {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      currentAutopsyIdx = idx;
+      renderAutopsySentence();
+    }
+
+    function prevAutopsySentence() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      currentAutopsyIdx = (currentAutopsyIdx - 1 + autopsyData.length) % autopsyData.length;
+      renderAutopsySentence();
+    }
+
+    function nextAutopsySentence() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      currentAutopsyIdx = (currentAutopsyIdx + 1) % autopsyData.length;
+      renderAutopsySentence();
+    }
+
+    function toggleAutopsyLayer(layer) {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      activeAutopsyLayers[layer] = !activeAutopsyLayers[layer];
+      
+      const btn = document.getElementById('laserBtn-' + layer);
+      if (btn) {
+        const colors = {
+          subject: 'blue',
+          verb: 'rose',
+          clause: 'emerald',
+          conn: 'amber'
+        };
+        const c = colors[layer];
+        if (activeAutopsyLayers[layer]) {
+          btn.className = `px-2.5 py-1.5 rounded-xl border border-${c}-500/50 bg-${c}-500/20 text-${c}-300 font-medium transition flex items-center gap-1.5 shadow-sm`;
+        } else {
+          btn.className = 'px-2.5 py-1.5 rounded-xl border border-white/10 bg-white/[0.04] text-slate-500 font-medium transition flex items-center gap-1.5 opacity-60';
+        }
+      }
+      renderAutopsySentence();
+    }
+
+    function toggleSkeletalView() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      isSkeletalViewActive = !isSkeletalViewActive;
+      const btn = document.getElementById('btnSkeletalView');
+      const skelCard = document.getElementById('autopsySkeletalCard');
+
+      if (btn) {
+        if (isSkeletalViewActive) {
+          btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-500 text-black font-bold text-xs transition flex items-center gap-1.5 shadow-lg ring-2 ring-amber-400';
+        } else {
+          btn.className = 'px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-200 font-medium text-xs transition flex items-center gap-1.5 shadow-md';
+        }
+      }
+
+      if (skelCard) {
+        skelCard.classList.toggle('hidden', !isSkeletalViewActive);
+      }
+      renderAutopsySentence();
+    }
+
+    function renderAutopsySentence() {
+      const data = autopsyData[currentAutopsyIdx];
+      if (!data) return;
+
+      // Update pills
+      autopsyData.forEach((_, idx) => {
+        const pill = document.getElementById('autopsyPill-' + idx);
+        if (pill) {
+          if (idx === currentAutopsyIdx) {
+            pill.className = 'px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 bg-rose-900/60 border border-rose-500/40 text-white shadow-sm';
+          } else {
+            pill.className = 'px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 text-slate-400 hover:text-white';
+          }
+        }
+      });
+
+      const titleEl = document.getElementById('autopsyTitle');
+      const idEl = document.getElementById('autopsySentenceId');
+      if (titleEl) titleEl.textContent = data.title;
+      if (idEl) idEl.textContent = `Örnek ${currentAutopsyIdx + 1} / ${autopsyData.length}`;
+
+      // Build interactive sentence tokens
+      const textContainer = document.getElementById('autopsyInteractiveSentence');
+      if (textContainer) {
+        textContainer.innerHTML = data.tokens.map(t => {
+          if (t.type === 'plain') return t.text;
+
+          const isTypeActive = activeAutopsyLayers[t.type];
+          let spanClasses = 'transition-all duration-200 rounded px-1.5 py-0.5 inline-block';
+
+          if (isSkeletalViewActive) {
+            if (t.type === 'subject' || t.type === 'verb') {
+              spanClasses += ' font-bold ring-1 ' + (t.type === 'subject' ? 'bg-blue-500/30 text-blue-200 ring-blue-400/60' : 'bg-rose-500/30 text-rose-200 ring-rose-400/60');
+            } else {
+              spanClasses += ' opacity-20 blur-[0.6px] text-slate-500';
+            }
+          } else {
+            if (isTypeActive) {
+              if (t.type === 'subject') spanClasses += ' bg-blue-500/20 text-blue-300 border border-blue-500/40 ring-1 ring-blue-500/40 font-semibold';
+              if (t.type === 'verb') spanClasses += ' bg-rose-500/20 text-rose-300 border border-rose-500/40 ring-1 ring-rose-500/40 font-bold';
+              if (t.type === 'clause') spanClasses += ' bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 ring-1 ring-emerald-500/30';
+              if (t.type === 'conn') spanClasses += ' bg-amber-500/20 text-amber-300 border border-amber-500/40 ring-1 ring-amber-500/40 font-bold';
+            }
+          }
+
+          return `<span class="${spanClasses}">${t.text}</span>`;
+        }).join('');
+      }
+
+      // Skeletal reveal card
+      const skelText = document.getElementById('autopsySkeletalText');
+      if (skelText) {
+        skelText.innerHTML = data.skeletalHighlight;
+      }
+
+      // Breakdown list
+      const breakdownEl = document.getElementById('autopsyBreakdownList');
+      if (breakdownEl) {
+        breakdownEl.innerHTML = `
+          <div class="p-2 rounded-xl bg-blue-950/20 border border-blue-500/30 flex flex-col gap-0.5">
+            <span class="font-mono text-[10px] text-blue-300 font-bold uppercase">🔵 Özne (Subject):</span>
+            <span class="text-slate-200">${data.analysis.subject}</span>
+          </div>
+          <div class="p-2 rounded-xl bg-rose-950/20 border border-rose-500/30 flex flex-col gap-0.5">
+            <span class="font-mono text-[10px] text-rose-300 font-bold uppercase">🔴 Ana Yüklem (Main Verb):</span>
+            <span class="text-slate-200">${data.analysis.mainVerb}</span>
+          </div>
+          <div class="p-2 rounded-xl bg-emerald-950/20 border border-emerald-500/30 flex flex-col gap-0.5">
+            <span class="font-mono text-[10px] text-emerald-300 font-bold uppercase">🟢 Yan Cümlecik (Clause):</span>
+            <span class="text-slate-200">${data.analysis.clause}</span>
+          </div>
+          <div class="p-2 rounded-xl bg-amber-950/20 border border-amber-500/30 flex flex-col gap-0.5">
+            <span class="font-mono text-[10px] text-amber-300 font-bold uppercase">🟡 Bağlaç (Connector):</span>
+            <span class="text-slate-200">${data.analysis.connectors}</span>
+          </div>
+        `;
+      }
+
+      const trSent = document.getElementById('autopsyTrSentence');
+      const examTip = document.getElementById('autopsyExamTip');
+      if (trSent) trSent.textContent = `"${data.turkish}"`;
+      if (examTip) examTip.textContent = data.analysis.examTip;
+    }
+
+    function speakAutopsySentence() {
+      const data = autopsyData[currentAutopsyIdx];
+      if (data) speakText(data.sentenceRaw);
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. AKADEMİK TON ÇEVİRİCİ (TONE SHIFTER) DATA & HANDLERS
+    // -------------------------------------------------------------------------
+    const toneShifterPresets = [
+      {
+        id: 1,
+        tag: "Para & Başarısızlık",
+        street: "I think this idea is bad and it will fail because people don't have enough money.",
+        streetTr: "Bence bu fikir kötü ve batar çünkü insanların yeterince parası yok.",
+        essay: "It is arguable that this proposition is unfeasible given the socioeconomic and capital constraints of the target demographic.",
+        business: "Due to liquidity limitations in the consumer base, this initiative presents substantial commercial viability risks.",
+        diplomatic: "While commendable in ambition, the proposal encounters notable execution constraints under current macroeconomic conditions.",
+        diffs: [
+          { from: "I think", to: "It is arguable that", why: "Akademik dilde 1. tekil şahıs yerine nesnel yapılar tercih edilir." },
+          { from: "bad", to: "unfeasible / suboptimal", why: "'Bad' muğlak ve basit bir sıfattır; teknik fizibilite terimi kullanılır." },
+          { from: "will fail", to: "presents viability risks", why: "Kesin felaket dili yerine risk ve olasılık dili (hedging) uygundur." },
+          { from: "don't have enough money", to: "socioeconomic & capital constraints", why: "'Not enough money' yerine sermaye ve sosyoekonomik kısıtlar denir." }
+        ]
+      },
+      {
+        id: 2,
+        tag: "Akıllı Telefon & Çocuklar",
+        street: "A lot of people say smartphones are bad for kids because they don't talk to each other anymore.",
+        streetTr: "Çoğu insan akıllı telefonların çocuklar için kötü olduğunu söylüyor çünkü artık birbirleriyle konuşmuyorlar.",
+        essay: "Empirical studies frequently indicate that prolonged smartphone exposure may impair interpersonal communication and psychosocial development in adolescents.",
+        business: "Excessive mobile engagement among youth cohorts is correlated with a marked decline in verbal collaboration and peer interaction.",
+        diplomatic: "Pervasive digital device adoption among minors warrants measured oversight to preserve foundational social development.",
+        diffs: [
+          { from: "A lot of people say", to: "Empirical studies indicate", why: "Dedikodu kalıbı yerine bilimsel bulgular referans gösterilir." },
+          { from: "bad for kids", to: "impair psychosocial development in adolescents", why: "'Kids' yerine akademik 'adolescents/minors' kullanılır." },
+          { from: "don't talk to each other", to: "decline in interpersonal communication", why: "'Don't talk' yerine kişilerarası iletişim kavramı gelir." }
+        ]
+      },
+      {
+        id: 3,
+        tag: "İşçi Çıkarma & Otomasyon",
+        street: "Companies want to make more money, so they fire workers and use machines instead.",
+        streetTr: "Şirketler daha çok para kazanmak istiyor, bu yüzden işçileri kovup yerlerine makineleri kullanıyorlar.",
+        essay: "Corporations seeking to maximize operational margins increasingly implement technological automation, resulting in labor workforce rationalization.",
+        business: "To optimize overhead expenditure and capital efficiency, organizations are accelerating robotic automation and streamlining headcount.",
+        diplomatic: "The transition toward automated industrial infrastructure necessitates careful mitigation of labor market displacement.",
+        diffs: [
+          { from: "make more money", to: "maximize operational margins", why: "'Para kazanmak' yerine marj optimizasyonu ve sermaye verimliliği." },
+          { from: "fire workers", to: "workforce rationalization / streamline headcount", why: "'Kovmak' sokak dilidir; kurumsal terminoloji tercih edilir." },
+          { from: "use machines", to: "implement technological automation", why: "Makineler yerine teknolojik otomasyon ve robotik entegrasyon." }
+        ]
+      },
+      {
+        id: 4,
+        tag: "Trafik & Hükümet",
+        street: "The government should do something to stop traffic because it makes everyone angry and late.",
+        streetTr: "Hükümet trafiği durdurmak için bir şeyler yapmalı çünkü herkesi sinirlendiriyor ve geç bırakıyor.",
+        essay: "Municipal authorities must implement strategic transit interventions to alleviate urban congestion and mitigate lost labor productivity.",
+        business: "Persistent transportation bottlenecks impose significant friction on daily commuter logistics and human capital efficacy.",
+        diplomatic: "It is incumbent upon urban planning policymakers to allocate targeted infrastructure resources toward congestion reduction.",
+        diffs: [
+          { from: "The government should do something", to: "Municipal authorities must implement strategic interventions", why: "'Bir şey yapsın' yerine somut müdahale ve politika dili." },
+          { from: "stop traffic", to: "alleviate urban congestion", why: "'Trafiği durdurmak' yerine kentsel tıkanıklığı hafifletmek." },
+          { from: "makes everyone angry and late", to: "mitigate lost labor productivity and commuter friction", why: "Kişisel öfke yerine iş gücü kaybı ve verimlilik kaybı." }
+        ]
+      },
+      {
+        id: 5,
+        tag: "Abur Cubur & Sağlık",
+        street: "Scientists did an experiment and found out that junk food makes people sick and tired.",
+        streetTr: "Bilim insanları deney yaptı ve abur cuburun insanları hasta ve yorgun ettiğini buldu.",
+        essay: "Clinical investigations substantiate that sustained consumption of ultra-processed foodstuffs induces chronic lethargy and metabolic dysfunction.",
+        business: "Healthcare actuarial data demonstrates that poor dietary nutrition imposes escalating liabilities through workplace absenteeism and morbidity.",
+        diplomatic: "Nutritional research presents persuasive evidence supporting enhanced regulatory standards on ultra-processed dietary commodities.",
+        diffs: [
+          { from: "did an experiment", to: "Clinical investigations substantiate", why: "'Deney yaptılar' yerine klinik araştırmaların kanıtlaması." },
+          { from: "junk food", to: "ultra-processed foodstuffs", why: "'Abur cubur' halk dilidir; akademik karşılığı aşırı işlenmiş gıdalardır." },
+          { from: "sick and tired", to: "chronic lethargy and metabolic dysfunction", why: "'Hasta ve yorgun' yerine kronik bitkinlik ve metabolik bozukluk." }
+        ]
+      },
+      {
+        id: 6,
+        tag: "Sistemi Düzeltmek",
+        street: "We need to fix this system quickly before things get way worse.",
+        streetTr: "İşler çok daha kötüye gitmeden önce bu sistemi çabucak düzeltmemiz lazım.",
+        essay: "Immediate institutional restructuring is imperative to forestall catastrophic systemic degradation.",
+        business: "Rapid corrective realignment must be executed promptly to prevent acute operational failure.",
+        diplomatic: "Proactive governance adjustments are urgently recommended to preempt further procedural deterioration.",
+        diffs: [
+          { from: "fix this system", to: "institutional restructuring / corrective realignment", why: "'Fix' (tamir etmek) yerine kurumsal yeniden yapılanma." },
+          { from: "quickly", to: "imperative / executed promptly", why: "'Quickly' yerine ivedilik bildiren akademik terimler." },
+          { from: "before things get way worse", to: "to forestall catastrophic systemic degradation", why: "'İşler batmadan' yerine sistemik bozulmayı önlemek." }
+        ]
+      },
+      {
+        id: 7,
+        tag: "Online Eğitim",
+        street: "Online learning is better than traditional schools because it is cheap and easy.",
+        streetTr: "Online öğrenme geleneksel okullardan daha iyi çünkü ucuz ve kolay.",
+        essay: "Digital pedagogical modalities exhibit clear superiority over conventional paradigms by optimizing cost-efficiency and asynchronous accessibility.",
+        business: "E-learning platforms deliver superior return on investment by eliminating geographical overhead and streamlining curriculum scalability.",
+        diplomatic: "Distance educational models present viable democratization pathways through flexible access and lowered economic barriers.",
+        diffs: [
+          { from: "better than", to: "exhibit clear superiority over conventional paradigms", why: "'Better' yerine akademik üstünlük kalıbı." },
+          { from: "cheap", to: "cost-efficient / lowered economic barriers", why: "'Cheap' (ucuz) kalite düşüklüğü çağrıştırır; maliyet verimliliği denir." },
+          { from: "easy", to: "asynchronous accessibility / flexible access", why: "'Easy' yerine asenkron erişilebilirlik terimi." }
+        ]
+      },
+      {
+        id: 8,
+        tag: "İklim Felaketi",
+        street: "If we don't care about the climate, the planet will be ruined very soon.",
+        streetTr: "Eğer iklimi umursamazsak, gezegen çok yakında mahvolacak.",
+        essay: "Failure to enact comprehensive climate mitigation strategies will inevitably catalyze irreversible ecological collapse within coming decades.",
+        business: "Unmitigated environmental risks pose severe supply-side disruptions and systemic stranded asset depreciation globally.",
+        diplomatic: "Collective inertia regarding atmospheric emissions threatens ecological stability and vulnerable sovereign territories.",
+        diffs: [
+          { from: "don't care about", to: "failure to enact comprehensive mitigation strategies", why: "'Umursamamak' duygusal bir ifadedir; politika eksikliği denmelidir." },
+          { from: "ruined", to: "irreversible ecological collapse", why: "'Mahvolmak' yerine geri döndürülemez ekolojik çöküş." },
+          { from: "very soon", to: "within coming decades / proximate timeframe", why: "'Very soon' yerine akademik zaman aralığı tanımı." }
+        ]
+      },
+      {
+        id: 9,
+        tag: "Yönetici & Performans",
+        street: "His boss told him that his work was not good enough and that he needed to try harder.",
+        streetTr: "Patronu ona işinin yeterince iyi olmadığını ve daha çok çabalaması gerektiğini söyledi.",
+        essay: "The supervising evaluator formally communicated that the deliverables failed to meet benchmark standards, recommending rigorous performance enhancement.",
+        business: "Executive leadership issued performance appraisal feedback highlighting sub-target metrics and identifying required competencies.",
+        diplomatic: "Constructive evaluative feedback indicated room for substantial alignment with established institutional quality standards.",
+        diffs: [
+          { from: "boss told him", to: "supervising evaluator formally communicated", why: "'Patron söyledi' yerine denetleyici değerlendiricinin tebliği." },
+          { from: "not good enough", to: "failed to meet benchmark standards", why: "'Yeterince iyi değil' yerine standart eşikleri yakalayamama." },
+          { from: "try harder", to: "rigorous performance enhancement", why: "'Daha çok çabala' yerine performans geliştirme süreci." }
+        ]
+      },
+      {
+        id: 10,
+        tag: "Uyku & Hafıza",
+        street: "The doctor said that sleeping more helps you remember things better and live longer.",
+        streetTr: "Doktor daha çok uyumanın şeyleri daha iyi hatırlamana ve daha uzun yaşamana yardımcı olduğunu söyledi.",
+        essay: "Medical literature establishes that adequate sleep duration facilitates neurological memory consolidation and promotes human longevity.",
+        business: "Human performance research demonstrates that sustained sleep hygiene correlates with cognitive retention and professional endurance.",
+        diplomatic: "Public health guidelines emphasize sleep sufficiency as a foundational determinant of cognitive resilience and life expectancy.",
+        diffs: [
+          { from: "The doctor said", to: "Medical literature establishes", why: "Kişisel hekim tavsiyesi yerine tıbbi literatürün ortaya koyması." },
+          { from: "remember things better", to: "neurological memory consolidation", why: "'Şeyleri hatırlamak' yerine nörolojik hafıza pekişmesi." },
+          { from: "live longer", to: "promotes human longevity / life expectancy", why: "'Daha uzun yaşamak' yerine insan ömrü uzunluğu ve yaşam beklentisi." }
+        ]
+      }
+    ];
+
+    let currentTonePresetIdx = 0;
+
+    function initToneShifter() {
+      const chipsContainer = document.getElementById('tonePresetChips');
+      if (chipsContainer) {
+        chipsContainer.innerHTML = toneShifterPresets.map((p, idx) => `
+          <button type="button" onclick="selectTonePreset(${idx})" id="tonePresetBtn-${idx}" class="px-3 py-1.5 rounded-xl text-xs transition ${idx === currentTonePresetIdx ? 'bg-amber-600 border border-amber-400 text-white shadow-sm' : 'bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 border border-white/[0.08]'}">
+            ${p.tag}
+          </button>
+        `).join('');
+      }
+      applyTonePreset(currentTonePresetIdx);
+    }
+
+    function selectTonePreset(idx) {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      currentTonePresetIdx = idx;
+      applyTonePreset(idx);
+    }
+
+    function applyTonePreset(idx) {
+      const p = toneShifterPresets[idx];
+      if (!p) return;
+
+      // Update preset buttons
+      toneShifterPresets.forEach((_, i) => {
+        const b = document.getElementById('tonePresetBtn-' + i);
+        if (b) {
+          if (i === idx) {
+            b.className = 'px-3 py-1.5 rounded-xl text-xs transition bg-amber-600 border border-amber-400 text-white shadow-sm';
+          } else {
+            b.className = 'px-3 py-1.5 rounded-xl text-xs transition bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 border border-white/[0.08]';
+          }
+        }
+      });
+
+      const inputArea = document.getElementById('toneInputText');
+      const inputTr = document.getElementById('toneInputTrLabel');
+      if (inputArea) inputArea.value = p.street;
+      if (inputTr) inputTr.textContent = `TR: "${p.streetTr}"`;
+
+      renderToneResults(p);
+    }
+
+    function shiftToneAction() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      const inputArea = document.getElementById('toneInputText');
+      const text = inputArea ? inputArea.value.trim().toLowerCase() : '';
+
+      // Find closest preset or match
+      let match = toneShifterPresets.find(p => p.street.toLowerCase() === text);
+      if (!match) {
+        // Find by keyword
+        match = toneShifterPresets.find(p => {
+          const words = p.street.toLowerCase().split(' ');
+          return words.filter(w => text.includes(w)).length >= 3;
+        }) || toneShifterPresets[currentTonePresetIdx];
+      }
+
+      renderToneResults(match);
+    }
+
+    function renderToneResults(data) {
+      const essayEl = document.getElementById('toneCardEssay');
+      const bizEl = document.getElementById('toneCardBusiness');
+      const dipEl = document.getElementById('toneCardDiplomatic');
+
+      if (essayEl) essayEl.textContent = `"${data.essay}"`;
+      if (bizEl) bizEl.textContent = `"${data.business}"`;
+      if (dipEl) dipEl.textContent = `"${data.diplomatic}"`;
+
+      // Render diffs
+      const diffContainer = document.getElementById('toneDiffContainer');
+      if (diffContainer) {
+        diffContainer.innerHTML = data.diffs.map(d => `
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.08] space-y-1.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="px-2 py-0.5 rounded bg-rose-950/60 border border-rose-500/30 text-rose-300 line-through font-mono">${d.from}</span>
+              <span class="text-slate-500 font-bold">➔</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 font-mono font-bold">${d.to}</span>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-snug">${d.why}</p>
+          </div>
+        `).join('');
+      }
+    }
+
+    function speakToneResult(type) {
+      const p = toneShifterPresets[currentTonePresetIdx];
+      if (!p) return;
+      playAudioTone('click');
+      if (type === 'essay') speakText(p.essay);
+      if (type === 'business') speakText(p.business);
+      if (type === 'diplomatic') speakText(p.diplomatic);
+    }
+
+    function copyToneResult(type) {
+      const p = toneShifterPresets[currentTonePresetIdx];
+      if (!p) return;
+      playAudioTone('click');
+      triggerHaptic('tap');
+      let text = p.essay;
+      if (type === 'business') text = p.business;
+      if (type === 'diplomatic') text = p.diplomatic;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text);
+        showActionNotification('Cümle panoya kopyalandı! 📋');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. TEZ SAVUNMASI (THESIS DEFENDER) DATA & HANDLERS
+    // -------------------------------------------------------------------------
+    const defenderTopics = [
+      {
+        id: 1,
+        topicTitle: "Yapay Zeka Üniversite Eğitimi",
+        topicEn: "Should AI completely replace human university professors?",
+        opponentName: "Dr. Marcus Vance (Akademik Savunma Sözcüsü)",
+        opponentAvatar: "🤖",
+        opponentClaim: "AI inherently lacks emotional empathy, personalized mentorship capacity, and nuanced ethical judgment, rendering it fundamentally incapable of replacing human academic faculty.",
+        opponentClaimTr: "Yapay zeka özü gereği duygusal empatiden, kişiselleştirilmiş rehberlik kapasitesinden ve incelikli etik muhakemeden yoksundur; bu da onu insan akademisyenlerin yerini almaktan temelde aciz kılar.",
+        cards: [
+          {
+            id: "c1",
+            keyword: "mitigate",
+            title: "Erişilebilirlik Telafisi (Mitigate)",
+            text: "7/24 kesintisiz erişim ve anlık kişiselleştirilmiş geri bildirim imkanı, duygusal empatideki eksikliği fazlasıyla 'mitigate' eder ve öğrenme hızını katlar.",
+            isCorrect: true,
+            academicPowerWord: "mitigate (hafifletmek / telafi etmek)",
+            explanation: "Mükemmel Savunma! 'Mitigate' argümanı, rakibin ileri sürdüğü empati kısıtının yapay zekanın kesintisiz erişilebilirliği ile nasıl dengelendiğini kanıtladı."
+          },
+          {
+            id: "c2",
+            keyword: "empirical data",
+            title: "Ampirik Başarı Kanıtı (Empirical Data)",
+            text: "Kapsamlı 'empirical data', yapay zeka destekli adaptif müfredat kullanan öğrencilerin standart sınavlarda %30 daha yüksek başarı elde ettiğini kanıtlıyor.",
+            isCorrect: true,
+            academicPowerWord: "empirical data (deneysel / ampirik veri)",
+            explanation: "Kusursuz Hamle! Rakibin sübjektif endişesini sert ampirik verilerle çürüttünüz."
+          },
+          {
+            id: "c3",
+            keyword: "scalability",
+            title: "Demokratik Ölçeklenebilirlik (Scalability)",
+            text: "Yapay zeka 'scalability' avantajıyla, dünyanın en yoksul bölgelerindeki milyonlarca dezavantajlı öğrenciye elit kalitede eğitimi sıfır maliyetle ulaştırabilir.",
+            isCorrect: true,
+            academicPowerWord: "scalability (ölçeklenebilirlik)",
+            explanation: "Harika Koz! Rakibin geleneksel akademi modelini küresel ölçeklenebilirlik ve fırsat eşitliği argümanıyla saf dışı bıraktınız."
+          },
+          {
+            id: "c4",
+            keyword: "algorithmic bias",
+            title: "Algoritmik Önyargı Riski (Distractor)",
+            text: "Yapay zeka modelleri eğitim verilerindeki ırksal ve cinsiyetçi önyargıları pekiştirir ve eşitsizliği artırır.",
+            isCorrect: false,
+            academicPowerWord: "algorithmic bias (yanlış koz / aleyhte argüman)",
+            explanation: "Hatalı Akıl Yürütme (Logical Fallacy)! Bu kart kendi tezinizi desteklemiyor; tam aksine rakibinizin akademisyenleri savunma argümanına güç kazandırıyor!"
+          }
+        ]
+      },
+      {
+        id: 2,
+        topicTitle: "İklim Krizi ve Nükleer Enerji",
+        topicEn: "Is nuclear energy indispensable for achieving net-zero carbon emissions?",
+        opponentName: "Dr. Elena Rostova (Ekolojik Savunma)",
+        opponentAvatar: "☢️",
+        opponentClaim: "Nuclear energy creates catastrophic radioactive waste liabilities and catastrophic reactor meltdown hazards, proving it is too hazardous for a sustainable future.",
+        opponentClaimTr: "Nükleer enerji felaket boyutunda radyoaktif atık sorumlulukları ve reaktör erime tehlikeleri yaratır; bu da onun sürdürülebilir bir gelecek için çok riskli olduğunu kanıtlar.",
+        cards: [
+          {
+            id: "c1",
+            keyword: "baseload reliability",
+            title: "Temel Yük Güvenilirliği (Baseload)",
+            text: "Rüzgar ve güneşin kesintili yapısına karşın, modern nükleer santraller sıfır karbonla kesintisiz 'baseload reliability' sunan tek kaynaktır.",
+            isCorrect: true,
+            academicPowerWord: "baseload reliability (temel yük güvenilirliği)",
+            explanation: "Tam İsabet! Rüzgar ve güneşin hava koşullarına bağımlılığını nükleerin kesintisiz şebeke omurgasıyla çürüttünüz."
+          },
+          {
+            id: "c2",
+            keyword: "safety protocols",
+            title: "Yeni Nesil Güvenlik (Passive Safety)",
+            text: "4. Nesil modüler reaktörler (SMR), elektrik kesilse bile kendi kendini soğutan pasif 'safety protocols' ile erime riskini fiziksel olarak imkansız kılar.",
+            isCorrect: true,
+            academicPowerWord: "passive safety protocols (pasif güvenlik protokolleri)",
+            explanation: "Harika Tez! Rakibin eski Çernobil çağı korkularını modern 4. Nesil SMR pasif fizik kurallarıyla çürüttünüz."
+          },
+          {
+            id: "c3",
+            keyword: "energy density",
+            title: "Olağanüstü Enerji Yoğunluğu (Density)",
+            text: "Uranyumun muazzam 'energy density' özelliği, kömür ve güneş panellerine kıyasla binlerce kat daha az arazi tahribatı ve madencilik atığı anlamına gelir.",
+            isCorrect: true,
+            academicPowerWord: "energy density (enerji yoğunluğu)",
+            explanation: "Mükemmel Savunma! Arazi ve çevre tahribatı kıyaslamasında nükleerin mikroskobik ayak izini kanıtladınız."
+          },
+          {
+            id: "c4",
+            keyword: "fossil fuel lobbying",
+            title: "Fosil Yakıt Finansmanı (Distractor)",
+            text: "Kömür ve gaz şirketleri yenilenebilir enerjinin yaygınlaşmasını engellemek için her yıl milyarlarca dolar harcıyor.",
+            isCorrect: false,
+            academicPowerWord: "red herring (hedef saptırma)",
+            explanation: "Hedef Saptırma (Red Herring)! Fosil yakıt lobileri gerçek olsa da, rakibinizin nükleer atık ve radyasyon argümanına doğrudan bir cevap teşkil etmiyor."
+          }
+        ]
+      },
+      {
+        id: 3,
+        topicTitle: "Uzaktan Çalışma ve Kurumsal Verimlilik",
+        topicEn: "Does permanent remote work undermine corporate productivity and team cohesion?",
+        opponentName: "Julian Sterling (Kurumsal Yönetim Kurulu Başkanı)",
+        opponentAvatar: "🏢",
+        opponentClaim: "Permanent remote work breeds chronic employee isolation, erodes spontaneous office collaboration, and destroys long-term organizational loyalty.",
+        opponentClaimTr: "Kalıcı uzaktan çalışma kronik çalışan yalnızlığı doğurur, spontane ofis içi işbirliğini aşındırır ve uzun vadeli kurumsal sadakati yok eder.",
+        cards: [
+          {
+            id: "c1",
+            keyword: "asynchronous workflow",
+            title: "Asenkron Üretkenlik (Asynchronous)",
+            text: "Gereksiz ofis toplantılarının elenmesi ve 'asynchronous workflow' kültürü, çalışanların derin odaklanma süresini ve çıktı kalitesini %35 artırır.",
+            isCorrect: true,
+            academicPowerWord: "asynchronous workflow (asenkron iş akışı)",
+            explanation: "Müthiş Argüman! Ofis gevezelikleri yerine derin odaklanmanın somut üretkenlik getirisini savundunuz."
+          },
+          {
+            id: "c2",
+            keyword: "talent acquisition",
+            title: "Küresel Yetenek Havuzu (Talent Acquisition)",
+            text: "Coğrafi sınırları kaldıran uzaktan çalışma modeli, şirketlerin dünya genelindeki en parlak uzmanları işe alarak 'talent acquisition' gücünü zirveye taşır.",
+            isCorrect: true,
+            academicPowerWord: "talent acquisition (nitelikli iş gücü kazanımı)",
+            explanation: "Kusursuz Savunma! Rakibin dar ofis vizyonunu küresel yetenek mıknatısı argümanıyla alaşağı ettiniz."
+          },
+          {
+            id: "c3",
+            keyword: "well-being correlation",
+            title: "Yaşam Kalitesi & Bağlılık (Well-being)",
+            text: "Trafik stresinin sıfırlanması ve esnek çalışma, çalışanların 'well-being' seviyesini yükselterek tükenmişlik oranlarını ve personel devrini düşürür.",
+            isCorrect: true,
+            academicPowerWord: "well-being correlation (esenlik korelasyonu)",
+            explanation: "Harika Karşı Duruş! Ofiste mutsuz tutulan çalışanların yerine, özgür ve enerjik çalışanların kuruma daha sadık olduğunu kanıtladınız."
+          },
+          {
+            id: "c4",
+            keyword: "cybersecurity breaches",
+            title: "Siber Güvenlik Zafiyeti (Distractor)",
+            text: "Ev ağlarından şirket veritabanına bağlanan çalışanlar siber saldırılara ve veri hırsızlığına davetiye çıkarır.",
+            isCorrect: false,
+            academicPowerWord: "adverse argument (aleyhte argüman)",
+            explanation: "Yanlış Koz! Bu kart uzaktan çalışmayı savunmuyor, bilakis şirket yönetiminin ofise dönme baskısını haklı çıkaracak bir zafiyeti dile getiriyor!"
+          }
+        ]
+      },
+      {
+        id: 4,
+        topicTitle: "Sosyal Medya ve Gençlik Yasakları",
+        topicEn: "Should governments enforce strict age bans on social media for minors under 16?",
+        opponentName: "Prof. Clara Higgins (Dijital Özgürlükler Savunucusu)",
+        opponentAvatar: "📱",
+        opponentClaim: "State-enforced social media bans infringe upon young people's fundamental right to digital communication, self-expression, and decentralized civic discovery.",
+        opponentClaimTr: "Devlet eliyle getirilen sosyal medya yasakları, gençlerin temel dijital iletişim, kendini ifade etme ve bağımsız sivil keşif haklarını ihlal eder.",
+        cards: [
+          {
+            id: "c1",
+            keyword: "dopaminergic addiction",
+            title: "Nörolojik Bağımlılık Mimarisi (Addiction)",
+            text: "Sosyal medya algoritmaları kâr amacıyla 'dopaminergic addiction' yaratacak şekilde tasarlanmıştır; ergen beyni henüz bu manipülasyona karşı biyolojik savunmaya sahip değildir.",
+            isCorrect: true,
+            academicPowerWord: "dopaminergic addiction (dopaminerjik bağımlılık)",
+            explanation: "Bilimsel Zafer! Rakibin romantik 'özgürlük' argümanını nörobiyolojik bağımlılık ve kâr odaklı manipülasyon gerçeğiyle çürüttünüz."
+          },
+          {
+            id: "c2",
+            keyword: "epidemiological crisis",
+            title: "Akıl Sağlığı Krizi (Epidemiological)",
+            text: "Veriler, akıllı telefon patlamasıyla gençlerdeki anksiyete, depresyon ve kendine zarar verme oranları arasında doğrudan 'epidemiological correlation' olduğunu gösteriyor.",
+            isCorrect: true,
+            academicPowerWord: "epidemiological crisis (epidemiyolojik kriz)",
+            explanation: "Çarpıcı Kanıt! İfade özgürlüğü tartışmasını doğrudan gençlik depresyonu ve halk sağlığı krizine bağlayarak kazandınız."
+          },
+          {
+            id: "c3",
+            keyword: "state duty of care",
+            title: "Devletin Koruma Sorumluluğu (Duty of Care)",
+            text: "Tıpkı tütün ve alkolde olduğu gibi, devletin gelişme çağındaki çocukları korumak için yasal bir 'duty of care' (gözetim ve koruma yükümlülüğü) mevcuttur.",
+            isCorrect: true,
+            academicPowerWord: "state duty of care (kamusal gözetim yükümlülüğü)",
+            explanation: "Hukuki Nakavt! Tütün ve alkol benzetmesiyle, yaş sınırının sansür değil meşru bir kamusal koruma kalkanı olduğunu kanıtladınız."
+          },
+          {
+            id: "c4",
+            keyword: "privacy surveillance",
+            title: "Gizlilik İhlali & Takip (Distractor)",
+            text: "Büyük teknoloji şirketleri kullanıcıların konum ve mesaj verilerini satarak mahremiyet haklarını çiğnemektedir.",
+            isCorrect: false,
+            academicPowerWord: "irrelevant claim (konu dışı argüman)",
+            explanation: "Konu Dışı (Non Sequitur)! Veri gizliliği önemli bir problem olsa da, çocuklara yönelik sosyal medya yaş sınırını savunmak için geçerli bir gerekçe değildir."
+          }
+        ]
+      },
+      {
+        id: 5,
+        topicTitle: "Gen Düzenleme ve İnsan Biyoetiği",
+        topicEn: "Should germline CRISPR genetic editing in humans be globally legalized?",
+        opponentName: "Dr. Arthur Pendelton (Biyoetik Enstitüsü)",
+        opponentAvatar: "🧬",
+        opponentClaim: "Human germline genetic editing crosses an irrevocable ethical boundary, opening the dystopian floodgates to genetic caste systems and eugenic discrimination.",
+        opponentClaimTr: "İnsan üreme hücrelerinde genetik düzenleme yapmak geri dönülemez bir etik sınırı aşar; genetik kast sistemlerine ve öjenik ayrımcılığa distopik kapılar açar.",
+        cards: [
+          {
+            id: "c1",
+            keyword: "hereditary eradication",
+            title: "Kalıtsal Hastalıkların Yok Edilmesi",
+            text: "Kistik fibrozis, Huntington ve orak hücre anemisi gibi yüzlerce ölümcül genetik hastalığı nesiller boyu 'hereditary eradication' ile tamamen yeryüzünden silebiliriz.",
+            isCorrect: true,
+            academicPowerWord: "hereditary eradication (kalıtsal hastalıkların kökünün kazınması)",
+            explanation: "Muazzam İnsani Savunma! Soyut distopya korkularını, yüz binlerce çocuğun ölümcül hastalıklardan sonsuza dek kurtulması gerçeğiyle alt ettiniz."
+          },
+          {
+            id: "c2",
+            keyword: "preventive economics",
+            title: "Milyarlarca Dolarlık Sağlık Tasarrufu",
+            text: "Kronik genetik hastalıkların doğmadan engellenmesi, küresel sağlık bütçelerindeki 'preventive economics' verimliliğini trilyonlarca dolar artıracaktır.",
+            isCorrect: true,
+            academicPowerWord: "preventive economics (önleyici sağlık ekonomisi)",
+            explanation: "Güçlü Ekonomik Argüman! Sağlık sistemlerinin sürdürülebilirliği ve tedavi masraflarının ortadan kalkması tezini başarıyla sundunuz."
+          },
+          {
+            id: "c3",
+            keyword: "strict regulatory oversight",
+            title: "Sıkı Düzenleyici Denetim (Oversight)",
+            text: "Yasaklamak yerine 'strict regulatory oversight' kurarak, kozmetik zenginleşmeyi engelleyip teknolojiyi yalnızca hayati tıbbi tedavilerle sınırlandırmak mümkündür.",
+            isCorrect: true,
+            academicPowerWord: "strict regulatory oversight (sıkı denetim ve regülasyon)",
+            explanation: "Akıllıca Politika Hamlesi! 'Kast sistemi' tehlikesini mutlak yasakla değil, katı uluslararası regülasyon ve tıp etiği denetimiyle bertaraf ettiniz."
+          },
+          {
+            id: "c4",
+            keyword: "laboratory cost",
+            title: "Yüksek Laboratuvar Maliyeti (Distractor)",
+            text: "CRISPR ve gen dizileme makineleri aşırı pahalıdır ve üniversite bütçelerini çok zorlamaktadır.",
+            isCorrect: false,
+            academicPowerWord: "trivial objection (önemsiz / zayıf itiraz)",
+            explanation: "Zayıf & Geçersiz Argüman! Laboratuvar ekipman fiyatı felsefi ve biyoetik insan gen düzenlemesi tartışmasında geçerli bir koz olamaz."
+          }
+        ]
+      },
+      {
+        id: 6,
+        topicTitle: "Kripto Para ve Finansal İstikrar",
+        topicEn: "Do decentralized cryptocurrencies threaten sovereign financial stability?",
+        opponentName: "Sir Gregory Thorne (Merkez Bankaları Birliği)",
+        opponentAvatar: "🏛️",
+        opponentClaim: "Cryptocurrencies facilitate unregulated illicit financial capital flight, exacerbate speculative asset bubbles, and fundamentally undermine central banks' monetary policy autonomy.",
+        opponentClaimTr: "Kripto paralar yasa dışı sermaye kaçışını kolaylaştırır, spekülatif varlık balonlarını körükler ve merkez bankalarının para politikası özerkliğini temelde baltalar.",
+        cards: [
+          {
+            id: "c1",
+            keyword: "cryptographic transparency",
+            title: "Şeffaf Defter Mimarisi (Transparency)",
+            text: "Blokzincirin 'cryptographic transparency' yapısı, geleneksel off-shore bankacılıktaki kara para aklamayı imkansız kılan açık ve denetlenebilir bir kayıt defteri sunar.",
+            isCorrect: true,
+            academicPowerWord: "cryptographic transparency (kriptografik şeffaflık)",
+            explanation: "Müthiş Karşı Hamle! Rakibin 'yasa dışı sermaye' iddiasını halka açık blokzincir defterlerinin şeffaf denetlenebilirliği ile çürüttünüz."
+          },
+          {
+            id: "c2",
+            keyword: "financial inclusion",
+            title: "Bankasız Toplumlara Erişim (Inclusion)",
+            text: "Merkeziyetsiz protokoller küresel 'financial inclusion' devrimi yaratarak banka hesabı olmayan 1.4 milyar insana düşük maliyetli küresel sermaye erişimi sağlar.",
+            isCorrect: true,
+            academicPowerWord: "financial inclusion (finansal kapsayıcılık)",
+            explanation: "Harika Tez! Bürokrasi ve merkez bankası tekellerine karşı küresel finansal erişim ve özgürlük argümanını savundunuz."
+          },
+          {
+            id: "c3",
+            keyword: "inflation hedge",
+            title: "Enflasyona Karşı Güvenli Liman (Hedge)",
+            text: "Sınırlı arza sahip matematiksel varlıklar, sorumsuz para basımına ve hiperenflasyona karşı vatandaşlar için meşru bir 'inflation hedge' görevi görür.",
+            isCorrect: true,
+            academicPowerWord: "inflation hedge (enflasyondan korunma kalkanı)",
+            explanation: "Ekonomik Zafer! Sınırsız para basımının yarattığı satın alma gücü erimesine karşı matematiksel kural kalkanını başarıyla sundunuz."
+          },
+          {
+            id: "c4",
+            keyword: "mining hardware cost",
+            title: "Madencilik Donanım Fiyatları (Distractor)",
+            text: "Ekran kartı ve ASIC çip fiyatlarındaki artış kripto madencilerinin maliyetlerini yükseltmektedir.",
+            isCorrect: false,
+            academicPowerWord: "trivial technicality (önemsiz teknik itiraz)",
+            explanation: "Zayıf & Alakasız Koz! Donanım maliyetleri makroekonomik finansal istikrar ve para politikası tartışmasında geçerli bir koz değildir."
+          }
+        ]
+      }
+    ];
+
+    let currentDefenderTopicIdx = 0;
+    let defenderScore = 0;
+    let defenderRoundAnswered = false;
+
+    function initThesisDefender() {
+      const pillsContainer = document.getElementById('defenderTopicPills');
+      if (pillsContainer) {
+        pillsContainer.innerHTML = defenderTopics.map((t, idx) => `
+          <button type="button" onclick="selectDefenderTopic(${idx})" id="defenderTopicPill-${idx}" class="px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 ${idx === currentDefenderTopicIdx ? 'bg-indigo-900/60 border border-indigo-500/40 text-white shadow-sm' : 'text-slate-400 hover:text-white'}">
+            Tez ${idx + 1}
+          </button>
+        `).join('');
+      }
+      renderDefenderTopic();
+    }
+
+    function selectDefenderTopic(idx) {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      currentDefenderTopicIdx = idx;
+      defenderRoundAnswered = false;
+      renderDefenderTopic();
+    }
+
+    function renderDefenderTopic() {
+      const t = defenderTopics[currentDefenderTopicIdx];
+      if (!t) return;
+
+      // Update pills
+      defenderTopics.forEach((_, idx) => {
+        const p = document.getElementById('defenderTopicPill-' + idx);
+        if (p) {
+          if (idx === currentDefenderTopicIdx) {
+            p.className = 'px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 bg-indigo-900/60 border border-indigo-500/40 text-white shadow-sm';
+          } else {
+            p.className = 'px-3 py-1.5 rounded-xl text-xs font-mono transition shrink-0 text-slate-400 hover:text-white';
+          }
+        }
+      });
+
+      const roundText = document.getElementById('defenderRoundText');
+      const scoreText = document.getElementById('defenderScoreText');
+      if (roundText) roundText.textContent = `Tur ${currentDefenderTopicIdx + 1} / ${defenderTopics.length}`;
+      if (scoreText) scoreText.textContent = defenderScore;
+
+      const titleEl = document.getElementById('defenderTopicTitle');
+      const topicEnEl = document.getElementById('defenderTopicEn');
+      if (titleEl) titleEl.textContent = t.topicTitle;
+      if (topicEnEl) topicEnEl.textContent = `"${t.topicEn}"`;
+
+      const rivalAvatar = document.getElementById('defenderRivalAvatar');
+      const rivalName = document.getElementById('defenderRivalName');
+      const rivalClaim = document.getElementById('defenderRivalClaim');
+      const rivalClaimTr = document.getElementById('defenderRivalClaimTr');
+
+      if (rivalAvatar) rivalAvatar.textContent = t.opponentAvatar;
+      if (rivalName) rivalName.textContent = t.opponentName;
+      if (rivalClaim) rivalClaim.textContent = `"${t.opponentClaim}"`;
+      if (rivalClaimTr) rivalClaimTr.textContent = `TR: ${t.opponentClaimTr}`;
+
+      // Render 4 player cards
+      const handContainer = document.getElementById('defenderHandCards');
+      if (handContainer) {
+        handContainer.innerHTML = t.cards.map((c, idx) => `
+          <button type="button" onclick="playDefenderCard('${c.id}')" id="defenderCardBtn-${c.id}" class="p-4 rounded-2xl bg-black/40 hover:bg-white/[0.05] border border-white/[0.1] hover:border-indigo-500/50 text-left transition-all group flex flex-col justify-between space-y-2 relative active:scale-[0.98]">
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-white group-hover:text-indigo-200 transition font-mono">${c.title}</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/[0.05] text-indigo-300">Koz #${idx + 1}</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-snug">${c.text}</p>
+            </div>
+            <div class="text-[10px] font-mono text-indigo-300/80 border-t border-white/[0.06] pt-1.5 flex items-center gap-1">
+              <span>⚡ Güç Kelimesi:</span> <span class="font-bold">${c.keyword}</span>
+            </div>
+          </button>
+        `).join('');
+      }
+
+      const feedback = document.getElementById('defenderFeedbackCard');
+      if (feedback) feedback.classList.add('hidden');
+      const nextBtn = document.getElementById('btnNextDefenderRound');
+      if (nextBtn) nextBtn.classList.add('hidden');
+    }
+
+    function playDefenderCard(cardId) {
+      if (defenderRoundAnswered) return;
+      const t = defenderTopics[currentDefenderTopicIdx];
+      if (!t) return;
+
+      const card = t.cards.find(c => c.id === cardId);
+      if (!card) return;
+
+      const btn = document.getElementById('defenderCardBtn-' + cardId);
+      const feedback = document.getElementById('defenderFeedbackCard');
+      const nextBtn = document.getElementById('btnNextDefenderRound');
+
+      if (card.isCorrect) {
+        defenderRoundAnswered = true;
+        defenderScore += 25;
+        playAudioTone('success');
+        triggerHaptic('success');
+        triggerConfetti();
+
+        const scoreText = document.getElementById('defenderScoreText');
+        if (scoreText) scoreText.textContent = defenderScore;
+
+        if (btn) {
+          btn.classList.add('border-emerald-500', 'bg-emerald-950/40', 'ring-2', 'ring-emerald-400');
+        }
+
+        if (feedback) {
+          feedback.className = 'p-5 rounded-2xl border border-emerald-500/50 bg-gradient-to-r from-emerald-950/40 via-emerald-900/20 to-black/60 text-emerald-100 text-xs sm:text-sm font-medium space-y-2';
+          feedback.innerHTML = `
+            <div class="flex items-center gap-2 font-bold text-sm text-emerald-300">
+              <span>🏆</span> <span>Zafer! +25 Münazara Puanı Kazandın!</span>
+            </div>
+            <div>${card.explanation}</div>
+            <div class="p-3 rounded-xl bg-black/50 border border-emerald-500/30 text-[11px] font-mono text-emerald-200">
+              🔑 Akademik Güç Kalıbı: <span class="text-white font-bold">${card.academicPowerWord}</span>
+            </div>
+          `;
+          feedback.classList.remove('hidden');
+        }
+
+        if (nextBtn) nextBtn.classList.remove('hidden');
+      } else {
+        playAudioTone('error');
+        triggerHaptic('error');
+        if (btn) {
+          btn.classList.add('border-rose-500', 'bg-rose-950/40', 'ring-2', 'ring-rose-400');
+        }
+
+        if (feedback) {
+          feedback.className = 'p-5 rounded-2xl border border-rose-500/50 bg-gradient-to-r from-rose-950/40 via-rose-900/20 to-black/60 text-rose-100 text-xs sm:text-sm font-medium space-y-2';
+          feedback.innerHTML = `
+            <div class="flex items-center gap-2 font-bold text-sm text-rose-300">
+              <span>⚠️</span> <span>Hatalı Koz / Yanılgı!</span>
+            </div>
+            <div>${card.explanation}</div>
+            <div class="text-[11px] text-slate-300">Farklı bir koz seçerek rakibi çürütmeyi deneyin.</div>
+          `;
+          feedback.classList.remove('hidden');
+        }
+      }
+    }
+
+    function nextDefenderRound() {
+      playAudioTone('click');
+      triggerHaptic('tap');
+      defenderRoundAnswered = false;
+      currentDefenderTopicIdx = (currentDefenderTopicIdx + 1) % defenderTopics.length;
+      renderDefenderTopic();
+    }
+
+    function speakDefenderClaim() {
+      const t = defenderTopics[currentDefenderTopicIdx];
+      if (t) speakText(t.opponentClaim);
+    }
+
 
     // Attach Enter key listener to Cloze Type-In input
     document.addEventListener('keydown', (e) => {
