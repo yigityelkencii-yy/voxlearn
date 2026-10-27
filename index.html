@@ -4119,8 +4119,9 @@
       }
     }
 
-    function setFcSource(mode) {
-      if (fcSourceMode && typeof fcIndex === 'number') {
+    function setFcSource(mode, forceReset = false) {
+      // Yalnızca farklı bir moda geçerken ve mevcut mod tamamlanmamışken indeksi kaydet
+      if (!forceReset && fcSourceMode && fcSourceMode !== mode && typeof fcIndex === 'number' && fcIndex < currentBatchWords.length) {
         fcSavedIndices[fcSourceMode] = fcIndex;
       }
       fcSourceMode = mode;
@@ -4148,7 +4149,7 @@
         const dueList = getDueWords();
         if (dueList.length === 0) {
           alert('Şu anda tekrar vakti gelmiş (vadesi dolan) kelime bulunmuyor. Harika gidiyorsun! Normal desteden devam ediliyor.');
-          setFcSource('batch');
+          setFcSource('batch', true);
           return;
         }
         currentBatchWords = isShuffleMode ? shuffleArray(dueList) : [...dueList];
@@ -4163,12 +4164,17 @@
         }
       }
 
-      // Hafızadaki son indekse dön (Tekrar ile 20lik tur arasında gidip gelince baştan başlamaz!)
-      fcIndex = fcSavedIndices[mode] || 0;
-      if (fcIndex >= currentBatchWords.length) {
-        fcIndex = Math.max(0, currentBatchWords.length - 1);
+      // Yeni tura geçildiyse veya forceReset varsa doğrudan 0. karttan başla
+      if (forceReset) {
+        fcIndex = 0;
+        fcSavedIndices[mode] = 0;
+      } else {
+        fcIndex = fcSavedIndices[mode] || 0;
+        if (fcIndex >= currentBatchWords.length) {
+          fcIndex = 0;
+        }
+        fcSavedIndices[mode] = fcIndex;
       }
-      fcSavedIndices[mode] = fcIndex;
 
       document.getElementById('fcCurrentBatch').innerText = batchIndex + 1;
       document.getElementById('fcPlayArea').classList.remove('hidden');
@@ -4187,9 +4193,10 @@
           fcShuffledPool = shuffleArray(basePool);
         }
       }
+      fcIndex = 0;
       fcSavedIndices['batch'] = 0;
       saveBatchIndex();
-      setFcSource('batch');
+      setFcSource('batch', true);
     }
 
     function nextBatch() {
@@ -4198,6 +4205,7 @@
 
     function restartBatch() {
       fcIndex = 0;
+      fcSavedIndices[fcSourceMode] = 0;
       document.getElementById('fcPlayArea').classList.remove('hidden');
       document.getElementById('fcBatchCompleteBox').classList.add('hidden');
       renderFlashcard();
@@ -5379,7 +5387,12 @@
 
     // ==================== KEYBOARD NAVIGATION ====================
     window.addEventListener('keydown', (e) => {
-      if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT') return;
+      // Input, Textarea veya içerik düzenleme alanlarındayken boşluk (Space) ve harf kısayollarını engelleme!
+      const activeEl = document.activeElement;
+      const tag = activeEl ? activeEl.tagName : '';
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(tag) || (activeEl && activeEl.isContentEditable)) {
+        return;
+      }
 
       if (e.code === 'KeyF') {
         toggleZenMode();
@@ -13784,23 +13797,138 @@
       renderToneResults(p);
     }
 
+    const ACADEMIC_DICTIONARY = [
+      { regex: /\bi think\b/gi, essay: "it is arguable that", biz: "from a strategic perspective,", dip: "it is respectfully observed that", why: "Akademik dilde 1. tekil şahıs yerine nesnel yapılar tercih edilir." },
+      { regex: /\bin my opinion\b/gi, essay: "from an empirical standpoint,", biz: "according to market indicators,", dip: "in a balanced assessment,", why: "Kişisel kanaat yerine tarafsız kanıt odaklı ifade." },
+      { regex: /\ba lot of\b|\blots of\b/gi, essay: "a substantial volume of", biz: "a significant scale of", dip: "a considerable cohort of", why: "Muğlak sokak miktarı yerine ölçülebilir akademik hacim." },
+      { regex: /\bbad\b/gi, essay: "detrimental", biz: "suboptimal", dip: "unfavorable", why: "'Bad' muğlak ve basit bir sıfattır; teknik etki terimi kullanılır." },
+      { regex: /\bgood\b/gi, essay: "advantageous", biz: "optimal", dip: "favorable", why: "'Good' yerine ölçülebilir fayda ve optimallik terimi." },
+      { regex: /\bbig\b/gi, essay: "substantial", biz: "significant", dip: "considerable", why: "'Big' yerine büyüklük/önem bildiren akademik sıfat." },
+      { regex: /\bsmall\b/gi, essay: "marginal", biz: "negligible", dip: "nominal", why: "'Small' yerine marjinal veya ihmal edilebilir terimi." },
+      { regex: /\bfail\b/gi, essay: "prove unviable", biz: "experience operational distress", dip: "encounter systemic disruption", why: "Felaket dili yerine risk ve fizibilite odaklı akademik terim." },
+      { regex: /\bmoney\b/gi, essay: "capital resources", biz: "financial liquidity", dip: "fiscal allocations", why: "'Para' yerine sermaye, likidite veya mali kaynaklar." },
+      { regex: /\bdon't have enough\b|\bdo not have enough\b/gi, essay: "exhibit a deficit of", biz: "face acute liquidity constraints in", dip: "lack sufficient allocations of", why: "Yetersizlik yerine finansal açık veya kısıt terimi kullanılır." },
+      { regex: /\bno money\b/gi, essay: "insufficient capital reserves", biz: "inadequate financial liquidity", dip: "fiscal insolvency", why: "Sermaye yetersizliği." },
+      { regex: /\bproblem\b/gi, essay: "systemic challenge", biz: "operational impediment", dip: "policy dilemma", why: "'Problem' yerine sistemik zorluk veya kurumsal ikilem." },
+      { regex: /\bproblems\b/gi, essay: "systemic challenges", biz: "operational bottlenecks", dip: "institutional dilemmas", why: "Kurumsal zorluklar veya operasyonel darboğazlar." },
+      { regex: /\bhard\b/gi, essay: "formidable", biz: "labor-intensive", dip: "complex", why: "'Zor' yerine çaba gerektiren veya çetin akademik sıfatı." },
+      { regex: /\beasy\b/gi, essay: "straightforward", biz: "operationally seamless", dip: "accessible", why: "Kolay yerine doğrudan veya operasyonel olarak pürüzsüz." },
+      { regex: /\bfix\b/gi, essay: "rectify", biz: "remediate", dip: "resolve", why: "'Tamir etmek' yerine iyileştirmek veya gidermek." },
+      { regex: /\bhelp\b/gi, essay: "facilitate", biz: "expedite", dip: "assist", why: "'Yardım etmek' yerine akademik 'facilitate' (kolaylaştırmak)." },
+      { regex: /\bchange\b/gi, essay: "transform", biz: "reconfigure", dip: "modify", why: "'Değiştirmek' yerine dönüştürmek veya yeniden yapılandırmak." },
+      { regex: /\buse\b/gi, essay: "utilize", biz: "leverage", dip: "employ", why: "'Use' yerine akademik 'utilize' veya stratejik 'leverage'." },
+      { regex: /\bfind out\b/gi, essay: "ascertain", biz: "determine", dip: "discern", why: "Ortaya çıkarmak, tespit etmek." },
+      { regex: /\bmake\b/gi, essay: "generate", biz: "produce", dip: "render", why: "'Make' yerine üretmek veya hâline getirmek." },
+      { regex: /\bget\b/gi, essay: "acquire", biz: "procure", dip: "derive", why: "'Get' yerine edinmek, tedarik etmek." },
+      { regex: /\bshow\b/gi, essay: "demonstrate", biz: "illustrate", dip: "indicate", why: "'Show' yerine kanıtlamak veya somutlaştırmak." },
+      { regex: /\bstart\b/gi, essay: "initiate", biz: "commence", dip: "embark upon", why: "'Başlamak' yerine resmi olarak başlatmak/yürürlüğe koymak." },
+      { regex: /\bstop\b/gi, essay: "terminate", biz: "discontinue", dip: "cease", why: "'Durdurmak' yerine sonlandırmak veya askıya almak." },
+      { regex: /\bpeople\b/gi, essay: "individuals", biz: "stakeholders", dip: "citizens", why: "'People' yerine bireyler, paydaşlar veya yurttaşlar." },
+      { regex: /\bkids\b|\bchildren\b/gi, essay: "adolescents", biz: "pediatric cohorts", dip: "juveniles", why: "'Kids' argodur; akademik 'adolescents / minors' kullanılır." },
+      { regex: /\bfire\b/gi, essay: "terminate employment of", biz: "streamline headcount of", dip: "downsize", why: "'Kovmak' yerine istihdamı sonlandırmak veya kadroyu optimize etmek." },
+      { regex: /\bcheap\b/gi, essay: "cost-effective", biz: "economical", dip: "low-cost", why: "'Cheap' ucuz/kalitesiz çağrışımı yapar; maliyet-etkin denir." },
+      { regex: /\bexpensive\b/gi, essay: "capital-intensive", biz: "cost-prohibitive", dip: "financially demanding", why: "'Pahalı' yerine sermaye-yoğun veya maliyet kısıtlayıcı denir." },
+      { regex: /\brich\b/gi, essay: "affluent", biz: "well-capitalized", dip: "prosperous", why: "Varlıklı, iyi sermayelendirilmiş." },
+      { regex: /\bpoor\b/gi, essay: "socioeconomically disadvantaged", biz: "under-resourced", dip: "impoverished", why: "Sosyoekonomik açıdan dezavantajlı." },
+      { regex: /\bjob\b/gi, essay: "occupation", biz: "employment role", dip: "professional capacity", why: "Meslek veya istihdam." },
+      { regex: /\bboss\b/gi, essay: "executive leadership", biz: "senior management", dip: "supervisory authority", why: "Üst düzey kurumsal yönetim." },
+      { regex: /\bworkers\b/gi, essay: "workforce personnel", biz: "human capital", dip: "labor force", why: "İş gücü personeli veya beşeri sermaye." },
+      { regex: /\bcars\b/gi, essay: "motorized vehicles", biz: "automotive assets", dip: "vehicular transit", why: "Motorlu taşıtlar." },
+      { regex: /\btraffic\b/gi, essay: "urban gridlock", biz: "vehicular congestion", dip: "transit congestion", why: "Kentsel tıkanıklık." },
+      { regex: /\bwant\b/gi, essay: "aspire to", biz: "seek to", dip: "aim to", why: "İstemek yerine hedeflemek veya amaçlamak." },
+      { regex: /\bneed\b/gi, essay: "necessitate", biz: "require", dip: "mandate", why: "Gerektirmek veya zorunlu kılmak." },
+      { regex: /\bfast\b|\bquickly\b/gi, essay: "expeditiously", biz: "promptly", dip: "in an accelerated manner", why: "Hızlıca yerine ivedilikle." }
+    ];
+
     function shiftToneAction() {
       playAudioTone('click');
       triggerHaptic('tap');
       const inputArea = document.getElementById('toneInputText');
-      const text = inputArea ? inputArea.value.trim().toLowerCase() : '';
+      const rawText = inputArea ? inputArea.value.trim() : '';
 
-      // Find closest preset or match
-      let match = toneShifterPresets.find(p => p.street.toLowerCase() === text);
-      if (!match) {
-        // Find by keyword
-        match = toneShifterPresets.find(p => {
-          const words = p.street.toLowerCase().split(' ');
-          return words.filter(w => text.includes(w)).length >= 3;
-        }) || toneShifterPresets[currentTonePresetIdx];
+      if (!rawText) {
+        alert('Lütfen dönüştürmek istediğiniz bir İngilizce cümle yazın veya yukarıdaki hazır senaryolardan birini seçin.');
+        if (inputArea) inputArea.focus();
+        return;
       }
 
-      renderToneResults(match);
+      // 1. Hazır senaryolardan biriyle birebir veya çok yakın eşleşme var mı?
+      const normInput = rawText.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+      const exactPreset = toneShifterPresets.find(p => {
+        const normPreset = p.street.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+        return normPreset === normInput;
+      });
+
+      if (exactPreset) {
+        const inputTr = document.getElementById('toneInputTrLabel');
+        if (inputTr) inputTr.textContent = `TR: "${exactPreset.streetTr}"`;
+        renderToneResults(exactPreset);
+        return;
+      }
+
+      // 2. Dinamik Dönüştürücü Motor (Kullanıcının yazdığı HERHANGİ bir cümle için!)
+      const dynamicResult = performDynamicToneTransform(rawText);
+      const inputTr = document.getElementById('toneInputTrLabel');
+      if (inputTr) inputTr.textContent = "Kullanıcı Cümlesi (Dinamik Dönüştürüldü)";
+      renderToneResults(dynamicResult);
+    }
+
+    function performDynamicToneTransform(userSentence) {
+      let essay = userSentence;
+      let business = userSentence;
+      let diplomatic = userSentence;
+      const detectedDiffs = [];
+
+      ACADEMIC_DICTIONARY.forEach(item => {
+        if (item.regex.test(userSentence)) {
+          // Eşleşen kelimeyi bul
+          const matches = userSentence.match(item.regex);
+          const originalWord = matches ? matches[0] : '';
+          
+          essay = essay.replace(item.regex, item.essay);
+          business = business.replace(item.regex, item.biz);
+          diplomatic = diplomatic.replace(item.regex, item.dip);
+
+          if (originalWord && !detectedDiffs.some(d => d.from.toLowerCase() === originalWord.toLowerCase())) {
+            detectedDiffs.push({
+              from: originalWord,
+              to: `${item.essay} / ${item.biz}`,
+              why: item.why
+            });
+          }
+        }
+      });
+
+      // İlk harfleri büyük yap
+      const capitalize = str => str.trim().length > 0 ? str.trim().charAt(0).toUpperCase() + str.trim().slice(1) : str;
+
+      essay = capitalize(essay);
+      business = capitalize(business);
+      diplomatic = capitalize(diplomatic);
+
+      // Cümle sonu noktası yoksa ekle
+      if (!/[.!?]$/.test(essay)) essay += '.';
+      if (!/[.!?]$/.test(business)) business += '.';
+      if (!/[.!?]$/.test(diplomatic)) diplomatic += '.';
+
+      // Eğer cümlede listelenen sokak kelimelerinden bulunamadıysa akademik çatıya al
+      if (detectedDiffs.length === 0) {
+        essay = `It is evident that ${userSentence.charAt(0).toLowerCase() + userSentence.slice(1)}`;
+        business = `From an operational perspective, ${userSentence.charAt(0).toLowerCase() + userSentence.slice(1)}`;
+        diplomatic = `It is mutually acknowledged that ${userSentence.charAt(0).toLowerCase() + userSentence.slice(1)}`;
+        detectedDiffs.push({
+          from: "Cümle Yapısı",
+          to: "Akademik Çatı & Nesnel Perspektif",
+          why: "Cümleniz doğrudan akademik ve kurumsal analiz kalıbına entegre edildi."
+        });
+      }
+
+      return {
+        essay: essay,
+        business: business,
+        diplomatic: diplomatic,
+        diffs: detectedDiffs
+      };
     }
 
     function renderToneResults(data) {
@@ -13816,13 +13944,13 @@
       const diffContainer = document.getElementById('toneDiffContainer');
       if (diffContainer) {
         diffContainer.innerHTML = data.diffs.map(d => `
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.08] space-y-1.5">
+          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.08] space-y-1.5 shadow-sm">
             <div class="flex items-center justify-between text-xs">
-              <span class="px-2 py-0.5 rounded bg-rose-950/60 border border-rose-500/30 text-rose-300 line-through font-mono">${d.from}</span>
+              <span class="px-2 py-0.5 rounded bg-rose-950/60 border border-rose-500/30 text-rose-300 line-through font-mono font-medium">${d.from}</span>
               <span class="text-slate-500 font-bold">➔</span>
               <span class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 font-mono font-bold">${d.to}</span>
             </div>
-            <p class="text-[11px] text-slate-400 leading-snug">${d.why}</p>
+            <p class="text-[11px] text-slate-300 leading-snug">${d.why}</p>
           </div>
         `).join('');
       }
