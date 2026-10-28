@@ -2779,9 +2779,14 @@
             <p class="text-xs text-[#a8998c]">İlerlemek istediğiniz modülü seçin:</p>
           </div>
         </div>
-        <button onclick="closeModeSelectModal()" title="Kapat (ESC)" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition text-sm flex items-center justify-center w-8 h-8">
-          ✕
-        </button>
+        <div class="flex items-center gap-1.5">
+          <button type="button" onclick="openWelcomeGuideFromMenu()" title="Site Rehberi & Nasıl Kullanılır?" class="w-8 h-8 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] text-[#d6c7b2]/70 hover:text-white transition text-xs font-mono font-bold flex items-center justify-center">
+            ?
+          </button>
+          <button onclick="closeModeSelectModal()" title="Kapat (ESC)" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition text-sm flex items-center justify-center w-8 h-8">
+            ✕
+          </button>
+        </div>
       </div>
 
       <!-- Modal Body: 3 Clear Columns / Sections -->
@@ -2945,12 +2950,106 @@
 
       <!-- Modal Footer -->
       <div class="p-3 sm:p-4 bg-black/50 border-t border-white/[0.06] flex items-center justify-between text-xs text-[#a8998c]">
-        <div class="flex items-center gap-1.5 font-mono text-[11px]">
+        <div class="flex items-center gap-2 font-mono text-[11px]">
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span>Seçilen mod anında yüklenir ve durumunuz korunur.</span>
         </div>
-        <button type="button" onclick="closeModeSelectModal()" class="px-3.5 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white transition text-xs font-medium">
-          Vazgeç
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="openWelcomeGuideFromMenu()" title="Nasıl Kullanılır? (Rehber)" class="px-2.5 py-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] text-[#d6c7b2]/70 hover:text-white transition text-xs font-mono flex items-center gap-1">
+            <span>?</span> <span class="hidden sm:inline">Rehber</span>
+          </button>
+          <button type="button" onclick="closeModeSelectModal()" class="px-3.5 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white transition text-xs font-medium">
+            Vazgeç
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== WELCOME & USAGE GUIDE MODAL (İLK GİRİŞ & ? REHBERİ) ==================== -->
+  <div id="welcomeGuideModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md">
+    <div class="absolute inset-0" onclick="closeWelcomeGuideModal()"></div>
+    <div class="bg-[#140609] border border-rose-500/30 rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden relative z-10">
+      
+      <!-- Guide Header -->
+      <div class="p-5 sm:p-6 border-b border-white/[0.08] flex items-start justify-between gap-4 bg-gradient-to-r from-rose-950/50 via-black/60 to-black/60">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-rose-950/80 border border-rose-500/40 flex items-center justify-center text-rose-300 font-serif-hero text-lg font-semibold italic shrink-0 shadow-sm">
+            Ox
+          </div>
+          <div>
+            <div class="text-[10px] font-mono tracking-widest uppercase text-rose-300/80">Hızlı Başlangıç & Kullanım Rehberi</div>
+            <h3 class="font-serif-hero text-xl sm:text-2xl font-bold text-[#fdf6ee] leading-tight">Oxford Lexicon'a Hoş Geldin</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closeWelcomeGuideModal()" title="Kapat" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition text-sm flex items-center justify-center w-8 h-8 shrink-0">
+          ✕
+        </button>
+      </div>
+
+      <!-- Guide Body -->
+      <div class="p-5 sm:p-6 overflow-y-auto space-y-5 text-xs sm:text-sm text-[#e8dbcc] leading-relaxed scrollbar-thin">
+        
+        <!-- 1. Amaç -->
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.07] space-y-1.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-rose-300 font-bold">🎯 Bu Site Ne İşe Yarar?</div>
+          <p class="text-[#d6c7b2] text-xs sm:text-sm leading-relaxed">
+            Üniversite Hazırlık (Proficiency), YDS/YÖKDİL ve akademik İngilizce için gereken <strong>3.606 Oxford & AWL kelimesini</strong>, akademik edat kalıplarını, okuma metinlerini ve karmaşık cümle yapılarını kuru ezber yerine <strong>5 kutulu aralıklı tekrar (Leitner sistemi)</strong> ve aktif pratikle kalıcı olarak öğrenmeni sağlar. Tüm ilerlemen tarayıcında otomatik kaydedilir.
+          </p>
+        </div>
+
+        <!-- 2. Adım Adım Kullanım -->
+        <div class="space-y-2.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-amber-300 font-bold">🚀 Adım Adım Nasıl Kullanılır?</div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>1️⃣</span> <span>Kurunu & Listeni Seç</span></div>
+              <p class="text-[11px] text-[#a8998c] leading-snug">
+                Üst bardan seviyene uygun kuru (<strong class="text-slate-200">A1–C1</strong>) veya doğrudan sınav odaklı <strong class="text-rose-300">AWL (Akademik)</strong> listesini seç.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>2️⃣</span> <span>Kartlarla Aktif Çalış</span></div>
+              <p class="text-[11px] text-[#a8998c] leading-snug">
+                Karta tıklayarak arka yüzdeki <strong class="text-slate-200">edat kalıplarını (🔊)</strong> ve <strong class="text-slate-200">kelime ailesini</strong> incele. Biliyorsan sağa (<strong class="text-emerald-400">Öğrendim</strong>), zorlandıysan sola (<strong class="text-rose-300">Tekrar Et</strong>) geç. <strong class="text-amber-300">✍️ Yazım</strong> butonuyla harf iskeletinden yazma pratiği yap.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>3️⃣</span> <span>Test, Okuma & Sınav Modları</span></div>
+              <p class="text-[11px] text-[#a8998c] leading-snug">
+                Sağ üstteki <strong class="text-rose-300">🧭 Mod</strong> menüsünden <em>Boşluk Doldurma, Kelime Testi, Eşleştirme, Okuma Labı, Gramer Arenası</em> ve 20 soruluk <em>Deneme Sınavı</em>'na geç.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>4️⃣</span> <span>Akademik Lab (C1 Analiz)</span></div>
+              <p class="text-[11px] text-[#a8998c] leading-snug">
+                <em>Kelime Röntgeni</em> ile kelimeleri kök ve eklerine ayır, <em>Cümle Ameliyatı</em> ile uzun cümlelerin ana iskeletini gör, <em>Ton Çevirici</em> ile cümleni akademik dile dönüştür.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Kısayollar ve İkonlar -->
+        <div class="p-3.5 rounded-2xl bg-black/50 border border-white/[0.06] flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#a8998c]">
+          <div><strong class="text-amber-300">🔥 Seri:</strong> Günlük hedef & odak zincirin</div>
+          <div><strong class="text-rose-300">🩸 Kasa:</strong> Yanlış yaptığın soruların kutusu</div>
+          <div><strong class="text-emerald-300">📦 Kutu 1/5:</strong> Aralıklı tekrar hafıza seviyesi</div>
+        </div>
+
+      </div>
+
+      <!-- Guide Footer -->
+      <div class="p-4 sm:p-5 bg-black/60 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-[11px] text-[#a8998c] font-mono">
+          💡 Bu rehberi istediğin zaman <strong class="text-slate-300">🧭 Mod</strong> menüsünün köşesindeki <strong class="text-slate-300">?</strong> ikonundan tekrar açabilirsin.
+        </span>
+        <button type="button" onclick="closeWelcomeGuideModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl btn-primary-glow text-white font-semibold text-xs sm:text-sm shrink-0">
+          Anladım, Çalışmaya Başla ➔
         </button>
       </div>
 
@@ -3906,6 +4005,41 @@
       const modal = document.getElementById('modeSelectModal');
       if (modal) modal.classList.add('hidden');
       document.body.style.overflow = '';
+    }
+
+    const STORAGE_WELCOME_SEEN_KEY = 'voxlearn_welcome_seen_v1';
+
+    function openWelcomeGuideFromMenu() {
+      closeModeSelectModal();
+      triggerHaptic('tap');
+      const modal = document.getElementById('welcomeGuideModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeWelcomeGuideModal() {
+      triggerHaptic('tap');
+      const modal = document.getElementById('welcomeGuideModal');
+      if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      try {
+        localStorage.setItem(STORAGE_WELCOME_SEEN_KEY, '1');
+      } catch (e) {}
+    }
+
+    function checkAndShowWelcomeGuide() {
+      try {
+        const seen = localStorage.getItem(STORAGE_WELCOME_SEEN_KEY);
+        if (!seen) {
+          const modal = document.getElementById('welcomeGuideModal');
+          if (modal) {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+      } catch (e) {}
     }
 
     function updateActiveModeButton(tabId) {
@@ -4894,6 +5028,7 @@
         const targetWord = correctItem.w; // Temel sözcük (örn: 'absorb', 'a couple')
         const correctForm = (correctItem.cloze_word || correctItem.w).trim(); // Cümlede gereken form (örn: 'absorbs', 'couple')
 
+        const targetPrimaryPos = (correctItem.pos || '').split(',')[0].trim().toLowerCase();
         let candidates = pool.filter(x => {
           const w = x.w.toLowerCase();
           const cw = (x.cloze_word || x.w).toLowerCase();
@@ -4907,8 +5042,14 @@
           });
         }
 
+        // Akıllı Çeldirici (Same-POS Priority): Öncelikle hedef kelimeyle aynı türde (verb/noun/adj/adv) olan şıkları seç
+        const samePosCandidates = targetPrimaryPos
+          ? candidates.filter(x => (x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5)
+          : [];
+        const otherCandidates = candidates.filter(x => !targetPrimaryPos || !(x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5);
+
         const optionSet = new Set([correctForm]);
-        const shuffledCandidates = [...candidates].sort(() => Math.random() - 0.5);
+        const shuffledCandidates = [...samePosCandidates, ...otherCandidates];
         for (const cand of shuffledCandidates) {
           if (optionSet.size >= 4) break;
           const distractor = (cand.w.startsWith('a ') && cand.cloze_word ? cand.cloze_word : cand.w).trim();
@@ -5234,12 +5375,17 @@
       document.getElementById('quizTotalQ').innerText = questionCount;
 
       quizQuestions = shuffled.slice(0, questionCount).map(correctItem => {
+        const targetPrimaryPos = (correctItem.pos || '').split(',')[0].trim().toLowerCase();
         let wrongItems = levelPool.filter(x => x.w !== correctItem.w);
         if (wrongItems.length < 3) {
           wrongItems = allWords.filter(x => x.w !== correctItem.w);
         }
+        const samePosWrong = targetPrimaryPos
+          ? wrongItems.filter(x => (x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5)
+          : [];
+        const otherWrong = wrongItems.filter(x => !targetPrimaryPos || !(x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5);
         const optionSet = new Set([correctItem.tr.trim()]);
-        const wrongCandidates = wrongItems.sort(() => Math.random() - 0.5);
+        const wrongCandidates = [...samePosWrong, ...otherWrong];
         for (const cand of wrongCandidates) {
           if (optionSet.size >= 4) break;
           const trText = cand.tr.trim();
@@ -15171,8 +15317,16 @@
           e.preventDefault();
           checkClozeTypeAnswer();
         }
+      } else if (e.key === 'Escape') {
+        const wg = document.getElementById('welcomeGuideModal');
+        if (wg && !wg.classList.contains('hidden')) {
+          closeWelcomeGuideModal();
+        }
       }
     });
+
+    // İlk girişte Karşılama & Kullanım Rehberini otomatik göster (daha önce kapatıldıysa tekrar çıkma)
+    checkAndShowWelcomeGuide();
 
   </script>
 
