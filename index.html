@@ -1309,25 +1309,45 @@
               <!-- Front Side -->
               <div class="card-front" onclick="flipCard()">
                 
+                <!-- ⚡ Blitz Reflex Progress Bar (2.5s Düşünme & Hızlı Çağrışım Çubuğu) -->
+                <div id="fcBlitzBarContainer" class="w-full h-1 bg-white/[0.06] rounded-full overflow-hidden mb-2 relative hidden">
+                  <div id="fcBlitzBar" class="h-full bg-gradient-to-r from-amber-400 via-rose-500 to-cyan-400 w-full transition-all duration-75"></div>
+                </div>
+
                 <div class="flex justify-between items-center w-full">
                   <div class="flex items-center gap-2">
                     <span id="fcLvlBadge" class="px-2 py-0.5 rounded bg-white/[0.05] text-[#e8dbcc] font-mono text-[11px] border border-white/[0.08]">B1</span>
                     <span id="fcAwlBadge" class="hidden px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 font-mono text-[10px] tracking-wider uppercase border border-rose-500/20">AWL</span>
                     <span id="fcLeitnerBadge" class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 font-mono text-[10px] border border-amber-500/20">📦 Kutu 1/5</span>
+                    
+                    <!-- 🧠 Ebbinghaus Hafıza Can Barı -->
+                    <div id="fcMemoryHealthBox" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-[#d6c7b2]" title="Ebbinghaus Nöral Hafıza Gücü">
+                      <span id="fcMemoryHealthDot" class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      <span id="fcMemoryHealthText" class="font-bold">Can: %100</span>
+                    </div>
+
                     <span id="fcModeBadge" class="px-2 py-0.5 rounded bg-white/[0.03] text-[#a8998c]/70 text-[10px] font-mono border border-white/5">EN</span>
                   </div>
-                  <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-1.5">
+                    <!-- Blitz Mode Toggle Button -->
+                    <button type="button" id="btnToggleBlitz" onclick="event.stopPropagation(); toggleBlitzMode();" title="Blitz Hızlı Refleks Modu Aç/Kapat" class="px-2 py-1 rounded-lg text-[10px] font-mono border border-white/[0.08] text-slate-300 hover:text-amber-300 transition flex items-center gap-1">
+                      <span>⚡</span> <span class="hidden sm:inline">Blitz</span>
+                    </button>
                     <span id="fcWordStatusBadge" class="text-[11px] text-[#a8998c]/60 font-sans tracking-wide">Yeni</span>
                     <button type="button" onclick="event.stopPropagation(); speakCurrentCard();" title="Telaffuz Dinle" class="p-1.5 rounded-lg text-[#d6c7b2]/70 hover:text-white hover:bg-white/[0.06] transition">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
                     </button>
-                    
                   </div>
                 </div>
 
                 <div class="my-auto space-y-3.5 text-center w-full">
                   
-                  <h2 id="fcWord" class="font-serif-hero text-5xl sm:text-6xl font-normal text-[#fdf6ee] tracking-[-0.025em] select-text">Word</h2>
+                  <!-- Blitz Reflex Success Badge -->
+                  <div id="fcBlitzBadge" class="hidden text-[11px] font-mono font-bold text-amber-300 animate-bounce tracking-widest uppercase">
+                    ⚡ 1.2s REFLEKS! (+2 Combo)
+                  </div>
+
+                  <h2 id="fcWord" class="fc-word-heading text-5xl sm:text-6xl font-semibold text-[#fdf6ee] tracking-tight select-text">Word</h2>
                   <div class="flex items-center justify-center gap-2">
                     <div id="fcIpa" class="text-[#d6c7b2]/75 font-mono text-sm sm:text-base font-normal tracking-wide">/wɜːd/</div>
                   </div>
@@ -1384,6 +1404,43 @@
                     <div>
                       <div class="text-[10px] font-mono tracking-widest text-[#d6c7b2]/50 uppercase mb-1">Örnek Kullanım</div>
                       <p id="fcEx" class="fc-example-sentence text-[#ede4d8] text-sm sm:text-base leading-relaxed">Example sentence goes here.</p>
+                    </div>
+
+                    <!-- ✨ C1 Sentence Mirror (Seviye Aynası) -->
+                    <div id="fcMirrorBox" class="pt-2 border-t border-white/[0.05] hidden">
+                      <div class="text-[10px] font-mono tracking-widest text-amber-300 uppercase font-bold mb-1">✨ Seviye Aynası (A2 ➔ C1)</div>
+                      <div class="p-2.5 rounded-xl bg-black/50 border border-amber-500/25 space-y-1.5 text-left">
+                        <div>
+                          <span class="text-[9px] font-mono uppercase text-emerald-400 font-bold">🌱 Temel (A2/B1):</span>
+                          <p id="fcMirrorBasic" class="text-slate-300 text-[11px] leading-snug mt-0.5"></p>
+                        </div>
+                        <div class="pt-1 border-t border-white/[0.06]">
+                          <span class="text-[9px] font-mono uppercase text-amber-300 font-bold">🎓 Akademik (C1):</span>
+                          <p id="fcMirrorAcademic" class="text-white font-medium text-[11px] leading-snug mt-0.5"></p>
+                        </div>
+                        <div id="fcMirrorNote" class="text-[10px] font-mono text-amber-300/80 pt-0.5"></div>
+                      </div>
+                    </div>
+
+                    <!-- 🏛️ Real-World Echo (Kültürel & Tarihi Yankı) -->
+                    <div id="fcEchoBox" class="pt-2 border-t border-white/[0.05] hidden">
+                      <div class="text-[10px] font-mono tracking-widest text-cyan-300 uppercase font-bold mb-1">🏛️ Kültürel & Tarihi Yankı</div>
+                      <div class="p-2.5 rounded-xl bg-cyan-950/20 border border-cyan-500/25 text-left space-y-1">
+                        <p id="fcEchoQuote" class="text-[11px] text-cyan-100 italic leading-snug"></p>
+                        <div id="fcEchoAuthor" class="text-[10px] font-mono text-cyan-400/80 text-right font-medium"></div>
+                      </div>
+                    </div>
+
+                    <!-- 🧬 Word DNA (Morfoloji & Kök Motoru) -->
+                    <div id="fcDnaBox" class="pt-2 border-t border-white/[0.05] hidden">
+                      <div class="text-[10px] font-mono tracking-widest text-rose-300 uppercase font-bold mb-1">🧬 Word DNA (Kök Ağacı)</div>
+                      <div class="p-2.5 rounded-xl bg-rose-950/20 border border-rose-500/25 text-left space-y-1.5">
+                        <div class="flex items-center justify-between">
+                          <span id="fcDnaRoot" class="font-mono font-bold text-xs text-rose-300"></span>
+                          <span id="fcDnaMeaning" class="text-[10px] text-slate-300"></span>
+                        </div>
+                        <div id="fcDnaLevels" class="grid grid-cols-1 sm:grid-cols-3 gap-1 pt-1 text-[10px] font-mono"></div>
+                      </div>
                     </div>
 
                     <!-- Eş Anlamlılar (Synonyms) Container -->
@@ -3909,16 +3966,23 @@
                 <strong class="text-rose-300">🎯 Odak [F]</strong> butonu veya <strong class="text-cyan-300">🎨 Tema</strong> menüsünden <strong class="text-white">Odak (AMOLED Siyah)</strong> modunu seç: Saf siyah zemin, yüksek kontrastlı tok butonlar ve <em>Lexend</em> / <em>Atkinson</em> fontuyla sıfır göz yorgunluğu sağlar. Ayrıca tüm modlarda soruları doğru bildikçe sitenin rengi ve aurası evrilir (Kor ➔ Ateş ➔ Plazma Mavi Alev)!
               </p>
             </div>
+
+            <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>7️⃣</span> <span>Büyük 5'li Bilişsel Kart Motoru</span></div>
+              <p class="text-[11px] text-[#a8998c] leading-snug">
+                Kartlarda <strong class="text-rose-300">🧬 Word DNA</strong> (kökten A1-C1 türetme), <strong class="text-amber-300">⚡ Blitz Refleks [Z]</strong> (2.5s hızlı çağrışım), <strong class="text-amber-400">✨ C1 Seviye Aynası</strong> (günlük ➔ akademik essay dönüşümü), <strong class="text-cyan-300">🏛️ Tarihi Yankı</strong> (Marcus Aurelius, Orwell kült alıntıları) ve <strong class="text-emerald-300">🧠 Ebbinghaus Can Barı</strong> devrede!
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- 3. Kısayollar ve İkonlar -->
         <div class="p-3.5 rounded-2xl bg-black/50 border border-white/[0.06] flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#a8998c]">
           <div><strong class="text-amber-300">🔥 Seri Alevi:</strong> Doğru bildikçe renk değiştiren aura</div>
-          <div><strong class="text-rose-300">🩸 Kasa:</strong> Yanlış yaptığın soruların kutusu</div>
-          <div><strong class="text-emerald-300">📦 Kutu 1/5:</strong> Aralıklı tekrar hafıza seviyesi</div>
-          <div><strong class="text-cyan-300">🎯 Odak (F):</strong> AMOLED yüksek kontrast modu</div>
-          <div><strong class="text-white">🎨 Tema:</strong> 9 farklı atmosfer (AMOLED Odak dahil)</div>
+          <div><strong class="text-cyan-300">⚡ Blitz [Z]:</strong> 2.5s hızlı refleks bonusu</div>
+          <div><strong class="text-rose-300">🧬 Word DNA:</strong> Kök ağacı</div>
+          <div><strong class="text-emerald-300">🧠 Can Barı:</strong> Nöral hafıza gücü</div>
+          <div><strong class="text-white">🎯 Odak [F]:</strong> AMOLED yüksek kontrast</div>
         </div>
 
       </div>
@@ -5923,6 +5987,388 @@
       }).filter(Boolean).join('');
     }
 
+    // ==================== 1. EBBINGHAUS NEURAL DECAY (HAFIZA CAN BARI) ====================
+    function calculateMemoryHealth(wordStr) {
+      if (!wordStr) return 100;
+      const clean = wordStr.toLowerCase().trim();
+      const info = (typeof leitnerBoxes !== 'undefined' && leitnerBoxes[clean]) ? leitnerBoxes[clean] : (typeof leitnerBoxes !== 'undefined' ? leitnerBoxes[wordStr] : null);
+      if (!info) return 100;
+      const box = Math.max(1, Math.min(5, info.box || 1));
+      const lastTime = info.lastReviewed || Date.now();
+      const hoursElapsed = Math.max(0, (Date.now() - lastTime) / (1000 * 60 * 60));
+      // Yarı ömür saatleri: Kutu 1 = 18h, Kutu 2 = 48h, Kutu 3 = 120h, Kutu 4 = 280h, Kutu 5 = 720h
+      const halfLife = [18, 48, 120, 280, 720][box - 1];
+      const health = Math.max(10, Math.min(100, Math.round(Math.exp(-hoursElapsed / halfLife) * 100)));
+      return health;
+    }
+
+    function updateMemoryHealthUI(wordStr) {
+      const box = document.getElementById('fcMemoryHealthBox');
+      const dot = document.getElementById('fcMemoryHealthDot');
+      const text = document.getElementById('fcMemoryHealthText');
+      if (!box || !dot || !text) return;
+
+      const health = calculateMemoryHealth(wordStr);
+      text.innerText = `Can: %${health}`;
+
+      if (health >= 75) {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]';
+        text.className = 'font-bold text-emerald-300';
+      } else if (health >= 40) {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]';
+        text.className = 'font-bold text-amber-300';
+      } else {
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse shadow-[0_0_8px_rgba(244,63,94,0.9)]';
+        text.className = 'font-bold text-rose-300';
+      }
+    }
+
+    // ==================== 2. BLITZ REFLEX ENGINE (2.5s ÇAĞRIŞIM ÇARKI) ====================
+    let isBlitzMode = false;
+    let fcBlitzReflexTimer = null;
+    let blitzStartTime = 0;
+    const BLITZ_LIMIT_MS = 2500;
+
+    function toggleBlitzMode() {
+      isBlitzMode = !isBlitzMode;
+      triggerHaptic('tap');
+      const btn = document.getElementById('btnToggleBlitz');
+      const container = document.getElementById('fcBlitzBarContainer');
+      if (btn) {
+        if (isBlitzMode) {
+          btn.className = 'px-2 py-1 rounded-lg text-[10px] font-mono border border-amber-400/60 bg-amber-500/20 text-amber-200 font-bold transition flex items-center gap-1 shadow-sm';
+          showFloatingToast('⚡ Blitz Hızlı Refleks Modu Açık! 2.5 saniyede bil, 2x Combo kazan!');
+        } else {
+          btn.className = 'px-2 py-1 rounded-lg text-[10px] font-mono border border-white/[0.08] text-slate-300 hover:text-amber-300 transition flex items-center gap-1';
+        }
+      }
+      if (container) {
+        container.classList.toggle('hidden', !isBlitzMode);
+      }
+      if (isBlitzMode) {
+        startBlitzTimer();
+      } else {
+        stopBlitzTimer();
+      }
+    }
+
+    function startBlitzTimer() {
+      if (!isBlitzMode) return;
+      stopBlitzTimer();
+      const bar = document.getElementById('fcBlitzBar');
+      const container = document.getElementById('fcBlitzBarContainer');
+      if (container) container.classList.remove('hidden');
+      if (bar) {
+        bar.style.transition = 'none';
+        bar.style.width = '100%';
+        bar.className = 'h-full bg-gradient-to-r from-amber-400 via-rose-500 to-cyan-400 w-full';
+        void bar.offsetWidth;
+        bar.style.transition = `width ${BLITZ_LIMIT_MS}ms linear`;
+        bar.style.width = '0%';
+      }
+      blitzStartTime = performance.now();
+      fcBlitzReflexTimer = setTimeout(() => {
+        if (bar) bar.className = 'h-full bg-rose-600/50 w-full transition-none';
+      }, BLITZ_LIMIT_MS);
+    }
+
+    function stopBlitzTimer() {
+      if (fcBlitzReflexTimer) {
+        clearTimeout(fcBlitzReflexTimer);
+        fcBlitzReflexTimer = null;
+      }
+    }
+
+    function checkBlitzBonus() {
+      if (!isBlitzMode) return;
+      const elapsed = performance.now() - blitzStartTime;
+      stopBlitzTimer();
+      if (elapsed <= BLITZ_LIMIT_MS) {
+        const sec = (elapsed / 1000).toFixed(1);
+        const badge = document.getElementById('fcBlitzBadge');
+        if (badge) {
+          badge.innerText = `⚡ ${sec}s REFLEKS! (+2 COMBO)`;
+          badge.classList.remove('hidden');
+          setTimeout(() => badge.classList.add('hidden'), 1400);
+        }
+        heatCombo += 1;
+        triggerHaptic('success');
+      }
+    }
+
+    // ==================== 3. WORD DNA DATABASE & MORPHOLOGY ENGINE ====================
+    const WORD_DNA_DATA = [
+      {
+        root: 'SPECT / SPIC',
+        meaning: 'Bakmak, Görmek, İncelemek (Latince)',
+        matches: ['spect', 'spic'],
+        levels: {
+          a1_a2: 'respect (saygı duymak), inspect (denetlemek)',
+          b1_b2: 'spectator (seyirci), prospect (olasılık), suspect (şüphelenmek)',
+          c1: 'circumspect (ihtiyatlı), perspicacious (ferasetli), retrospective (geçmişe dönük)'
+        }
+      },
+      {
+        root: 'TRACT',
+        meaning: 'Çekmek, Sürüklemek (Latince)',
+        matches: ['tract'],
+        levels: {
+          a1_a2: 'attract (çekmek/cezbetmek), tractor (traktör)',
+          b1_b2: 'contract (sözleşme/büzülmek), distract (dikkat dağıtmak), extract (özünü çıkarmak)',
+          c1: 'protracted (uzayıp giden), intractable (inatçı/yola gelmez), retract (geri çekmek)'
+        }
+      },
+      {
+        root: 'SCRIB / SCRIPT',
+        meaning: 'Yazmak, Çizmek, Kaydetmek (Latince)',
+        matches: ['scrib', 'script'],
+        levels: {
+          a1_a2: 'describe (tarif etmek), description (tanım)',
+          b1_b2: 'subscribe (abone olmak), prescribe (reçete yazmak), manuscript (el yazması)',
+          c1: 'inscribe (kazımak/yazmak), circumscribe (sınırlandırmak), proscribe (yasaklamak)'
+        }
+      },
+      {
+        root: 'VERT / VERS',
+        meaning: 'Dönmek, Yönelmek, Değişmek (Latince)',
+        matches: ['vert', 'vers'],
+        levels: {
+          a1_a2: 'convert (dönüştürmek), universe (evren)',
+          b1_b2: 'reverse (tersine çevirmek), divert (saptırmak), adverse (olumsuz)',
+          c1: 'subvert (düzeni yıkmak), inadvertent (istemeyerek yapılan), animadversion (eleştiri)'
+        }
+      },
+      {
+        root: 'MIT / MISS',
+        meaning: 'Göndermek, Salmak, İzin Vermek (Latince)',
+        matches: ['mit', 'miss'],
+        levels: {
+          a1_a2: 'admit (kabul etmek), permit (izin vermek)',
+          b1_b2: 'transmit (iletmek), submit (teslim etmek), dismiss (reddetmek)',
+          c1: 'intermittent (kesintili), remiss (ihmalkar), emissary (temsilci/elçi)'
+        }
+      },
+      {
+        root: 'DIC / DICT',
+        meaning: 'Söylemek, Bildirmek, İlan Etmek (Latince)',
+        matches: ['dict', 'dic'],
+        levels: {
+          a1_a2: 'dictionary (sözlük)',
+          b1_b2: 'predict (tahmin etmek), indicate (belirtmek), contradict (çelişmek)',
+          c1: 'vindicate (aklamak/haklı çıkarmak), malediction (lanet), indict (suçlamak)'
+        }
+      },
+      {
+        root: 'FER',
+        meaning: 'Taşımak, Getirmek, Üretmek (Latince)',
+        matches: ['fer'],
+        levels: {
+          a1_a2: 'different (farklı), prefer (tercih etmek)',
+          b1_b2: 'transfer (aktarmak), suffer (katlanmak), infer (çıkarım yapmak)',
+          c1: 'deferential (saygılı), proliferous (çoğalan), vociferous (gürültücü)'
+        }
+      },
+      {
+        root: 'CAP / CEPT',
+        meaning: 'Yakalamak, Tutmak, Almak (Latince)',
+        matches: ['cap', 'cept', 'ceiv'],
+        levels: {
+          a1_a2: 'accept (kabul etmek), capture (yakalamak)',
+          b1_b2: 'perceive (algılamak), concept (kavram), deceive (kandırmak)',
+          c1: 'susceptible (savunmasız), incipient (başlangıçtaki), captious (kusur arayan)'
+        }
+      },
+      {
+        root: 'GEN',
+        meaning: 'Doğuş, Soy, Üretmek (Yunanca/Latince)',
+        matches: ['gen'],
+        levels: {
+          a1_a2: 'generation (nesil), general (genel)',
+          b1_b2: 'generate (üretmek), genuine (hakiki), gender (cinsiyet)',
+          c1: 'engender (doğurmak/yol açmak), congenital (doğuştan), heterogeneous (çeşitli)'
+        }
+      },
+      {
+        root: 'PLIC / PLY',
+        meaning: 'Katlamak, Örmek, Bağlamak (Latince)',
+        matches: ['plic', 'ply'],
+        levels: {
+          a1_a2: 'apply (başvurmak/uygulamak), simple (basit)',
+          b1_b2: 'imply (ima etmek), complicate (zorlaştırmak), replicate (çoğaltmak)',
+          c1: 'explicate (derinlemesine açıklamak), supplicate (yalvarmak), implicit (üstü kapalı)'
+        }
+      },
+      {
+        root: 'SED / SID / SESS',
+        meaning: 'Oturmak, Yerleşmek, Yatışmak (Latince)',
+        matches: ['sed', 'sid', 'sess'],
+        levels: {
+          a1_a2: 'session (oturum)',
+          b1_b2: 'reside (ikamet etmek), president (başkan), subside (yatışmak/azalmak)',
+          c1: 'sedentary (hareketsiz/oturan), assiduous (özenli), supersede (yerini almak)'
+        }
+      },
+      {
+        root: 'LUC / LUM',
+        meaning: 'Işık, Berraklık, Aydınlık (Latince)',
+        matches: ['luc', 'lum'],
+        levels: {
+          a1_a2: 'light (ışık)',
+          b1_b2: 'illuminate (aydınlatmak), lucid (berrak/anlaşılır)',
+          c1: 'pellucid (kristal berraklığında), elucidate (izah etmek/aydınlatmak)'
+        }
+      }
+    ];
+
+    function renderWordDna(wordStr) {
+      const box = document.getElementById('fcDnaBox');
+      const rootEl = document.getElementById('fcDnaRoot');
+      const meanEl = document.getElementById('fcDnaMeaning');
+      const levelsEl = document.getElementById('fcDnaLevels');
+      if (!box || !rootEl || !meanEl || !levelsEl) return;
+
+      const clean = (wordStr || '').toLowerCase().trim();
+      const match = WORD_DNA_DATA.find(item => item.matches.some(m => clean.includes(m)));
+
+      if (match) {
+        box.classList.remove('hidden');
+        rootEl.innerText = match.root;
+        meanEl.innerText = match.meaning;
+        levelsEl.innerHTML = `
+          <div class="p-1.5 rounded-lg bg-black/40 border border-white/5 space-y-0.5">
+            <span class="text-emerald-400 font-bold block text-[9px] uppercase">🌱 A1–A2:</span>
+            <span class="text-[#d6c7b2] block text-[10px] leading-snug">${match.levels.a1_a2}</span>
+          </div>
+          <div class="p-1.5 rounded-lg bg-black/40 border border-white/5 space-y-0.5">
+            <span class="text-blue-400 font-bold block text-[9px] uppercase">🚀 B1–B2:</span>
+            <span class="text-[#d6c7b2] block text-[10px] leading-snug">${match.levels.b1_b2}</span>
+          </div>
+          <div class="p-1.5 rounded-lg bg-black/40 border border-white/5 space-y-0.5">
+            <span class="text-rose-400 font-bold block text-[9px] uppercase">🎓 C1 İleri:</span>
+            <span class="text-[#d6c7b2] block text-[10px] leading-snug">${match.levels.c1}</span>
+          </div>
+        `;
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
+    // ==================== 4. C1 SENTENCE MIRROR (SEVİYE AYNASI) ====================
+    const SENTENCE_MIRRORS = {
+      'exacerbate': {
+        basic: 'The bad economy made the problem get worse.',
+        academic: 'The economic downturn exacerbated the existing structural vulnerabilities.',
+        note: 'get worse (A2) ➔ exacerbate (C1) • Essay ve akademik analiz kalıbı'
+      },
+      'compelling': {
+        basic: 'Her argument was very strong and convincing.',
+        academic: 'She put forth a compelling argument that silenced all methodological objections.',
+        note: 'very strong (A2) ➔ compelling (C1) • Akademik delil & tez savunması'
+      },
+      'mitigate': {
+        basic: 'We must reduce the danger of climate change.',
+        academic: 'Coordinated policies are vital to mitigate the catastrophic perils of climate change.',
+        note: 'reduce danger (A2) ➔ mitigate perils (C1)'
+      },
+      'scrutinize': {
+        basic: 'The manager looked at the report very carefully.',
+        academic: 'The independent ethics board scrutinized every clause in the draft proposal.',
+        note: 'look carefully (A1) ➔ scrutinize (C1)'
+      },
+      'inevitable': {
+        basic: 'The conflict could not be avoided.',
+        academic: 'Diplomatic rupture became inevitable following the breakdown of bilateral accords.',
+        note: 'cannot be avoided (A2) ➔ inevitable (C1)'
+      },
+      'inadvertent': {
+        basic: 'I made a mistake by accident without meaning to.',
+        academic: 'The algorithm led to an inadvertent disclosure of proprietary user metadata.',
+        note: 'by accident (A2) ➔ inadvertent breach/disclosure (C1)'
+      },
+      'elucidate': {
+        basic: 'The teacher explained the difficult topic clearly.',
+        academic: 'The seminal study serves to elucidate the paradoxical dynamics of neural networks.',
+        note: 'explain clearly (A2) ➔ elucidate (C1)'
+      },
+      'profound': {
+        basic: 'The book had a very big effect on my thoughts.',
+        academic: 'The treatise exerted a profound impact on 20th-century political jurisprudence.',
+        note: 'big effect (A1) ➔ profound impact (C1)'
+      },
+      'ambiguous': {
+        basic: 'His answer was not clear and had two meanings.',
+        academic: 'The spokesperson issued a deliberately ambiguous statement to preserve diplomatic leeway.',
+        note: 'not clear (A1) ➔ deliberately ambiguous (C1)'
+      },
+      'deteriorate': {
+        basic: 'The patient became much more sick during the night.',
+        academic: 'The clinical prognosis deteriorated precipitously in the early morning hours.',
+        note: 'get sick/worse (A2) ➔ deteriorate precipitously (C1)'
+      }
+    };
+
+    function renderSentenceMirror(card) {
+      const box = document.getElementById('fcMirrorBox');
+      const bText = document.getElementById('fcMirrorBasic');
+      const aText = document.getElementById('fcMirrorAcademic');
+      const nText = document.getElementById('fcMirrorNote');
+      if (!box || !bText || !aText || !nText) return;
+
+      const clean = (card.w || '').toLowerCase().trim();
+      const mirror = SENTENCE_MIRRORS[clean];
+
+      if (mirror) {
+        box.classList.remove('hidden');
+        bText.innerText = mirror.basic;
+        aText.innerText = mirror.academic;
+        nText.innerText = `💡 Dönüşüm: ${mirror.note}`;
+      } else if (card.lvl === 'C1' || card.isAwl) {
+        box.classList.remove('hidden');
+        bText.innerText = `Günlük konuşmada '${clean}' yerine daha basit fiil ve sıfatlar kullanılır.`;
+        aText.innerText = card.ex || `${clean} yapısı akademik makale ve essay'lerde yüksek puan kazandırır.`;
+        nText.innerText = `💡 ${clean.toUpperCase()}: C1 Seviyesi Akademik Eşleşme`;
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
+    // ==================== 5. REAL-WORLD ECHO (KÜLTÜREL & TARİHİ ALINTILAR) ====================
+    const REAL_WORLD_ECHOES = {
+      'inevitable': { quote: 'Change is inevitable, personal growth is a choice.', author: '🏛️ Marcus Aurelius (Roma İmparatoru)' },
+      'ambiguous': { quote: 'If language is not correct, then what is said is not what is meant.', author: '📜 Konfüçyüs' },
+      'compelling': { quote: 'There is no compelling reason to assume that civilization is permanent.', author: '📚 Arnold Toynbee' },
+      'scrutinize': { quote: 'The unexamined life is not worth living.', author: '🏛️ Sokrates' },
+      'mitigate': { quote: 'Wisdom can mitigate the harshness of fate.', author: '🔬 Albert Einstein' },
+      'profound': { quote: 'The most profound technologies are those that disappear into everyday life.', author: '💻 Mark Weiser (Xerox PARC)' },
+      'resilient': { quote: 'It is not the strongest that survives, but the one most resilient to change.', author: '🔬 Charles Darwin' },
+      'exacerbate': { quote: 'Anger exacerbates every conflict; patience is the sole enduring antidote.', author: '🏛️ Seneca' },
+      'inadvertent': { quote: 'Our greatest blunders are rarely planned; they are inadvertent ripples of hubris.', author: '📚 Robert Greene' },
+      'perceive': { quote: 'We do not see things as they are; we see them as we are.', author: '📚 Anaïs Nin' },
+      'elucidate': { quote: 'Art does not reproduce the visible; rather, it elucidates the unseen.', author: '🎨 Paul Klee' },
+      'arbitrary': { quote: 'Where law ends, tyranny begins; for tyranny is arbitrary rule.', author: '🏛️ John Locke' },
+      'concur': { quote: 'To concur with the majority is easy; to stand solitary requires supreme conviction.', author: '📚 Ralph Waldo Emerson' },
+      'subsequent': { quote: 'Every event is the seed of subsequent revolutions in thought.', author: '📚 Bertrand Russell' },
+      'coherent': { quote: 'A coherent philosophy gives meaning to an otherwise chaotic universe.', author: '🏛️ Platon' }
+    };
+
+    function renderRealWorldEcho(wordStr) {
+      const box = document.getElementById('fcEchoBox');
+      const quoteEl = document.getElementById('fcEchoQuote');
+      const authorEl = document.getElementById('fcEchoAuthor');
+      if (!box || !quoteEl || !authorEl) return;
+
+      const clean = (wordStr || '').toLowerCase().trim();
+      const echo = REAL_WORLD_ECHOES[clean];
+
+      if (echo) {
+        box.classList.remove('hidden');
+        quoteEl.innerText = `"${echo.quote}"`;
+        authorEl.innerText = `— ${echo.author}`;
+      } else {
+        box.classList.add('hidden');
+      }
+    }
+
     function renderFlashcard() {
       if (fcIndex >= currentBatchWords.length) {
         if (isAutoPlayActive) stopAutoPlay();
@@ -6108,6 +6554,22 @@
         badge.innerText = 'Yeni Kelime';
       }
 
+      // ==================== BÜYÜK 5'Lİ KOGNİTİF MOTOR TETİKLEYİCİLERİ ====================
+      // 1. Ebbinghaus Nöral Can Barı
+      updateMemoryHealthUI(card.w);
+
+      // 2. Word DNA (Morfoloji & Kök Motoru)
+      renderWordDna(card.w);
+
+      // 3. C1 Sentence Mirror (Seviye Aynası)
+      renderSentenceMirror(card);
+
+      // 4. Real-World Echo (Kültürel & Tarihi Yankı)
+      renderRealWorldEcho(card.w);
+
+      // 5. Blitz Reflex Timer
+      startBlitzTimer();
+
       if (isAutoPlayActive) {
         scheduleAutoPlayStep();
       }
@@ -6197,11 +6659,13 @@
       if (direction === 'right') {
         wrapper.classList.remove('anim-enter');
         wrapper.classList.add('anim-swipe-right');
+        checkBlitzBonus();
         recordWordStatus(card.w, true);
         updateHeatStreak(true);
         triggerHaptic('success'); // Heat up on known word!
         removeMistakeFromVaultByWord(card.w);
       } else {
+        stopBlitzTimer();
         wrapper.classList.remove('anim-enter');
         wrapper.classList.add('anim-swipe-left');
         recordWordStatus(card.w, false);
@@ -7181,6 +7645,8 @@
 
       if (e.code === 'KeyF') {
         toggleFocusMode();
+      } else if (e.code === 'KeyZ' || e.key === 'z' || e.key === 'Z') {
+        toggleBlitzMode();
       } else if (e.key === 'p' || e.key === 'P') {
         toggleAutoPlay();
       } else if (e.code === 'KeyR' || e.key === 'r' || e.key === 'R') {
