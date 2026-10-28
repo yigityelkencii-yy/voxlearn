@@ -1483,8 +1483,13 @@
         </button>
       </div>
 
-      <div class="text-[11px] text-[#a8998c]/60 shrink-0 font-mono hidden md:block">
-        Oxford 3000™ & Academic Word List
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="openLearnerTrackModal()" title="Seviye Belirleme Testi & Rota Seçimi" class="px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500/20 to-rose-500/20 hover:from-amber-500/30 hover:to-rose-500/30 border border-amber-500/40 text-amber-200 hover:text-white transition text-xs font-semibold flex items-center gap-1.5 active:scale-95 shadow-sm">
+          <span>🎯</span> <span class="hidden sm:inline">Seviye Testi</span>
+        </button>
+        <button type="button" onclick="openWelcomeGuideFromMenu()" title="Kullanım Kılavuzu & Site Rehberi" class="px-2 py-1 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-slate-300 hover:text-white transition text-xs font-mono font-bold flex items-center gap-1 active:scale-95">
+          <span>📖</span> <span class="hidden sm:inline">Kılavuz</span>
+        </button>
       </div>
     </div>
   </div>
@@ -5500,97 +5505,226 @@
     const STORAGE_TRACK_KEY = 'voxlearn_learner_track_v1';
     let currentLearnerTrack = 'all'; // 'beginner', 'intermediate', 'advanced', or 'all'
 
-    // 10 Calibrated Placement Questions (A1 to C1)
+    // 30 Calibrated CEFR Placement Questions (5 A1, 5 A2, 6 B1, 6 B2, 4 C1, 4 AWL)
     const PLACEMENT_TEST_POOL = [
+      // === A1 Level ===
       {
-        id: 1,
-        level: 'A1',
-        type: 'Gramer (Present Simple)',
-        question: 'She _______ to the gym every Monday morning.',
-        options: ['goes', 'go', 'going', 'is go'],
-        correct: 0,
-        explanation: '3. tekil şahıs (she) için geniş zamanda fiil "-s / -es" takısı alır: "goes".'
+        id: 1, level: "A1", type: "Gramer (Present Simple)",
+        question: "She _______ to the gym every Monday morning.",
+        correctAnswer: "goes",
+        distractors: ["go", "going", "is go"],
+        explanation: "3. tekil şahıs (she) için geniş zamanda fiil '-s / -es' takısı alır: 'goes'."
       },
       {
-        id: 2,
-        level: 'A1',
-        type: 'Kelime (Temel Zıt Anlam)',
+        id: 2, level: "A1", type: "Kelime (Temel Zıt Anlam)",
         question: "What is the exact opposite of the word 'expensive'?",
-        options: ['empty', 'heavy', 'cheap', 'dangerous'],
-        correct: 2,
+        correctAnswer: "cheap",
+        distractors: ["empty", "heavy", "dangerous"],
         explanation: "'Expensive' pahalı demektir; zıttı 'cheap' (ucuz) kelimesidir."
       },
       {
-        id: 3,
-        level: 'A2',
-        type: 'Gramer (Past Continuous)',
-        question: 'We _______ dinner when the phone suddenly rang.',
-        options: ['are having', 'were having', 'had had', 'have had'],
-        correct: 1,
+        id: 3, level: "A1", type: "Gramer (Pronouns & To Be)",
+        question: "My brother and I _______ students at this university.",
+        correctAnswer: "are",
+        distractors: ["am", "is", "be"],
+        explanation: "'My brother and I' çoğul özne (biz / we) olduğu için 'are' kullanılır."
+      },
+      {
+        id: 4, level: "A1", type: "Gramer (Possessives)",
+        question: "Is this _______ coat, or does it belong to Sarah?",
+        correctAnswer: "your",
+        distractors: ["you", "yours", "you're"],
+        explanation: "İsimden (coat) önce iyelik sıfatı (possessive adjective) olarak 'your' gelmelidir."
+      },
+      {
+        id: 5, level: "A1", type: "Kelime (Günlük Eylemler)",
+        question: "I always _______ my teeth before going to sleep.",
+        correctAnswer: "brush",
+        distractors: ["wash", "cleanse", "comb"],
+        explanation: "Diş fırçalamak için standart İngilizce kalıp 'brush teeth' kullanılır."
+      },
+
+      // === A2 Level ===
+      {
+        id: 6, level: "A2", type: "Gramer (Past Continuous)",
+        question: "We _______ dinner when the phone suddenly rang.",
+        correctAnswer: "were having",
+        distractors: ["are having", "had had", "have had"],
         explanation: "Geçmişte devam eden bir eylem aniden kesildiğinde 'Past Continuous' (were having) kullanılır."
       },
       {
-        id: 4,
-        level: 'A2',
-        type: 'Gramer (Conditionals Type 1)',
-        question: 'If it rains this afternoon, we _______ stay at home.',
-        options: ['would', 'will', 'did', 'had'],
-        correct: 1,
-        explanation: '1. Tip koşul cümlelerinde (Real Conditionals) "If + Present Simple, will + V1" kalıbı kullanılır.'
+        id: 7, level: "A2", type: "Gramer (Conditionals Type 1)",
+        question: "If it rains this afternoon, we _______ stay at home.",
+        correctAnswer: "will",
+        distractors: ["would", "did", "had"],
+        explanation: "1. Tip koşul cümlelerinde (Real Conditionals) 'If + Present Simple, will + V1' kalıbı kullanılır."
       },
       {
-        id: 5,
-        level: 'B1',
-        type: 'Bağlaç (Contrast Clauses)',
-        question: 'He managed to pass the driving test _______ not having practiced much.',
-        options: ['although', 'despite', 'in spite', 'whereas'],
-        correct: 1,
+        id: 8, level: "A2", type: "Gramer (Comparatives)",
+        question: "Travelling by train is usually _______ than taking a bus.",
+        correctAnswer: "more comfortable",
+        distractors: ["comfortabler", "much comfortable", "as comfortable"],
+        explanation: "Çok heceli sıfatların karşılaştırma biçimi (comparative) 'more + sıfat' ile yapılır."
+      },
+      {
+        id: 9, level: "A2", type: "Gramer (Present Perfect vs Past Simple)",
+        question: "I _______ to London three times in my life, but I never went to Manchester.",
+        correctAnswer: "have been",
+        distractors: ["was", "had been", "am"],
+        explanation: "Hayat tecrübelerinden ve geçmişten bugüne gerçekleşen ziyaretlerden bahsederken 'have been' kullanılır."
+      },
+      {
+        id: 10, level: "A2", type: "Kelime (Hava & Günlük Yaşam)",
+        question: "It was so _______ that we could barely see the road ahead.",
+        correctAnswer: "foggy",
+        distractors: ["sunny", "windy", "humid"],
+        explanation: "Yolu göremeyecek kadar puslu/sisli hava durumunu 'foggy' kelimesi ifade eder."
+      },
+
+      // === B1 Level ===
+      {
+        id: 11, level: "B1", type: "Bağlaç (Contrast Clauses)",
+        question: "He managed to pass the driving test _______ not having practiced much.",
+        correctAnswer: "despite",
+        distractors: ["although", "in spite", "whereas"],
         explanation: "'Despite' ardından isim veya V-ing alır ('despite not having...'). 'Although' arkasından tam cümle ister."
       },
       {
-        id: 6,
-        level: 'B1',
-        type: 'Phrasal Verb (İş & Günlük Dil)',
-        question: 'Due to inflation, the company decided to _______ down on operational costs.',
-        options: ['cut', 'break', 'turn', 'bring'],
-        correct: 0,
+        id: 12, level: "B1", type: "Phrasal Verb (İş & Günlük Dil)",
+        question: "Due to inflation, the company decided to _______ down on operational costs.",
+        correctAnswer: "cut",
+        distractors: ["break", "turn", "bring"],
         explanation: "'Cut down on' bir şeyi kısmak, masrafları azaltmak anlamına gelen hayati bir phrasal verb'dür."
       },
       {
-        id: 7,
-        level: 'B2',
-        type: 'İleri Gramer (Inversion / Devrik Cümle)',
-        question: 'Seldom _______ such an inspiring and passionate speech in my academic life.',
-        options: ['I have heard', 'have I heard', 'I heard', 'had I hear'],
-        correct: 1,
+        id: 13, level: "B1", type: "Gramer (Modals of Deduction - Past)",
+        question: "The streets are soaking wet. It _______ heavily last night.",
+        correctAnswer: "must have rained",
+        distractors: ["should rain", "can rain", "would rain"],
+        explanation: "Geçmişe yönelik güçlü mantıksal çıkarım yaparken 'must have + V3' (yağmış olmalı) kullanılır."
+      },
+      {
+        id: 14, level: "B1", type: "Kelime (Akademik & İş)",
+        question: "The director asked for a _______ summary of the annual financial report.",
+        correctAnswer: "concise",
+        distractors: ["lengthy", "clumsy", "vague"],
+        explanation: "'Concise' kısa, öz ve net anlamına gelen temel B1 iş ve akademik İngilizce kelimesidir."
+      },
+      {
+        id: 15, level: "B1", type: "Phrasal Verb (İlişkiler & Sosyal)",
+        question: "She really _______ after her grandmother; they share the exact same smile.",
+        correctAnswer: "takes",
+        distractors: ["looks", "runs", "gets"],
+        explanation: "'Take after' bir aile büyüğüne huy veya fiziksel olarak çekmek, benzemek demektir."
+      },
+      {
+        id: 16, level: "B1", type: "Gramer (Passive Voice)",
+        question: "The bridge _______ by the end of next month, according to engineers.",
+        correctAnswer: "will be completed",
+        distractors: ["is complete", "completed", "has completed"],
+        explanation: "Gelecekte tamamlanacak edilgen (passive) bir eylem için 'will be + V3' kalıbı kullanılır."
+      },
+
+      // === B2 Level ===
+      {
+        id: 17, level: "B2", type: "İleri Gramer (Inversion / Devrik Cümle)",
+        question: "Seldom _______ such an inspiring and passionate speech in my academic life.",
+        correctAnswer: "have I heard",
+        distractors: ["I have heard", "I heard", "had I hear"],
         explanation: "Seldom, rarely, hardly gibi olumsuz zarflar cümlenin başına geldiğinde devrik yapı kurulur: 'have I heard'."
       },
       {
-        id: 8,
-        level: 'B2',
-        type: 'Akademik Eşdizim (Collocation)',
-        question: 'The research team presented _______ evidence that convinced the committee immediately.',
-        options: ['trivial', 'compelling', 'superficial', 'dubious'],
-        correct: 1,
+        id: 18, level: "B2", type: "Akademik Eşdizim (Collocation)",
+        question: "The research team presented _______ evidence that convinced the committee immediately.",
+        correctAnswer: "compelling",
+        distractors: ["trivial", "superficial", "dubious"],
         explanation: "'Compelling evidence' inandırıcı, güçlü ve karşı konulamaz kanıt anlamına gelen yüksek frekanslı bir B2 akademik kalıptır."
       },
       {
-        id: 9,
-        level: 'C1',
-        type: 'C1 Gramer (Subjunctive Mood)',
-        question: 'It is essential that each participant _______ present during the final deliberations.',
-        options: ['is', 'be', 'was', 'are'],
-        correct: 1,
-        explanation: "Önem ve gereklilik bildiren sıfatlardan sonra (essential, crucial, vital that...) Subjunctive yalın fiil (be) kullanılır."
+        id: 19, level: "B2", type: "Gramer (Mixed Conditionals)",
+        question: "If she had taken the scholarship last year, she _______ at Oxford right now.",
+        correctAnswer: "would be studying",
+        distractors: ["would study", "will study", "had studied"],
+        explanation: "Geçmişteki bir eylemin (If + had V3) şu anki sonucunu belirtirken Mixed Conditional (would be V-ing) kullanılır."
       },
       {
-        id: 10,
-        level: 'C1',
-        type: 'C1 AWL Akademik Kelime',
-        question: 'The severe drought has severely _______ the country’s existing economic vulnerabilities.',
-        options: ['ameliorated', 'exacerbated', 'mitigated', 'alleviated'],
-        correct: 1,
-        explanation: "'Exacerbate' bir sorunu daha da kötüleştirmek, körüklemek demektir. 'Ameliorate' ve 'mitigate' ise hafifletmek/iyileştirmektir."
+        id: 20, level: "B2", type: "Kelime (Soyut & Akademik)",
+        question: "Technological innovation has played a _______ role in modern healthcare advancements.",
+        correctAnswer: "pivotal",
+        distractors: ["marginal", "negligible", "tentative"],
+        explanation: "'Pivotal' kilit öneme sahip, merkezi ve hayati derecede belirleyici demektir."
+      },
+      {
+        id: 21, level: "B2", type: "Gramer (Causatives)",
+        question: "The professor had his research assistant _______ the experimental datasets.",
+        correctAnswer: "compile",
+        distractors: ["to compile", "compiled", "compiling"],
+        explanation: "'Have someone DO something' causative kalıbında fiil yalın (bare infinitive: compile) gelir."
+      },
+      {
+        id: 22, level: "B2", type: "Kelime (Sosyal Bilimler)",
+        question: "Rapid industrialization caused _______ shifts in the demographic structure of the country.",
+        correctAnswer: "profound",
+        distractors: ["shallow", "hasty", "stale"],
+        explanation: "'Profound' derin, köklü ve son derece etkili anlamına gelir ('profound shifts')."
+      },
+
+      // === C1 & AWL Level ===
+      {
+        id: 23, level: "C1", type: "C1 Gramer (Subjunctive Mood)",
+        question: "It is essential that each participant _______ present during the final deliberations.",
+        correctAnswer: "be",
+        distractors: ["is", "was", "are"],
+        explanation: "Önem ve gereklilik bildiren sıfatlardan sonra (essential, crucial, vital that...) Subjunctive yalın fiil ('be') kullanılır."
+      },
+      {
+        id: 24, level: "C1", type: "C1 AWL Akademik Kelime",
+        question: "The severe drought has severely _______ the country's existing economic vulnerabilities.",
+        correctAnswer: "exacerbated",
+        distractors: ["ameliorated", "mitigated", "alleviated"],
+        explanation: "'Exacerbate' bir sorunu daha da kötüleştirmek, körüklemek demektir. 'Ameliorate' ve 'mitigate' ise hafifletmektir."
+      },
+      {
+        id: 25, level: "C1", type: "C1 Gramer (Negative Inversion)",
+        question: "No sooner _______ the podium than the audience erupted into thunderous applause.",
+        correctAnswer: "had he stepped onto",
+        distractors: ["he stepped onto", "did he stepped onto", "was he stepped onto"],
+        explanation: "'No sooner... than' yapısı cümle başında Past Perfect devrik biçim ister: 'had he stepped onto'."
+      },
+      {
+        id: 26, level: "C1", type: "C1 AWL Akademik Kelime",
+        question: "The government took proactive measures to _______ public fears regarding the new tax policy.",
+        correctAnswer: "allay",
+        distractors: ["provoke", "escalate", "incite"],
+        explanation: "'Allay fears' endişeleri ve korkuları dindirmek, yatıştırmak anlamına gelen üst düzey bir C1 eşdizimidir."
+      },
+      {
+        id: 27, level: "C1", type: "C1 İleri Bağlaç & Edat",
+        question: "_______ the unforeseen budget constraints, the symposium will proceed as scheduled.",
+        correctAnswer: "Notwithstanding",
+        distractors: ["Given that", "Inasmuch as", "Whereas"],
+        explanation: "'Notwithstanding' -e rağmen (despite, in spite of) anlamına gelen yüksek düzey akademik bir edattır."
+      },
+      {
+        id: 28, level: "AWL", type: "AWL Akademik İfade",
+        question: "The researchers gathered empirical data to _______ their working hypothesis.",
+        correctAnswer: "substantiate",
+        distractors: ["undermine", "contradict", "dismiss"],
+        explanation: "'Substantiate' somut kanıtlarla doğrulamak, desteklemek demektir ('substantiate a hypothesis')."
+      },
+      {
+        id: 29, level: "AWL", type: "AWL Akademik Nüans",
+        question: "Renewable technologies are becoming economically viable without the need for state _______.",
+        correctAnswer: "subsidies",
+        distractors: ["penalties", "tariffs", "embargoes"],
+        explanation: "'Subsidy' devlet teşviki / sübvansiyon anlamına gelen kritik bir AWL terimidir."
+      },
+      {
+        id: 30, level: "C1", type: "C1 Kelime & Nüans",
+        question: "The judge noted that the witness gave a completely _______ account of the incident.",
+        correctAnswer: "credible",
+        distractors: ["plausible", "deceptive", "fallacious"],
+        explanation: "'Credible' güvenilir ve inanılır demektir; tanık ifadeleri için en kusursuz hukuki/akademik nitelemedir."
       }
     ];
 
@@ -5598,8 +5732,10 @@
     let placementScore = 0;
     let placementAnswered = false;
     let detectedPlacementResult = null;
+    let activePlacementQuestions = []; // Dynamically selected & shuffled 10 questions
 
     function openLearnerTrackModal() {
+      closeModeSelectModal();
       triggerHaptic('tap');
       const modal = document.getElementById('learnerTrackModal');
       if (!modal) return;
@@ -5650,6 +5786,35 @@
       placementAnswered = false;
       detectedPlacementResult = null;
 
+      // 10 Soruyu her CEFR seviyesinden dengeli ve RASTGELE seç:
+      // 2 A1, 2 A2, 2 B1, 2 B2, 2 C1/AWL
+      const a1Pool = shuffleArray(PLACEMENT_TEST_POOL.filter(q => q.level === 'A1')).slice(0, 2);
+      const a2Pool = shuffleArray(PLACEMENT_TEST_POOL.filter(q => q.level === 'A2')).slice(0, 2);
+      const b1Pool = shuffleArray(PLACEMENT_TEST_POOL.filter(q => q.level === 'B1')).slice(0, 2);
+      const b2Pool = shuffleArray(PLACEMENT_TEST_POOL.filter(q => q.level === 'B2')).slice(0, 2);
+      const c1Pool = shuffleArray(PLACEMENT_TEST_POOL.filter(q => q.level === 'C1' || q.level === 'AWL')).slice(0, 2);
+
+      const rawQuestions = [...a1Pool, ...a2Pool, ...b1Pool, ...b2Pool, ...c1Pool];
+
+      // Her sorunun şıklarını Fisher-Yates ile RASTGELE karıştır ve doğru şıkkın indexini dinamik hesapla
+      activePlacementQuestions = rawQuestions.map(rawQ => {
+        const correctText = rawQ.correctAnswer || (rawQ.options ? rawQ.options[rawQ.correct] : '');
+        const dists = rawQ.distractors || (rawQ.options ? rawQ.options.filter((_, idx) => idx !== rawQ.correct) : []);
+        // Şıkları karıştır:
+        const combined = shuffleArray([correctText, ...dists]);
+        const correctIdx = combined.indexOf(correctText);
+        return {
+          id: rawQ.id,
+          level: rawQ.level,
+          type: rawQ.type,
+          question: rawQ.question,
+          options: combined,
+          correct: correctIdx,
+          correctAnswer: correctText,
+          explanation: rawQ.explanation
+        };
+      });
+
       const s1 = document.getElementById('trackScreenSelect');
       const s2 = document.getElementById('trackScreenQuiz');
       const s3 = document.getElementById('trackScreenResult');
@@ -5669,7 +5834,7 @@
 
     function renderPlacementTestQuestion() {
       placementAnswered = false;
-      const q = PLACEMENT_TEST_POOL[placementCurrentIdx];
+      const q = activePlacementQuestions[placementCurrentIdx];
       if (!q) {
         finishPlacementTest();
         return;
@@ -5682,7 +5847,7 @@
       const optContainer = document.getElementById('placementOptionsContainer');
       const fbBox = document.getElementById('placementFeedbackBox');
 
-      if (badge) badge.innerText = `Soru ${placementCurrentIdx + 1} / ${PLACEMENT_TEST_POOL.length}`;
+      if (badge) badge.innerText = `Soru ${placementCurrentIdx + 1} / ${activePlacementQuestions.length}`;
       if (levelTarget) levelTarget.innerText = `Ölçülen Seviye: ${q.level}`;
       if (qType) qType.innerText = `${q.level} • ${q.type}`;
       if (qText) qText.innerText = q.question;
@@ -5705,7 +5870,7 @@
     function selectPlacementOption(selectedIdx) {
       if (placementAnswered) return;
       placementAnswered = true;
-      const q = PLACEMENT_TEST_POOL[placementCurrentIdx];
+      const q = activePlacementQuestions[placementCurrentIdx];
       const isCorrect = (selectedIdx === q.correct);
 
       if (isCorrect) {
@@ -5745,7 +5910,7 @@
 
     function nextPlacementQuestion() {
       placementCurrentIdx++;
-      if (placementCurrentIdx < PLACEMENT_TEST_POOL.length) {
+      if (placementCurrentIdx < activePlacementQuestions.length) {
         renderPlacementTestQuestion();
       } else {
         finishPlacementTest();
@@ -5758,7 +5923,8 @@
       if (s2) s2.classList.add('hidden');
       if (s3) s3.classList.remove('hidden');
 
-      const pct = Math.round((placementScore / PLACEMENT_TEST_POOL.length) * 100);
+      const totalCount = activePlacementQuestions.length || 10;
+      const pct = Math.round((placementScore / totalCount) * 100);
       let detectedLevel = 'A1';
       let trackRecommended = 'beginner';
       let title = 'A1–A2 Başlangıç & Temel Düzey';
@@ -5768,17 +5934,17 @@
         detectedLevel = 'A1-A2';
         trackRecommended = 'beginner';
         title = '🌱 A1–A2 Temel Rota (Sıfırdan Öğrenen)';
-        desc = `10 soruluk testte ${placementScore} doğru yaptın (%${pct}). Temel dilbilgisi kalıplarını ve günlük kelime hazneni sağlamlaştırmak için <strong>A1–A2 Temel Rota</strong> senin için en verimli başlangıçtır. Kartların arkasındaki Türkçe karşılıklar, temel cümle kalıpları ve telaffuz dinleme ile çalışmanı öneririz.`;
+        desc = `10 soruluk kalibre testte ${placementScore} doğru yaptın (%${pct}). Temel dilbilgisi kalıplarını ve günlük kelime hazneni sağlamlaştırmak için <strong>A1–A2 Temel Rota</strong> senin için en verimli başlangıçtır. Kartların arkasındaki Türkçe karşılıklar, temel cümle kalıpları ve telaffuz dinleme ile çalışmanı öneririz.`;
       } else if (placementScore <= 7) {
         detectedLevel = 'B1-B2';
         trackRecommended = 'intermediate';
         title = '🚀 B1–B2 Orta Düzey Rota (Gelişim & Akıcılık)';
-        desc = `10 soruluk testte ${placementScore} doğru yaptın (%${pct}). Güçlü bir İngilizce altyapın var! Artık <strong>Oxford 3000</strong>, <strong>250 Phrasal Verb</strong>, karışan gramer kalıpları ve <strong>Okuma Labı</strong> makaleleri ile akıcılığını ve akademik okuma refleksini zirveye taşıma zamanı.`;
+        desc = `10 soruluk kalibre testte ${placementScore} doğru yaptın (%${pct}). Güçlü bir İngilizce altyapın var! Artık <strong>Oxford 3000</strong>, <strong>250 Phrasal Verb</strong>, karışan gramer kalıpları ve <strong>Okuma Labı</strong> makaleleri ile akıcılığını ve akademik okuma refleksini zirveye taşıma zamanı.`;
       } else {
         detectedLevel = 'C1-AWL';
         trackRecommended = 'advanced';
         title = '🎓 C1 & AWL İleri Düzey Rota (Akademik & Sınav)';
-        desc = `10 soruluk testte ${placementScore} doğru yaptın (%${pct}). Mükemmel bir İngilizce yeterliliğine sahipsin! Subjunctive, Inversion gibi ileri dilbilgisi yapılarına hakimsin. Senin için özel hazırlanan <strong>AWL (Akademik Kelime)</strong>, <strong>227 Karışan Nüans İkizi</strong> ve <strong>Muafiyet Deneme Sınavı</strong> modülü ile C1 profesyonelliğine adım atabilirsin.`;
+        desc = `10 soruluk kalibre testte ${placementScore} doğru yaptın (%${pct}). Mükemmel bir İngilizce yeterliliğine sahipsin! Subjunctive, Inversion gibi ileri dilbilgisi yapılarına hakimsin. Senin için özel hazırlanan <strong>AWL (Akademik Kelime)</strong>, <strong>227 Karışan Nüans İkizi</strong> ve <strong>Muafiyet Deneme Sınavı</strong> modülü ile C1 profesyonelliğine adım atabilirsin.`;
       }
 
       detectedPlacementResult = {
@@ -7574,7 +7740,6 @@
         }
 
         // Akıllı Çeldirici (Confusable Twin + Same-POS Priority):
-        // Eğer kelimenin sık karıştırılan ikizi (conf) varsa, öncelikle o ikiz kelimeyi şıklara dahil et!
         const confTwins = [];
         if (correctItem.conf) {
           const twinMatches = correctItem.conf.split('≠').map(part => {
@@ -7588,9 +7753,9 @@
         }
 
         const samePosCandidates = targetPrimaryPos
-          ? candidates.filter(x => (x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5)
+          ? shuffleArray(candidates.filter(x => (x.pos || '').toLowerCase().includes(targetPrimaryPos)))
           : [];
-        const otherCandidates = candidates.filter(x => !targetPrimaryPos || !(x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5);
+        const otherCandidates = shuffleArray(candidates.filter(x => !targetPrimaryPos || !(x.pos || '').toLowerCase().includes(targetPrimaryPos)));
 
         const optionSet = new Set([correctForm]);
         const shuffledCandidates = [...confTwins, ...samePosCandidates, ...otherCandidates];
@@ -7601,7 +7766,7 @@
             optionSet.add(distractor);
           }
         }
-        const options = Array.from(optionSet).sort(() => Math.random() - 0.5);
+        const options = shuffleArray(Array.from(optionSet));
 
         return {
           item: correctItem,
@@ -7919,11 +8084,16 @@
 
       quizQuestions = shuffled.slice(0, questionCount).map(correctItem => {
         const targetPrimaryPos = (correctItem.pos || '').split(',')[0].trim().toLowerCase();
-        let wrongItems = levelPool.filter(x => x.w !== correctItem.w);
+        const correctTr = correctItem.tr.trim();
+        const correctTrClean = correctTr.toLowerCase().replace(/[.,;()]/g, ' ');
+        const correctTrTokens = new Set(correctTrClean.split(/\s+/).filter(t => t.length > 2));
+
+        let wrongItems = levelPool.filter(x => x.w.toLowerCase() !== correctItem.w.toLowerCase());
         if (wrongItems.length < 3) {
-          wrongItems = allWords.filter(x => x.w !== correctItem.w);
+          wrongItems = allWords.filter(x => x.w.toLowerCase() !== correctItem.w.toLowerCase());
         }
-        // Akıllı Çeldirici (Confusable Twin + Same-POS Priority):
+
+        // Akıllı Çeldirici (Confusable Twin): Sık karıştırılan nüans ikizi varsa şıklara al
         const confTwins = [];
         if (correctItem.conf) {
           const twinMatches = correctItem.conf.split('≠').map(part => {
@@ -7935,12 +8105,31 @@
             if (foundTwin) confTwins.push(foundTwin);
           });
         }
+
+        // 2 Cevap / Eşanlamlılık Engelleyici Filtre:
+        // Çeldiricinin Türkçe anlamı doğru cevabın temel kelimeleriyle birebir aynı veya eşanlamlı olmamalıdır!
+        const isNotAmbiguousDistractor = (cand) => {
+          const candTr = cand.tr.trim();
+          if (candTr.toLowerCase() === correctTr.toLowerCase()) return false;
+          const candTrClean = candTr.toLowerCase().replace(/[.,;()]/g, ' ');
+          const candTokens = candTrClean.split(/\s+/).filter(t => t.length > 2);
+          // Eğer 2'den fazla ortak kök kelime içeriyorsa çeldirici 2 cevaplı şüphe yaratabilir, ele
+          let shared = 0;
+          for (const token of candTokens) {
+            if (correctTrTokens.has(token)) shared++;
+          }
+          if (shared >= 2 && candTokens.length <= 3) return false;
+          return true;
+        };
+
+        const filteredWrong = wrongItems.filter(isNotAmbiguousDistractor);
         const samePosWrong = targetPrimaryPos
-          ? wrongItems.filter(x => (x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5)
+          ? shuffleArray(filteredWrong.filter(x => (x.pos || '').toLowerCase().includes(targetPrimaryPos)))
           : [];
-        const otherWrong = wrongItems.filter(x => !targetPrimaryPos || !(x.pos || '').toLowerCase().includes(targetPrimaryPos)).sort(() => Math.random() - 0.5);
-        const optionSet = new Set([correctItem.tr.trim()]);
-        const wrongCandidates = [...confTwins, ...samePosWrong, ...otherWrong];
+        const otherWrong = shuffleArray(filteredWrong.filter(x => !targetPrimaryPos || !(x.pos || '').toLowerCase().includes(targetPrimaryPos)));
+
+        const optionSet = new Set([correctTr]);
+        const wrongCandidates = [...confTwins.filter(isNotAmbiguousDistractor), ...samePosWrong, ...otherWrong];
         for (const cand of wrongCandidates) {
           if (optionSet.size >= 4) break;
           const trText = cand.tr.trim();
@@ -7949,8 +8138,8 @@
           }
         }
         if (optionSet.size < 4) {
-          const allWrongCandidates = allWords.filter(x => x.w !== correctItem.w).sort(() => Math.random() - 0.5);
-          for (const cand of allWrongCandidates) {
+          const allBackup = shuffleArray(allWords.filter(x => x.w.toLowerCase() !== correctItem.w.toLowerCase() && isNotAmbiguousDistractor(x)));
+          for (const cand of allBackup) {
             if (optionSet.size >= 4) break;
             const trText = cand.tr.trim();
             if (!optionSet.has(trText)) {
@@ -7958,7 +8147,7 @@
             }
           }
         }
-        const options = Array.from(optionSet).sort(() => Math.random() - 0.5);
+        const options = shuffleArray(Array.from(optionSet));
         return {
           word: correctItem.w,
           ipa: correctItem.ipa,
@@ -11706,8 +11895,9 @@
       examFlagged = new Set();
 
       // Configure questions and time by level (balanced across all 4 sections)
+      let basePool = [];
       if (selectedExamLevel === 'B1') {
-        mockExamQuestions = [
+        basePool = [
           ...mockExamPool.slice(0, 4),   // 4 Vocabulary in Context
           ...mockExamPool.slice(6, 10),  // 4 Cloze Passage
           ...mockExamPool.slice(11, 14), // 3 Restatement
@@ -11715,9 +11905,24 @@
         ];
         examTimeRemaining = 1200; // 20 minutes
       } else {
-        mockExamQuestions = mockExamPool;
+        basePool = [...mockExamPool];
         examTimeRemaining = 1800; // 30 minutes
       }
+
+      // Her sınavda şıkları Fisher-Yates ile RASTGELE dağıt; doğru cevap sürekli A veya B olmasın!
+      mockExamQuestions = basePool.map(qItem => {
+        const correctOpt = qItem.options.find(o => o.key === qItem.answer);
+        const correctText = correctOpt ? correctOpt.text : '';
+        const shuffledTexts = shuffleArray(qItem.options.map(o => o.text));
+        const keys = ['A', 'B', 'C', 'D'];
+        const newOptions = shuffledTexts.map((txt, idx) => ({ key: keys[idx], text: txt }));
+        const newAnswerKey = newOptions.find(o => o.text === correctText)?.key || 'A';
+        return {
+          ...qItem,
+          options: newOptions,
+          answer: newAnswerKey
+        };
+      });
 
       document.getElementById('examIntroScreen').classList.add('hidden');
       document.getElementById('examActiveScreen').classList.remove('hidden');
