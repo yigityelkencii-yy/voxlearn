@@ -116,6 +116,23 @@
       -webkit-font-smoothing: antialiased !important;
     }
 
+    /* Kartın Arka Yüzü Yüksek Okunabilirlik Kuralları (Sıfır Göz Yorgunluğu & Net Font) */
+    #fcTr, .fc-tr-heading {
+      font-family: var(--font-word, 'Lexend', 'Atkinson Hyperlegible', sans-serif) !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.01em !important;
+      line-height: 1.35 !important;
+    }
+    #fcEx, .fc-example-sentence {
+      font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-style: normal !important;
+      letter-spacing: 0.01em !important;
+      line-height: 1.6 !important;
+    }
+    #fcSynList span, #fcCollocList span, #fcFamList span, #fcConfText {
+      font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
     /* Card Heat Multiplier (Doğal Isı ve Plazma Mavi Alev) */
     .card-heat-warm .card-front,
     .card-heat-warm .card-back {
@@ -284,16 +301,20 @@
       transform: translateY(1px) scale(0.98);
     }
 
+    /* Tok, Opak, Sıfır Şeffaflıkta Biliyorum / Bilmiyorum Butonları */
     .btn-emerald-tactile {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(5, 150, 105, 0.25) 100%);
-      border: 1px solid rgba(16, 185, 129, 0.38);
-      color: #d1fae5;
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 14px -3px rgba(16, 185, 129, 0.25);
+      background: #12281e !important;
+      border: 1.5px solid #10b981 !important;
+      color: #ecfdf5 !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 14px -3px rgba(0, 0, 0, 0.6) !important;
+      font-weight: 600 !important;
+      opacity: 1 !important;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-emerald-tactile:hover {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.38) 100%);
-      border-color: rgba(16, 185, 129, 0.55);
+      background: #173829 !important;
+      border-color: #34d399 !important;
+      color: #ffffff !important;
       transform: translateY(-1px);
     }
     .btn-emerald-tactile:active {
@@ -301,15 +322,18 @@
     }
 
     .btn-rose-tactile {
-      background: linear-gradient(135deg, rgba(225, 29, 72, 0.16) 0%, rgba(159, 18, 57, 0.25) 100%);
-      border: 1px solid rgba(244, 63, 94, 0.38);
-      color: #ffe4e6;
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 14px -3px rgba(225, 29, 72, 0.25);
+      background: #2a1318 !important;
+      border: 1.5px solid #f43f5e !important;
+      color: #fff1f2 !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 14px -3px rgba(0, 0, 0, 0.6) !important;
+      font-weight: 600 !important;
+      opacity: 1 !important;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-rose-tactile:hover {
-      background: linear-gradient(135deg, rgba(225, 29, 72, 0.25) 0%, rgba(159, 18, 57, 0.38) 100%);
-      border-color: rgba(244, 63, 94, 0.55);
+      background: #391820 !important;
+      border-color: #fb7185 !important;
+      color: #ffffff !important;
       transform: translateY(-1px);
     }
     .btn-rose-tactile:active {
@@ -772,67 +796,67 @@
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(5, 150, 105, 0.3) !important;
     }
 
-    /* ==================== THEME 9: COGNITIVE SLATE PRO (BİLİMSEL ODAK & YÜKSEK OKUNABİLİRLİK) ==================== */
+    /* ==================== THEME 9: ODAK MODU (GÖZ YORMAYAN SICAK MAT KÖMÜR & SAKİN TAŞ) ==================== */
     [data-theme="slate"] {
       --font-sans: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: 'Lexend', -apple-system, sans-serif;
       --font-word: 'Lexend', 'Atkinson Hyperlegible', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       --body-tracking: 0.015em;
-      --theme-bg-body: #0d1117;
-      --theme-bg-card: #18202c;
-      --theme-border: rgba(148, 163, 184, 0.28);
-      --theme-accent: #38bdf8;
-      --theme-accent-glow: rgba(56, 189, 248, 0.45);
+      --theme-bg-body: #121316;
+      --theme-bg-card: #1c1e24;
+      --theme-border: rgba(255, 255, 255, 0.12);
+      --theme-accent: #f59e0b;
+      --theme-accent-glow: rgba(245, 158, 11, 0.35);
     }
     [data-theme="slate"] body {
-      background-color: #0d1117 !important;
-      color: #f1f5f9 !important;
+      background-color: #121316 !important;
+      color: #ede7de !important;
       line-height: 1.65;
     }
     [data-theme="slate"] #auraBase {
-      background: radial-gradient(circle 950px at 50% -120px, rgba(56, 189, 248, 0.14), rgba(13, 17, 23, 0) 72%) !important;
+      background: radial-gradient(circle 950px at 50% -120px, rgba(245, 158, 11, 0.06), rgba(18, 19, 22, 0) 72%) !important;
     }
     [data-theme="slate"] nav {
-      background-color: rgba(19, 25, 36, 0.88) !important;
-      border-color: rgba(148, 163, 184, 0.22) !important;
+      background-color: rgba(22, 24, 29, 0.92) !important;
+      border-color: rgba(255, 255, 255, 0.10) !important;
     }
     [data-theme="slate"] .bg-\[\#140609\],
     [data-theme="slate"] .bg-\[\#120407\]\/70,
     [data-theme="slate"] .bg-\[\#16060a\]\/90,
     [data-theme="slate"] .bg-\[\#18080c\] {
-      background-color: #161e2a !important;
-      border-color: rgba(148, 163, 184, 0.24) !important;
+      background-color: #1a1c22 !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
     }
-    /* Kutucuk: Arka plandan net ayrılan z-elevation, aydınlık yüzey ve net kenarlık */
+    /* Kutucuk: Arka plandan tok ve net ayrılan, gözü asla sıkmayan pürüzsüz mat taş yüzey */
     [data-theme="slate"] .card-front {
-      background: linear-gradient(180deg, #1e2838 0%, #151d29 100%) !important;
-      border: 1.5px solid rgba(148, 163, 184, 0.36) !important;
-      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.16) inset, 0 28px 56px -12px rgba(0, 0, 0, 0.95), 0 0 35px -5px rgba(56, 189, 248, 0.18) !important;
+      background: linear-gradient(180deg, #22242c 0%, #191b20 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.09) inset, 0 24px 50px -12px rgba(0, 0, 0, 0.9) !important;
     }
     [data-theme="slate"] .card-back {
-      background: linear-gradient(180deg, #222d3f 0%, #151d29 100%) !important;
-      border: 1.5px solid rgba(56, 189, 248, 0.5) !important;
-      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.16) inset, 0 28px 56px -12px rgba(0, 0, 0, 0.95) !important;
+      background: linear-gradient(180deg, #252832 0%, #191b20 100%) !important;
+      border: 1.5px solid rgba(245, 158, 11, 0.45) !important;
+      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.09) inset, 0 24px 50px -12px rgba(0, 0, 0, 0.9) !important;
     }
     [data-theme="slate"] .bg-rose-900\/60,
     [data-theme="slate"] #btnModeSelector,
     [data-theme="slate"] .btn-primary-glow {
-      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
-      border-color: rgba(56, 189, 248, 0.55) !important;
-      color: #ffffff !important;
-      box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.45) !important;
+      background: linear-gradient(135deg, #2c2f38 0%, #1e2027 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+      color: #f3efe6 !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
     }
-    [data-theme="slate"] .text-rose-300 { color: #7dd3fc !important; }
-    [data-theme="slate"] .text-rose-400 { color: #38bdf8 !important; }
+    [data-theme="slate"] .text-rose-300 { color: #fde68a !important; }
+    [data-theme="slate"] .text-rose-400 { color: #f59e0b !important; }
     [data-theme="slate"] .border-rose-500\/30, [data-theme="slate"] .border-rose-500\/40 {
-      border-color: rgba(56, 189, 248, 0.38) !important;
+      border-color: rgba(245, 158, 11, 0.35) !important;
     }
     [data-theme="slate"] .hub-pill.active {
-      background: linear-gradient(135deg, rgba(2, 132, 199, 0.55) 0%, rgba(3, 105, 161, 0.72) 100%) !important;
-      border-color: rgba(56, 189, 248, 0.55) !important;
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 4px 14px rgba(2, 132, 199, 0.35) !important;
-      color: #ffffff !important;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.35) 100%) !important;
+      border-color: rgba(245, 158, 11, 0.45) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+      color: #fef3c7 !important;
     }
 
 
@@ -926,15 +950,15 @@
       --focus-text-muted: #57463a;
     }
     [data-theme="slate"] {
-      --focus-bg: #090d13;
-      --focus-card: #1c2433;
-      --focus-card-border: rgba(56, 189, 248, 0.45);
-      --focus-opt: #263347;
-      --focus-opt-border: rgba(148, 163, 184, 0.35);
-      --focus-opt-hover: #33445e;
-      --focus-accent: #38bdf8;
-      --focus-text: #f8fafc;
-      --focus-text-muted: #94a3b8;
+      --focus-bg: #101114;
+      --focus-card: #1c1e24;
+      --focus-card-border: rgba(255, 255, 255, 0.16);
+      --focus-opt: #262932;
+      --focus-opt-border: rgba(255, 255, 255, 0.12);
+      --focus-opt-hover: #313540;
+      --focus-accent: #f59e0b;
+      --focus-text: #ede7de;
+      --focus-text-muted: #9da3af;
     }
 
     /* ODAK MODU AKTİF OLDUĞUNDA (body.focus-mode-active): */
@@ -1315,12 +1339,12 @@
 
                 <div class="my-auto space-y-3 px-1 text-center sm:text-left">
                   <div id="fcGrammarLinkBox" class="hidden text-center"></div>
-                  <h3 id="fcTr" class="font-serif-hero text-2xl sm:text-3xl text-[#fdf6ee] font-medium leading-snug tracking-tight text-center">Anlam</h3>
+                  <h3 id="fcTr" class="fc-tr-heading text-2xl sm:text-3xl text-[#fdf6ee] font-semibold leading-snug tracking-tight text-center">Anlam</h3>
                   
                   <div class="p-3.5 sm:p-4 rounded-xl bg-black/40 border border-white/[0.05] border-l-2 border-l-rose-500/50 text-left space-y-2.5">
                     <div>
                       <div class="text-[10px] font-mono tracking-widest text-[#d6c7b2]/50 uppercase mb-1">Örnek Kullanım</div>
-                      <p id="fcEx" class="font-serif-hero italic text-[#e8dbcc] text-sm sm:text-base leading-relaxed">Example sentence goes here.</p>
+                      <p id="fcEx" class="fc-example-sentence text-[#ede4d8] text-sm sm:text-base leading-relaxed">Example sentence goes here.</p>
                     </div>
 
                     <!-- Eş Anlamlılar (Synonyms) Container -->
@@ -3843,7 +3867,7 @@
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
               <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>6️⃣</span> <span>Ultra-Odak Modu & 9 Atmosferik Tema</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                Çalışırken göz yorulmasını ve dikkat dağınıklığını önlemek için üst bardan <strong class="text-rose-300">🎯 Odak [F]</strong> modunu aç veya <strong class="text-cyan-300">🎨 Tema</strong> menüsünden tavsiye edilen <strong class="text-sky-300">🧠 Cognitive Slate Pro</strong> modunu seç: Arka plandan net ayrılmış çalışma kutucuğu, harfleri tescilli <em>Lexend</em> ve <em>Atkinson Hyperlegible</em> fontlarıyla sıfır göz yorgunluğu sağlar.
+                Çalışırken göz yorulmasını ve dikkat dağınıklığını önlemek için üst bardan <strong class="text-rose-300">🎯 Odak [F]</strong> modunu aç veya <strong class="text-cyan-300">🎨 Tema</strong> menüsünden <strong class="text-amber-300">🎯 Odak Modu</strong>'nu seç: Arka plandan net ayrılmış mat kartlar, tok opak butonlar ve harfleri net <em>Lexend</em> / <em>Atkinson</em> fontlarıyla sıfır göz yorgunluğu sağlar.
               </p>
             </div>
           </div>
@@ -3855,7 +3879,7 @@
           <div><strong class="text-rose-300">🩸 Kasa:</strong> Yanlış yaptığın soruların kutusu</div>
           <div><strong class="text-emerald-300">📦 Kutu 1/5:</strong> Aralıklı tekrar hafıza seviyesi</div>
           <div><strong class="text-cyan-300">🎯 Odak (F):</strong> Dikkat dağıtmayan 3 katmanlı mod</div>
-          <div><strong class="text-sky-300">🎨 Tema:</strong> 9 farklı Renk & Font atmosferi (Slate Pro dahil)</div>
+          <div><strong class="text-amber-300">🎨 Tema:</strong> 9 farklı Renk & Font atmosferi (Odak Modu dahil)</div>
         </div>
 
       </div>
@@ -3894,22 +3918,22 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 max-h-[68vh] overflow-y-auto pr-1 scrollbar-thin">
-        <!-- Theme 0 (Recommended): Cognitive Slate Pro -->
-        <button onclick="selectTheme('slate')" id="themeBtn-slate" class="theme-card-btn col-span-1 sm:col-span-2 w-full p-3.5 rounded-2xl border-2 border-sky-500/50 bg-[#161e2a] text-left flex items-center justify-between gap-2.5 transition hover:border-sky-400 shadow-lg">
+        <!-- Theme 0: Odak Modu -->
+        <button onclick="selectTheme('slate')" id="themeBtn-slate" class="theme-card-btn col-span-1 sm:col-span-2 w-full p-3.5 rounded-2xl border-2 border-amber-500/40 bg-[#1c1e24] text-left flex items-center justify-between gap-2.5 transition hover:border-amber-400/70 shadow-lg">
           <div class="flex items-center gap-3 min-w-0">
-            <div class="w-10 h-10 rounded-xl bg-[#0d1117] border border-sky-400/50 flex items-center justify-center text-lg shrink-0 shadow-inner">
-              🧠
+            <div class="w-10 h-10 rounded-xl bg-[#121316] border border-amber-500/30 flex items-center justify-center text-lg shrink-0 shadow-inner">
+              🎯
             </div>
             <div class="min-w-0">
               <div class="flex items-center gap-2">
-                <span class="text-xs font-bold text-white tracking-wide" style="font-family: 'Lexend', sans-serif;">Cognitive Slate Pro</span>
-                <span class="px-2 py-0.5 rounded-full bg-sky-500/20 border border-sky-500/40 text-[9px] font-mono text-sky-300 font-bold uppercase">Bilimsel Odak • Tavsiye Edilen</span>
+                <span class="text-xs font-bold text-white tracking-wide" style="font-family: 'Lexend', sans-serif;">Odak Modu</span>
+                <span class="px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-[9px] font-mono text-amber-300 font-bold uppercase">Odak</span>
               </div>
-              <div class="text-[11px] text-[#cbd5e1] truncate mt-0.5">Arka plandan ayrılmış net çalışma kutucuğu & sıfır göz yorgunluğu</div>
-              <div class="text-[9px] font-mono text-sky-300/90 mt-0.5 truncate">🔤 Lexend (Kelime) + Atkinson Hyperlegible (Metin) • Gece Slate</div>
+              <div class="text-[11px] text-[#d6c7b2] truncate mt-0.5">Göz yormayan mat kartlar, net kelime fontu ve yüksek dikkat</div>
+              <div class="text-[9px] font-mono text-[#a8998c] mt-0.5 truncate">🔤 Lexend + Atkinson Hyperlegible • Sıcak Kömür</div>
             </div>
           </div>
-          <span id="themeCheck-slate" class="hidden text-sky-400 text-base font-bold shrink-0">✓</span>
+          <span id="themeCheck-slate" class="hidden text-amber-400 text-base font-bold shrink-0">✓</span>
         </button>
 
         <!-- Theme 1: Crimson -->
@@ -5450,7 +5474,7 @@
       document.documentElement.setAttribute('data-theme', theme);
 
       const metaColors = {
-        slate: '#0d1117',
+        slate: '#121316',
         crimson: '#0c0406',
         parchment: '#110d09',
         emerald: '#050f0c',
@@ -5857,7 +5881,7 @@
         // Active Spelling / Letter Scaffold Mode on Front Face
         fcSpellRevealedCount = 1;
         document.getElementById('fcWord').innerText = card.tr;
-        document.getElementById('fcWord').className = 'font-serif-hero text-3xl sm:text-4xl font-normal text-[#fdf6ee] tracking-[-0.02em] select-text';
+        document.getElementById('fcWord').className = 'fc-word-heading text-3xl sm:text-4xl font-semibold text-[#fdf6ee] tracking-tight select-text';
         document.getElementById('fcIpa').innerText = 'Harf iskeletinden İngilizcesini yaz';
         document.getElementById('fcIpa').className = 'text-amber-300/80 font-mono text-xs font-normal tracking-wider';
         document.getElementById('fcPos').innerText = card.pos || '';
@@ -5874,13 +5898,13 @@
           if (fb) fb.innerText = '';
         }
         document.getElementById('fcBackSubTitle').innerText = 'İNGİLİZCE KARŞILIĞI & DETAY';
-        document.getElementById('fcTr').innerHTML = `<span class="text-[#fdf6ee] font-serif-hero">${card.w}</span> ${card.ipa ? `<span class="block text-[#d6c7b2]/70 font-mono text-sm mt-1">${card.ipa}</span>` : ''}`;
+        document.getElementById('fcTr').innerHTML = `<span class="text-[#fdf6ee] fc-word-heading font-bold text-3xl sm:text-4xl">${card.w}</span> ${card.ipa ? `<span class="block text-[#d6c7b2]/70 font-mono text-sm mt-1">${card.ipa}</span>` : ''}`;
         document.getElementById('fcEx').innerText = card.ex;
       } else if (isReverseMode) {
         if (spellBox) spellBox.classList.add('hidden');
         // FRONT: Turkish
         document.getElementById('fcWord').innerText = card.tr;
-        document.getElementById('fcWord').className = 'font-serif-hero text-4xl sm:text-5xl font-normal text-[#fdf6ee] tracking-[-0.025em] select-text';
+        document.getElementById('fcWord').className = 'fc-word-heading text-4xl sm:text-5xl font-semibold text-[#fdf6ee] tracking-tight select-text';
         document.getElementById('fcIpa').innerText = 'İngilizcesini hatırla';
         document.getElementById('fcIpa').className = 'text-[#d6c7b2]/75 font-mono text-xs sm:text-sm font-normal tracking-wider';
         document.getElementById('fcPos').innerText = card.pos || '';
@@ -5888,13 +5912,13 @@
 
         // BACK: English
         document.getElementById('fcBackSubTitle').innerText = 'İNGİLİZCE KARŞILIĞI & DETAY';
-        document.getElementById('fcTr').innerHTML = `<span class="text-[#fdf6ee] font-serif-hero">${card.w}</span> ${card.ipa ? `<span class="block text-[#d6c7b2]/70 font-mono text-sm mt-1">${card.ipa}</span>` : ''}`;
+        document.getElementById('fcTr').innerHTML = `<span class="text-[#fdf6ee] fc-word-heading font-bold text-3xl sm:text-4xl">${card.w}</span> ${card.ipa ? `<span class="block text-[#d6c7b2]/70 font-mono text-sm mt-1">${card.ipa}</span>` : ''}`;
         document.getElementById('fcEx').innerText = card.ex;
       } else {
         if (spellBox) spellBox.classList.add('hidden');
         // FRONT: English
         document.getElementById('fcWord').innerText = card.w;
-        document.getElementById('fcWord').className = 'font-serif-hero text-5xl sm:text-6xl font-normal text-[#fdf6ee] tracking-[-0.025em] select-text';
+        document.getElementById('fcWord').className = 'fc-word-heading text-5xl sm:text-6xl font-semibold text-[#fdf6ee] tracking-tight select-text';
         document.getElementById('fcIpa').innerText = card.ipa || '';
         document.getElementById('fcIpa').className = 'text-[#d6c7b2]/75 font-mono text-sm sm:text-base font-normal tracking-wide';
         document.getElementById('fcPos').innerText = card.pos || '';
