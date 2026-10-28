@@ -88,8 +88,9 @@
       justify-content: space-between;
       border-radius: 1.5rem;
       padding: 2rem 1.75rem;
-      background: linear-gradient(180deg, #1d0b11 0%, #0d0407 100%);
-      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      background: linear-gradient(180deg, #26111a 0%, #190a11 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 28px 56px -12px rgba(0, 0, 0, 0.95);
       box-shadow: 
         0 1px 0 0 rgba(255, 255, 255, 0.12) inset,
         0 28px 56px -12px rgba(0, 0, 0, 0.95),
@@ -101,8 +102,9 @@
     .card-back {
       transform: rotateY(180deg) translateZ(1px);
       -webkit-transform: rotateY(180deg) translateZ(1px);
-      background: linear-gradient(180deg, #220d15 0%, #0d0407 100%);
-      border: 1.5px solid rgba(244, 63, 94, 0.35);
+      background: linear-gradient(180deg, #2c121e 0%, #1c0a13 100%);
+      border: 1.5px solid rgba(244, 63, 94, 0.45);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 28px 56px -12px rgba(0, 0, 0, 0.95);
       overflow-y: auto !important;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
@@ -873,21 +875,21 @@
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(5, 150, 105, 0.3) !important;
     }
 
-    /* ==================== THEME 9: ODAK MODU (LİNEAR & APPLE DARK - SIFIR GÖZ YORULMASI) ==================== */
+    /* ==================== THEME 9: ODAK MODU (GÖVDE VS ÇALIŞMA ALANI DERİNLİK MİMARİSİ) ==================== */
     [data-theme="slate"] {
       --font-sans: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: 'Lexend', -apple-system, sans-serif;
       --font-word: 'Lexend', 'Atkinson Hyperlegible', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       --body-tracking: 0.015em;
-      --theme-bg-body: #0a0b10;
-      --theme-bg-card: #141620;
-      --theme-border: rgba(255, 255, 255, 0.09);
+      --theme-bg-body: #07080d;
+      --theme-bg-card: #181c2b;
+      --theme-border: rgba(255, 255, 255, 0.15);
       --theme-accent: #6366f1;
       --theme-accent-glow: rgba(99, 102, 241, 0.35);
     }
     [data-theme="slate"] body {
-      background-color: #0a0b10 !important;
+      background-color: #07080d !important;
       color: #f8fafc !important;
       line-height: 1.65;
     }
@@ -899,26 +901,38 @@
       background: none !important;
     }
     [data-theme="slate"] nav {
-      background-color: rgba(10, 11, 16, 0.92) !important;
+      background-color: rgba(7, 8, 13, 0.95) !important;
       backdrop-filter: blur(16px) !important;
       -webkit-backdrop-filter: blur(16px) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7) !important;
     }
 
-    /* Kartlar: Dingin Kadife Obsidiyen Yüzey + Zarif 1px İnce Kenarlık */
+    /* BİZİM ÇALIŞTIĞIMIZ KISIM (KART & SORU ARENASI): ZEMİNDEN NET ŞEKİLDE AYRILAN YÜZEY */
     [data-theme="slate"] .card-front {
-      background: linear-gradient(180deg, #151722 0%, #0f1017 100%) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 48px -12px rgba(0, 0, 0, 0.75) !important;
+      background: linear-gradient(180deg, #1e2235 0%, #151826 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
     }
     [data-theme="slate"] .card-back {
-      background: linear-gradient(180deg, #171926 0%, #0f1017 100%) !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 48px -12px rgba(0, 0, 0, 0.75) !important;
+      background: linear-gradient(180deg, #202438 0%, #171928 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
     }
 
-    /* Kutucuklar & İç Paneller */
+    /* Soru Panelleri (Test, Boşluk Doldurma, Sınav, Okuma) */
+    [data-theme="slate"] #clozeQuestionBox,
+    [data-theme="slate"] #quizQuestionBox,
+    [data-theme="slate"] #readingQuestionsCard,
+    [data-theme="slate"] #examOptionsContainer,
+    [data-theme="slate"] #grammarSpotterSection > div,
+    [data-theme="slate"] #grammarScrambleSection > div {
+      background: linear-gradient(180deg, #1d2133 0%, #141725 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 25px 50px -12px rgba(0, 0, 0, 0.85) !important;
+    }
+
+    /* Kart İçi Detay Kutuları */
     [data-theme="slate"] .bg-\[\#140609\],
     [data-theme="slate"] .bg-\[\#120407\]\/70,
     [data-theme="slate"] .bg-\[\#16060a\]\/90,
@@ -939,12 +953,12 @@
     [data-theme="slate"] .bg-rose-950\/20,
     [data-theme="slate"] .bg-cyan-950\/20,
     [data-theme="slate"] .bg-amber-950\/20 {
-      background-color: #12141d !important;
+      background-color: #111420 !important;
       background-image: none !important;
-      border-color: rgba(255, 255, 255, 0.08) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
     }
 
-    /* Tipografi: Göz Almayan Yumuşak & Net Hiyerarşi (Linear Style) */
+    /* Tipografi: Göz Yormayan Net Hiyerarşi */
     [data-theme="slate"] #fcWord,
     [data-theme="slate"] #fcTr,
     [data-theme="slate"] #quizWord,
@@ -967,19 +981,7 @@
       color: #64748b !important;
     }
 
-    [data-theme="slate"] .text-slate-400,
-    [data-theme="slate"] .text-slate-500,
-    [data-theme="slate"] .text-\[\#a8998c\],
-    [data-theme="slate"] .text-\[\#a8998c\]\/70,
-    [data-theme="slate"] .text-\[\#a8998c\]\/60,
-    [data-theme="slate"] .text-\[\#a8998c\]\/50,
-    [data-theme="slate"] .text-\[\#d6c7b2\],
-    [data-theme="slate"] .text-\[\#d6c7b2\]\/75,
-    [data-theme="slate"] .text-\[\#d6c7b2\]\/60 {
-      color: #94a3b8 !important;
-    }
-
-    /* Rozetler: Zarif Yarı Saydam Kapsüller */
+    /* Rozetler */
     [data-theme="slate"] #fcLvlBadge,
     [data-theme="slate"] #fcAwlBadge,
     [data-theme="slate"] #fcLeitnerBadge,
@@ -988,17 +990,17 @@
     [data-theme="slate"] #btnToggleBlitz,
     [data-theme="slate"] #fcWordStatusBadge,
     [data-theme="slate"] #fcBackLeitnerBadge {
-      background: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid rgba(255, 255, 255, 0.09) !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
       color: #cbd5e1 !important;
     }
 
-    /* Flashcard Aksiyon Butonları (Apple Tactile Depth) */
+    /* Flashcard Aksiyon Butonları */
     [data-theme="slate"] .btn-emerald-tactile {
-      background: linear-gradient(180deg, #064e3b 0%, #022c22 100%) !important;
-      border: 1px solid rgba(52, 211, 153, 0.4) !important;
-      color: #6ee7b7 !important;
-      box-shadow: 0 4px 14px -2px rgba(5, 150, 105, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      background: linear-gradient(180deg, #065f46 0%, #022c22 100%) !important;
+      border: 1.5px solid rgba(52, 211, 153, 0.5) !important;
+      color: #a7f3d0 !important;
+      box-shadow: 0 4px 16px -2px rgba(5, 150, 105, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
       font-weight: 700 !important;
     }
     [data-theme="slate"] .btn-emerald-tactile:hover {
@@ -1008,71 +1010,57 @@
     }
 
     [data-theme="slate"] .btn-rose-tactile {
-      background: linear-gradient(180deg, #4c0519 0%, #2a040e 100%) !important;
-      border: 1px solid rgba(251, 113, 133, 0.35) !important;
-      color: #fda4af !important;
-      box-shadow: 0 4px 14px -2px rgba(225, 29, 72, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      background: linear-gradient(180deg, #881337 0%, #350512 100%) !important;
+      border: 1.5px solid rgba(251, 113, 133, 0.45) !important;
+      color: #fecdd3 !important;
+      box-shadow: 0 4px 16px -2px rgba(225, 29, 72, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
       font-weight: 700 !important;
     }
     [data-theme="slate"] .btn-rose-tactile:hover {
-      background: linear-gradient(180deg, #881337 0%, #4c0519 100%) !important;
+      background: linear-gradient(180deg, #9f1239 0%, #4c0519 100%) !important;
       color: #ffffff !important;
       transform: translateY(-1px) !important;
     }
 
-    /* Test, Boşluk Doldurma ve Sınav Seçenek Butonları */
+    /* Şıklar: Kart İçinde Belirgin Adalar */
     [data-theme="slate"] .quiz-opt-btn,
     [data-theme="slate"] .cloze-opt-btn,
     [data-theme="slate"] .exam-opt-btn,
     [data-theme="slate"] .match-card,
     [data-theme="slate"] #examOptionsContainer button {
-      background: #141620 !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      color: #e2e8f0 !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      background: #181c2b !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      color: #f1f5f9 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
     }
     [data-theme="slate"] .quiz-opt-btn:hover,
     [data-theme="slate"] .cloze-opt-btn:hover,
     [data-theme="slate"] .match-card:hover,
     [data-theme="slate"] #examOptionsContainer button:hover:not([disabled]) {
-      background: #1c1f2e !important;
-      border-color: rgba(99, 102, 241, 0.45) !important;
+      background: #23273c !important;
+      border-color: rgba(99, 102, 241, 0.5) !important;
       color: #ffffff !important;
       transform: translateY(-1px) !important;
     }
     [data-theme="slate"] .quiz-opt-btn span:first-child,
     [data-theme="slate"] .cloze-opt-btn span:first-child {
-      background: rgba(255, 255, 255, 0.07) !important;
-      border: 1px solid rgba(255, 255, 255, 0.09) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
       color: #94a3b8 !important;
-    }
-
-    /* Doğru / Yanlış Şıklar */
-    [data-theme="slate"] .quiz-opt-btn.bg-emerald-500\/20,
-    [data-theme="slate"] .cloze-opt-btn.bg-emerald-500\/20 {
-      background: rgba(16, 185, 129, 0.16) !important;
-      border: 1.5px solid #10b981 !important;
-      color: #34d399 !important;
-    }
-    [data-theme="slate"] .quiz-opt-btn.bg-rose-500\/20,
-    [data-theme="slate"] .cloze-opt-btn.bg-rose-500\/20 {
-      background: rgba(244, 63, 94, 0.16) !important;
-      border: 1.5px solid #f43f5e !important;
-      color: #fb7185 !important;
     }
 
     /* Seviye & Cam Butonlar */
     [data-theme="slate"] .lvl-btn,
     [data-theme="slate"] .btn-glass-subtle {
-      background: rgba(255, 255, 255, 0.04) !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
       color: #cbd5e1 !important;
     }
     [data-theme="slate"] .lvl-btn.active,
     [data-theme="slate"] .lvl-btn:hover,
     [data-theme="slate"] .btn-glass-subtle:hover {
-      background: rgba(255, 255, 255, 0.1) !important;
-      border-color: rgba(255, 255, 255, 0.22) !important;
+      background: rgba(255, 255, 255, 0.12) !important;
+      border-color: rgba(255, 255, 255, 0.25) !important;
       color: #ffffff !important;
     }
 
@@ -1082,15 +1070,15 @@
       background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
       border: 1px solid rgba(165, 180, 252, 0.35) !important;
       color: #ffffff !important;
-      box-shadow: 0 4px 16px -2px rgba(79, 70, 229, 0.4) !important;
+      box-shadow: 0 4px 16px -2px rgba(79, 70, 229, 0.45) !important;
       font-weight: 600 !important;
     }
     [data-theme="slate"] .hub-pill.active {
-      background: rgba(99, 102, 241, 0.2) !important;
-      border-color: rgba(129, 140, 248, 0.5) !important;
+      background: rgba(99, 102, 241, 0.25) !important;
+      border-color: rgba(129, 140, 248, 0.55) !important;
       color: #ffffff !important;
       font-weight: 600 !important;
-      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.25) !important;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.3) !important;
     }
 
     /* ==================== 3-KATMANLI ULTRA-ODAK TASARIMI (FOCUS MODE) ==================== */
@@ -1183,20 +1171,20 @@
       --focus-text-muted: #57463a;
     }
     [data-theme="slate"] {
-      --focus-bg: #0a0b10;
-      --focus-card: #141620;
-      --focus-card-border: rgba(255, 255, 255, 0.1);
-      --focus-opt: #141620;
-      --focus-opt-border: rgba(255, 255, 255, 0.08);
-      --focus-opt-hover: #1c1f2e;
+      --focus-bg: #07080d;
+      --focus-card: #181c2b;
+      --focus-card-border: rgba(255, 255, 255, 0.16);
+      --focus-opt: #181c2b;
+      --focus-opt-border: rgba(255, 255, 255, 0.1);
+      --focus-opt-hover: #23273c;
       --focus-accent: #6366f1;
       --focus-text: #f8fafc;
       --focus-text-muted: #94a3b8;
     }
 
-    /* ODAK MODU AKTİF OLDUĞUNDA (body.focus-mode-active): LİNEAR/APPLE DARK */
+    /* ODAK MODU AKTİF OLDUĞUNDA (body.focus-mode-active): GÖVDE VS KART AYRIŞIMI */
     body.focus-mode-active {
-      background-color: #0a0b10 !important;
+      background-color: #07080d !important;
       color: #f8fafc !important;
     }
     body.focus-mode-active #ambientSystem,
@@ -1210,14 +1198,14 @@
       display: none !important;
     }
     body.focus-mode-active nav {
-      background: rgba(10, 11, 16, 0.92) !important;
+      background: rgba(7, 8, 13, 0.95) !important;
       backdrop-filter: blur(16px) !important;
       -webkit-backdrop-filter: blur(16px) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.6) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.7) !important;
     }
 
-    /* Soru ve Flashcard Kartı - Dingin Kadife Yüzey */
+    /* BİZİM ÇALIŞTIĞIMIZ KISIM (KART & SORU ALANI) */
     body.focus-mode-active #clozeQuestionBox,
     body.focus-mode-active #quizQuestionBox,
     body.focus-mode-active #readingQuestionsCard,
@@ -1226,9 +1214,9 @@
     body.focus-mode-active #grammarScrambleSection > div,
     body.focus-mode-active .card-front,
     body.focus-mode-active .card-back {
-      background: linear-gradient(180deg, #151722 0%, #0f1017 100%) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 24px 48px -12px rgba(0, 0, 0, 0.75) !important;
+      background: linear-gradient(180deg, #1e2235 0%, #151826 100%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 25px 60px -10px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
       font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
@@ -1262,27 +1250,27 @@
     body.focus-mode-active .match-card,
     body.focus-mode-active #examOptionsContainer button,
     body.focus-mode-active #readingQuestionsContainer button {
-      background-color: #141620 !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      color: #e2e8f0 !important;
+      background-color: #181c2b !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      color: #f1f5f9 !important;
       font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
       transition: all 0.15s ease !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
     }
     body.focus-mode-active .cloze-opt-btn:hover,
     body.focus-mode-active .quiz-opt-btn:hover,
     body.focus-mode-active .match-card:hover,
     body.focus-mode-active #examOptionsContainer button:hover:not([disabled]),
     body.focus-mode-active #readingQuestionsContainer button:hover:not([disabled]) {
-      background-color: #1c1f2e !important;
-      border-color: rgba(99, 102, 241, 0.45) !important;
+      background-color: #23273c !important;
+      border-color: rgba(99, 102, 241, 0.5) !important;
       color: #ffffff !important;
       transform: translateY(-1px) !important;
     }
     body.focus-mode-active .quiz-opt-btn span:first-child,
     body.focus-mode-active .cloze-opt-btn span:first-child {
-      background-color: rgba(255, 255, 255, 0.07) !important;
-      border: 1px solid rgba(255, 255, 255, 0.09) !important;
+      background-color: rgba(255, 255, 255, 0.08) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
       color: #94a3b8 !important;
     }
 
@@ -1295,17 +1283,17 @@
     body.focus-mode-active #btnToggleBlitz,
     body.focus-mode-active #fcWordStatusBadge,
     body.focus-mode-active #fcBackLeitnerBadge {
-      background: rgba(255, 255, 255, 0.05) !important;
-      border: 1px solid rgba(255, 255, 255, 0.09) !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
       color: #cbd5e1 !important;
     }
 
     /* Flashcard Biliyorum / Bilmiyorum Butonları */
     body.focus-mode-active .btn-emerald-tactile {
-      background: linear-gradient(180deg, #064e3b 0%, #022c22 100%) !important;
-      border: 1px solid rgba(52, 211, 153, 0.4) !important;
-      color: #6ee7b7 !important;
-      box-shadow: 0 4px 14px -2px rgba(5, 150, 105, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      background: linear-gradient(180deg, #065f46 0%, #022c22 100%) !important;
+      border: 1.5px solid rgba(52, 211, 153, 0.5) !important;
+      color: #a7f3d0 !important;
+      box-shadow: 0 4px 16px -2px rgba(5, 150, 105, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
       font-weight: 700 !important;
     }
     body.focus-mode-active .btn-emerald-tactile:hover {
@@ -1313,14 +1301,14 @@
       color: #ffffff !important;
     }
     body.focus-mode-active .btn-rose-tactile {
-      background: linear-gradient(180deg, #4c0519 0%, #2a040e 100%) !important;
-      border: 1px solid rgba(251, 113, 133, 0.35) !important;
-      color: #fda4af !important;
-      box-shadow: 0 4px 14px -2px rgba(225, 29, 72, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      background: linear-gradient(180deg, #881337 0%, #350512 100%) !important;
+      border: 1.5px solid rgba(251, 113, 133, 0.45) !important;
+      color: #fecdd3 !important;
+      box-shadow: 0 4px 16px -2px rgba(225, 29, 72, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
       font-weight: 700 !important;
     }
     body.focus-mode-active .btn-rose-tactile:hover {
-      background: linear-gradient(180deg, #881337 0%, #4c0519 100%) !important;
+      background: linear-gradient(180deg, #9f1239 0%, #4c0519 100%) !important;
       color: #ffffff !important;
     }
 
@@ -4290,19 +4278,19 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 max-h-[68vh] overflow-y-auto pr-1 scrollbar-thin">
-        <!-- Theme 0: Odak Modu (Linear / Apple Dark) -->
-        <button onclick="selectTheme('slate')" id="themeBtn-slate" class="theme-card-btn col-span-1 sm:col-span-2 w-full p-3.5 rounded-2xl border border-white/15 bg-[#12141d] text-left flex items-center justify-between gap-2.5 transition hover:border-indigo-500/50 shadow-xl">
+        <!-- Theme 0: Odak Modu (Zenit & Linear Stage Architecture) -->
+        <button onclick="selectTheme('slate')" id="themeBtn-slate" class="theme-card-btn col-span-1 sm:col-span-2 w-full p-3.5 rounded-2xl border border-white/15 bg-[#181c2b] text-left flex items-center justify-between gap-2.5 transition hover:border-indigo-500/50 shadow-xl">
           <div class="flex items-center gap-3 min-w-0">
-            <div class="w-10 h-10 rounded-xl bg-[#181a26] border border-white/10 flex items-center justify-center text-lg shrink-0 shadow-inner">
+            <div class="w-10 h-10 rounded-xl bg-[#1f2438] border border-white/15 flex items-center justify-center text-lg shrink-0 shadow-inner">
               🎯
             </div>
             <div class="min-w-0">
               <div class="flex items-center gap-2">
                 <span class="text-xs font-bold text-white tracking-wide" style="font-family: 'Lexend', sans-serif;">Odak Modu</span>
-                <span class="px-2 py-0.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-[9px] font-mono text-indigo-300 font-bold uppercase">Linear / Apple Koyu</span>
+                <span class="px-2 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/35 text-[9px] font-mono text-indigo-200 font-bold uppercase">Derinlikli Ada Mimarisi</span>
               </div>
-              <div class="text-[11px] text-slate-300 truncate mt-0.5">Dingin obsidiyen zemin, yumuşak kadife yüzeyler ve sıfır göz yorgunluğu</div>
-              <div class="text-[9px] font-mono text-slate-400 mt-0.5 truncate">🔤 Lexend + Atkinson Hyperlegible • Mat Obsidiyen #0a0b10</div>
+              <div class="text-[11px] text-slate-300 truncate mt-0.5">Koyu zemin üzerinde net ayrışan, gözü dinlendiren çalışma alanı ve kart derinliği</div>
+              <div class="text-[9px] font-mono text-slate-400 mt-0.5 truncate">🔤 Lexend + Atkinson Hyperlegible • Derin Zemin & Yükseltilmiş Kart</div>
             </div>
           </div>
           <span id="themeCheck-slate" class="hidden text-indigo-400 text-base font-bold shrink-0">✓</span>
@@ -6004,7 +5992,7 @@
       document.documentElement.setAttribute('data-theme', theme);
 
       const metaColors = {
-        slate: '#0a0b10',
+        slate: '#07080d',
         crimson: '#0c0406',
         parchment: '#110d09',
         emerald: '#050f0c',
