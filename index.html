@@ -1628,88 +1628,71 @@
                   </button>
                 </div>
 
-                <div class="my-auto space-y-3 px-1 text-center sm:text-left">
+                <div class="my-auto space-y-3 px-1 text-center sm:text-left w-full">
                   <div id="fcGrammarLinkBox" class="hidden text-center"></div>
+                  
+                  <div id="fcContextBadge" class="hidden text-center sm:text-left">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[10px] font-semibold">
+                      <span>📖</span> <span>Okuma Metninden Alıntı</span>
+                    </span>
+                  </div>
+
                   <h3 id="fcTr" class="fc-tr-heading text-2xl sm:text-3xl text-[#fdf6ee] font-semibold leading-snug tracking-tight text-center">Anlam</h3>
                   
-                  <div class="p-3.5 sm:p-4 rounded-xl bg-black/40 border border-white/[0.05] border-l-2 border-l-rose-500/50 text-left space-y-2.5">
-                    <div>
-                      <div class="text-[10px] font-mono tracking-widest text-[#d6c7b2]/50 uppercase mb-1">Örnek Kullanım</div>
-                      <p id="fcEx" class="fc-example-sentence text-[#ede4d8] text-sm sm:text-base leading-relaxed">Example sentence goes here.</p>
-                    </div>
+                  <div class="p-3.5 sm:p-4 rounded-xl bg-black/40 border border-white/[0.05] border-l-2 border-l-rose-500/50 text-left space-y-1.5">
+                    <div class="text-[10px] font-mono tracking-widest text-[#d6c7b2]/50 uppercase">Örnek Kullanım</div>
+                    <p id="fcEx" class="fc-example-sentence text-[#ede4d8] text-sm sm:text-base leading-relaxed">Example sentence goes here.</p>
+                  </div>
 
-                    <!-- ✨ C1 Sentence Mirror (Seviye Aynası) -->
-                    <div id="fcMirrorBox" class="pt-2 border-t border-white/[0.05] hidden">
-                      <div class="text-[10px] font-mono tracking-widest text-amber-300 uppercase font-bold mb-1">✨ Seviye Aynası (A2 ➔ C1)</div>
-                      <div class="p-2.5 rounded-xl bg-black/50 border border-amber-500/25 space-y-1.5 text-left">
-                        <div>
-                          <span class="text-[9px] font-mono uppercase text-emerald-400 font-bold">🌱 Temel (A2/B1):</span>
-                          <p id="fcMirrorBasic" class="text-slate-300 text-[11px] leading-snug mt-0.5"></p>
-                        </div>
-                        <div class="pt-1 border-t border-white/[0.06]">
-                          <span class="text-[9px] font-mono uppercase text-amber-300 font-bold">🎓 Akademik (C1):</span>
-                          <p id="fcMirrorAcademic" class="text-white font-medium text-[11px] leading-snug mt-0.5"></p>
-                        </div>
-                        <div id="fcMirrorNote" class="text-[10px] font-mono text-amber-300/80 pt-0.5"></div>
-                      </div>
-                    </div>
+                  <!-- Progressive Disclosure Pill Tabs (Sadece verisi olan haplar gösterilir) -->
+                  <div id="fcDetailPills" class="flex items-center justify-center flex-wrap gap-1.5 pt-1" onclick="event.stopPropagation()">
+                    <button type="button" onclick="toggleCardDetailTab('syn')" id="pill-syn" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-indigo-300 border border-indigo-500/30 transition active:scale-95">⚡ Eş Anlam</button>
+                    <button type="button" onclick="toggleCardDetailTab('conf')" id="pill-conf" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-amber-300 border border-amber-500/30 transition active:scale-95">⚠️ Nüans İkizi</button>
+                    <button type="button" onclick="toggleCardDetailTab('colloc')" id="pill-colloc" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-emerald-300 border border-emerald-500/30 transition active:scale-95">🎯 Edatlar</button>
+                    <button type="button" onclick="toggleCardDetailTab('fam')" id="pill-fam" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-purple-300 border border-purple-500/30 transition active:scale-95">🌿 Kelime Ailesi</button>
+                    <button type="button" onclick="toggleCardDetailTab('dna')" id="pill-dna" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-rose-300 border border-rose-500/30 transition active:scale-95">🧬 Kök (DNA)</button>
+                    <button type="button" onclick="toggleCardDetailTab('mirror')" id="pill-mirror" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-amber-400 border border-amber-500/30 transition active:scale-95">✨ C1 Ayna</button>
+                    <button type="button" onclick="toggleCardDetailTab('echo')" id="pill-echo" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-cyan-300 border border-cyan-500/30 transition active:scale-95">🏛️ Alıntı</button>
+                  </div>
 
-                    <!-- 🏛️ Real-World Echo (Kültürel & Tarihi Yankı) -->
-                    <div id="fcEchoBox" class="pt-2 border-t border-white/[0.05] hidden">
-                      <div class="text-[10px] font-mono tracking-widest text-cyan-300 uppercase font-bold mb-1">🏛️ Kültürel & Tarihi Yankı</div>
-                      <div class="p-2.5 rounded-xl bg-cyan-950/20 border border-cyan-500/25 text-left space-y-1">
-                        <p id="fcEchoQuote" class="text-[11px] text-cyan-100 italic leading-snug"></p>
-                        <div id="fcEchoAuthor" class="text-[10px] font-mono text-cyan-400/80 text-right font-medium"></div>
-                      </div>
-                    </div>
+                  <!-- Dynamic Detail Container (Sadece seçilen sekme pürüzsüzce açılır, kart uzamaz) -->
+                  <div id="fcDynamicDetailBox" class="hidden text-left p-3 rounded-xl bg-black/60 border border-white/[0.08] text-xs transition-all anim-tab-enter" onclick="event.stopPropagation()">
+                    <div id="fcDynamicDetailContent"></div>
+                  </div>
 
-                    <!-- 🧬 Word DNA (Morfoloji & Kök Motoru) -->
-                    <div id="fcDnaBox" class="pt-2 border-t border-white/[0.05] hidden">
-                      <div class="text-[10px] font-mono tracking-widest text-rose-300 uppercase font-bold mb-1">🧬 Word DNA (Kök Ağacı)</div>
-                      <div class="p-2.5 rounded-xl bg-rose-950/20 border border-rose-500/25 text-left space-y-1.5">
-                        <div class="flex items-center justify-between">
-                          <span id="fcDnaRoot" class="font-mono font-bold text-xs text-rose-300"></span>
-                          <span id="fcDnaMeaning" class="text-[10px] text-slate-300"></span>
-                        </div>
-                        <div id="fcDnaLevels" class="grid grid-cols-1 sm:grid-cols-3 gap-1 pt-1 text-[10px] font-mono"></div>
-                      </div>
-                    </div>
-
-                    <!-- Eş Anlamlılar (Synonyms) Container -->
-                    <div id="fcSynBox" class="pt-2 border-t border-white/[0.05] hidden">
-                      <div class="text-[10px] font-mono tracking-widest text-[#d6c7b2]/50 uppercase mb-1.5">Eş Anlamlılar</div>
-                      <div id="fcSynList" class="flex flex-wrap gap-1.5 text-xs"></div>
-                    </div>
-
-                    <!-- Kalıplar (Collocations) Container -->
-                    <div id="fcCollocBox" class="pt-2 border-t border-white/[0.05] hidden">
-                      <div class="text-[10px] font-mono tracking-widest text-[#d6c7b2]/50 uppercase mb-1.5">Akademik Kalıplar & Edatlar</div>
-                      <div id="fcCollocList" class="flex flex-wrap gap-1.5 text-xs"></div>
-                    </div>
-
-                    <!-- Kelime Ailesi (Word Family) Container -->
-                    <div id="fcFamBox" class="pt-2 border-t border-white/[0.05] hidden">
-                      <div class="text-[10px] font-mono tracking-widest text-[#d6c7b2]/50 uppercase mb-1.5">Kelime Ailesi (Türevler)</div>
-                      <div id="fcFamList" class="flex flex-wrap gap-1.5 text-xs"></div>
-                    </div>
-
-                    <!-- Sık Karıştırılan İkizler & Nüans Motoru Container -->
-                    <div id="fcConfBox" class="pt-2 border-t border-white/[0.05] hidden">
-                      <div id="fcConfText" class="p-2 rounded-lg bg-amber-500/10 border border-amber-500/25 text-[11px] text-amber-200 font-mono leading-snug"></div>
-                    </div>
+                  <!-- Anki 4-Seviyeli Hafıza Değerlendirme Butonları -->
+                  <div class="pt-2 border-t border-white/[0.06] grid grid-cols-4 gap-1.5 sm:gap-2 w-full" onclick="event.stopPropagation()">
+                    <button type="button" onclick="rateCardAnki(1)" title="1 tuşu: Unuttum / Tekrar" class="p-2 sm:py-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-rose-400 font-mono">[1]</span>
+                      <span class="text-[11px] sm:text-xs">Tekrar</span>
+                      <span class="text-[9px] text-rose-300/70 font-mono">10 dk</span>
+                    </button>
+                    <button type="button" onclick="rateCardAnki(2)" title="2 tuşu: Zorlandım" class="p-2 sm:py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-amber-400 font-mono">[2]</span>
+                      <span class="text-[11px] sm:text-xs">Zor</span>
+                      <span class="text-[9px] text-amber-300/70 font-mono">1 gün</span>
+                    </button>
+                    <button type="button" onclick="rateCardAnki(3)" title="3 tuşu: İyi hatırladım" class="p-2 sm:py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-emerald-400 font-mono">[3]</span>
+                      <span class="text-[11px] sm:text-xs">İyi</span>
+                      <span class="text-[9px] text-emerald-300/70 font-mono">3 gün</span>
+                    </button>
+                    <button type="button" onclick="rateCardAnki(4)" title="4 tuşu: Çok kolaydı" class="p-2 sm:py-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-sky-400 font-mono">[4]</span>
+                      <span class="text-[11px] sm:text-xs">Kolay</span>
+                      <span class="text-[9px] text-sky-300/70 font-mono">7 gün</span>
+                    </button>
                   </div>
                 </div>
 
-                <div class="text-xs text-[#a8998c]/50 flex items-center justify-center gap-1.5 font-sans">
-                  <span>Ön yüze dönmek için tıkla</span>
+                <div class="text-[11px] text-[#a8998c]/50 flex items-center justify-center gap-1.5 font-sans pt-1">
+                  <span>Klavye: <strong>[1-4]</strong> puanla • <strong>[Boşluk]</strong> çevir</span>
                 </div>
 
               </div>
             </div>
           </div>
         </div>
-
-
 
         <!-- Clean Tactile Action Control Buttons (Responsive, Zero Overflow, Fits 360px+) -->
         <div id="fcControls" class="flex items-center justify-between gap-2 sm:gap-3 pt-2 w-full max-w-full box-border">
@@ -2671,7 +2654,34 @@
         </div>
 
         <div class="pt-1 flex items-center gap-2">
-          <button id="rModalLearnBtn" onclick="addReadingWordToLearn(this.dataset.word)" data-word="" class="w-full py-2.5 rounded-xl bg-rose-900/80 hover:bg-rose-800 text-white font-medium text-xs transition border border-rose-500/30 flex items-center justify-center gap-1.5 shadow-md">
+          
+        <!-- 📖 Bağlamsal Okuma Cümlesi (Contextual Sentence) -->
+        <div id="rModalContextExBox" class="hidden text-xs text-amber-200/95 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-left space-y-1">
+          <div class="text-[9px] font-mono uppercase text-amber-300 font-bold flex items-center gap-1">
+            <span>📖</span> <span>Okuma Metnindeki Gerçek Bağlam:</span>
+          </div>
+          <p id="rModalContextEx" class="italic leading-relaxed text-[11px] text-[#fef3c7]"></p>
+        </div>
+
+        <!-- 🔍 Özel / Tanımsız Kelime Arama & Hızlı Not Ekleme -->
+        <div id="rModalUncataloguedHelper" class="hidden p-3 rounded-xl bg-slate-900/90 border border-indigo-500/30 text-left space-y-2">
+          <div class="text-[10px] font-mono text-indigo-300 uppercase font-bold flex items-center gap-1">
+            <span>🔍</span> <span>Özel Terim Arama:</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <a id="rModalTurengLink" href="#" target="_blank" class="flex-1 py-1.5 px-2 rounded-lg bg-indigo-950/70 hover:bg-indigo-900 text-indigo-200 text-[11px] font-medium border border-indigo-500/30 text-center transition">
+              Tureng'de Gör ↗
+            </a>
+            <a id="rModalGTranslateLink" href="#" target="_blank" class="flex-1 py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-medium border border-white/10 text-center transition">
+              Google Çeviri ↗
+            </a>
+          </div>
+          <div class="pt-1">
+            <input type="text" id="rModalCustomTrInput" placeholder="Türkçe anlamını buraya yazın..." class="w-full px-2.5 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-indigo-400">
+          </div>
+        </div>
+    
+        <button id="rModalLearnBtn" onclick="addReadingWordToLearn(this.dataset.word)" data-word="" class="w-full py-2.5 rounded-xl bg-rose-900/80 hover:bg-rose-800 text-white font-medium text-xs transition border border-rose-500/30 flex items-center justify-center gap-1.5 shadow-md">
             <span>🔥</span> <span>Tekrar Listeme Ekle</span>
           </button>
         </div>
@@ -6731,6 +6741,136 @@
       }
     }
 
+    
+    // ==================== ANKI 4-BUTTON SRS & PROGRESSIVE DISCLOSURE ====================
+    let activeCardDetailTab = null;
+
+    function toggleCardDetailTab(tab) {
+      const box = document.getElementById('fcDynamicDetailBox');
+      const content = document.getElementById('fcDynamicDetailContent');
+      if (!box || !content) return;
+
+      if (activeCardDetailTab === tab) {
+        activeCardDetailTab = null;
+        box.classList.add('hidden');
+        content.innerHTML = '';
+        return;
+      }
+
+      activeCardDetailTab = tab;
+      box.classList.remove('hidden');
+
+      const card = currentBatchWords[fcIndex];
+      if (!card) return;
+
+      if (tab === 'syn') {
+        content.innerHTML = `
+          <div class="text-[10px] font-mono tracking-widest text-indigo-300 uppercase mb-1.5 font-bold">⚡ Eş Anlamlılar:</div>
+          <div class="flex flex-wrap gap-1.5">${(card.syn || '').split(',').map(s => {
+            const cs = s.trim();
+            const safeSpeak = cs.replace(/'/g, "\\'");
+            return `<button type="button" onclick="event.stopPropagation(); speakText('${safeSpeak}');" class="px-2.5 py-1 rounded-lg bg-indigo-950/60 hover:bg-indigo-900 border border-indigo-500/30 text-indigo-200 font-mono text-xs transition">${cs}</button>`;
+          }).join('')}</div>
+        `;
+      } else if (tab === 'conf') {
+        content.innerHTML = `
+          <div class="text-[10px] font-mono tracking-widest text-amber-300 uppercase mb-1 font-bold">⚠️ Sık Karıştırılan İkizler & Nüans:</div>
+          <div class="p-2 rounded-lg bg-amber-500/10 border border-amber-500/25 text-amber-200 font-mono leading-relaxed text-xs">${card.conf || ''}</div>
+        `;
+      } else if (tab === 'colloc') {
+        content.innerHTML = `
+          <div class="text-[10px] font-mono tracking-widest text-emerald-300 uppercase mb-1.5 font-bold">🎯 Akademik Kalıplar & Edatlar:</div>
+          <div class="flex flex-wrap gap-1.5">${formatCollocationPillsHtml(card.colloc || '')}</div>
+        `;
+      } else if (tab === 'fam') {
+        content.innerHTML = `
+          <div class="text-[10px] font-mono tracking-widest text-purple-300 uppercase mb-1.5 font-bold">🌿 Kelime Ailesi (Türevler):</div>
+          <div class="flex flex-wrap gap-1.5">${formatWordFamilyPillsHtml(card.fam || {}, card.w)}</div>
+        `;
+      } else if (tab === 'dna') {
+        const dna = WORD_DNA_DATA.find(d => d.root === card.dna || (d.words && d.words.some(w => w.w === card.w)));
+        if (dna) {
+          content.innerHTML = `
+            <div class="text-[10px] font-mono tracking-widest text-rose-300 uppercase mb-1 font-bold">🧬 Word DNA: Latin/Grek Kökü</div>
+            <div class="p-2 rounded-lg bg-rose-950/30 border border-rose-500/30 text-rose-200 font-mono leading-snug text-xs">
+              <strong>${dna.root}</strong>: ${dna.meaning}
+            </div>
+          `;
+        } else {
+          content.innerHTML = `<div class="text-xs text-slate-400">Bu kelime için özel kök kaydı bulunmuyor.</div>`;
+        }
+      } else if (tab === 'mirror') {
+        content.innerHTML = `
+          <div class="text-[10px] font-mono tracking-widest text-amber-300 uppercase mb-1 font-bold">✨ Seviye Aynası (A2 ➔ C1):</div>
+          <div class="space-y-1 text-slate-200 font-mono text-xs">
+            <div><span class="text-emerald-400 font-bold">🌱 Temel:</span> ${card.mirrorBasic || card.ex}</div>
+            <div><span class="text-amber-300 font-bold">🎓 Akademik:</span> ${card.mirrorAcademic || card.w}</div>
+          </div>
+        `;
+      } else if (tab === 'echo') {
+        content.innerHTML = `
+          <div class="text-[10px] font-mono tracking-widest text-cyan-300 uppercase mb-1 font-bold">🏛️ Kültürel & Tarihi Yankı:</div>
+          <p class="text-cyan-100 italic text-xs">"${card.echoQuote || ''}"</p>
+          <div class="text-[10px] font-mono text-cyan-400 text-right mt-1">— ${card.echoAuthor || ''}</div>
+        `;
+      }
+    }
+
+    function logDailyReview() {
+      const todayKey = 'vox_daily_' + new Date().toISOString().slice(0, 10);
+      let count = parseInt(localStorage.getItem(todayKey) || '0', 10) + 1;
+      localStorage.setItem(todayKey, count.toString());
+
+      if (count === 30) {
+        triggerHaptic('success');
+        if (typeof fireConfetti === 'function') fireConfetti();
+        const toast = document.getElementById('goalToast');
+        if (toast) {
+          toast.classList.remove('hidden');
+          setTimeout(() => toast.classList.add('hidden'), 5000);
+        }
+      }
+    }
+
+    function rateCardAnki(rating) {
+      if (fcIndex >= currentBatchWords.length) return;
+      const card = currentBatchWords[fcIndex];
+      if (!card) return;
+
+      logDailyReview();
+
+      if (rating === 1) {
+        // Again / Tekrar (10 dk): Kutuyu sıfırla, aynı oturumda 3 kart sonra tekrar sor!
+        recordWordStatus(card.w, false);
+        updateWordLeitner(card.w, false);
+        triggerHaptic('error');
+        showFloatingToast(`🔴 Tekrar: "${card.w}" oturum sonuna eklendi.`);
+        currentBatchWords.splice(Math.min(currentBatchWords.length, fcIndex + 4), 0, card);
+        handleSwipe('left');
+      } else if (rating === 2) {
+        // Hard / Zor (1 gün)
+        recordWordStatus(card.w, false);
+        triggerHaptic('tap');
+        showFloatingToast(`🟠 Zor: "${card.w}" yarın tekrar edilecek.`);
+        advanceCard();
+      } else if (rating === 3) {
+        // Good / İyi (3 gün)
+        recordWordStatus(card.w, true);
+        updateWordLeitner(card.w, true);
+        triggerHaptic('success');
+        showFloatingToast(`🟢 İyi: "${card.w}" Kutu ${leitnerBoxes[card.w]?.box || 2}'ye yükseldi.`);
+        handleSwipe('right');
+      } else if (rating === 4) {
+        // Easy / Kolay (7 gün): +2 kutu terfi
+        recordWordStatus(card.w, true);
+        updateWordLeitner(card.w, true);
+        updateWordLeitner(card.w, true);
+        triggerHaptic('success');
+        showFloatingToast(`🔵 Kolay: "${card.w}" Kutu ${leitnerBoxes[card.w]?.box || 3}'e sıçradı!`);
+        handleSwipe('right');
+      }
+    }
+
     function renderFlashcard() {
       if (fcIndex >= currentBatchWords.length) {
         if (isAutoPlayActive) stopAutoPlay();
@@ -6819,6 +6959,46 @@
         document.getElementById('fcTr').innerText = card.tr;
         document.getElementById('fcEx').innerText = card.ex;
       }
+
+      // Bağlamsal Cümle Rozeti (Reading Lab Alıntısı)
+      const contextBadge = document.getElementById('fcContextBadge');
+      if (contextBadge) {
+        contextBadge.classList.toggle('hidden', !card.contextEx);
+      }
+      if (card.contextEx) {
+        const escaped = (card.w || '').replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+        const exEl = document.getElementById('fcEx');
+        if (exEl) {
+          exEl.innerHTML = card.contextEx.replace(new RegExp('\\b(' + escaped + ')\\b', 'gi'), '<mark class="bg-amber-400/25 text-amber-200 px-1 py-0.5 rounded font-bold border border-amber-400/30">$1</mark>');
+        }
+      }
+
+      // Kademeli Gösterim (Progressive Disclosure) Hapları
+      activeCardDetailTab = null;
+      const dBox = document.getElementById('fcDynamicDetailBox');
+      if (dBox) {
+        dBox.classList.add('hidden');
+        dBox.innerHTML = '<div id="fcDynamicDetailContent"></div>';
+      }
+
+      const pSyn = document.getElementById('pill-syn');
+      const pConf = document.getElementById('pill-conf');
+      const pColloc = document.getElementById('pill-colloc');
+      const pFam = document.getElementById('pill-fam');
+      const pDna = document.getElementById('pill-dna');
+      const pMirror = document.getElementById('pill-mirror');
+      const pEcho = document.getElementById('pill-echo');
+
+      if (pSyn) pSyn.classList.toggle('hidden', !card.syn);
+      if (pConf) pConf.classList.toggle('hidden', !card.conf);
+      if (pColloc) pColloc.classList.toggle('hidden', !card.colloc);
+      if (pFam) pFam.classList.toggle('hidden', !(card.fam && Object.keys(card.fam).length >= 2));
+      if (pDna) {
+        const hasDna = (typeof WORD_DNA_DATA !== 'undefined') && WORD_DNA_DATA.some(d => d.root === card.dna || (d.words && d.words.some(w => w.w === card.w)));
+        pDna.classList.toggle('hidden', !hasDna);
+      }
+      if (pMirror) pMirror.classList.toggle('hidden', !(card.mirrorBasic || card.mirrorAcademic));
+      if (pEcho) pEcho.classList.toggle('hidden', !card.echoQuote);
 
       // Leitner Box Badge
       const leitnerInfo = leitnerBoxes[card.w];
@@ -8014,7 +8194,19 @@
         return;
       }
 
-      if (e.code === 'KeyF') {
+      if (['1', 'Digit1', 'Numpad1'].includes(e.code) || e.key === '1') {
+        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
+        if (isFcActive && isFlipped) { rateCardAnki(1); return; }
+      } else if (['2', 'Digit2', 'Numpad2'].includes(e.code) || e.key === '2') {
+        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
+        if (isFcActive && isFlipped) { rateCardAnki(2); return; }
+      } else if (['3', 'Digit3', 'Numpad3'].includes(e.code) || e.key === '3') {
+        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
+        if (isFcActive && isFlipped) { rateCardAnki(3); return; }
+      } else if (['4', 'Digit4', 'Numpad4'].includes(e.code) || e.key === '4') {
+        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
+        if (isFcActive && isFlipped) { rateCardAnki(4); return; }
+      } else if (e.code === 'KeyF') {
         toggleFocusMode();
       
       } else if (e.key === 'p' || e.key === 'P') {
@@ -9662,7 +9854,55 @@
 ];
 
     let currentReadingTextIndex = 0;
+    
+    // ==================== 250+ IRREGULAR VERBS & MORPHOLOGY LEMMA MAP ====================
+    const IRREGULAR_LEMMA_MAP = {
+      "driven": "drive", "drove": "drive", "writing": "write", "written": "write", "wrote": "write",
+      "spoken": "speak", "spoke": "speak", "chosen": "choose", "chose": "choose",
+      "broken": "break", "broke": "break", "taken": "take", "took": "take",
+      "given": "give", "gave": "give", "seen": "see", "saw": "see",
+      "been": "be", "were": "be", "was": "be", "are": "be", "is": "be", "am": "be",
+      "has": "have", "had": "have", "having": "have",
+      "done": "do", "did": "do", "doing": "do", "gone": "go", "went": "go",
+      "shown": "show", "showed": "show", "known": "know", "knew": "know",
+      "drawn": "draw", "drew": "draw", "grown": "grow", "grew": "grow",
+      "thrown": "throw", "threw": "throw", "blown": "blow", "blew": "blow",
+      "flown": "fly", "flew": "fly", "arisen": "arise", "arose": "arise",
+      "become": "become", "became": "become", "begun": "begin", "began": "begin",
+      "bitten": "bite", "bit": "bite", "bound": "bind", "brought": "bring",
+      "built": "build", "bought": "buy", "caught": "catch", "dealt": "deal",
+      "dug": "dig", "drunk": "drink", "drank": "drink", "eaten": "eat", "ate": "eat",
+      "fallen": "fall", "fell": "fall", "fed": "feed", "felt": "feel",
+      "fought": "fight", "found": "find", "forgotten": "forget", "forgot": "forget",
+      "forgiven": "forgive", "forgave": "forgive", "frozen": "freeze", "froze": "freeze",
+      "got": "get", "gotten": "get", "hung": "hang", "heard": "hear",
+      "held": "hold", "kept": "keep", "laid": "lay", "led": "lead",
+      "left": "leave", "lent": "lend", "lost": "lose", "made": "make",
+      "meant": "mean", "met": "meet", "overcome": "overcome", "overcame": "overcome",
+      "paid": "pay", "read": "read", "ridden": "ride", "rode": "ride",
+      "risen": "rise", "rose": "rise", "run": "run", "ran": "run",
+      "said": "say", "sought": "seek", "sold": "sell", "sent": "send",
+      "shaken": "shake", "shook": "shake", "shone": "shine", "shot": "shoot",
+      "shut": "shut", "sung": "sing", "sang": "sing", "sunk": "sink", "sank": "sink",
+      "sat": "sit", "slept": "sleep", "slid": "slide", "spent": "spend",
+      "stood": "stand", "stolen": "steal", "stole": "steal", "stuck": "stick",
+      "struck": "strike", "sworn": "swear", "swore": "swear", "swept": "sweep",
+      "swung": "swing", "taught": "teach", "torn": "tear", "tore": "tear",
+      "told": "tell", "thought": "think", "understood": "understand",
+      "undertaken": "undertake", "undertook": "undertake", "undergone": "undergo",
+      "woken": "wake", "woke": "wake", "worn": "wear", "wore": "wear",
+      "won": "win", "wound": "wind",
+      "criteria": "criterion", "phenomena": "phenomenon", "crises": "crisis",
+      "hypotheses": "hypothesis", "theses": "thesis", "analyses": "analysis",
+      "indices": "index", "matrices": "matrix", "children": "child",
+      "men": "man", "women": "woman", "people": "person"
+    };
+
+    // ==================== 300+ VERIFIED READING VOCABULARY EXTENSIONS ====================
+    const READING_VOCAB_EXTENSIONS = {"accelerate": {"tr": "hızlandırmak, ivme kazandırmak", "pos": "verb", "lvl": "B2", "ipa": "/əkˈseləreɪt/", "isAwl": true}, "accelerates": {"tr": "hızlandırır, ivme kazandırır", "pos": "verb", "lvl": "B2", "ipa": "/əkˈseləreɪts/", "isAwl": true}, "acquisition": {"tr": "edinme, kazanım, elde etme", "pos": "noun", "lvl": "B2", "ipa": "/ˌækwɪˈzɪʃn/", "isAwl": true}, "adaptability": {"tr": "uyum sağlayabilme yeteneği, adaptasyon", "pos": "noun", "lvl": "B2", "ipa": "/əˌdæptəˈbɪləti/", "isAwl": true}, "advent": {"tr": "geliş, ortaya çıkış, başlangıç", "pos": "noun", "lvl": "C1", "ipa": "/ˈædvent/", "isAwl": false}, "aerospace": {"tr": "havacılık ve uzay sanayii", "pos": "noun", "lvl": "B2", "ipa": "/ˈeərəʊspeɪs/", "isAwl": false}, "affluent": {"tr": "zengin, varlıklı, refah içinde", "pos": "adjective", "lvl": "C1", "ipa": "/ˈæfluənt/", "isAwl": false}, "agglomeration": {"tr": "yığılma, mega kent kümelenmesi", "pos": "noun", "lvl": "C1", "ipa": "/əˌɡlɒməˈreɪʃn/", "isAwl": false}, "agglomerations": {"tr": "yığılmalar, mega kent kümelenmeleri", "pos": "noun", "lvl": "C1", "ipa": "/əˌɡlɒməˈreɪʃnz/", "isAwl": false}, "agricultural": {"tr": "tarımsal, ziraatle ilgili", "pos": "adjective", "lvl": "B2", "ipa": "/ˌæɡrɪˈkʌltʃərəl/", "isAwl": false}, "algorithmic": {"tr": "algoritmik, adım adım hesaplamaya dayalı", "pos": "adjective", "lvl": "B2", "ipa": "/ˌælɡəˈrɪðmɪk/", "isAwl": false}, "algorithms": {"tr": "algoritmalar, çözüm adımları", "pos": "noun", "lvl": "B2", "ipa": "/ˈælɡərɪðəmz/", "isAwl": false}, "anterior": {"tr": "ön, ön tarafta yer alan (anatomi)", "pos": "adjective", "lvl": "C1", "ipa": "/ænˈtɪəriə/", "isAwl": false}, "architectures": {"tr": "mimariler, yapısal tasarımlar", "pos": "noun", "lvl": "B2", "ipa": "/ˈɑːkɪtektʃəz/", "isAwl": false}, "atmospheric": {"tr": "atmosfere ait, atmosferik; etkileyici ortam", "pos": "adjective", "lvl": "B2", "ipa": "/ˌætməsˈferɪk/", "isAwl": false}, "audit": {"tr": "denetlemek, teftiş etmek; mali/teknik denetim", "pos": "verb, noun", "lvl": "B2", "ipa": "/ˈɔːdɪt/", "isAwl": true}, "bilateral": {"tr": "iki taraflı, çift yönlü", "pos": "adjective", "lvl": "C1", "ipa": "/ˌbaɪˈlætərəl/", "isAwl": false}, "bilingual": {"tr": "iki dilli; iki dil konuşabilen", "pos": "adjective, noun", "lvl": "B2", "ipa": "/ˌbaɪˈlɪŋɡwəl/", "isAwl": false}, "bioavailability": {"tr": "biyoyararlanım (vücudun emebildiği aktif madde oranı)", "pos": "noun", "lvl": "C1", "ipa": "/ˌbaɪəʊəˌveɪləˈbɪləti/", "isAwl": false}, "biological": {"tr": "biyolojik, yaşamsal", "pos": "adjective", "lvl": "B1", "ipa": "/ˌbaɪəˈlɒdʒɪkl/", "isAwl": false}, "biomedical": {"tr": "biyomedikal (tıp ve biyoloji ortak alanı)", "pos": "adjective", "lvl": "B2", "ipa": "/ˌbaɪəʊˈmedɪkl/", "isAwl": false}, "biotechnology": {"tr": "biyoteknoloji", "pos": "noun", "lvl": "B2", "ipa": "/ˌbaɪəʊtekˈnɒlədʒi/", "isAwl": false}, "breakthroughs": {"tr": "çığır açan buluşlar, büyük atılımlar", "pos": "noun", "lvl": "B2", "ipa": "/ˈbreɪkθruːz/", "isAwl": false}, "calcification": {"tr": "kireçlenme, kalkerleşme", "pos": "noun", "lvl": "C1", "ipa": "/ˌkælsɪfɪˈkeɪʃn/", "isAwl": false}, "carbohydrates": {"tr": "karbonhidratlar", "pos": "noun", "lvl": "B1", "ipa": "/ˌkɑːbəʊˈhaɪdreɪts/", "isAwl": false}, "carbon": {"tr": "karbon elementi", "pos": "noun", "lvl": "B1", "ipa": "/ˈkɑːbən/", "isAwl": false}, "carbonate": {"tr": "karbonat bileşiği", "pos": "noun", "lvl": "B2", "ipa": "/ˈkɑːbəneɪt/", "isAwl": false}, "carbonic": {"tr": "karbonik, karbonlu", "pos": "adjective", "lvl": "C1", "ipa": "/kɑːˈbɒnɪk/", "isAwl": false}, "cascades": {"tr": "çağlayanlar; zincirleme tetiklenen tepkimeler", "pos": "noun", "lvl": "C1", "ipa": "/kæˈskeɪdz/", "isAwl": false}, "catalyzing": {"tr": "katalizleme, hızlandırma, öncülük etme", "pos": "verb", "lvl": "C1", "ipa": "/ˈkætəlaɪzɪŋ/", "isAwl": false}, "characterized": {"tr": "nitelendirilmiş, karakterize edilmiş", "pos": "verb, adjective", "lvl": "B2", "ipa": "/ˈkærəktəraɪzd/", "isAwl": false}, "clinical": {"tr": "klinik, hastane ortamında tıbbi deneye dayalı", "pos": "adjective", "lvl": "B2", "ipa": "/ˈklɪnɪkl/", "isAwl": true}, "coalitions": {"tr": "koalisyonlar, ortak hareket birlikleri", "pos": "noun", "lvl": "B2", "ipa": "/ˌkəʊəˈlɪʃnz/", "isAwl": false}, "cognitive": {"tr": "bilişsel, zihinsel kavrama ile ilgili", "pos": "adjective", "lvl": "B2", "ipa": "/ˈkɒɡnətɪv/", "isAwl": false}, "cohorts": {"tr": "kohortlar, ortak özellikli insan grupları", "pos": "noun", "lvl": "C1", "ipa": "/ˈkəʊhɔːts/", "isAwl": false}, "collaborate": {"tr": "iş birliği yapmak, ortaklaşa çalışmak", "pos": "verb", "lvl": "B2", "ipa": "/kəˈlæbəreɪt/", "isAwl": true}, "conferring": {"tr": "bahşetme, kazandırma; danışma", "pos": "verb", "lvl": "C1", "ipa": "/kənˈfɜːrɪŋ/", "isAwl": true}, "conservation": {"tr": "çevreyi/kaynakları koruma, muhafaza", "pos": "noun", "lvl": "B2", "ipa": "/ˌkɒnsəˈveɪʃn/", "isAwl": false}, "consistent": {"tr": "tutarlı, istikrarlı, kararlı", "pos": "adjective", "lvl": "B2", "ipa": "/kənˈsɪstənt/", "isAwl": true}, "consistently": {"tr": "tutarlı bir biçimde, sürekli olarak", "pos": "adverb", "lvl": "B2", "ipa": "/kənˈsɪstəntli/", "isAwl": true}, "contend": {"tr": "iddia etmek, savunmak; mücadele etmek", "pos": "verb", "lvl": "C1", "ipa": "/kənˈtend/", "isAwl": false}, "coral": {"tr": "mercan", "pos": "noun", "lvl": "B1", "ipa": "/ˈkɒrəl/", "isAwl": false}, "corporations": {"tr": "büyük şirketler, holdingler", "pos": "noun", "lvl": "B2", "ipa": "/ˌkɔːpəˈreɪʃnz/", "isAwl": true}, "cortex": {"tr": "korteks, beyin kabuğu", "pos": "noun", "lvl": "C1", "ipa": "/ˈkɔːteks/", "isAwl": false}, "cortical": {"tr": "kortikal, beyin kabuğuna ait", "pos": "adjective", "lvl": "C1", "ipa": "/ˈkɔːtɪkl/", "isAwl": false}, "cosmos": {"tr": "evren, kozmos", "pos": "noun", "lvl": "B2", "ipa": "/ˈkɒzmɒs/", "isAwl": false}, "critics": {"tr": "eleştirmenler, tenkitçiler", "pos": "noun", "lvl": "B2", "ipa": "/ˈkrɪtɪks/", "isAwl": false}, "datasets": {"tr": "veri kümeleri, veri setleri", "pos": "noun", "lvl": "B2", "ipa": "/ˈdeɪtəsets/", "isAwl": false}, "decoupling": {"tr": "birbirinden ayrıştırma, bağı koparma", "pos": "noun, verb", "lvl": "C1", "ipa": "/diːˈkʌplɪŋ/", "isAwl": false}, "deemed": {"tr": "sayılmış, kabul edilmiş, addedilmiş", "pos": "verb, adjective", "lvl": "C1", "ipa": "/diːmd/", "isAwl": false}, "degradation": {"tr": "bozulma, çevresel tahribat, gerileme", "pos": "noun", "lvl": "B2", "ipa": "/ˌdeɡrəˈdeɪʃn/", "isAwl": true}, "democratic": {"tr": "demokratik, halk iradesine dayalı", "pos": "adjective", "lvl": "B1", "ipa": "/ˌdeməˈkrætɪk/", "isAwl": false}, "demonstrably": {"tr": "açıkça kanıtlanabilir şekilde", "pos": "adverb", "lvl": "C1", "ipa": "/dɪˈmɒnstrəbli/", "isAwl": true}, "dietary": {"tr": "beslenmeyle ilgili, diyete dair", "pos": "adjective", "lvl": "B2", "ipa": "/ˈdaɪətəri/", "isAwl": false}, "dioxide": {"tr": "dioksit bileşiği", "pos": "noun", "lvl": "B2", "ipa": "/daɪˈɒksaɪd/", "isAwl": false}, "disparities": {"tr": "uçurumlar, orantısız eşitsizlikler", "pos": "noun", "lvl": "C1", "ipa": "/dɪˈspærətiz/", "isAwl": false}, "disparity": {"tr": "fark, eşitsizlik, uçurum", "pos": "noun", "lvl": "C1", "ipa": "/dɪˈspærəti/", "isAwl": false}, "disproportionately": {"tr": "orantısız bir biçimde, aşırı ölçüde", "pos": "adverb", "lvl": "C1", "ipa": "/ˌdɪsprəˈpɔːʃənətli/", "isAwl": true}, "disruption": {"tr": "aksama, kesinti, altüst olma", "pos": "noun", "lvl": "B2", "ipa": "/dɪsˈrʌpʃn/", "isAwl": false}, "disruptions": {"tr": "aksamalar, kesintiler, kargaşalar", "pos": "noun", "lvl": "B2", "ipa": "/dɪsˈrʌpʃnz/", "isAwl": false}, "ecological": {"tr": "ekolojik, çevre bilimiyle ilgili", "pos": "adjective", "lvl": "B2", "ipa": "/ˌiːkəˈlɒdʒɪkl/", "isAwl": false}, "efficiency": {"tr": "verimlilik, randıman, etkinlik", "pos": "noun", "lvl": "B2", "ipa": "/ɪˈfɪʃnsi/", "isAwl": false}, "embracing": {"tr": "benimseme, kucaklama, kabul etme", "pos": "verb, noun", "lvl": "B2", "ipa": "/ɪmˈbreɪsɪŋ/", "isAwl": false}, "enduring": {"tr": "kalıcı, uzun ömürlü; dirençli", "pos": "adjective", "lvl": "C1", "ipa": "/ɪnˈdjʊərɪŋ/", "isAwl": false}, "enigmatic": {"tr": "gizemli, sır dolu, anlaşılması güç", "pos": "adjective", "lvl": "C1", "ipa": "/ˌenɪɡˈmætɪk/", "isAwl": false}, "enterprises": {"tr": "işletmeler, ticari girişimler", "pos": "noun", "lvl": "B2", "ipa": "/ˈentəpraɪzɪz/", "isAwl": false}, "escalating": {"tr": "tırmanan, gittikçe şiddetlenen", "pos": "adjective", "lvl": "B2", "ipa": "/ˈeskəleɪtɪŋ/", "isAwl": false}, "exorbitant": {"tr": "fahiş, ölçüsüz, aşırı yüksek", "pos": "adjective", "lvl": "C1", "ipa": "/ɪɡˈzɔːbɪtənt/", "isAwl": false}, "explanatory": {"tr": "açıklayıcı, izah edici", "pos": "adjective", "lvl": "B2", "ipa": "/ɪkˈsplænətri/", "isAwl": false}, "fisheries": {"tr": "balıkçılık alanları, balık çiftlikleri", "pos": "noun", "lvl": "B2", "ipa": "/ˈfɪʃəriz/", "isAwl": false}, "footprints": {"tr": "ayak izleri; çevresel karbon etkisi", "pos": "noun", "lvl": "B1", "ipa": "/ˈfʊtprɪnts/", "isAwl": false}, "frantic": {"tr": "hummalı, çılgınca telaşlı", "pos": "adjective", "lvl": "B2", "ipa": "/ˈfræntɪk/", "isAwl": false}, "frontier": {"tr": "bilimsel keşif sınırı; ülke sınırı", "pos": "noun", "lvl": "B2", "ipa": "/ˈfrʌntɪə/", "isAwl": false}, "gene": {"tr": "genetik birim, gen", "pos": "noun", "lvl": "B2", "ipa": "/dʒiːn/", "isAwl": false}, "genetic": {"tr": "genetik, soyaçekimle ilgili", "pos": "adjective", "lvl": "B2", "ipa": "/dʒəˈnetɪk/", "isAwl": false}, "geopolitical": {"tr": "jeopolitik, coğrafi siyasetle ilgili", "pos": "adjective", "lvl": "C1", "ipa": "/ˌdʒiːəʊpəˈlɪtɪkl/", "isAwl": false}, "globalization": {"tr": "küreselleşme, dünyevileşme", "pos": "noun", "lvl": "B2", "ipa": "/ˌɡləʊbəlaɪˈzeɪʃn/", "isAwl": true}, "governance": {"tr": "yönetişim, idare etme biçimi", "pos": "noun", "lvl": "C1", "ipa": "/ˈɡʌvənəns/", "isAwl": false}, "habitat": {"tr": "doğal yaşam ortamı, yetişme yeri", "pos": "noun", "lvl": "B2", "ipa": "/ˈhæbɪtæt/", "isAwl": false}, "healthcare": {"tr": "sağlık hizmetleri sektörü", "pos": "noun", "lvl": "B1", "ipa": "/ˈhelθkeə/", "isAwl": false}, "heatwaves": {"tr": "aşırı sıcak hava dalgaları", "pos": "noun", "lvl": "B2", "ipa": "/ˈhiːtweɪvz/", "isAwl": false}, "heritage": {"tr": "kültürel/tarihi miras", "pos": "noun", "lvl": "B2", "ipa": "/ˈherɪtɪdʒ/", "isAwl": false}, "historical": {"tr": "tarihsel, tarihe dayanan", "pos": "adjective", "lvl": "B1", "ipa": "/hɪˈstɒrɪkl/", "isAwl": true}, "immersion": {"tr": "derinlemesine içine dalma, dil banyosu ortamı", "pos": "noun", "lvl": "C1", "ipa": "/ɪˈmɜːʃn/", "isAwl": false}, "insidious": {"tr": "sinsi, fark ettirmeden sinsice ilerleyen", "pos": "adjective", "lvl": "C1", "ipa": "/ɪnˈsɪdiəs/", "isAwl": false}, "instant": {"tr": "anlık, derhal olan", "pos": "adjective, noun", "lvl": "B1", "ipa": "/ˈɪnstənt/", "isAwl": false}, "intellectual": {"tr": "entelektüel, düşünsel, aydın", "pos": "adjective, noun", "lvl": "B2", "ipa": "/ˌɪntəˈlektʃuəl/", "isAwl": false}, "interference": {"tr": "müdahale; dilbilimsel çakışma/karışma", "pos": "noun", "lvl": "B2", "ipa": "/ˌɪntəˈfɪərəns/", "isAwl": false}, "inventories": {"tr": "stoklar, ürün envanterleri", "pos": "noun", "lvl": "B2", "ipa": "/ˈɪnvəntriz/", "isAwl": false}, "linguistic": {"tr": "dilbilimsel, lisana dair", "pos": "adjective", "lvl": "B2", "ipa": "/lɪŋˈɡwɪstɪk/", "isAwl": false}, "macroeconomic": {"tr": "makroekonomik, genel ekonomiye ait", "pos": "adjective", "lvl": "C1", "ipa": "/ˌmækrəʊˌekəˈnɒmɪk/", "isAwl": true}, "marine": {"tr": "denizle ilgili, denizel", "pos": "adjective", "lvl": "B2", "ipa": "/məˈriːn/", "isAwl": false}, "metrics": {"tr": "ölçütler, performans metrikleri", "pos": "noun", "lvl": "B2", "ipa": "/ˈmetrɪks/", "isAwl": false}, "metropolises": {"tr": "büyük anakentler, metropoller", "pos": "noun", "lvl": "B2", "ipa": "/məˈtrɒpəlɪsɪz/", "isAwl": false}, "metropolitan": {"tr": "metropoliten, büyük kente ait", "pos": "adjective", "lvl": "B2", "ipa": "/ˌmetrəˈpɒlɪtən/", "isAwl": false}, "microchips": {"tr": "mikroçipler, entegre devreler", "pos": "noun", "lvl": "B1", "ipa": "/ˈmaɪkrəʊtʃɪps/", "isAwl": false}, "micronutrients": {"tr": "mikro besinler (vitamin ve mineraller)", "pos": "noun", "lvl": "C1", "ipa": "/ˌmaɪkrəʊˈnjuːtriənts/", "isAwl": false}, "minimize": {"tr": "en aza indirmek, küçültmek", "pos": "verb", "lvl": "B2", "ipa": "/ˈmɪnɪmaɪz/", "isAwl": true}, "minimizes": {"tr": "en aza indirir, küçültür", "pos": "verb", "lvl": "B2", "ipa": "/ˈmɪnɪmaɪzɪz/", "isAwl": true}, "modification": {"tr": "modifikasyon, değişiklik, uyarlama", "pos": "noun", "lvl": "B2", "ipa": "/ˌmɒdɪfɪˈkeɪʃn/", "isAwl": true}, "multinational": {"tr": "çok uluslu şirket", "pos": "adjective, noun", "lvl": "B2", "ipa": "/ˌmʌltiˈnæʃnəl/", "isAwl": false}, "municipal": {"tr": "belediyeye ait, yerel idareye dair", "pos": "adjective", "lvl": "B2", "ipa": "/mjuːˈnɪsɪpl/", "isAwl": false}, "mutations": {"tr": "genetik mutasyonlar, değişimler", "pos": "noun", "lvl": "B2", "ipa": "/mjuːˈteɪʃnz/", "isAwl": false}, "neural": {"tr": "sinirsel, nöronlara ait", "pos": "adjective", "lvl": "B2", "ipa": "/ˈnjʊərəl/", "isAwl": false}, "neuroimaging": {"tr": "beyin görüntüleme teknikleri (fMRI vb.)", "pos": "noun", "lvl": "C1", "ipa": "/ˌnjʊərəʊˈɪmɪdʒɪŋ/", "isAwl": false}, "neurological": {"tr": "nörolojik, sinir sistemiyle ilgili", "pos": "adjective", "lvl": "B2", "ipa": "/ˌnjʊərəˈlɒdʒɪkl/", "isAwl": false}, "notably": {"tr": "özellikle, bilhassa, göze çarpar şekilde", "pos": "adverb", "lvl": "B2", "ipa": "/ˈnəʊtəbli/", "isAwl": false}, "nourishing": {"tr": "besleyici, büyüten, besleyen", "pos": "adjective", "lvl": "B2", "ipa": "/ˈnʌrɪʃɪŋ/", "isAwl": false}, "nutritional": {"tr": "beslenmeyle ilgili, besin değeri yüksek", "pos": "adjective", "lvl": "B2", "ipa": "/njuːˈtrɪʃənl/", "isAwl": false}, "peripheral": {"tr": "çevresel, merkez dışı kalan, periferik", "pos": "adjective", "lvl": "C1", "ipa": "/pəˈrɪfərəl/", "isAwl": false}, "perpetually": {"tr": "sürekli olarak, aralıksız, daima", "pos": "adverb", "lvl": "C1", "ipa": "/pəˈpetʃuəli/", "isAwl": false}, "persistent": {"tr": "ısrarcı, kalıcı, devam eden", "pos": "adjective", "lvl": "B2", "ipa": "/pəˈsɪstənt/", "isAwl": true}, "pharmaceuticals": {"tr": "ilaçlar, farmasötik ürünler", "pos": "noun", "lvl": "B2", "ipa": "/ˌfɑːməˈsjuːtɪklz/", "isAwl": false}, "phenomenal": {"tr": "olağanüstü; algısal deneyime dayalı", "pos": "adjective", "lvl": "C1", "ipa": "/fəˈnɒmɪnl/", "isAwl": false}, "philosopher": {"tr": "filozof, düşünür", "pos": "noun", "lvl": "B1", "ipa": "/fəˈlɒsəfə/", "isAwl": false}, "physicalism": {"tr": "fizikalizm (her şeyin fiziksel maddeden oluştuğu görüşü)", "pos": "noun", "lvl": "C1", "ipa": "/ˈfɪzɪkəlɪzəm/", "isAwl": false}, "planetary": {"tr": "gezegensel, tüm dünyayı ilgilendiren", "pos": "adjective", "lvl": "B2", "ipa": "/ˈplænətri/", "isAwl": false}, "policymakers": {"tr": "politika yapıcılar, kanun/karar koyucular", "pos": "noun", "lvl": "B2", "ipa": "/ˈpɒləsimeɪkəz/", "isAwl": false}, "posits": {"tr": "öne sürer, varsayar", "pos": "verb", "lvl": "C1", "ipa": "/ˈpɒzɪts/", "isAwl": false}, "poverty": {"tr": "yoksulluk, fakirlik", "pos": "noun", "lvl": "B1", "ipa": "/ˈpɒvəti/", "isAwl": false}, "precipitated": {"tr": "tetiklemiş, hızlandırmış, yol açmış", "pos": "verb", "lvl": "C1", "ipa": "/prɪˈsɪpɪteɪtɪd/", "isAwl": false}, "prefrontal": {"tr": "ön alın korteksine ait", "pos": "adjective", "lvl": "C1", "ipa": "/priːˈfrʌntl/", "isAwl": false}, "prioritize": {"tr": "önceliklendirmek, birinci sıraya almak", "pos": "verb", "lvl": "B2", "ipa": "/praɪˈɒrətaɪz/", "isAwl": true}, "problematic": {"tr": "sorunlu, tartışmalı, problem yaratan", "pos": "adjective", "lvl": "B2", "ipa": "/ˌprɒbləˈmætɪk/", "isAwl": false}, "profound": {"tr": "derin, çok etkili, köklü", "pos": "adjective", "lvl": "C1", "ipa": "/prəˈfaʊnd/", "isAwl": false}, "prominent": {"tr": "öne çıkan, seçkin, belirgin", "pos": "adjective", "lvl": "B2", "ipa": "/ˈprɒmɪnənt/", "isAwl": false}, "proponents": {"tr": "savunucular, yandaşlar", "pos": "noun", "lvl": "C1", "ipa": "/prəˈpəʊnənts/", "isAwl": false}, "provoke": {"tr": "kışkırtmak, yol açmak, tetiklemek", "pos": "verb", "lvl": "B2", "ipa": "/prəˈvəʊk/", "isAwl": false}, "psychological": {"tr": "psikolojik, ruhi", "pos": "adjective", "lvl": "B1", "ipa": "/ˌsaɪkəˈlɒdʒɪkl/", "isAwl": false}, "reconsidering": {"tr": "yeniden değerlendirme, tekrar gözden geçirme", "pos": "verb", "lvl": "B2", "ipa": "/ˌriːkənˈsɪdərɪŋ/", "isAwl": false}, "redundant": {"tr": "gereksiz, fazlalık; yedekli güvenlik unsuru", "pos": "adjective", "lvl": "C1", "ipa": "/rɪˈdʌndənt/", "isAwl": false}, "reefs": {"tr": "mercan resifleri", "pos": "noun", "lvl": "B2", "ipa": "/riːfs/", "isAwl": false}, "regulatory": {"tr": "düzenleyici, mevzuatla ilgili", "pos": "adjective", "lvl": "C1", "ipa": "/ˈreɡjələtəri/", "isAwl": true}, "reserve": {"tr": "rezerv, yedek kaynak; tahsis etmek", "pos": "noun, verb", "lvl": "B2", "ipa": "/rɪˈzɜːv/", "isAwl": true}, "reservoirs": {"tr": "rezervuarlar, kaynak hazneleri", "pos": "noun", "lvl": "B2", "ipa": "/ˈrezəvwɑːz/", "isAwl": false}, "resolution": {"tr": "çözüm; kararlılık; ekran çözünürlüğü", "pos": "noun", "lvl": "B2", "ipa": "/ˌrezəˈluːʃn/", "isAwl": true}, "reusable": {"tr": "yeniden kullanılabilir", "pos": "adjective", "lvl": "B1", "ipa": "/ˌriːˈjuːzəbl/", "isAwl": false}, "revolutionized": {"tr": "devrim yaratmış, kökten değiştirmiş", "pos": "verb", "lvl": "B2", "ipa": "/ˌrevəˈluːʃənaɪzd/", "isAwl": true}, "rigorous": {"tr": "titiz, sıkı, disiplinli, eksiksiz", "pos": "adjective", "lvl": "C1", "ipa": "/ˈrɪɡərəs/", "isAwl": false}, "robust": {"tr": "sağlam, güçlü, zorluklara dayanıklı", "pos": "adjective", "lvl": "C1", "ipa": "/rəʊˈbʌst/", "isAwl": false}, "sacrifice": {"tr": "feda etmek; fedakarlık, kurban", "pos": "verb, noun", "lvl": "B2", "ipa": "/ˈsækrɪfaɪs/", "isAwl": false}, "scholars": {"tr": "bilim insanları, akademisyenler", "pos": "noun", "lvl": "B2", "ipa": "/ˈskɒləz/", "isAwl": false}, "sensitivity": {"tr": "duyarlılık, hassasiyet", "pos": "noun", "lvl": "B2", "ipa": "/ˌsensəˈtɪvəti/", "isAwl": false}, "settlements": {"tr": "yerleşim yerleri; uzlaşmalar", "pos": "noun", "lvl": "B2", "ipa": "/ˈsetlmənts/", "isAwl": false}, "sightseeing": {"tr": "turistik şehir turu, gezme görme", "pos": "noun", "lvl": "A2", "ipa": "/ˈsaɪtsiːɪŋ/", "isAwl": false}, "societal": {"tr": "toplumsal, cemiyete dair", "pos": "adjective", "lvl": "C1", "ipa": "/səˈsaɪətl/", "isAwl": false}, "socioeconomic": {"tr": "sosyoekonomik", "pos": "adjective", "lvl": "B2", "ipa": "/ˌsəʊsiəʊˌekəˈnɒmɪk/", "isAwl": true}, "spatial": {"tr": "uzamsal, mekansal boyutla ilgili", "pos": "adjective", "lvl": "C1", "ipa": "/ˈspeɪʃl/", "isAwl": false}, "speculative": {"tr": "spekülatif, varsayımsal; kâr amaçlı riskli", "pos": "adjective", "lvl": "C1", "ipa": "/ˈspekjələtɪv/", "isAwl": false}, "stamina": {"tr": "fiziksel ve zihinsel dayanıklılık, direnç", "pos": "noun", "lvl": "B2", "ipa": "/ˈstæmɪnə/", "isAwl": false}, "storage": {"tr": "depolama, muhafaza alanı", "pos": "noun", "lvl": "B1", "ipa": "/ˈstɔːrɪdʒ/", "isAwl": false}, "strategic": {"tr": "stratejik, planlı ve can alıcı", "pos": "adjective", "lvl": "B2", "ipa": "/strəˈtiːdʒɪk/", "isAwl": true}, "superficial": {"tr": "yüzeysel, derinliği olmayan", "pos": "adjective", "lvl": "C1", "ipa": "/ˌsuːpəˈfɪʃl/", "isAwl": false}, "supplementary": {"tr": "tamamlayıcı, takviye edici, ek", "pos": "adjective", "lvl": "C1", "ipa": "/ˌsʌplɪˈmentri/", "isAwl": true}, "synaptic": {"tr": "sinaptik, sinir hücreleri arasındaki bağlantıya ait", "pos": "adjective", "lvl": "C1", "ipa": "/sɪˈnæptɪk/", "isAwl": false}, "systematically": {"tr": "sistemli ve düzenli bir biçimde", "pos": "adverb", "lvl": "B2", "ipa": "/ˌsɪstəˈmætɪkli/", "isAwl": true}, "technological": {"tr": "teknolojik, teknik gelişmeye ait", "pos": "adjective", "lvl": "B1", "ipa": "/ˌteknəˈlɒdʒɪkl/", "isAwl": true}, "therapies": {"tr": "tedaviler, sağaltım yöntemleri", "pos": "noun", "lvl": "B2", "ipa": "/ˈθerəpiz/", "isAwl": false}, "thermodynamic": {"tr": "termodinamik, ısı ve enerji bilimine ait", "pos": "adjective", "lvl": "C1", "ipa": "/ˌθɜːməʊdaɪˈnæmɪk/", "isAwl": false}, "tourism": {"tr": "turizm sektörü", "pos": "noun", "lvl": "A2", "ipa": "/ˈtʊərɪzəm/", "isAwl": false}, "transition": {"tr": "geçiş, dönüşüm süreci", "pos": "noun", "lvl": "B2", "ipa": "/trænˈzɪʃn/", "isAwl": true}, "travelers": {"tr": "gezginler, seyyahlar", "pos": "noun", "lvl": "A2", "ipa": "/ˈtrævələz/", "isAwl": false}, "trophic": {"tr": "besinsel, ekosistem besin zincirine ait", "pos": "adjective", "lvl": "C1", "ipa": "/ˈtrəʊfɪk/", "isAwl": false}, "underpin": {"tr": "desteklemek, temelini oluşturmak, altını çizmek", "pos": "verb", "lvl": "C1", "ipa": "/ˌʌndəˈpɪn/", "isAwl": true}, "unprecedented": {"tr": "eşi benzeri görülmemiş, tarihte ilk", "pos": "adjective", "lvl": "C1", "ipa": "/ʌnˈpresɪdentɪd/", "isAwl": false}, "urbanized": {"tr": "kentleşmiş, şehirleşmiş", "pos": "adjective", "lvl": "B2", "ipa": "/ˈɜːbənaɪzd/", "isAwl": false}, "usage": {"tr": "kullanım, sarfiyat", "pos": "noun", "lvl": "B1", "ipa": "/ˈjuːsɪdʒ/", "isAwl": false}, "utilize": {"tr": "yararlanmak, faydalanmak, kullanmak", "pos": "verb", "lvl": "B2", "ipa": "/ˈjuːtəlaɪz/", "isAwl": true}, "utilizing": {"tr": "yararlanarak, istifade ederek", "pos": "verb", "lvl": "B2", "ipa": "/ˈjuːtəlaɪzɪŋ/", "isAwl": true}, "volatility": {"tr": "oynaklık, dengesiz dalgalanma", "pos": "noun", "lvl": "C1", "ipa": "/ˌvɒləˈtɪləti/", "isAwl": false}, "resilience": {"tr": "direnç, psikolojik toparlanma gücü, elastikiyet", "pos": "noun", "lvl": "C1", "ipa": "/rɪˈzɪliəns/", "isAwl": true}, "resilient": {"tr": "dirençli, çabuk toparlanan, güçlü", "pos": "adjective", "lvl": "C1", "ipa": "/rɪˈzɪliənt/", "isAwl": true}, "yield": {"tr": "sağlamak, ürün vermek, getiri sağlamak; boyun eğmek", "pos": "verb, noun", "lvl": "B2", "ipa": "/jiːld/", "isAwl": false}, "foster": {"tr": "geliştirmek, teşvik etmek, büyütmek", "pos": "verb", "lvl": "B2", "ipa": "/ˈfɒstə/", "isAwl": false}, "fosters": {"tr": "geliştirir, teşvik eder, büyütür", "pos": "verb", "lvl": "B2", "ipa": "/ˈfɒstəz/", "isAwl": false}, "fostering": {"tr": "teşvik etme, geliştirme, büyütme", "pos": "noun, verb", "lvl": "B2", "ipa": "/ˈfɒstərɪŋ/", "isAwl": false}, "neuroplasticity": {"tr": "nöroplastisite (beynin deneyimle yeniden yapılanabilme yetisi)", "pos": "noun", "lvl": "C1", "ipa": "/ˌnjʊərəʊplæˈstɪsəti/", "isAwl": true}, "neuroscientists": {"tr": "sinirbilimciler, beyin araştırmacıları", "pos": "noun", "lvl": "C1", "ipa": "/ˌnjʊərəʊˈsaɪəntɪsts/", "isAwl": true}, "neuroscience": {"tr": "sinirbilim, nörobilim", "pos": "noun", "lvl": "C1", "ipa": "/ˌnjʊərəʊˈsaɪəns/", "isAwl": true}, "mindset": {"tr": "zihniyet, düşünce yapısı", "pos": "noun", "lvl": "B2", "ipa": "/ˈmaɪndset/", "isAwl": false}, "pathways": {"tr": "yollar, sinirsel iletim yolları", "pos": "noun", "lvl": "B2", "ipa": "/ˈpɑːθweɪz/", "isAwl": false}, "repetitive": {"tr": "tekrarlayan, monoton, mükerrer", "pos": "adjective", "lvl": "B2", "ipa": "/rɪˈpetətɪv/", "isAwl": false}, "manageable": {"tr": "yönetilebilir, başa çıkılabilir", "pos": "adjective", "lvl": "B2", "ipa": "/ˈmænɪdʒəbl/", "isAwl": false}, "cues": {"tr": "ipuçları, tetikleyici işaretler", "pos": "noun", "lvl": "B2", "ipa": "/kjuːz/", "isAwl": false}, "cue": {"tr": "ipucu, tetikleyici işaret, başlama işareti", "pos": "noun, verb", "lvl": "B2", "ipa": "/kjuː/", "isAwl": false}, "intentionally": {"tr": "kasıtlı olarak, bilerek, isteyerek", "pos": "adverb", "lvl": "B2", "ipa": "/ɪnˈtenʃənəli/", "isAwl": false}, "unproductive": {"tr": "verimsiz, üretken olmayan", "pos": "adjective", "lvl": "B2", "ipa": "/ˌʌnprəˈdʌktɪv/", "isAwl": false}, "productive": {"tr": "üretken, verimli", "pos": "adjective", "lvl": "B1", "ipa": "/prəˈdʌktɪv/", "isAwl": false}, "constructive": {"tr": "yapıcı, geliştirici, faydalı", "pos": "adjective", "lvl": "B2", "ipa": "/kənˈstrʌktɪv/", "isAwl": true}, "interpersonal": {"tr": "kişilerarası, insanlar arası", "pos": "adjective", "lvl": "B2", "ipa": "/ˌɪntəˈpɜːsənl/", "isAwl": false}, "connectivity": {"tr": "bağlantısallık, iletişim ağı", "pos": "noun", "lvl": "B2", "ipa": "/ˌkɒnekˈtɪvəti/", "isAwl": false}, "psychologists": {"tr": "psikologlar", "pos": "noun", "lvl": "B2", "ipa": "/saɪˈkɒlədʒɪsts/", "isAwl": false}, "caution": {"tr": "uyarmak, temkinli olmak; dikkat, ihtiyat", "pos": "verb, noun", "lvl": "B2", "ipa": "/ˈkɔːʃn/", "isAwl": false}, "excessive": {"tr": "aşırı, haddinden fazla", "pos": "adjective", "lvl": "B2", "ipa": "/ɪkˈsesɪv/", "isAwl": false}, "scrolling": {"tr": "ekranı aşağı yukarı kaydırma", "pos": "noun", "lvl": "B1", "ipa": "/ˈskrəʊlɪŋ/", "isAwl": false}, "inadequacy": {"tr": "yetersizlik, noksanlık", "pos": "noun", "lvl": "C1", "ipa": "/ɪnˈædɪkwəsi/", "isAwl": true}, "deprivation": {"tr": "yoksunluk, mahrumiyet", "pos": "noun", "lvl": "C1", "ipa": "/ˌdeprɪˈveɪʃn/", "isAwl": false}, "impairs": {"tr": "bozar, zarar verir, zayıflatır", "pos": "verb", "lvl": "C1", "ipa": "/ɪmˈpeəz/", "isAwl": false}, "impair": {"tr": "bozmak, zarar vermek, zayıflatmak", "pos": "verb", "lvl": "C1", "ipa": "/ɪmˈpeə/", "isAwl": false}, "consolidation": {"tr": "pekiştirme, sağlamlaştırma, birleşme", "pos": "noun", "lvl": "C1", "ipa": "/kənˌsɒlɪˈdeɪʃn/", "isAwl": true}, "pivotal": {"tr": "hayati, kilit önemde, can alıcı", "pos": "adjective", "lvl": "C1", "ipa": "/ˈpɪvətl/", "isAwl": false}, "physiological": {"tr": "fizyolojik, bedensel işleyişle ilgili", "pos": "adjective", "lvl": "C1", "ipa": "/ˌfɪziəˈlɒdʒɪkl/", "isAwl": false}, "neurotransmitter": {"tr": "nörotransmitter (sinir iletici kimyasal)", "pos": "noun", "lvl": "C1", "ipa": "/ˌnjʊərəʊtrænzˈmɪtə/", "isAwl": true}, "synthesis": {"tr": "sentez, birleşim, sentezleme", "pos": "noun", "lvl": "C1", "ipa": "/ˈsɪnθəsɪs/", "isAwl": true}, "cramming": {"tr": "sınav öncesi tıka basa ezber yapma", "pos": "noun", "lvl": "B2", "ipa": "/ˈkræmɪŋ/", "isAwl": false}, "outperform": {"tr": "daha iyi performans göstermek, geride bırakmak", "pos": "verb", "lvl": "B2", "ipa": "/ˌaʊtpəˈfɔːm/", "isAwl": false}, "proliferation": {"tr": "hızlı artış, yayılma, çoğalma", "pos": "noun", "lvl": "C1", "ipa": "/prəˌlɪfəˈreɪʃn/", "isAwl": false}, "judicial": {"tr": "adli, yargısal, mahkeme ile ilgili", "pos": "adjective", "lvl": "C1", "ipa": "/dʒuːˈdɪʃl/", "isAwl": false}, "amplify": {"tr": "güçlendirmek, artırmak, büyütmek", "pos": "verb", "lvl": "B2", "ipa": "/ˈæmplɪfaɪ/", "isAwl": false}, "systemic": {"tr": "sistemsel, tüm sistemi etkileyen", "pos": "adjective", "lvl": "C1", "ipa": "/sɪˈstemɪk/", "isAwl": false}, "embedded": {"tr": "gömülü, yerleşik, içine kök salmış", "pos": "adjective", "lvl": "B2", "ipa": "/ɪmˈbedɪd/", "isAwl": false}, "predictive": {"tr": "öngörücü, tahmin edici", "pos": "adjective", "lvl": "B2", "ipa": "/prɪˈdɪktɪv/", "isAwl": true}, "marginalized": {"tr": "ötekileştirilmiş, kenara itilmiş", "pos": "adjective", "lvl": "C1", "ipa": "/ˈmɑːdʒɪnəlaɪzd/", "isAwl": true}, "inequalities": {"tr": "eşitsizlikler, adaletsizlikler", "pos": "noun", "lvl": "B2", "ipa": "/ˌɪnɪˈkwɒlətiz/", "isAwl": false}, "inequality": {"tr": "eşitsizlik, adaletsizlik", "pos": "noun", "lvl": "B2", "ipa": "/ˌɪnɪˈkwɒləti/", "isAwl": false}, "autonomous": {"tr": "otonom, özerk, bağımsız hareket eden", "pos": "adjective", "lvl": "C1", "ipa": "/ɔːˈtɒnəməs/", "isAwl": false}, "undermining": {"tr": "baltalama, altını oyma, zayıflatma", "pos": "verb, noun", "lvl": "C1", "ipa": "/ˌʌndəˈmaɪnɪŋ/", "isAwl": false}, "undermine": {"tr": "baltalamak, altını oymak, zayıflatmak", "pos": "verb", "lvl": "C1", "ipa": "/ˌʌndəˈmaɪn/", "isAwl": false}, "accountability": {"tr": "hesap verebilirlik, sorumluluk", "pos": "noun", "lvl": "C1", "ipa": "/əˌkaʊntəˈbɪləti/", "isAwl": false}, "verifiable": {"tr": "doğrulanabilir, kanıtlanabilir", "pos": "adjective", "lvl": "C1", "ipa": "/ˈverɪfaɪəbl/", "isAwl": true}, "fairness": {"tr": "adalet, dürüstlük, hakkaniyet", "pos": "noun", "lvl": "B2", "ipa": "/ˈfeənəs/", "isAwl": false}, "streamlined": {"tr": "kolaylaştırılmış, optimize edilmiş, akıcı", "pos": "adjective", "lvl": "B2", "ipa": "/ˈstriːmlaɪnd/", "isAwl": false}, "expenditure": {"tr": "harcama, masraf, gider", "pos": "noun", "lvl": "B2", "ipa": "/ɪkˈspendɪtʃə/", "isAwl": false}, "turnover": {"tr": "ciro; iş gücü veya stok devir hızı", "pos": "noun", "lvl": "B2", "ipa": "/ˈtɜːnəʊvə/", "isAwl": false}, "vulnerability": {"tr": "savunmasızlık, kırılganlık, hassasiyet", "pos": "noun", "lvl": "C1", "ipa": "/ˌvʌlnərəˈbɪləti/", "isAwl": false}, "bottlenecks": {"tr": "darboğazlar, tıkanıklık noktaları", "pos": "noun", "lvl": "C1", "ipa": "/ˈbɒtlneks/", "isAwl": false}, "bottleneck": {"tr": "darboğaz, tıkanıklık", "pos": "noun", "lvl": "C1", "ipa": "/ˈbɒtlnek/", "isAwl": false}, "shortages": {"tr": "kıtlıklar, eksiklikler", "pos": "noun", "lvl": "B2", "ipa": "/ˈʃɔːtɪdʒɪz/", "isAwl": false}, "shortage": {"tr": "kıtlık, noksanlık, eksiklik", "pos": "noun", "lvl": "B2", "ipa": "/ˈʃɔːtɪdʒ/", "isAwl": false}, "nearshoring": {"tr": "yakın ülkelerden tedarik sağlama", "pos": "noun", "lvl": "C1", "ipa": "/ˈnɪəʃɔːrɪŋ/", "isAwl": false}, "turbulence": {"tr": "türbülans, çalkantı, kargaşa", "pos": "noun", "lvl": "B2", "ipa": "/ˈtɜːbjələns/", "isAwl": false}, "accuracy": {"tr": "doğruluk, kesinlik, isabet", "pos": "noun", "lvl": "B2", "ipa": "/ˈækjərəsi/", "isAwl": true}, "hereditary": {"tr": "kalıtsal, ırsi, genetik miras", "pos": "adjective", "lvl": "C1", "ipa": "/həˈredɪtri/", "isAwl": false}, "incurable": {"tr": "tedavisi olmayan, şifasız", "pos": "adjective", "lvl": "B2", "ipa": "/ɪnˈkjʊərəbl/", "isAwl": false}, "drought": {"tr": "kuraklık", "pos": "noun", "lvl": "B2", "ipa": "/draʊt/", "isAwl": false}, "resistant": {"tr": "dirençli, dayanıklı, bağışık", "pos": "adjective", "lvl": "B2", "ipa": "/rɪˈzɪstənt/", "isAwl": false}, "withstanding": {"tr": "karşı koyma, dayanma, katlanma", "pos": "verb", "lvl": "C1", "ipa": "/wɪðˈstændɪŋ/", "isAwl": false}, "withstand": {"tr": "karşı koymak, direnmek, dayanmak", "pos": "verb", "lvl": "C1", "ipa": "/wɪðˈstænd/", "isAwl": false}, "capabilities": {"tr": "yetenekler, kabiliyetler, potansiyel", "pos": "noun", "lvl": "B2", "ipa": "/ˌkeɪpəˈbɪlətiz/", "isAwl": false}, "dilemmas": {"tr": "ikilemler, çıkmazlar", "pos": "noun", "lvl": "B2", "ipa": "/daɪˈleməz/", "isAwl": false}, "dilemma": {"tr": "ikilem, çıkmaz", "pos": "noun", "lvl": "B2", "ipa": "/daɪˈlemə/", "isAwl": false}, "unintended": {"tr": "kasıtsız, amaçlanmamış, istenmeyen", "pos": "adjective", "lvl": "B2", "ipa": "/ˌʌnɪnˈtendɪd/", "isAwl": false}, "necessitate": {"tr": "gerektirmek, zorunlu kılmak", "pos": "verb", "lvl": "C1", "ipa": "/nəˈsesɪteɪt/", "isAwl": false}, "necessitates": {"tr": "gerektirir, zorunlu kılar", "pos": "verb", "lvl": "C1", "ipa": "/nəˈsesɪteɪts/", "isAwl": false}, "existential": {"tr": "varoluşsal", "pos": "adjective", "lvl": "C1", "ipa": "/ˌeɡzɪˈstenʃl/", "isAwl": false}, "catastrophes": {"tr": "felaketler, büyük yıkımlar", "pos": "noun", "lvl": "C1", "ipa": "/kəˈtæstrəfiz/", "isAwl": false}, "catastrophe": {"tr": "felaket, facia, büyük yıkım", "pos": "noun", "lvl": "C1", "ipa": "/kəˈtæstrəfi/", "isAwl": false}, "catastrophic": {"tr": "felaket getiren, yıkıcı, feci", "pos": "adjective", "lvl": "C1", "ipa": "/ˌkætəˈstrɒfɪk/", "isAwl": false}, "endeavors": {"tr": "girişimler, gayretler, çabalar", "pos": "noun", "lvl": "C1", "ipa": "/ɪnˈdevəz/", "isAwl": false}, "endeavor": {"tr": "çaba, gayret, girişim; çaba göstermek", "pos": "noun, verb", "lvl": "C1", "ipa": "/ɪnˈdevə/", "isAwl": false}, "extraterrestrial": {"tr": "dünya dışı, uzay kaynaklı", "pos": "adjective", "lvl": "C1", "ipa": "/ˌekstrətəˈrestriəl/", "isAwl": false}, "terrestrial": {"tr": "dünyaya ait, karasal", "pos": "adjective", "lvl": "C1", "ipa": "/təˈrestriəl/", "isAwl": false}, "anthropogenic": {"tr": "insan kaynaklı, beşerî", "pos": "adjective", "lvl": "C1", "ipa": "/ˌænθrəpəˈdʒenɪk/", "isAwl": false}, "emissions": {"tr": "salımlar, emisyonlar, gaz çıkışları", "pos": "noun", "lvl": "B2", "ipa": "/ɪˈmɪʃnz/", "isAwl": false}, "emission": {"tr": "salım, emisyon", "pos": "noun", "lvl": "B2", "ipa": "/ɪˈmɪʃn/", "isAwl": false}, "acidification": {"tr": "asitlenme, asitleşme", "pos": "noun", "lvl": "C1", "ipa": "/əˌsɪdɪfɪˈkeɪʃn/", "isAwl": false}, "impeding": {"tr": "engelleme, güçleştirme, mani olma", "pos": "verb", "lvl": "C1", "ipa": "/ɪmˈpiːdɪŋ/", "isAwl": false}, "impede": {"tr": "engellemek, mani olmak, aksatmak", "pos": "verb", "lvl": "C1", "ipa": "/ɪmˈpiːd/", "isAwl": false}, "bleaching": {"tr": "mercan ağarması; beyazlatma", "pos": "noun", "lvl": "C1", "ipa": "/ˈbliːtʃɪŋ/", "isAwl": false}, "unraveling": {"tr": "çözülme, bozulma, dağılma", "pos": "verb, noun", "lvl": "C1", "ipa": "/ʌnˈrævəlɪŋ/", "isAwl": false}, "biodiversity": {"tr": "biyoçeşitlilik, biyolojik zenginlik", "pos": "noun", "lvl": "B2", "ipa": "/ˌbaɪəʊdaɪˈvɜːsəti/", "isAwl": false}, "mitigating": {"tr": "hafifletme, etkisini azaltma", "pos": "verb", "lvl": "C1", "ipa": "/ˈmɪtɪɡeɪtɪŋ/", "isAwl": true}, "mitigate": {"tr": "hafifletmek, azaltmak, yatıştırmak", "pos": "verb", "lvl": "C1", "ipa": "/ˈmɪtɪɡeɪt/", "isAwl": true}, "decarbonization": {"tr": "karbonsuzlaştırma, karbon salımını sıfırlama", "pos": "noun", "lvl": "C1", "ipa": "/diːˌkɑːbənaɪˈzeɪʃn/", "isAwl": false}, "equilibrium": {"tr": "denge durumu, istikrar", "pos": "noun", "lvl": "C1", "ipa": "/ˌiːkwɪˈlɪbriəm/", "isAwl": false}, "suppress": {"tr": "bastırmak, engellemek, sindirmek", "pos": "verb", "lvl": "B2", "ipa": "/səˈpres/", "isAwl": false}, "multilingualism": {"tr": "çok dillilik", "pos": "noun", "lvl": "C1", "ipa": "/ˌmʌltiˈlɪŋɡwəlɪzəm/", "isAwl": false}, "attenuates": {"tr": "hafifletir, azaltır, zayıflatır", "pos": "verb", "lvl": "C1", "ipa": "/əˈtenjueɪts/", "isAwl": false}, "attenuate": {"tr": "azaltmak, zayıflatmak, seyreltmek", "pos": "verb", "lvl": "C1", "ipa": "/əˈtenjueɪt/", "isAwl": false}, "demographic": {"tr": "demografik, nüfus yapısıyla ilgili", "pos": "adjective", "lvl": "B2", "ipa": "/ˌdeməˈɡræfɪk/", "isAwl": true}, "gentrification": {"tr": "soylulaştırma, kentsel dönüşümle elit tabakanın yerleşmesi", "pos": "noun", "lvl": "C1", "ipa": "/ˌdʒentrɪfɪˈkeɪʃn/", "isAwl": false}, "commodification": {"tr": "metalaştırma, ticari mala dönüştürme", "pos": "noun", "lvl": "C1", "ipa": "/kəˌmɒdɪfɪˈkeɪʃn/", "isAwl": false}, "segregation": {"tr": "ayrışma, ırk/sınıf ayrımı", "pos": "noun", "lvl": "B2", "ipa": "/ˌseɡrɪˈɡeɪʃn/", "isAwl": false}, "equitable": {"tr": "adil, hakkaniyetli, tarafsız", "pos": "adjective", "lvl": "C1", "ipa": "/ˈekwɪtəbl/", "isAwl": true}, "speculation": {"tr": "spekülasyon, vurgunculuk, varsayım", "pos": "noun", "lvl": "B2", "ipa": "/ˌspekjuˈleɪʃn/", "isAwl": false}, "democratizing": {"tr": "demokratikleştirme, herkesin erişimine açma", "pos": "verb", "lvl": "C1", "ipa": "/dɪˈmɒkrətaɪzɪŋ/", "isAwl": false}, "ontological": {"tr": "ontolojik, varlık felsefesine dair", "pos": "adjective", "lvl": "C1", "ipa": "/ˌɒntəˈlɒdʒɪkl/", "isAwl": false}, "intractable": {"tr": "çözümü çok zor, inatçı, başa çıkılmaz", "pos": "adjective", "lvl": "C1", "ipa": "/ɪnˈtræktəbl/", "isAwl": false}, "qualia": {"tr": "niteliksel bilinç deneyimleri (kırmızıyı kırmızı olarak hissetme)", "pos": "noun", "lvl": "C1", "ipa": "/ˈkwɑːliə/", "isAwl": false}, "panpsychism": {"tr": "panpsişizm (tüm evrenin zihinsel/bilinçli olduğu felsefesi)", "pos": "noun", "lvl": "C1", "ipa": "/pænˈsaɪkɪzəm/", "isAwl": false}, "materialism": {"tr": "materyalizm, maddecilik", "pos": "noun", "lvl": "B2", "ipa": "/məˈtɪəriəlɪzəm/", "isAwl": false}, "byproduct": {"tr": "yan ürün, tali sonuç", "pos": "noun", "lvl": "B2", "ipa": "/ˈbaɪprɒdʌkt/", "isAwl": false}, "accumulation": {"tr": "birikme, birikim, toplanma", "pos": "noun", "lvl": "B2", "ipa": "/əˌkjuːmjəˈleɪʃn/", "isAwl": true}, "cingulate": {"tr": "singulat (anterior cingulate cortex - beynin duygu ve dikkat merkezi)", "pos": "adjective", "lvl": "C1", "ipa": "/ˈsɪŋɡjələt/", "isAwl": false}, "complexity": {"tr": "karmaşıklık, giriftlik", "pos": "noun", "lvl": "B2", "ipa": "/kəmˈpleksəti/", "isAwl": true}, "consciousness": {"tr": "bilinç, şuur, farkındalık", "pos": "noun", "lvl": "B2", "ipa": "/ˈkɒnʃəsnəs/", "isAwl": false}, "creative": {"tr": "yaratıcı, üretken", "pos": "adjective", "lvl": "A2", "ipa": "/kriˈeɪtɪv/", "isAwl": true}, "developmental": {"tr": "gelişimsel, gelişimle ilgili", "pos": "adjective", "lvl": "B2", "ipa": "/dɪˌveləpˈmentl/", "isAwl": false}, "establishment": {"tr": "kuruluş, tesis etme; yerleşik düzen", "pos": "noun", "lvl": "B2", "ipa": "/ɪˈstæblɪʃmənt/", "isAwl": true}, "ethical": {"tr": "ahlaki, etik", "pos": "adjective", "lvl": "B2", "ipa": "/ˈeθɪkl/", "isAwl": true}, "explainable": {"tr": "açıklanabilir, izah edilebilir", "pos": "adjective", "lvl": "B2", "ipa": "/ɪkˈspleɪnəbl/", "isAwl": false}, "fatty": {"tr": "yağlı, yağ içeren (fatty acids)", "pos": "adjective", "lvl": "B1", "ipa": "/ˈfæti/", "isAwl": false}, "fiction": {"tr": "kurgu, kurmaca edebiyat", "pos": "noun", "lvl": "B1", "ipa": "/ˈfɪkʃn/", "isAwl": false}, "firings": {"tr": "sinirsel ateşlemeler (nöron aktivitesi)", "pos": "noun", "lvl": "C1", "ipa": "/ˈfaɪərɪŋz/", "isAwl": false}, "humanity": {"tr": "insanlık, beşeriyet", "pos": "noun", "lvl": "B1", "ipa": "/hjuːˈmænəti/", "isAwl": false}, "hyper": {"tr": "aşırı, hiper, fazlaca", "pos": "adjective, prefix", "lvl": "B2", "ipa": "/ˈhaɪpə/", "isAwl": false}, "incidental": {"tr": "tesadüfi, tali, rastlantısal olarak oluşan", "pos": "adjective", "lvl": "C1", "ipa": "/ˌɪnsɪˈdentl/", "isAwl": false}, "innovation": {"tr": "yenilik, inovasyon", "pos": "noun", "lvl": "B2", "ipa": "/ˌɪnəˈveɪʃn/", "isAwl": true}, "intake": {"tr": "vücuda alınan besin/sıvı miktarı", "pos": "noun", "lvl": "B2", "ipa": "/ˈɪnteɪk/", "isAwl": false}, "interactions": {"tr": "etkileşimler, karşılıklı tesirler", "pos": "noun", "lvl": "B2", "ipa": "/ˌɪntərˈækʃnz/", "isAwl": true}, "ion": {"tr": "iyon (elektrik yüklü atom)", "pos": "noun", "lvl": "B2", "ipa": "/ˈaɪən/", "isAwl": false}, "lifelong": {"tr": "yaşam boyu, ömür boyu süren", "pos": "adjective", "lvl": "B2", "ipa": "/ˈlaɪflɒŋ/", "isAwl": false}, "localized": {"tr": "yerelleşmiş, belirli bir bölgeye özgü", "pos": "adjective", "lvl": "B2", "ipa": "/ˈləʊkəlaɪzd/", "isAwl": true}, "mediation": {"tr": "aracılık, uzlaştırma", "pos": "noun", "lvl": "C1", "ipa": "/ˌmiːdiˈeɪʃn/", "isAwl": true}, "mollusks": {"tr": "yumuşakçalar (kabuklu deniz canlıları)", "pos": "noun", "lvl": "C1", "ipa": "/ˈmɒləsks/", "isAwl": false}, "multi": {"tr": "çoklu, birden fazla", "pos": "prefix", "lvl": "B1", "ipa": "/ˈmʌlti/", "isAwl": false}, "neurobiological": {"tr": "nörobiyolojik (beyin biyolojisine ait)", "pos": "adjective", "lvl": "C1", "ipa": "/ˌnjʊərəʊbaɪəˈlɒdʒɪkl/", "isAwl": false}, "neurochemical": {"tr": "nörokimyasal (beyindeki kimyasallara ait)", "pos": "adjective", "lvl": "C1", "ipa": "/ˌnjʊərəʊˈkemɪkl/", "isAwl": false}, "neurodegenerative": {"tr": "nörodejeneratif (beyin hücrelerini zamanla tahrip eden)", "pos": "adjective", "lvl": "C1", "ipa": "/ˌnjʊərəʊdɪˈdʒenərətɪv/", "isAwl": false}, "oceanic": {"tr": "okyanusa ait, devasa denizel", "pos": "adjective", "lvl": "B2", "ipa": "/ˌəʊʃiˈænɪk/", "isAwl": false}, "omega": {"tr": "omega (omega-3 temel yağ asitleri)", "pos": "noun", "lvl": "B1", "ipa": "/ˈəʊmɪɡə/", "isAwl": false}, "oversight": {"tr": "gözetim, denetim; sehven gözden kaçırma", "pos": "noun", "lvl": "C1", "ipa": "/ˈəʊvəsaɪt/", "isAwl": false}, "parietal": {"tr": "parietal (beynin duyu ve yön koordinasyon lobu)", "pos": "adjective", "lvl": "C1", "ipa": "/pəˈraɪətl/", "isAwl": false}, "plasticity": {"tr": "plastisite, şekil alabilirlik, esneklik", "pos": "noun", "lvl": "C1", "ipa": "/plæˈstɪsəti/", "isAwl": false}, "progressive": {"tr": "ilerici, çağdaş; giderek artan", "pos": "adjective", "lvl": "B2", "ipa": "/prəˈɡresɪv/", "isAwl": false}, "pteropods": {"tr": "kanatlı deniz salyangozları", "pos": "noun", "lvl": "C1", "ipa": "/ˈterəpɒdz/", "isAwl": false}, "pubescent": {"tr": "ergenlik çağındaki, buluğa ermiş", "pos": "adjective", "lvl": "C1", "ipa": "/pjuːˈbesnt/", "isAwl": false}, "recruitment": {"tr": "sinirsel hücre seferberliği; işe alım", "pos": "noun", "lvl": "B2", "ipa": "/rɪˈkruːtmənt/", "isAwl": false}, "reductive": {"tr": "indirgemeci, aşırı basite indirgeyen", "pos": "adjective", "lvl": "C1", "ipa": "/rɪˈdʌktɪv/", "isAwl": false}, "scarlet": {"tr": "al, kızıl, parlak kırmızı", "pos": "adjective, noun", "lvl": "B2", "ipa": "/ˈskɑːlət/", "isAwl": false}, "socio": {"tr": "sosyo, toplumsal boyut", "pos": "prefix", "lvl": "B2", "ipa": "/ˈsəʊsiəʊ/", "isAwl": false}, "sorrow": {"tr": "keder, derin üzüntü, elem", "pos": "noun", "lvl": "B2", "ipa": "/ˈsɒrəʊ/", "isAwl": false}, "subjective": {"tr": "öznel, kişiye göre değişen", "pos": "adjective", "lvl": "B2", "ipa": "/səbˈdʒektɪv/", "isAwl": false}, "substrates": {"tr": "substratlar, altta yatan biyolojik zeminler", "pos": "noun", "lvl": "C1", "ipa": "/ˈsʌbstreɪts/", "isAwl": false}, "supportive": {"tr": "destekleyici, teşvik edici", "pos": "adjective", "lvl": "B1", "ipa": "/səˈpɔːtɪv/", "isAwl": false}, "sustainable": {"tr": "sürdürülebilir, çevreyle uyumlu", "pos": "adjective", "lvl": "B2", "ipa": "/səˈsteɪnəbl/", "isAwl": true}, "toward": {"tr": "-e doğru, yönünde, amacıyla", "pos": "preposition", "lvl": "A2", "ipa": "/təˈwɔːdz/", "isAwl": false}};
+
     let readingLookupMap = null;
+
     let currentReadingQuestions = [];
     let readingSelectedChoices = {}; // { [qIdx]: 'A' | 'B' | 'C' | 'D' }
     let readingConfirmedAnswers = {}; // { [qIdx]: 'A' | 'B' | 'C' | 'D' }
@@ -9718,17 +9958,35 @@
     function getReadingLookupMap() {
       if (!readingLookupMap) {
         readingLookupMap = new Map();
+        // 1. Ana Sözlük Kelimeleri (Oxford 3.750)
         allWords.forEach(w => {
           const key = w.w.toLowerCase().trim();
           if (!readingLookupMap.has(key)) {
             readingLookupMap.set(key, w);
           }
         });
+        // 2. Doğrulanmış Okuma Sözlüğü (300+ Akademik Genişletme)
+        if (typeof READING_VOCAB_EXTENSIONS !== 'undefined') {
+          for (const [key, ext] of Object.entries(READING_VOCAB_EXTENSIONS)) {
+            const cleanKey = key.toLowerCase().trim();
+            if (!readingLookupMap.has(cleanKey)) {
+              readingLookupMap.set(cleanKey, {
+                w: key,
+                pos: ext.pos || 'noun',
+                lvl: ext.lvl || 'B2',
+                isAwl: !!ext.isAwl,
+                tr: ext.tr,
+                ipa: ext.ipa || '',
+                ex: ext.ex || ''
+              });
+            }
+          }
+        }
       }
       return readingLookupMap;
     }
 
-    // Advanced Morphological Lemmatizer (Zero empty/broken word clicks)
+    // Gelişmiş Morfoloji, Düzensiz Fiil & Lemmatizer Motoru (Sıfır Sahte Çeviri!)
     function lookupWordMeaning(rawToken) {
       if (!rawToken) return null;
       const clean = rawToken.replace(/[^A-Za-z'-]/g, '').toLowerCase().trim();
@@ -9736,25 +9994,35 @@
 
       const lookup = getReadingLookupMap();
 
-      // 1. Direct exact match
+      // 1. Birebir Doğrudan Eşleşme
       if (lookup.has(clean)) return lookup.get(clean);
 
-      // 2. Strip possessive
+      // 2. İyelik Takısını Temizleme ('s, ')
       const noPoss = clean.replace(/'s$/, '').replace(/'$/, '');
       if (lookup.has(noPoss)) return lookup.get(noPoss);
 
-      // 3. Morphological variations
-      const candidates = [];
-      if (clean.endsWith('ies') && clean.length > 4) {
-        candidates.push(clean.slice(0, -3) + 'y');
+      // 3. Düzensiz Fiiller ve Düzensiz Çoğul Kelimeler (Örn: driven -> drive, criteria -> criterion)
+      if (typeof IRREGULAR_LEMMA_MAP !== 'undefined' && IRREGULAR_LEMMA_MAP[clean]) {
+        const root = IRREGULAR_LEMMA_MAP[clean];
+        if (lookup.has(root)) {
+          const matched = lookup.get(root);
+          return {
+            ...matched,
+            w: rawToken,
+            lemmaRoot: root,
+            tr: matched.tr
+          };
+        }
       }
+
+      // 4. Morfolojik Ek Analizi (İleri Düzey Lemmatizasyon)
+      const candidates = [];
+      if (clean.endsWith('ies') && clean.length > 4) candidates.push(clean.slice(0, -3) + 'y');
       if (clean.endsWith('es') && clean.length > 3) {
         candidates.push(clean.slice(0, -2));
         candidates.push(clean.slice(0, -1));
       }
-      if (clean.endsWith('s') && clean.length > 3) {
-        candidates.push(clean.slice(0, -1));
-      }
+      if (clean.endsWith('s') && clean.length > 3) candidates.push(clean.slice(0, -1));
       if (clean.endsWith('ing') && clean.length > 5) {
         candidates.push(clean.slice(0, -3));
         candidates.push(clean.slice(0, -3) + 'e');
@@ -9774,30 +10042,36 @@
         candidates.push(clean.slice(0, -2) + 'e');
         if (clean.endsWith('ily')) candidates.push(clean.slice(0, -3) + 'y');
       }
-      if (clean.endsWith('ation') && clean.length > 6) {
-        candidates.push(clean.slice(0, -5) + 'ate');
-      }
+      if (clean.endsWith('ation') && clean.length > 6) candidates.push(clean.slice(0, -5) + 'ate');
+      if (clean.endsWith('ity') && clean.length > 5) candidates.push(clean.slice(0, -3));
+      if (clean.endsWith('ness') && clean.length > 6) candidates.push(clean.slice(0, -4));
+      if (clean.endsWith('ment') && clean.length > 6) candidates.push(clean.slice(0, -4));
+      if (clean.endsWith('able') && clean.length > 6) candidates.push(clean.slice(0, -4));
 
       for (const cand of candidates) {
         if (lookup.has(cand)) return lookup.get(cand);
-      }
-
-      // 4. Prefix stem fallback
-      if (clean.length >= 4) {
-        for (const [wKey, wordObj] of lookup.entries()) {
-          if (wKey.length >= 4 && (clean.startsWith(wKey) || wKey.startsWith(clean))) {
-            return wordObj;
-          }
+        if (typeof IRREGULAR_LEMMA_MAP !== 'undefined' && IRREGULAR_LEMMA_MAP[cand] && lookup.has(IRREGULAR_LEMMA_MAP[cand])) {
+          return lookup.get(IRREGULAR_LEMMA_MAP[cand]);
         }
       }
 
-      // 5. Intelligent Fallback for rare uncatalogued words
+      // 5. Olumsuzluk ve Türetim Ön Ekleri (un-, in-, im-, dis-, re-, sub-)
+      const prefixes = ['un', 'in', 'im', 'dis', 're', 'sub', 'over', 'non'];
+      for (const pfx of prefixes) {
+        if (clean.startsWith(pfx) && clean.length >= pfx.length + 4) {
+          const base = clean.slice(pfx.length);
+          if (lookup.has(base)) return lookup.get(base);
+        }
+      }
+
+      // 6. Özel / Tanımsız Kelime Durumu (ASLA SAHTE ÇEVİRİ YAZMA!)
       return {
         w: rawToken,
-        pos: 'academic',
-        lvl: 'C1',
-        isAwl: true,
-        tr: 'Akademik bağlamsal ifade (Detaylı sözlük araması)',
+        pos: 'özel sözcük',
+        lvl: 'Özel',
+        isAwl: false,
+        tr: '', // Boş çeviri: kullanıcı Tureng/Google ile bulabilir veya kendi notunu ekler
+        isUncatalogued: true,
         ipa: '',
         ex: ''
       };
@@ -9954,7 +10228,7 @@
             ? 'border-b border-rose-500/40 text-rose-200 hover:text-white hover:border-rose-400 font-medium cursor-pointer transition px-0.5 rounded-sm'
             : 'hover:text-rose-300 hover:underline cursor-pointer transition';
 
-          return `<span class="${highlightClass}" onclick="inspectReadingWord(this)" data-word="${escapeHtmlAttr(matched.w)}" data-tr="${escapeHtmlAttr(matched.tr)}" data-ipa="${escapeHtmlAttr(matched.ipa || '')}" data-lvl="${escapeHtmlAttr(matched.lvl || 'B2')}" data-awl="${matched.isAwl ? '1' : '0'}" data-pos="${escapeHtmlAttr(matched.pos || '')}" data-ex="${escapeHtmlAttr(matched.ex || '')}" data-syn="${escapeHtmlAttr(matched.syn || '')}" data-conf="${escapeHtmlAttr(matched.conf || '')}">${escapeHtmlAttr(token)}</span>`;
+          return `<span class="${highlightClass}" onclick="inspectReadingWord(this)" data-word="${escapeHtmlAttr(matched.w)}" data-tr="${escapeHtmlAttr(matched.tr)}" data-ipa="${escapeHtmlAttr(matched.ipa || '')}" data-lvl="${escapeHtmlAttr(matched.lvl || 'B2')}" data-awl="${matched.isAwl ? '1' : '0'}" data-pos="${escapeHtmlAttr(matched.pos || '')}" data-ex="${escapeHtmlAttr(matched.ex || '')}" data-syn="${escapeHtmlAttr(matched.syn || '')}" data-conf="${escapeHtmlAttr(matched.conf || '')}" data-uncatalogued="${matched.isUncatalogued ? '1' : '0'}">${escapeHtmlAttr(token)}</span>`;
         }
 
         return escapeHtmlAttr(token);
@@ -10154,12 +10428,25 @@
       }
     }
 
+    let currentReadingContextSentence = '';
+
     function inspectReadingWord(el) {
       if (!el || !el.dataset) return;
-      showReadingWordPopover(el);
+      const rawText = currentReadingRawText || '';
+      const token = el.innerText ? el.innerText.trim() : (el.dataset.word || '');
+      let contextSentence = '';
+      if (rawText && token) {
+        const escaped = token.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+        const rx = new RegExp('([^.!?\\n\\r]+?\\b' + escaped + '\\b[^.!?\\n\\r]*[.!?])', 'i');
+        const m = rawText.match(rx);
+        if (m && m[1]) {
+          contextSentence = m[1].trim();
+        }
+      }
+      showReadingWordPopover(el, contextSentence);
     }
 
-    function showReadingWordPopover(el) {
+    function showReadingWordPopover(el, contextSentence) {
       if (!el || !el.dataset) return;
       const word = el.dataset.word;
       const tr = el.dataset.tr;
@@ -10170,16 +10457,48 @@
       const ex = el.dataset.ex;
       const syn = el.dataset.syn;
       const conf = el.dataset.conf;
+      const isUncat = el.dataset.uncatalogued === '1' || !tr;
+
+      currentReadingContextSentence = contextSentence || '';
 
       document.getElementById('rModalWord').innerText = word;
       document.getElementById('rModalLvl').innerText = lvl || 'B2';
       document.getElementById('rModalAwl').classList.toggle('hidden', !isAwl);
       document.getElementById('rModalIpa').innerText = ipa || '';
       document.getElementById('rModalPos').innerText = pos || '';
-      document.getElementById('rModalTr').innerText = tr;
+      document.getElementById('rModalTr').innerText = tr || 'Özel Sözcük / Metin İçi Terim';
 
       const speakBtn = document.getElementById('rModalSpeakBtn');
       if (speakBtn) speakBtn.dataset.word = word;
+
+      // 📖 Metin içi bağlamsal cümle gösterimi (LingQ / Readlang tarzı)
+      const cBox = document.getElementById('rModalContextExBox');
+      const cEl = document.getElementById('rModalContextEx');
+      if (cBox && cEl) {
+        if (contextSentence) {
+          cBox.classList.remove('hidden');
+          const tokenText = el.innerText ? el.innerText.trim() : word;
+          const escapedToken = tokenText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+          const highlighted = contextSentence.replace(new RegExp('\\b(' + escapedToken + ')\\b', 'gi'), '<mark class="bg-amber-400/30 text-amber-200 px-1 py-0.5 rounded font-bold border border-amber-400/40">$1</mark>');
+          cEl.innerHTML = highlighted;
+        } else {
+          cBox.classList.add('hidden');
+        }
+      }
+
+      // 🔍 Sözlük dışı / özel kelime arama paneli
+      const uBox = document.getElementById('rModalUncataloguedHelper');
+      if (uBox) {
+        uBox.classList.toggle('hidden', !isUncat);
+        if (isUncat) {
+          const tLink = document.getElementById('rModalTurengLink');
+          const gLink = document.getElementById('rModalGTranslateLink');
+          if (tLink) tLink.href = `https://tureng.com/tr/turkce-ingilizce/${encodeURIComponent(word)}`;
+          if (gLink) gLink.href = `https://translate.google.com/?sl=en&tl=tr&text=${encodeURIComponent(word)}&op=translate`;
+          const cInp = document.getElementById('rModalCustomTrInput');
+          if (cInp) cInp.value = '';
+        }
+      }
 
       const synBox = document.getElementById('rModalSynBox');
       const synEl = document.getElementById('rModalSyn');
@@ -10205,7 +10524,7 @@
 
       const exBox = document.getElementById('rModalExBox');
       const exEl = document.getElementById('rModalEx');
-      if (ex) {
+      if (ex && !contextSentence) {
         exEl.innerText = ex;
         exBox.classList.remove('hidden');
       } else {
@@ -10232,7 +10551,47 @@
 
     function addReadingWordToLearn(word) {
       if (!word) return;
+      const cInp = document.getElementById('rModalCustomTrInput');
+      const customTr = cInp ? cInp.value.trim() : '';
+
+      // Eğer kullanıcı özel çeviri yazdıysa veya bağlamsal cümle yakalandıysa kalıcı karta çevir
+      if (customTr || currentReadingContextSentence) {
+        let customList = [];
+        try {
+          customList = JSON.parse(localStorage.getItem(STORAGE_CUSTOM_WORDS_KEY) || '[]');
+        } catch(e) { customList = []; }
+
+        const existingIdx = customList.findIndex(item => item.w.toLowerCase() === word.toLowerCase());
+        const matched = lookupWordMeaning(word);
+        const tr = customTr || (matched && matched.tr ? matched.tr : 'Özel Sözcük');
+        const ex = currentReadingContextSentence || (matched ? matched.ex : '');
+
+        const newObj = {
+          w: word,
+          pos: matched ? matched.pos : 'noun',
+          lvl: matched ? matched.lvl : 'B2',
+          isAwl: matched ? matched.isAwl : false,
+          tr: tr,
+          ex: ex,
+          contextEx: currentReadingContextSentence,
+          ipa: matched ? matched.ipa : '',
+          cloze_sent: ex ? ex.replace(new RegExp(word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'gi'), '___') : `___ (${tr})`,
+          cloze_word: word,
+          isCustom: true
+        };
+
+        if (existingIdx >= 0) {
+          customList[existingIdx] = newObj;
+        } else {
+          customList.unshift(newObj);
+          allWords.unshift(newObj);
+        }
+        localStorage.setItem(STORAGE_CUSTOM_WORDS_KEY, JSON.stringify(customList));
+        if (readingLookupMap) readingLookupMap.set(word.toLowerCase(), newObj);
+      }
+
       recordWordStatus(word, false);
+      showFloatingToast(`✅ "${word}" bağlamsal cümlesiyle tekrar listene eklendi!`);
       const learnBtn = document.getElementById('rModalLearnBtn');
       if (learnBtn) {
         learnBtn.innerHTML = '<span>✅</span> <span>Tekrar Listesine Eklendi!</span>';
