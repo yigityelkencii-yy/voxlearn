@@ -5066,19 +5066,12 @@
       ['ALL', 'A1', 'A2', 'B1', 'B2', 'C1', 'AWL', 'PV', 'CONF'].forEach(k => {
         const btn = document.getElementById('lvlBtn-' + k);
         if (!btn) return;
-        if (k === lvl) {
-          btn.className = 'lvl-btn px-3 py-1.5 rounded-xl bg-white/[0.08] text-white font-medium transition border border-white/10 whitespace-nowrap active:scale-95 shrink-0';
+        const isActive = (k === lvl);
+        btn.classList.toggle('active', isActive);
+        if (isActive) {
+          btn.className = 'lvl-btn active px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-rose-900/90 via-rose-800/90 to-rose-950/90 text-white font-bold transition border border-rose-400/50 shadow-md shadow-rose-950/40 whitespace-nowrap active:scale-95 shrink-0';
         } else {
-          let colorHover = 'hover:text-white';
-          if (k === 'A1') colorHover = 'hover:text-emerald-400';
-          if (k === 'A2') colorHover = 'hover:text-sky-400';
-          if (k === 'B1') colorHover = 'hover:text-purple-400';
-          if (k === 'B2') colorHover = 'hover:text-amber-400';
-          if (k === 'C1') colorHover = 'hover:text-rose-400';
-          if (k === 'AWL') colorHover = 'hover:text-pink-400';
-          if (k === 'PV') colorHover = 'hover:text-cyan-300';
-          if (k === 'CONF') colorHover = 'hover:text-amber-300';
-          btn.className = `lvl-btn px-3 py-1.5 rounded-xl text-slate-400 ${colorHover} transition flex items-center gap-1.5 font-medium whitespace-nowrap active:scale-95 shrink-0`;
+          btn.className = 'lvl-btn px-3 py-1.5 rounded-xl text-slate-400 hover:text-white transition flex items-center gap-1.5 font-medium whitespace-nowrap active:scale-95 shrink-0 bg-white/[0.04] border border-white/5';
         }
       });
 
@@ -5090,12 +5083,17 @@
       const labelMap = { ALL: 'Tümü', AWL: 'AWL', PV: 'Phrasal', CONF: 'İkizler' };
       if (lvlLabel) lvlLabel.innerText = labelMap[lvl] || lvl;
 
+      // Seviye değiştiğinde havuz önbelleğini sıfırla ve yeni kartları 0. indeksten başlat
+      fcShuffledPool = null;
+      fcCurrentLevelCached = null;
       batchIndex = 0;
+      fcIndex = 0;
       fcSavedIndices = { batch: 0, learn: 0, due: 0 };
       quizQuestions = null;
       clozeQuestions = null;
       matchCards = null;
-      setFcSource('batch');
+      
+      setFcSource('batch', true);
 
       // Aktif mod hangisiyse testi veya kartları anında yeni kur ile yeniden başlat
       const isClozeActive = !document.getElementById('view-cloze').classList.contains('hidden');
@@ -5812,7 +5810,7 @@
       document.body.style.overflow = '';
     }
 
-    const STORAGE_WELCOME_SEEN_KEY = 'voxlearn_welcome_seen_v1';
+    const STORAGE_WELCOME_SEEN_KEY = 'voxlearn_welcome_seen_v3';
 
     function openWelcomeGuideFromMenu() {
       closeModeSelectModal();
@@ -7027,54 +7025,7 @@
         }
       }
 
-      // Render Synonyms (Eş Anlamlılar) if available
-      const synBox = document.getElementById('fcSynBox');
-      const synList = document.getElementById('fcSynList');
-      if (card.syn) {
-        synBox.classList.remove('hidden');
-        synList.innerHTML = card.syn.split(',').map(s => {
-          const cleanSyn = s.trim();
-          const safeSpeak = cleanSyn.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-          return `<button type="button" onclick="event.stopPropagation(); speakText('${safeSpeak}');" class="px-2 py-0.5 rounded bg-white/[0.04] hover:bg-white/[0.1] text-[#e8dbcc] border border-white/[0.08] font-mono text-xs transition">${cleanSyn}</button>`;
-        }).join('');
-      } else {
-        synBox.classList.add('hidden');
-      }
-
-      // Render Collocations (Akademik Kalıplar & Edatlar) if available
-      const collocBox = document.getElementById('fcCollocBox');
-      const collocList = document.getElementById('fcCollocList');
-      if (card.colloc) {
-        collocBox.classList.remove('hidden');
-        collocList.innerHTML = formatCollocationPillsHtml(card.colloc);
-      } else {
-        collocBox.classList.add('hidden');
-      }
-
-      // Render Word Family (Kelime Ailesi Matrisi) if available
-      const famBox = document.getElementById('fcFamBox');
-      const famList = document.getElementById('fcFamList');
-      if (famBox && famList) {
-        if (card.fam && Object.keys(card.fam).length >= 2) {
-          famBox.classList.remove('hidden');
-          famList.innerHTML = formatWordFamilyPillsHtml(card.fam, card.w);
-        } else {
-          famBox.classList.add('hidden');
-        }
-      }
-
-      // Render Confusable Twins & Nuance Warning if available
-      const confBox = document.getElementById('fcConfBox');
-      const confText = document.getElementById('fcConfText');
-      if (confBox && confText) {
-        if (card.conf) {
-          confBox.classList.remove('hidden');
-          confText.innerHTML = `<span class="text-amber-400 font-bold">⚠️ Karıştırma (Nüans):</span> ${escapeHtmlAttr(card.conf)}`;
-        } else {
-          confBox.classList.add('hidden');
-          confText.innerHTML = '';
-        }
-      }
+      // Not: Eş Anlam, Nüans, Edatlar ve Kökler artık kart arkasındaki Kademeli Gösterim (Progressive Disclosure) hapları üzerinden gösterilir.
 
       // Dignified level badge
       const lvlBadge = document.getElementById('fcLvlBadge');
