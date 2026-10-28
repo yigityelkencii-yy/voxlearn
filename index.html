@@ -20,6 +20,7 @@
     :root {
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --font-word: 'Lexend', 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
     body, .font-sans {
@@ -84,26 +85,35 @@
       justify-content: space-between;
       border-radius: 1.5rem;
       padding: 2rem 1.75rem;
-      background: linear-gradient(180deg, #17080c 0%, #0d0407 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, #1d0b11 0%, #0d0407 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
       box-shadow: 
-        0 1px 0 0 rgba(255, 255, 255, 0.05) inset,
-        0 24px 48px -12px rgba(0, 0, 0, 0.85),
-        0 0 35px -5px rgba(190, 18, 60, 0.12);
+        0 1px 0 0 rgba(255, 255, 255, 0.12) inset,
+        0 28px 56px -12px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(0, 0, 0, 0.55);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      transition: border-color 0.8s ease, box-shadow 0.8s ease;
+      transition: border-color 0.8s ease, box-shadow 0.8s ease, background 0.4s ease;
     }
     .card-back {
       transform: rotateY(180deg);
       -webkit-transform: rotateY(180deg);
-      background: linear-gradient(180deg, #1c0a10 0%, #0d0407 100%);
-      border: 1px solid rgba(244, 63, 94, 0.20);
+      background: linear-gradient(180deg, #220d15 0%, #0d0407 100%);
+      border: 1.5px solid rgba(244, 63, 94, 0.35);
       overflow-y: auto !important;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       padding-bottom: 2rem !important;
+    }
+
+    /* Yüksek Okunabilirlikli Kelime Başlıkları (Dikkati Dağıtmayan & Hızlı Algılanan Sans-Serif) */
+    #fcWord, .fc-word-heading, #quizWord, #dictWordDisplay {
+      font-family: var(--font-word, 'Lexend', 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif) !important;
+      font-weight: 600 !important;
+      letter-spacing: -0.015em !important;
+      text-rendering: optimizeLegibility !important;
+      -webkit-font-smoothing: antialiased !important;
     }
 
     /* Card Heat Multiplier (Doğal Isı ve Plazma Mavi Alev) */
@@ -762,6 +772,69 @@
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(5, 150, 105, 0.3) !important;
     }
 
+    /* ==================== THEME 9: COGNITIVE SLATE PRO (BİLİMSEL ODAK & YÜKSEK OKUNABİLİRLİK) ==================== */
+    [data-theme="slate"] {
+      --font-sans: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Lexend', -apple-system, sans-serif;
+      --font-word: 'Lexend', 'Atkinson Hyperlegible', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --body-tracking: 0.015em;
+      --theme-bg-body: #0d1117;
+      --theme-bg-card: #18202c;
+      --theme-border: rgba(148, 163, 184, 0.28);
+      --theme-accent: #38bdf8;
+      --theme-accent-glow: rgba(56, 189, 248, 0.45);
+    }
+    [data-theme="slate"] body {
+      background-color: #0d1117 !important;
+      color: #f1f5f9 !important;
+      line-height: 1.65;
+    }
+    [data-theme="slate"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(56, 189, 248, 0.14), rgba(13, 17, 23, 0) 72%) !important;
+    }
+    [data-theme="slate"] nav {
+      background-color: rgba(19, 25, 36, 0.88) !important;
+      border-color: rgba(148, 163, 184, 0.22) !important;
+    }
+    [data-theme="slate"] .bg-\[\#140609\],
+    [data-theme="slate"] .bg-\[\#120407\]\/70,
+    [data-theme="slate"] .bg-\[\#16060a\]\/90,
+    [data-theme="slate"] .bg-\[\#18080c\] {
+      background-color: #161e2a !important;
+      border-color: rgba(148, 163, 184, 0.24) !important;
+    }
+    /* Kutucuk: Arka plandan net ayrılan z-elevation, aydınlık yüzey ve net kenarlık */
+    [data-theme="slate"] .card-front {
+      background: linear-gradient(180deg, #1e2838 0%, #151d29 100%) !important;
+      border: 1.5px solid rgba(148, 163, 184, 0.36) !important;
+      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.16) inset, 0 28px 56px -12px rgba(0, 0, 0, 0.95), 0 0 35px -5px rgba(56, 189, 248, 0.18) !important;
+    }
+    [data-theme="slate"] .card-back {
+      background: linear-gradient(180deg, #222d3f 0%, #151d29 100%) !important;
+      border: 1.5px solid rgba(56, 189, 248, 0.5) !important;
+      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.16) inset, 0 28px 56px -12px rgba(0, 0, 0, 0.95) !important;
+    }
+    [data-theme="slate"] .bg-rose-900\/60,
+    [data-theme="slate"] #btnModeSelector,
+    [data-theme="slate"] .btn-primary-glow {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+      border-color: rgba(56, 189, 248, 0.55) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.45) !important;
+    }
+    [data-theme="slate"] .text-rose-300 { color: #7dd3fc !important; }
+    [data-theme="slate"] .text-rose-400 { color: #38bdf8 !important; }
+    [data-theme="slate"] .border-rose-500\/30, [data-theme="slate"] .border-rose-500\/40 {
+      border-color: rgba(56, 189, 248, 0.38) !important;
+    }
+    [data-theme="slate"] .hub-pill.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.55) 0%, rgba(3, 105, 161, 0.72) 100%) !important;
+      border-color: rgba(56, 189, 248, 0.55) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 4px 14px rgba(2, 132, 199, 0.35) !important;
+      color: #ffffff !important;
+    }
+
 
     /* ==================== 3-KATMANLI ULTRA-ODAK TASARIMI (FOCUS MODE) ==================== */
     :root, [data-theme="crimson"] {
@@ -851,6 +924,17 @@
       --focus-accent: #9f1239;
       --focus-text: #1a1410;
       --focus-text-muted: #57463a;
+    }
+    [data-theme="slate"] {
+      --focus-bg: #090d13;
+      --focus-card: #1c2433;
+      --focus-card-border: rgba(56, 189, 248, 0.45);
+      --focus-opt: #263347;
+      --focus-opt-border: rgba(148, 163, 184, 0.35);
+      --focus-opt-hover: #33445e;
+      --focus-accent: #38bdf8;
+      --focus-text: #f8fafc;
+      --focus-text-muted: #94a3b8;
     }
 
     /* ODAK MODU AKTİF OLDUĞUNDA (body.focus-mode-active): */
@@ -3757,9 +3841,9 @@
             </div>
 
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
-              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>6️⃣</span> <span>Ultra-Odak Modu & 8 Atmosferik Tema</span></div>
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>6️⃣</span> <span>Ultra-Odak Modu & 9 Atmosferik Tema</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                Çalışırken göz yorulmasını ve dikkat dağınıklığını önlemek için üst bardan <strong class="text-rose-300">🎯 Odak [F]</strong> modunu aç: Soru kartı, arka plan ve şıklar 3 ayrı sakin katmana ayrılır, fontlar netleşir. <strong class="text-cyan-300">🎨 Tema</strong> ile 8 farklı font+renk paleti seçebilirsin.
+                Çalışırken göz yorulmasını ve dikkat dağınıklığını önlemek için üst bardan <strong class="text-rose-300">🎯 Odak [F]</strong> modunu aç veya <strong class="text-cyan-300">🎨 Tema</strong> menüsünden tavsiye edilen <strong class="text-sky-300">🧠 Cognitive Slate Pro</strong> modunu seç: Arka plandan net ayrılmış çalışma kutucuğu, harfleri tescilli <em>Lexend</em> ve <em>Atkinson Hyperlegible</em> fontlarıyla sıfır göz yorgunluğu sağlar.
               </p>
             </div>
           </div>
@@ -3771,7 +3855,7 @@
           <div><strong class="text-rose-300">🩸 Kasa:</strong> Yanlış yaptığın soruların kutusu</div>
           <div><strong class="text-emerald-300">📦 Kutu 1/5:</strong> Aralıklı tekrar hafıza seviyesi</div>
           <div><strong class="text-cyan-300">🎯 Odak (F):</strong> Dikkat dağıtmayan 3 katmanlı mod</div>
-          <div><strong class="text-indigo-300">🎨 Tema:</strong> 8 farklı Font + Renk atmosferi</div>
+          <div><strong class="text-sky-300">🎨 Tema:</strong> 9 farklı Renk & Font atmosferi (Slate Pro dahil)</div>
         </div>
 
       </div>
@@ -3810,6 +3894,24 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 max-h-[68vh] overflow-y-auto pr-1 scrollbar-thin">
+        <!-- Theme 0 (Recommended): Cognitive Slate Pro -->
+        <button onclick="selectTheme('slate')" id="themeBtn-slate" class="theme-card-btn col-span-1 sm:col-span-2 w-full p-3.5 rounded-2xl border-2 border-sky-500/50 bg-[#161e2a] text-left flex items-center justify-between gap-2.5 transition hover:border-sky-400 shadow-lg">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-10 rounded-xl bg-[#0d1117] border border-sky-400/50 flex items-center justify-center text-lg shrink-0 shadow-inner">
+              🧠
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-white tracking-wide" style="font-family: 'Lexend', sans-serif;">Cognitive Slate Pro</span>
+                <span class="px-2 py-0.5 rounded-full bg-sky-500/20 border border-sky-500/40 text-[9px] font-mono text-sky-300 font-bold uppercase">Bilimsel Odak • Tavsiye Edilen</span>
+              </div>
+              <div class="text-[11px] text-[#cbd5e1] truncate mt-0.5">Arka plandan ayrılmış net çalışma kutucuğu & sıfır göz yorgunluğu</div>
+              <div class="text-[9px] font-mono text-sky-300/90 mt-0.5 truncate">🔤 Lexend (Kelime) + Atkinson Hyperlegible (Metin) • Gece Slate</div>
+            </div>
+          </div>
+          <span id="themeCheck-slate" class="hidden text-sky-400 text-base font-bold shrink-0">✓</span>
+        </button>
+
         <!-- Theme 1: Crimson -->
         <button onclick="selectTheme('crimson')" id="themeBtn-crimson" class="theme-card-btn w-full p-3 rounded-2xl border border-rose-500/50 bg-[#140609] text-left flex items-center justify-between gap-2 transition hover:border-rose-400">
           <div class="flex items-center gap-2.5 min-w-0">
@@ -5341,13 +5443,14 @@
       selectMode(hubDefaults[hubId] || 'flashcards');
     }
 
-    // ==================== 8 TYPOGRAPHY & ATMOSPHERIC THEMES ENGINE ====================
+    // ==================== 9 TYPOGRAPHY & ATMOSPHERIC THEMES ENGINE ====================
     function applyTheme(themeName) {
-      const validThemes = ['crimson', 'parchment', 'emerald', 'sapphire', 'terminal', 'hyperlegible', 'amethyst', 'ivory'];
-      const theme = validThemes.includes(themeName) ? themeName : 'crimson';
+      const validThemes = ['slate', 'crimson', 'parchment', 'emerald', 'sapphire', 'terminal', 'hyperlegible', 'amethyst', 'ivory'];
+      const theme = validThemes.includes(themeName) ? themeName : 'slate';
       document.documentElement.setAttribute('data-theme', theme);
 
       const metaColors = {
+        slate: '#0d1117',
         crimson: '#0c0406',
         parchment: '#110d09',
         emerald: '#050f0c',
