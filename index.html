@@ -873,7 +873,7 @@
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 14px rgba(5, 150, 105, 0.3) !important;
     }
 
-    /* ==================== THEME 9: ODAK MODU (SAF AMOLED SİYAHI & YÜKSEK KONTRASTLI TUŞLAR) ==================== */
+    /* ==================== THEME 9: ODAK MODU (SAF AMOLED SİYAH & BEYAZ - SIFIR GRİLİK) ==================== */
     [data-theme="slate"] {
       --font-sans: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-serif: 'Lexend', -apple-system, sans-serif;
@@ -881,100 +881,201 @@
       --font-mono: 'JetBrains Mono', monospace;
       --body-tracking: 0.015em;
       --theme-bg-body: #000000;
-      --theme-bg-card: #0b0b0d;
-      --theme-border: rgba(255, 255, 255, 0.22);
+      --theme-bg-card: #000000;
+      --theme-border: #ffffff;
       --theme-accent: #ffffff;
-      --theme-accent-glow: rgba(255, 255, 255, 0.4);
+      --theme-accent-glow: rgba(255, 255, 255, 0.5);
     }
     [data-theme="slate"] body {
       background-color: #000000 !important;
       color: #ffffff !important;
       line-height: 1.65;
     }
-    [data-theme="slate"] #auraBase {
-      background: none !important;
+    [data-theme="slate"] #auraBase,
+    [data-theme="slate"] #ambientSystem,
+    [data-theme="slate"] #heatVignette {
+      display: none !important;
       opacity: 0 !important;
+      background: none !important;
     }
     [data-theme="slate"] nav {
-      background-color: rgba(10, 10, 12, 0.96) !important;
-      border-color: rgba(255, 255, 255, 0.18) !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+      background-color: #000000 !important;
+      border-bottom: 2px solid #ffffff !important;
+      box-shadow: none !important;
     }
     [data-theme="slate"] .bg-\[\#140609\],
     [data-theme="slate"] .bg-\[\#120407\]\/70,
     [data-theme="slate"] .bg-\[\#16060a\]\/90,
-    [data-theme="slate"] .bg-\[\#18080c\] {
-      background-color: #0d0d10 !important;
-      border-color: rgba(255, 255, 255, 0.20) !important;
+    [data-theme="slate"] .bg-\[\#18080c\],
+    [data-theme="slate"] .bg-slate-900,
+    [data-theme="slate"] .bg-slate-900\/90,
+    [data-theme="slate"] .bg-slate-800,
+    [data-theme="slate"] .bg-slate-950,
+    [data-theme="slate"] .bg-black\/30,
+    [data-theme="slate"] .bg-black\/40,
+    [data-theme="slate"] .bg-black\/50,
+    [data-theme="slate"] .bg-black\/60,
+    [data-theme="slate"] .bg-white\/\[0\.03\],
+    [data-theme="slate"] .bg-white\/\[0\.04\],
+    [data-theme="slate"] .bg-white\/\[0\.05\],
+    [data-theme="slate"] .bg-white\/\[0\.06\],
+    [data-theme="slate"] .bg-white\/\[0\.08\],
+    [data-theme="slate"] .bg-rose-950\/20,
+    [data-theme="slate"] .bg-cyan-950\/20,
+    [data-theme="slate"] .bg-amber-950\/20 {
+      background-color: #000000 !important;
+      background-image: none !important;
+      border-color: rgba(255, 255, 255, 0.35) !important;
     }
-    /* Kutucuk: Saf AMOLED üzerinde jilet gibi ayrılan yüksek kontrastlı yüzey */
-    [data-theme="slate"] .card-front {
-      background: #0d0d10 !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 30px 60px rgba(0, 0, 0, 1) !important;
-    }
+    /* Kartlar: Kusursuz Saf AMOLED Siyah + Keskin Beyaz Çerçeve */
+    [data-theme="slate"] .card-front,
     [data-theme="slate"] .card-back {
-      background: #111115 !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.30) !important;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 30px 60px rgba(0, 0, 0, 1) !important;
+      background-color: #000000 !important;
+      background: #000000 !important;
+      background-image: none !important;
+      border: 2px solid #ffffff !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 30px 60px rgba(0, 0, 0, 1) !important;
     }
-    /* AMOLED Yüksek Kontrastlı Butonlar */
+    /* Siyah/Beyaz Netliği Butonlar */
     [data-theme="slate"] .btn-emerald-tactile {
-      background: #022c22 !important;
-      border: 2px solid #10b981 !important;
-      color: #ffffff !important;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.45) !important;
+      background: #000000 !important;
+      border: 2px solid #22c55e !important;
+      color: #22c55e !important;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4) !important;
+      font-weight: 800 !important;
+    }
+    [data-theme="slate"] .btn-emerald-tactile:hover {
+      background: #22c55e !important;
+      color: #000000 !important;
     }
     [data-theme="slate"] .btn-rose-tactile {
-      background: #3b0714 !important;
+      background: #000000 !important;
       border: 2px solid #f43f5e !important;
-      color: #ffffff !important;
-      box-shadow: 0 0 16px rgba(244, 63, 94, 0.45) !important;
+      color: #f43f5e !important;
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.4) !important;
+      font-weight: 800 !important;
+    }
+    [data-theme="slate"] .btn-rose-tactile:hover {
+      background: #f43f5e !important;
+      color: #000000 !important;
     }
     [data-theme="slate"] .btn-glass-subtle {
-      background: #151518 !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+      background: #000000 !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
       color: #ffffff !important;
+    }
+    [data-theme="slate"] .btn-glass-subtle:hover {
+      background: #ffffff !important;
+      border-color: #ffffff !important;
+      color: #000000 !important;
     }
     [data-theme="slate"] .quiz-opt-btn,
     [data-theme="slate"] .cloze-opt-btn,
-    [data-theme="slate"] .exam-opt-btn {
-      background: #111115 !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+    [data-theme="slate"] .exam-opt-btn,
+    [data-theme="slate"] .match-card,
+    [data-theme="slate"] #examOptionsContainer button {
+      background: #000000 !important;
+      border: 2px solid rgba(255, 255, 255, 0.4) !important;
       color: #ffffff !important;
     }
     [data-theme="slate"] .quiz-opt-btn:hover,
-    [data-theme="slate"] .cloze-opt-btn:hover {
-      background: #1a1a22 !important;
-      border-color: rgba(255, 255, 255, 0.45) !important;
+    [data-theme="slate"] .cloze-opt-btn:hover,
+    [data-theme="slate"] .match-card:hover,
+    [data-theme="slate"] #examOptionsContainer button:hover:not([disabled]) {
+      background: #ffffff !important;
+      border-color: #ffffff !important;
+      color: #000000 !important;
+    }
+    [data-theme="slate"] .quiz-opt-btn:hover *,
+    [data-theme="slate"] .cloze-opt-btn:hover *,
+    [data-theme="slate"] .match-card:hover *,
+    [data-theme="slate"] #examOptionsContainer button:hover:not([disabled]) * {
+      color: #000000 !important;
+      background: transparent !important;
+    }
+    [data-theme="slate"] .quiz-opt-btn span:first-child,
+    [data-theme="slate"] .cloze-opt-btn span:first-child {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
     }
     [data-theme="slate"] .lvl-btn {
-      background: #111115 !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
-      color: #e2e8f0 !important;
+      background: #000000 !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+      color: #ffffff !important;
+    }
+    [data-theme="slate"] .lvl-btn.active,
+    [data-theme="slate"] .lvl-btn:hover {
+      background: #ffffff !important;
+      border-color: #ffffff !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
     }
     [data-theme="slate"] .bg-rose-900\/60,
     [data-theme="slate"] #btnModeSelector,
     [data-theme="slate"] .btn-primary-glow {
       background: #ffffff !important;
-      border: 1.5px solid #ffffff !important;
+      border: 2px solid #ffffff !important;
       color: #000000 !important;
-      font-weight: 700 !important;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3) !important;
-    }
-    [data-theme="slate"] .text-rose-300 { color: #f43f5e !important; }
-    [data-theme="slate"] .text-rose-400 { color: #fb7185 !important; }
-    [data-theme="slate"] .border-rose-500\/30, [data-theme="slate"] .border-rose-500\/40 {
-      border-color: rgba(255, 255, 255, 0.25) !important;
+      font-weight: 800 !important;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
     }
     [data-theme="slate"] .hub-pill.active {
       background: #ffffff !important;
       border-color: #ffffff !important;
       color: #000000 !important;
-      font-weight: 700 !important;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.35) !important;
+      font-weight: 800 !important;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.4) !important;
     }
-
+    /* Bulanık/Gri Metinleri Bembeyaza Çek */
+    [data-theme="slate"] .text-slate-400,
+    [data-theme="slate"] .text-slate-500,
+    [data-theme="slate"] .text-slate-300,
+    [data-theme="slate"] .text-\[\#a8998c\],
+    [data-theme="slate"] .text-\[\#a8998c\]\/70,
+    [data-theme="slate"] .text-\[\#a8998c\]\/60,
+    [data-theme="slate"] .text-\[\#a8998c\]\/50,
+    [data-theme="slate"] .text-\[\#a8998c\]\/40,
+    [data-theme="slate"] .text-\[\#a8998c\]\/30,
+    [data-theme="slate"] .text-\[\#d6c7b2\],
+    [data-theme="slate"] .text-\[\#d6c7b2\]\/75,
+    [data-theme="slate"] .text-\[\#d6c7b2\]\/70,
+    [data-theme="slate"] .text-\[\#d6c7b2\]\/60,
+    [data-theme="slate"] .text-\[\#d6c7b2\]\/50,
+    [data-theme="slate"] .text-\[\#e8dbcc\],
+    [data-theme="slate"] .text-\[\#ede4d8\],
+    [data-theme="slate"] .text-\[\#fdf6ee\] {
+      color: #ffffff !important;
+      opacity: 1 !important;
+    }
+    [data-theme="slate"] #fcWord,
+    [data-theme="slate"] #fcTr,
+    [data-theme="slate"] #fcEx,
+    [data-theme="slate"] #fcIpa,
+    [data-theme="slate"] #fcPos,
+    [data-theme="slate"] #quizWord,
+    [data-theme="slate"] #clozeSentenceText,
+    [data-theme="slate"] #examQuestionPrompt {
+      color: #ffffff !important;
+    }
+    [data-theme="slate"] #fcLvlBadge,
+    [data-theme="slate"] #fcAwlBadge,
+    [data-theme="slate"] #fcLeitnerBadge,
+    [data-theme="slate"] #fcMemoryHealthBox,
+    [data-theme="slate"] #fcModeBadge,
+    [data-theme="slate"] #btnToggleBlitz,
+    [data-theme="slate"] #fcWordStatusBadge,
+    [data-theme="slate"] #fcBackSubTitle,
+    [data-theme="slate"] #fcBackLeitnerBadge,
+    [data-theme="slate"] .fc-example-sentence,
+    [data-theme="slate"] #fcBottomHint,
+    [data-theme="slate"] #fcMirrorBox > div,
+    [data-theme="slate"] #fcEchoBox > div,
+    [data-theme="slate"] #fcDnaBox > div {
+      background: #000000 !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+      color: #ffffff !important;
+    }
 
     /* ==================== 3-KATMANLI ULTRA-ODAK TASARIMI (FOCUS MODE) ==================== */
     :root, [data-theme="crimson"] {
@@ -1067,76 +1168,173 @@
     }
     [data-theme="slate"] {
       --focus-bg: #000000;
-      --focus-card: #0c0c0f;
-      --focus-card-border: rgba(255, 255, 255, 0.28);
-      --focus-opt: #141418;
-      --focus-opt-border: rgba(255, 255, 255, 0.22);
-      --focus-opt-hover: #22222a;
+      --focus-card: #000000;
+      --focus-card-border: #ffffff;
+      --focus-opt: #000000;
+      --focus-opt-border: rgba(255, 255, 255, 0.5);
+      --focus-opt-hover: #ffffff;
       --focus-accent: #ffffff;
       --focus-text: #ffffff;
-      --focus-text-muted: #a1a1aa;
+      --focus-text-muted: #ffffff;
     }
 
-    /* ODAK MODU AKTİF OLDUĞUNDA (body.focus-mode-active): */
-    /* 1. KATMAN: Arka Plan - Dingin, göz almayan, sıfır alev/parlama müdahalesi */
+    /* ODAK MODU AKTİF OLDUĞUNDA (body.focus-mode-active): SAF AMOLED SİYAH & BEYAZ */
     body.focus-mode-active {
-      background-color: var(--focus-bg) !important;
+      background-color: #000000 !important;
+      background: #000000 !important;
+      color: #ffffff !important;
     }
     body.focus-mode-active #ambientSystem,
-    body.focus-mode-active #heatVignette {
+    body.focus-mode-active #heatVignette,
+    body.focus-mode-active #auraBase {
       display: none !important;
       opacity: 0 !important;
+      background: none !important;
     }
     body.focus-mode-active #levelFilterBar {
       display: none !important;
     }
     body.focus-mode-active nav {
-      background: var(--focus-bg) !important;
-      border-color: rgba(255, 255, 255, 0.05) !important;
+      background: #000000 !important;
+      border-bottom: 2px solid #ffffff !important;
       box-shadow: none !important;
     }
 
-    /* 2. KATMAN: Soru Kartı - Dikkat Dağıtmayan, Tırnaksız Atkinson Hyperlegible Fontu, Yüksek Kontrast */
+    /* 2. KATMAN: Soru ve Flashcard Kartı - Saf Siyah + Keskin Beyaz Kenarlık */
     body.focus-mode-active #clozeQuestionBox,
     body.focus-mode-active #quizQuestionBox,
     body.focus-mode-active #readingQuestionsCard,
     body.focus-mode-active #examOptionsContainer,
     body.focus-mode-active #grammarSpotterSection > div,
-    body.focus-mode-active #grammarScrambleSection > div {
-      background-color: var(--focus-card) !important;
-      border: 1.5px solid var(--focus-card-border) !important;
-      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.85) !important;
+    body.focus-mode-active #grammarScrambleSection > div,
+    body.focus-mode-active .card-front,
+    body.focus-mode-active .card-back {
+      background-color: #000000 !important;
+      background: #000000 !important;
+      background-image: none !important;
+      border: 2px solid #ffffff !important;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 30px 60px rgba(0, 0, 0, 1) !important;
       font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
     body.focus-mode-active #clozeSentenceText,
     body.focus-mode-active #quizWord,
     body.focus-mode-active #examQuestionPrompt,
-    body.focus-mode-active #readingQuestionsContainer {
+    body.focus-mode-active #readingQuestionsContainer,
+    body.focus-mode-active #fcWord,
+    body.focus-mode-active #fcTr,
+    body.focus-mode-active #fcEx,
+    body.focus-mode-active #fcIpa,
+    body.focus-mode-active #fcPos {
       font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
       letter-spacing: 0.015em !important;
       line-height: 1.85 !important;
-      color: var(--focus-text) !important;
+      color: #ffffff !important;
+      opacity: 1 !important;
     }
 
-    /* 3. KATMAN: Şıklar - Belirgin, Temiz Ayrı Sınırları Olan Katman */
+    /* 3. KATMAN: Şıklar - Yüksek Kontrastlı Siyah/Beyaz */
     body.focus-mode-active .cloze-opt-btn,
     body.focus-mode-active .quiz-opt-btn,
+    body.focus-mode-active .match-card,
     body.focus-mode-active #examOptionsContainer button,
     body.focus-mode-active #readingQuestionsContainer button {
-      background-color: var(--focus-opt) !important;
-      border: 1.5px solid var(--focus-opt-border) !important;
+      background-color: #000000 !important;
+      border: 2px solid rgba(255, 255, 255, 0.45) !important;
+      color: #ffffff !important;
       font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
       letter-spacing: 0.01em !important;
       transition: all 0.15s ease !important;
     }
     body.focus-mode-active .cloze-opt-btn:hover,
     body.focus-mode-active .quiz-opt-btn:hover,
+    body.focus-mode-active .match-card:hover,
     body.focus-mode-active #examOptionsContainer button:hover:not([disabled]),
     body.focus-mode-active #readingQuestionsContainer button:hover:not([disabled]) {
-      background-color: var(--focus-opt-hover) !important;
-      border-color: var(--focus-accent) !important;
+      background-color: #ffffff !important;
+      border-color: #ffffff !important;
+      color: #000000 !important;
       transform: translateY(-1px) !important;
+    }
+    body.focus-mode-active .cloze-opt-btn:hover *,
+    body.focus-mode-active .quiz-opt-btn:hover *,
+    body.focus-mode-active .match-card:hover *,
+    body.focus-mode-active #examOptionsContainer button:hover:not([disabled]) *,
+    body.focus-mode-active #readingQuestionsContainer button:hover:not([disabled]) * {
+      color: #000000 !important;
+      background: transparent !important;
+    }
+    body.focus-mode-active .quiz-opt-btn span:first-child,
+    body.focus-mode-active .cloze-opt-btn span:first-child {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
+    }
+
+    /* Tüm Silik ve Gri Metinler Bembeyaza Çekildi */
+    body.focus-mode-active .text-slate-400,
+    body.focus-mode-active .text-slate-500,
+    body.focus-mode-active .text-slate-300,
+    body.focus-mode-active .text-\[\#a8998c\],
+    body.focus-mode-active .text-\[\#a8998c\]\/70,
+    body.focus-mode-active .text-\[\#a8998c\]\/60,
+    body.focus-mode-active .text-\[\#a8998c\]\/50,
+    body.focus-mode-active .text-\[\#a8998c\]\/40,
+    body.focus-mode-active .text-\[\#a8998c\]\/30,
+    body.focus-mode-active .text-\[\#d6c7b2\],
+    body.focus-mode-active .text-\[\#d6c7b2\]\/75,
+    body.focus-mode-active .text-\[\#d6c7b2\]\/70,
+    body.focus-mode-active .text-\[\#d6c7b2\]\/60,
+    body.focus-mode-active .text-\[\#d6c7b2\]\/50,
+    body.focus-mode-active .text-\[\#e8dbcc\],
+    body.focus-mode-active .text-\[\#ede4d8\],
+    body.focus-mode-active .text-\[\#fdf6ee\] {
+      color: #ffffff !important;
+      opacity: 1 !important;
+    }
+
+    /* Rozetler, Can Barı ve Bilgi Kutuları */
+    body.focus-mode-active #fcLvlBadge,
+    body.focus-mode-active #fcAwlBadge,
+    body.focus-mode-active #fcLeitnerBadge,
+    body.focus-mode-active #fcMemoryHealthBox,
+    body.focus-mode-active #fcModeBadge,
+    body.focus-mode-active #btnToggleBlitz,
+    body.focus-mode-active #fcWordStatusBadge,
+    body.focus-mode-active #fcBackSubTitle,
+    body.focus-mode-active #fcBackLeitnerBadge,
+    body.focus-mode-active .fc-example-sentence,
+    body.focus-mode-active #fcBottomHint,
+    body.focus-mode-active #fcMirrorBox > div,
+    body.focus-mode-active #fcEchoBox > div,
+    body.focus-mode-active #fcDnaBox > div {
+      background: #000000 !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+      color: #ffffff !important;
+    }
+
+    /* Flashcard Biliyorum / Bilmiyorum Butonları */
+    body.focus-mode-active .btn-emerald-tactile {
+      background: #000000 !important;
+      border: 2px solid #22c55e !important;
+      color: #22c55e !important;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4) !important;
+      font-weight: 800 !important;
+    }
+    body.focus-mode-active .btn-emerald-tactile:hover {
+      background: #22c55e !important;
+      color: #000000 !important;
+    }
+    body.focus-mode-active .btn-rose-tactile {
+      background: #000000 !important;
+      border: 2px solid #f43f5e !important;
+      color: #f43f5e !important;
+      box-shadow: 0 0 20px rgba(244, 63, 94, 0.4) !important;
+      font-weight: 800 !important;
+    }
+    body.focus-mode-active .btn-rose-tactile:hover {
+      background: #f43f5e !important;
+      color: #000000 !important;
     }
 
     /* Mobile-First Strict Overflow & Responsive Layout */
@@ -5201,13 +5399,11 @@
       const btn = document.getElementById('btnFocusToggle');
       if (!btn) return;
       if (isFocusMode) {
-        btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span class="font-bold text-emerald-300">Odak Açık</span>`;
-        btn.classList.add('border-emerald-500/50', 'bg-emerald-950/40', 'text-emerald-200');
-        btn.classList.remove('border-white/[0.08]', 'bg-black/40', 'text-[#d6c7b2]');
+        btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-white animate-pulse"></span><span class="font-bold text-white">Odak Açık</span>`;
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-mono border-2 border-white bg-black text-white font-bold flex items-center gap-1.5 shadow-sm';
       } else {
         btn.innerHTML = `<span>🎯</span> <span>Odak [F]</span>`;
-        btn.classList.remove('border-emerald-500/50', 'bg-emerald-950/40', 'text-emerald-200');
-        btn.classList.add('border-white/[0.08]', 'bg-black/40', 'text-[#d6c7b2]');
+        btn.className = 'px-3 py-1.5 rounded-xl text-xs font-mono border border-white/20 bg-black/60 text-slate-200 hover:border-white hover:text-white transition flex items-center gap-1.5';
       }
     }
 
