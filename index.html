@@ -763,6 +763,158 @@
     }
 
 
+    /* ==================== 3-KATMANLI ULTRA-ODAK TASARIMI (FOCUS MODE) ==================== */
+    :root, [data-theme="crimson"] {
+      --focus-bg: #090305;
+      --focus-card: #18090f;
+      --focus-card-border: rgba(225, 29, 72, 0.32);
+      --focus-opt: #200d15;
+      --focus-opt-border: rgba(255, 255, 255, 0.12);
+      --focus-opt-hover: #2d121e;
+      --focus-accent: #f43f5e;
+      --focus-text: #fdf6ee;
+      --focus-text-muted: #d6c7b2;
+    }
+    [data-theme="parchment"] {
+      --focus-bg: #0d0a07;
+      --focus-card: #1d1510;
+      --focus-card-border: rgba(217, 119, 6, 0.35);
+      --focus-opt: #261b14;
+      --focus-opt-border: rgba(245, 158, 11, 0.22);
+      --focus-opt-hover: #33251c;
+      --focus-accent: #f59e0b;
+      --focus-text: #f5ede1;
+      --focus-text-muted: #c9bbae;
+    }
+    [data-theme="emerald"] {
+      --focus-bg: #030a08;
+      --focus-card: #0a1b14;
+      --focus-card-border: rgba(16, 185, 129, 0.32);
+      --focus-opt: #10261d;
+      --focus-opt-border: rgba(16, 185, 129, 0.22);
+      --focus-opt-hover: #173528;
+      --focus-accent: #10b981;
+      --focus-text: #e8f5f0;
+      --focus-text-muted: #a3c4b8;
+    }
+    [data-theme="sapphire"] {
+      --focus-bg: #030710;
+      --focus-card: #09152b;
+      --focus-card-border: rgba(56, 189, 248, 0.35);
+      --focus-opt: #102140;
+      --focus-opt-border: rgba(56, 189, 248, 0.22);
+      --focus-opt-hover: #162c54;
+      --focus-accent: #38bdf8;
+      --focus-text: #e6f1fc;
+      --focus-text-muted: #a4b9d4;
+    }
+    [data-theme="terminal"] {
+      --focus-bg: #030508;
+      --focus-card: #091320;
+      --focus-card-border: rgba(34, 211, 238, 0.38);
+      --focus-opt: #0f1c2d;
+      --focus-opt-border: rgba(34, 211, 238, 0.22);
+      --focus-opt-hover: #14273e;
+      --focus-accent: #22d3ee;
+      --focus-text: #e2f8fc;
+      --focus-text-muted: #9cc1cc;
+    }
+    [data-theme="hyperlegible"] {
+      --focus-bg: #06070c;
+      --focus-card: #111729;
+      --focus-card-border: rgba(129, 140, 248, 0.38);
+      --focus-opt: #18223d;
+      --focus-opt-border: rgba(129, 140, 248, 0.25);
+      --focus-opt-hover: #202d50;
+      --focus-accent: #818cf8;
+      --focus-text: #f8fafc;
+      --focus-text-muted: #cbd5e1;
+    }
+    [data-theme="amethyst"] {
+      --focus-bg: #06030e;
+      --focus-card: #130a27;
+      --focus-card-border: rgba(167, 139, 250, 0.35);
+      --focus-opt: #1d103b;
+      --focus-opt-border: rgba(167, 139, 250, 0.22);
+      --focus-opt-hover: #291752;
+      --focus-accent: #c084fc;
+      --focus-text: #f3ebff;
+      --focus-text-muted: #beabd9;
+    }
+    [data-theme="ivory"] {
+      --focus-bg: #ece5d8;
+      --focus-card: #fffdf9;
+      --focus-card-border: rgba(120, 90, 65, 0.35);
+      --focus-opt: #f4ece0;
+      --focus-opt-border: rgba(120, 90, 65, 0.25);
+      --focus-opt-hover: #e8ded0;
+      --focus-accent: #9f1239;
+      --focus-text: #1a1410;
+      --focus-text-muted: #57463a;
+    }
+
+    /* ODAK MODU AKTİF OLDUĞUNDA (body.focus-mode-active): */
+    /* 1. KATMAN: Arka Plan - Dingin, göz almayan, sıfır alev/parlama müdahalesi */
+    body.focus-mode-active {
+      background-color: var(--focus-bg) !important;
+    }
+    body.focus-mode-active #ambientSystem,
+    body.focus-mode-active #heatVignette {
+      display: none !important;
+      opacity: 0 !important;
+    }
+    body.focus-mode-active #levelFilterBar {
+      display: none !important;
+    }
+    body.focus-mode-active nav {
+      background: var(--focus-bg) !important;
+      border-color: rgba(255, 255, 255, 0.05) !important;
+      box-shadow: none !important;
+    }
+
+    /* 2. KATMAN: Soru Kartı - Dikkat Dağıtmayan, Tırnaksız Atkinson Hyperlegible Fontu, Yüksek Kontrast */
+    body.focus-mode-active #clozeQuestionBox,
+    body.focus-mode-active #quizQuestionBox,
+    body.focus-mode-active #readingQuestionsCard,
+    body.focus-mode-active #examOptionsContainer,
+    body.focus-mode-active #grammarSpotterSection > div,
+    body.focus-mode-active #grammarScrambleSection > div {
+      background-color: var(--focus-card) !important;
+      border: 1.5px solid var(--focus-card-border) !important;
+      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.85) !important;
+      font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+
+    body.focus-mode-active #clozeSentenceText,
+    body.focus-mode-active #quizWord,
+    body.focus-mode-active #examQuestionPrompt,
+    body.focus-mode-active #readingQuestionsContainer {
+      font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      letter-spacing: 0.015em !important;
+      line-height: 1.85 !important;
+      color: var(--focus-text) !important;
+    }
+
+    /* 3. KATMAN: Şıklar - Belirgin, Temiz Ayrı Sınırları Olan Katman */
+    body.focus-mode-active .cloze-opt-btn,
+    body.focus-mode-active .quiz-opt-btn,
+    body.focus-mode-active #examOptionsContainer button,
+    body.focus-mode-active #readingQuestionsContainer button {
+      background-color: var(--focus-opt) !important;
+      border: 1.5px solid var(--focus-opt-border) !important;
+      font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      letter-spacing: 0.01em !important;
+      transition: all 0.15s ease !important;
+    }
+    body.focus-mode-active .cloze-opt-btn:hover,
+    body.focus-mode-active .quiz-opt-btn:hover,
+    body.focus-mode-active #examOptionsContainer button:hover:not([disabled]),
+    body.focus-mode-active #readingQuestionsContainer button:hover:not([disabled]) {
+      background-color: var(--focus-opt-hover) !important;
+      border-color: var(--focus-accent) !important;
+      transform: translateY(-1px) !important;
+    }
+
     /* Mobile-First Strict Overflow & Responsive Layout */
     html {
       overflow-x: hidden !important;
@@ -876,8 +1028,14 @@
         </div>
       </div>
 
-      <!-- Sağ (Right): Tema + Modlar Ana Butonu (🧭 Modlar ▾) -->
+      <!-- Sağ (Right): Odak Modu + Tema + Modlar Ana Butonu (🧭 Modlar ▾) -->
       <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <!-- Ultra-Focus Mode Button -->
+        <button type="button" onclick="toggleFocusMode()" id="btnFocusToggle" title="Ultra-Odak Modu Aç/Kapat [Kısayol: F]" class="px-2.5 py-1.5 sm:py-2 bg-black/40 hover:bg-white/[0.08] border border-white/[0.08] text-[#d6c7b2] hover:text-white rounded-xl transition flex items-center gap-1.5 text-xs active:scale-95 shadow-sm">
+          <span class="text-xs">🎯</span>
+          <span class="hidden sm:inline font-mono text-[11px]" id="focusBtnLabel">Odak [F]</span>
+        </button>
+
         <!-- Theme Switcher Button -->
         <button type="button" onclick="toggleThemeModal()" id="btnThemeToggle" title="Tema Değiştir (🎨)" class="p-1.5 sm:p-2 bg-black/40 hover:bg-white/[0.06] border border-white/[0.08] text-[#d6c7b2] hover:text-white rounded-xl transition flex items-center justify-center text-xs active:scale-95">
           <span>🎨</span>
@@ -3335,11 +3493,190 @@
           <span>Seçilen mod anında yüklenir ve durumunuz korunur.</span>
         </div>
         <div class="flex items-center gap-2">
+          <button type="button" onclick="openLearnerTrackModal()" title="Seviye Belirle & Öğrenme Rotası" class="px-2.5 py-1.5 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-500/30 text-rose-300 hover:text-white transition text-xs font-medium flex items-center gap-1.5">
+            <span>🎯</span> <span class="hidden sm:inline">Seviyemi Belirle</span>
+          </button>
           <button type="button" onclick="openWelcomeGuideFromMenu()" title="Nasıl Kullanılır? (Rehber)" class="px-2.5 py-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/[0.06] text-[#d6c7b2]/70 hover:text-white transition text-xs font-mono flex items-center gap-1">
             <span>?</span> <span class="hidden sm:inline">Rehber</span>
           </button>
           <button type="button" onclick="closeModeSelectModal()" class="px-3.5 py-1.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-slate-300 hover:text-white transition text-xs font-medium">
             Vazgeç
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== LEARNER TRACK & PLACEMENT TEST MODAL ==================== -->
+  <div id="learnerTrackModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md">
+    <div class="absolute inset-0" onclick="closeLearnerTrackModal()"></div>
+    <div class="bg-[#140609] border border-rose-500/40 rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden relative z-10 text-left">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-white/[0.08] flex items-center justify-between gap-3 bg-gradient-to-r from-rose-950/50 via-black/60 to-black/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-rose-950/80 border border-rose-500/40 flex items-center justify-center text-lg shrink-0">
+            🎯
+          </div>
+          <div>
+            <h3 class="font-serif-hero text-lg sm:text-xl font-bold text-[#fdf6ee] leading-tight">Öğrenme Rotası & Seviye Belirleme</h3>
+            <p class="text-[11px] text-[#a8998c]">Sıfırdan başlayanlardan C1 & AWL adaylarına özel optimize edilmiş çalışma rotaları</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeLearnerTrackModal()" title="Kapat" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition text-sm flex items-center justify-center w-8 h-8 shrink-0">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body: Screen 1 (Track Selection & Quick Test CTA) -->
+      <div id="trackScreenSelect" class="p-4 sm:p-6 overflow-y-auto space-y-4 scrollbar-thin">
+        <!-- Placement Test Banner CTA -->
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-rose-950/40 via-amber-950/30 to-black/50 border border-amber-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-[10px] font-mono font-bold text-amber-300 uppercase">
+              ⚡ Hızlı Teşhis (2 Dakika)
+            </div>
+            <div class="text-sm font-bold text-white">Seviyeni Bilmiyor musun? 10 Soruluk Seviye Testi</div>
+            <div class="text-xs text-[#d6c7b2]/80 leading-snug">A1'den C1'e kalibre edilmiş sorularla seviyeni ölç, sana en uygun çalışma modlarını açalım.</div>
+          </div>
+          <button type="button" onclick="startPlacementTest()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs shrink-0 transition shadow-md active:scale-95 flex items-center justify-center gap-1.5">
+            <span>Testi Başlat</span> ➔
+          </button>
+        </div>
+
+        <div class="flex items-center gap-3 my-2">
+          <div class="h-px bg-white/[0.08] flex-1"></div>
+          <span class="text-[10px] font-mono uppercase text-[#a8998c] tracking-wider">veya doğrudan bir rota seç</span>
+          <div class="h-px bg-white/[0.08] flex-1"></div>
+        </div>
+
+        <!-- 3 Track Options -->
+        <div class="space-y-3">
+          <!-- Track 1: Beginner -->
+          <div class="p-4 rounded-2xl bg-black/40 border border-emerald-500/30 hover:border-emerald-500/60 transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🌱</span>
+                <span class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wide">A1–A2 Temel Rota</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-500/30">Sıfırdan Başlayanlar</span>
+              </div>
+              <p class="text-xs text-[#d6c7b2] leading-snug">
+                İngilizceye yeni başlıyorum. Temel 500 kelime, sesli telaffuz & dikte, temel gramer zamanları ve Türkçe karşılıklarla adım adım ilerlemek istiyorum.
+              </p>
+              <div class="text-[10px] text-[#a8998c] flex flex-wrap items-center gap-x-3 gap-y-1 pt-0.5">
+                <span>✓ Türkçe Destekli Kartlar</span>
+                <span>✓ Temel Gramer & Sesler</span>
+                <span>✓ Basit Boşluk Doldurma</span>
+              </div>
+            </div>
+            <button type="button" onclick="selectLearnerTrack('beginner')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-950/60 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-200 font-semibold text-xs shrink-0 transition active:scale-95">
+              Bu Rotayı Seç
+            </button>
+          </div>
+
+          <!-- Track 2: Intermediate -->
+          <div class="p-4 rounded-2xl bg-black/40 border border-blue-500/30 hover:border-blue-500/60 transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🚀</span>
+                <span class="text-xs font-mono font-bold text-blue-400 uppercase tracking-wide">B1–B2 Orta Düzey Rota</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-950/60 text-blue-300 border border-blue-500/30">Gelişim & Akıcılık</span>
+              </div>
+              <p class="text-xs text-[#d6c7b2] leading-snug">
+                Temelim var. Kelime haznemi genişletmek, 250 Phrasal Verb öğrenmek, bağlaçları/kalıpları pekiştirmek ve okuduğumu rahat anlamak istiyorum.
+              </p>
+              <div class="text-[10px] text-[#a8998c] flex flex-wrap items-center gap-x-3 gap-y-1 pt-0.5">
+                <span>✓ Oxford 3000 & 250 Phrasal Verbs</span>
+                <span>✓ Karışan Dilbilgisi Yapıları</span>
+                <span>✓ Okuma Labı 2.0</span>
+              </div>
+            </div>
+            <button type="button" onclick="selectLearnerTrack('intermediate')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-blue-950/60 hover:bg-blue-900 border border-blue-500/40 text-blue-200 font-semibold text-xs shrink-0 transition active:scale-95">
+              Bu Rotayı Seç
+            </button>
+          </div>
+
+          <!-- Track 3: Advanced -->
+          <div class="p-4 rounded-2xl bg-black/40 border border-rose-500/30 hover:border-rose-500/60 transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🎓</span>
+                <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wide">C1 & AWL İleri Düzey Rota</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-rose-950/60 text-rose-300 border border-rose-500/30">Akademik & Sınav</span>
+              </div>
+              <p class="text-xs text-[#d6c7b2] leading-snug">
+                Hazırlık Muafiyet, YDS/YÖKDİL, IELTS/TOEFL veya akademik makaleler için hazırlanıyorum. Karışan nüans ikizleri, Inversion, Subjunctive ve deneme sınavları istiyorum.
+              </p>
+              <div class="text-[10px] text-[#a8998c] flex flex-wrap items-center gap-x-3 gap-y-1 pt-0.5">
+                <span>✓ AWL & 227 Karışan İkiz</span>
+                <span>✓ C1 Akademik Röntgen & Ton Çevirici</span>
+                <span>✓ Muafiyet Deneme Sınavı</span>
+              </div>
+            </div>
+            <button type="button" onclick="selectLearnerTrack('advanced')" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-rose-950/60 hover:bg-rose-900 border border-rose-500/40 text-rose-200 font-semibold text-xs shrink-0 transition active:scale-95">
+              Bu Rotayı Seç
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Body: Screen 2 (Interactive 10-Question Placement Quiz) -->
+      <div id="trackScreenQuiz" class="hidden p-4 sm:p-6 overflow-y-auto space-y-4 scrollbar-thin">
+        <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
+          <div class="flex items-center gap-2">
+            <span id="placementQuizBadge" class="px-2 py-0.5 rounded-full bg-rose-950/60 border border-rose-500/30 text-[10px] font-mono text-rose-300 font-bold uppercase">Soru 1 / 10</span>
+            <span id="placementQuizLevelTarget" class="text-xs text-[#a8998c]">Ölçülen Seviye: A1</span>
+          </div>
+          <button type="button" onclick="cancelPlacementTest()" class="text-xs text-[#a8998c] hover:text-white transition">İptal Et</button>
+        </div>
+
+        <!-- Question Box (Focus 3-Layer Design) -->
+        <div id="placementQuestionCard" class="p-4 sm:p-5 rounded-2xl bg-black/50 border border-white/[0.12] space-y-2">
+          <div class="text-[10px] font-mono text-rose-300/80 uppercase tracking-wider" id="placementQuestionType">Boşluk Doldurma</div>
+          <p id="placementQuestionText" class="text-base sm:text-lg font-medium text-white leading-relaxed">
+            She _______ to the gym every Monday morning.
+          </p>
+        </div>
+
+        <!-- Options Container -->
+        <div id="placementOptionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <!-- Dynamically populated 4 options -->
+        </div>
+
+        <!-- Feedback & Next Button -->
+        <div id="placementFeedbackBox" class="hidden p-3.5 rounded-xl border text-xs leading-relaxed space-y-2">
+          <div id="placementFeedbackText" class="font-medium"></div>
+          <div class="flex justify-end">
+            <button type="button" id="btnPlacementNext" onclick="nextPlacementQuestion()" class="px-4 py-2 rounded-xl btn-primary-glow text-white font-semibold text-xs">
+              Sonraki Soru ➔
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Body: Screen 3 (Diagnostic Scorecard) -->
+      <div id="trackScreenResult" class="hidden p-5 sm:p-6 overflow-y-auto space-y-4 text-center scrollbar-thin">
+        <div class="w-16 h-16 mx-auto rounded-3xl bg-rose-950/80 border border-rose-500/50 flex items-center justify-center text-3xl shadow-xl">
+          🎯
+        </div>
+        
+        <div class="space-y-1">
+          <div class="text-xs font-mono text-rose-300 uppercase tracking-widest font-bold">Seviye Teşhis Raporu</div>
+          <h4 id="placementResultLevel" class="text-2xl sm:text-3xl font-serif-hero font-bold text-white">B2 - Üst Orta Düzey</h4>
+          <p id="placementResultScore" class="text-xs text-[#a8998c]">10 Sorudan 7 Doğru (%70 Başarı)</p>
+        </div>
+
+        <div id="placementResultDesc" class="p-4 rounded-2xl bg-black/40 border border-white/[0.08] text-xs sm:text-sm text-[#d6c7b2] leading-relaxed text-left">
+          <!-- Dynamic Description -->
+        </div>
+
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5">
+          <button type="button" id="btnApplyPlacementTrack" onclick="applyPlacementResult()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl btn-primary-glow text-white font-bold text-xs sm:text-sm shadow-xl active:scale-95 transition">
+            🚀 Siteyi Bu Seviyeye Göre Yapılandır
+          </button>
+          <button type="button" onclick="startPlacementTest()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] text-slate-300 hover:text-white text-xs font-medium transition">
+            Testi Tekrar Çöz
           </button>
         </div>
       </div>
@@ -3375,19 +3712,19 @@
         <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.07] space-y-1.5">
           <div class="text-xs font-mono uppercase tracking-wider text-rose-300 font-bold">🎯 Bu Site Ne İşe Yarar?</div>
           <p class="text-[#d6c7b2] text-xs sm:text-sm leading-relaxed">
-            Üniversite Hazırlık (Proficiency), YDS/YÖKDİL, TOEFL/IELTS ve akademik İngilizce için gereken <strong>3.750 Oxford, AWL & Phrasal Verb kelimesini</strong>, <strong>227 sık karıştırılan nüans ikizini</strong>, akademik edat kalıplarını, A1–C1 tüm gramer konularını ve okuma metinlerini kuru ezber yerine <strong>5 kutulu aralıklı tekrar (Leitner sistemi)</strong> ile kalıcı olarak öğrenmeni sağlar.
+            İster <strong>sıfırdan İngilizce öğren (A1–A2)</strong>, ister <strong>Üniversite Hazırlık (Proficiency), YDS/YÖKDİL, TOEFL/IELTS</strong> için C1 seviyesine çık: <strong>3.750 Oxford, AWL & Phrasal Verb kelimesini</strong>, <strong>227 sık karıştırılan nüans ikizini</strong>, A1–C1 tüm gramer yapılarını ve okuma metinlerini <strong>5 kutulu aralıklı tekrar (Leitner sistemi)</strong> ile kalıcı olarak öğrenmeni sağlar.
           </p>
         </div>
 
-        <!-- 2. Adım Adım Kullanım (6 Güncel Modül) -->
+        <!-- 2. Adım Adım Kullanım (7 Güncel Modül & Özellik) -->
         <div class="space-y-2.5">
           <div class="text-xs font-mono uppercase tracking-wider text-amber-300 font-bold">🚀 Adım Adım Nasıl Kullanılır?</div>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
-              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>1️⃣</span> <span>Kur & Özel Kütüphane Seçimi</span></div>
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>1️⃣</span> <span>Seviye & Rota Belirleme</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                Üst bardan seviyene uygun kuru (<strong class="text-slate-200">A1–C1</strong>) veya sınav odaklı özel paketleri (<strong class="text-rose-300">🎓 AWL</strong>, <strong class="text-cyan-300">🔗 Phrasal Verbs (250)</strong>, <strong class="text-amber-300">⚠️ Karışan İkizler</strong>) seç.
+                İster doğrudan seç (<strong class="text-emerald-300">🌱 A1–A2 Temel</strong>, <strong class="text-blue-300">🚀 B1–B2 Orta</strong>, <strong class="text-rose-300">🎓 C1 & AWL İleri</strong>), ister <strong>10 Soruluk Seviye Testi</strong> ile sistem seviyeni otomatik belirlesin.
               </p>
             </div>
 
@@ -3420,9 +3757,9 @@
             </div>
 
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
-              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>6️⃣</span> <span>C1 Akademik Lab & 8 Font/Renk Teması</span></div>
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>6️⃣</span> <span>Ultra-Odak Modu & 8 Atmosferik Tema</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                <em>Kelime Röntgeni</em> (kök/ek), <em>Cümle Ameliyatı</em>, <em>Ton Çevirici</em> ve <em>Tez Savunması</em> ile C1 analizi yap. Sağ üstteki <strong class="text-rose-300">🎨 Tema</strong> butonundan hem yazı tipini (font) hem atmosferi değiştiren 8 temadan birini seç.
+                Çalışırken göz yorulmasını ve dikkat dağınıklığını önlemek için üst bardan <strong class="text-rose-300">🎯 Odak [F]</strong> modunu aç: Soru kartı, arka plan ve şıklar 3 ayrı sakin katmana ayrılır, fontlar netleşir. <strong class="text-cyan-300">🎨 Tema</strong> ile 8 farklı font+renk paleti seçebilirsin.
               </p>
             </div>
           </div>
@@ -3433,7 +3770,8 @@
           <div><strong class="text-amber-300">🔥 Seri:</strong> Günlük hedef & odak zincirin</div>
           <div><strong class="text-rose-300">🩸 Kasa:</strong> Yanlış yaptığın soruların kutusu</div>
           <div><strong class="text-emerald-300">📦 Kutu 1/5:</strong> Aralıklı tekrar hafıza seviyesi</div>
-          <div><strong class="text-cyan-300">🎨 Tema:</strong> 8 farklı Font + Renk atmosferi</div>
+          <div><strong class="text-cyan-300">🎯 Odak (F):</strong> Dikkat dağıtmayan 3 katmanlı mod</div>
+          <div><strong class="text-indigo-300">🎨 Tema:</strong> 8 farklı Font + Renk atmosferi</div>
         </div>
 
       </div>
@@ -3443,9 +3781,14 @@
         <span class="text-[11px] text-[#a8998c] font-mono">
           💡 Bu rehberi istediğin zaman <strong class="text-slate-300">🧭 Mod</strong> menüsünün köşesindeki <strong class="text-slate-300">?</strong> ikonundan tekrar açabilirsin.
         </span>
-        <button type="button" onclick="closeWelcomeGuideModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl btn-primary-glow text-white font-semibold text-xs sm:text-sm shrink-0">
-          Anladım, Çalışmaya Başla ➔
-        </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button type="button" onclick="closeWelcomeGuideModal(); openLearnerTrackModal();" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-rose-950/60 hover:bg-rose-900/80 border border-rose-500/40 text-rose-200 font-medium text-xs sm:text-sm shrink-0 flex items-center justify-center gap-1.5 transition">
+            <span>🎯</span> Seviyemi Belirle
+          </button>
+          <button type="button" onclick="closeWelcomeGuideModal()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl btn-primary-glow text-white font-semibold text-xs sm:text-sm shrink-0">
+            Anladım, Çalışmaya Başla ➔
+          </button>
+        </div>
       </div>
 
     </div>
@@ -3973,6 +4316,8 @@
       updateShuffleModeUI();
       updateDueCountUI();
       loadSavedTheme();
+      loadSavedFocusMode();
+      loadSavedLearnerTrack();
     }
 
     function saveMemory() {
@@ -4385,11 +4730,369 @@
       }
     }
 
-    // ==================== ZEN FOCUS MODE ====================
+    // ==================== 3-LAYER ULTRA-FOCUS MODE (ADHD-FRIENDLY & EYE-STRAIN FREE) ====================
+    let isFocusMode = false;
     let isZenMode = false;
+    const STORAGE_FOCUS_MODE_KEY = 'voxlearn_focus_mode_v1';
+
+    function updateFocusModeUI() {
+      const btn = document.getElementById('btnFocusToggle');
+      if (!btn) return;
+      if (isFocusMode) {
+        btn.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span class="font-bold text-emerald-300">Odak Açık</span>`;
+        btn.classList.add('border-emerald-500/50', 'bg-emerald-950/40', 'text-emerald-200');
+        btn.classList.remove('border-white/[0.08]', 'bg-black/40', 'text-[#d6c7b2]');
+      } else {
+        btn.innerHTML = `<span>🎯</span> <span>Odak [F]</span>`;
+        btn.classList.remove('border-emerald-500/50', 'bg-emerald-950/40', 'text-emerald-200');
+        btn.classList.add('border-white/[0.08]', 'bg-black/40', 'text-[#d6c7b2]');
+      }
+    }
+
+    function toggleFocusMode(force) {
+      if (typeof force === 'boolean') {
+        isFocusMode = force;
+      } else {
+        isFocusMode = !isFocusMode;
+      }
+      isZenMode = isFocusMode;
+      document.body.classList.toggle('focus-mode-active', isFocusMode);
+      document.body.classList.toggle('zen-active', isFocusMode);
+      updateFocusModeUI();
+      try {
+        localStorage.setItem(STORAGE_FOCUS_MODE_KEY, isFocusMode ? '1' : '0');
+      } catch (e) {}
+      triggerHaptic('tap');
+    }
+
+    function loadSavedFocusMode() {
+      try {
+        const saved = localStorage.getItem(STORAGE_FOCUS_MODE_KEY);
+        if (saved === '1') {
+          toggleFocusMode(true);
+        }
+      } catch (e) {}
+    }
+
     function toggleZenMode() {
-      isZenMode = !isZenMode;
-      document.body.classList.toggle('zen-active', isZenMode);
+      toggleFocusMode();
+    }
+
+    // ==================== LEARNER TRACK & PLACEMENT TEST ENGINE ====================
+    const STORAGE_TRACK_KEY = 'voxlearn_learner_track_v1';
+    let currentLearnerTrack = 'all'; // 'beginner', 'intermediate', 'advanced', or 'all'
+
+    // 10 Calibrated Placement Questions (A1 to C1)
+    const PLACEMENT_TEST_POOL = [
+      {
+        id: 1,
+        level: 'A1',
+        type: 'Gramer (Present Simple)',
+        question: 'She _______ to the gym every Monday morning.',
+        options: ['goes', 'go', 'going', 'is go'],
+        correct: 0,
+        explanation: '3. tekil şahıs (she) için geniş zamanda fiil "-s / -es" takısı alır: "goes".'
+      },
+      {
+        id: 2,
+        level: 'A1',
+        type: 'Kelime (Temel Zıt Anlam)',
+        question: "What is the exact opposite of the word 'expensive'?",
+        options: ['empty', 'heavy', 'cheap', 'dangerous'],
+        correct: 2,
+        explanation: "'Expensive' pahalı demektir; zıttı 'cheap' (ucuz) kelimesidir."
+      },
+      {
+        id: 3,
+        level: 'A2',
+        type: 'Gramer (Past Continuous)',
+        question: 'We _______ dinner when the phone suddenly rang.',
+        options: ['are having', 'were having', 'had had', 'have had'],
+        correct: 1,
+        explanation: "Geçmişte devam eden bir eylem aniden kesildiğinde 'Past Continuous' (were having) kullanılır."
+      },
+      {
+        id: 4,
+        level: 'A2',
+        type: 'Gramer (Conditionals Type 1)',
+        question: 'If it rains this afternoon, we _______ stay at home.',
+        options: ['would', 'will', 'did', 'had'],
+        correct: 1,
+        explanation: '1. Tip koşul cümlelerinde (Real Conditionals) "If + Present Simple, will + V1" kalıbı kullanılır.'
+      },
+      {
+        id: 5,
+        level: 'B1',
+        type: 'Bağlaç (Contrast Clauses)',
+        question: 'He managed to pass the driving test _______ not having practiced much.',
+        options: ['although', 'despite', 'in spite', 'whereas'],
+        correct: 1,
+        explanation: "'Despite' ardından isim veya V-ing alır ('despite not having...'). 'Although' arkasından tam cümle ister."
+      },
+      {
+        id: 6,
+        level: 'B1',
+        type: 'Phrasal Verb (İş & Günlük Dil)',
+        question: 'Due to inflation, the company decided to _______ down on operational costs.',
+        options: ['cut', 'break', 'turn', 'bring'],
+        correct: 0,
+        explanation: "'Cut down on' bir şeyi kısmak, masrafları azaltmak anlamına gelen hayati bir phrasal verb'dür."
+      },
+      {
+        id: 7,
+        level: 'B2',
+        type: 'İleri Gramer (Inversion / Devrik Cümle)',
+        question: 'Seldom _______ such an inspiring and passionate speech in my academic life.',
+        options: ['I have heard', 'have I heard', 'I heard', 'had I hear'],
+        correct: 1,
+        explanation: "Seldom, rarely, hardly gibi olumsuz zarflar cümlenin başına geldiğinde devrik yapı kurulur: 'have I heard'."
+      },
+      {
+        id: 8,
+        level: 'B2',
+        type: 'Akademik Eşdizim (Collocation)',
+        question: 'The research team presented _______ evidence that convinced the committee immediately.',
+        options: ['trivial', 'compelling', 'superficial', 'dubious'],
+        correct: 1,
+        explanation: "'Compelling evidence' inandırıcı, güçlü ve karşı konulamaz kanıt anlamına gelen yüksek frekanslı bir B2 akademik kalıptır."
+      },
+      {
+        id: 9,
+        level: 'C1',
+        type: 'C1 Gramer (Subjunctive Mood)',
+        question: 'It is essential that each participant _______ present during the final deliberations.',
+        options: ['is', 'be', 'was', 'are'],
+        correct: 1,
+        explanation: "Önem ve gereklilik bildiren sıfatlardan sonra (essential, crucial, vital that...) Subjunctive yalın fiil (be) kullanılır."
+      },
+      {
+        id: 10,
+        level: 'C1',
+        type: 'C1 AWL Akademik Kelime',
+        question: 'The severe drought has severely _______ the country’s existing economic vulnerabilities.',
+        options: ['ameliorated', 'exacerbated', 'mitigated', 'alleviated'],
+        correct: 1,
+        explanation: "'Exacerbate' bir sorunu daha da kötüleştirmek, körüklemek demektir. 'Ameliorate' ve 'mitigate' ise hafifletmek/iyileştirmektir."
+      }
+    ];
+
+    let placementCurrentIdx = 0;
+    let placementScore = 0;
+    let placementAnswered = false;
+    let detectedPlacementResult = null;
+
+    function openLearnerTrackModal() {
+      triggerHaptic('tap');
+      const modal = document.getElementById('learnerTrackModal');
+      if (!modal) return;
+      const s1 = document.getElementById('trackScreenSelect');
+      const s2 = document.getElementById('trackScreenQuiz');
+      const s3 = document.getElementById('trackScreenResult');
+      if (s1) s1.classList.remove('hidden');
+      if (s2) s2.classList.add('hidden');
+      if (s3) s3.classList.add('hidden');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLearnerTrackModal() {
+      triggerHaptic('tap');
+      const modal = document.getElementById('learnerTrackModal');
+      if (modal) modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function selectLearnerTrack(trackId) {
+      currentLearnerTrack = trackId;
+      try {
+        localStorage.setItem(STORAGE_TRACK_KEY, trackId);
+      } catch (e) {}
+
+      closeLearnerTrackModal();
+      triggerHaptic('success');
+
+      if (trackId === 'beginner') {
+        setLevelFilter('A1');
+        selectMode('flashcards');
+        showFloatingToast('🌱 A1–A2 Temel Rota Seçildi! Temel kelimeler ve gramer yüklendi.');
+      } else if (trackId === 'intermediate') {
+        setLevelFilter('B1');
+        selectMode('quiz');
+        showFloatingToast('🚀 B1–B2 Orta Düzey Rota Seçildi! Oxford 3000 & Phrasal Verbs hazır.');
+      } else if (trackId === 'advanced') {
+        setLevelFilter('AWL');
+        selectMode('exam');
+        showFloatingToast('🎓 C1 & AWL İleri Düzey Rota Seçildi! Muafiyet Deneme Sınavı açıldı.');
+      }
+    }
+
+    function startPlacementTest() {
+      placementCurrentIdx = 0;
+      placementScore = 0;
+      placementAnswered = false;
+      detectedPlacementResult = null;
+
+      const s1 = document.getElementById('trackScreenSelect');
+      const s2 = document.getElementById('trackScreenQuiz');
+      const s3 = document.getElementById('trackScreenResult');
+      if (s1) s1.classList.add('hidden');
+      if (s3) s3.classList.add('hidden');
+      if (s2) s2.classList.remove('hidden');
+
+      renderPlacementTestQuestion();
+    }
+
+    function cancelPlacementTest() {
+      const s1 = document.getElementById('trackScreenSelect');
+      const s2 = document.getElementById('trackScreenQuiz');
+      if (s2) s2.classList.add('hidden');
+      if (s1) s1.classList.remove('hidden');
+    }
+
+    function renderPlacementTestQuestion() {
+      placementAnswered = false;
+      const q = PLACEMENT_TEST_POOL[placementCurrentIdx];
+      if (!q) {
+        finishPlacementTest();
+        return;
+      }
+
+      const badge = document.getElementById('placementQuizBadge');
+      const levelTarget = document.getElementById('placementQuizLevelTarget');
+      const qType = document.getElementById('placementQuestionType');
+      const qText = document.getElementById('placementQuestionText');
+      const optContainer = document.getElementById('placementOptionsContainer');
+      const fbBox = document.getElementById('placementFeedbackBox');
+
+      if (badge) badge.innerText = `Soru ${placementCurrentIdx + 1} / ${PLACEMENT_TEST_POOL.length}`;
+      if (levelTarget) levelTarget.innerText = `Ölçülen Seviye: ${q.level}`;
+      if (qType) qType.innerText = `${q.level} • ${q.type}`;
+      if (qText) qText.innerText = q.question;
+      if (fbBox) fbBox.classList.add('hidden');
+
+      if (optContainer) {
+        optContainer.innerHTML = '';
+        const letters = ['A', 'B', 'C', 'D'];
+        q.options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'placement-opt-btn w-full p-3.5 rounded-xl text-left border border-white/[0.08] bg-black/40 hover:bg-white/[0.08] text-sm text-[#fdf6ee] transition flex items-center gap-3 active:scale-[0.99]';
+          btn.innerHTML = `<span class="w-6 h-6 rounded-lg bg-white/[0.06] text-xs font-mono font-bold flex items-center justify-center text-slate-300 shrink-0">${letters[idx]}</span><span class="flex-1">${opt}</span>`;
+          btn.onclick = () => selectPlacementOption(idx);
+          optContainer.appendChild(btn);
+        });
+      }
+    }
+
+    function selectPlacementOption(selectedIdx) {
+      if (placementAnswered) return;
+      placementAnswered = true;
+      const q = PLACEMENT_TEST_POOL[placementCurrentIdx];
+      const isCorrect = (selectedIdx === q.correct);
+
+      if (isCorrect) {
+        placementScore++;
+        triggerHaptic('success');
+      } else {
+        triggerHaptic('error');
+      }
+
+      const optBtns = document.querySelectorAll('.placement-opt-btn');
+      optBtns.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.correct) {
+          btn.classList.remove('bg-black/40', 'border-white/[0.08]');
+          btn.classList.add('bg-emerald-950/70', 'border-emerald-500', 'text-emerald-200');
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.classList.remove('bg-black/40', 'border-white/[0.08]');
+          btn.classList.add('bg-rose-950/70', 'border-rose-500', 'text-rose-200');
+        } else {
+          btn.classList.add('opacity-40');
+        }
+      });
+
+      const fbBox = document.getElementById('placementFeedbackBox');
+      const fbText = document.getElementById('placementFeedbackText');
+      if (fbBox && fbText) {
+        fbBox.classList.remove('hidden', 'bg-emerald-950/40', 'border-emerald-500/40', 'text-emerald-200', 'bg-rose-950/40', 'border-rose-500/40', 'text-rose-200');
+        if (isCorrect) {
+          fbBox.classList.add('bg-emerald-950/40', 'border-emerald-500/40', 'text-emerald-200');
+          fbText.innerHTML = `<strong>✓ Doğru!</strong> ${q.explanation}`;
+        } else {
+          fbBox.classList.add('bg-rose-950/40', 'border-rose-500/40', 'text-rose-200');
+          fbText.innerHTML = `<strong>✗ Yanlış!</strong> Doğru cevap: <em>${q.options[q.correct]}</em>. ${q.explanation}`;
+        }
+      }
+    }
+
+    function nextPlacementQuestion() {
+      placementCurrentIdx++;
+      if (placementCurrentIdx < PLACEMENT_TEST_POOL.length) {
+        renderPlacementTestQuestion();
+      } else {
+        finishPlacementTest();
+      }
+    }
+
+    function finishPlacementTest() {
+      const s2 = document.getElementById('trackScreenQuiz');
+      const s3 = document.getElementById('trackScreenResult');
+      if (s2) s2.classList.add('hidden');
+      if (s3) s3.classList.remove('hidden');
+
+      const pct = Math.round((placementScore / PLACEMENT_TEST_POOL.length) * 100);
+      let detectedLevel = 'A1';
+      let trackRecommended = 'beginner';
+      let title = 'A1–A2 Başlangıç & Temel Düzey';
+      let desc = '';
+
+      if (placementScore <= 3) {
+        detectedLevel = 'A1-A2';
+        trackRecommended = 'beginner';
+        title = '🌱 A1–A2 Temel Rota (Sıfırdan Öğrenen)';
+        desc = `10 soruluk testte ${placementScore} doğru yaptın (%${pct}). Temel dilbilgisi kalıplarını ve günlük kelime hazneni sağlamlaştırmak için <strong>A1–A2 Temel Rota</strong> senin için en verimli başlangıçtır. Kartların arkasındaki Türkçe karşılıklar, temel cümle kalıpları ve telaffuz dinleme ile çalışmanı öneririz.`;
+      } else if (placementScore <= 7) {
+        detectedLevel = 'B1-B2';
+        trackRecommended = 'intermediate';
+        title = '🚀 B1–B2 Orta Düzey Rota (Gelişim & Akıcılık)';
+        desc = `10 soruluk testte ${placementScore} doğru yaptın (%${pct}). Güçlü bir İngilizce altyapın var! Artık <strong>Oxford 3000</strong>, <strong>250 Phrasal Verb</strong>, karışan gramer kalıpları ve <strong>Okuma Labı</strong> makaleleri ile akıcılığını ve akademik okuma refleksini zirveye taşıma zamanı.`;
+      } else {
+        detectedLevel = 'C1-AWL';
+        trackRecommended = 'advanced';
+        title = '🎓 C1 & AWL İleri Düzey Rota (Akademik & Sınav)';
+        desc = `10 soruluk testte ${placementScore} doğru yaptın (%${pct}). Mükemmel bir İngilizce yeterliliğine sahipsin! Subjunctive, Inversion gibi ileri dilbilgisi yapılarına hakimsin. Senin için özel hazırlanan <strong>AWL (Akademik Kelime)</strong>, <strong>227 Karışan Nüans İkizi</strong> ve <strong>Muafiyet Deneme Sınavı</strong> modülü ile C1 profesyonelliğine adım atabilirsin.`;
+      }
+
+      detectedPlacementResult = {
+        level: detectedLevel,
+        track: trackRecommended,
+        score: placementScore,
+        pct: pct
+      };
+
+      const resLevel = document.getElementById('placementResultLevel');
+      const resScore = document.getElementById('placementResultScore');
+      const resDesc = document.getElementById('placementResultDesc');
+      if (resLevel) resLevel.innerText = title;
+      if (resScore) resScore.innerText = `10 Sorudan ${placementScore} Doğru (%${pct} Başarı) • Seviye: ${detectedLevel}`;
+      if (resDesc) resDesc.innerHTML = desc;
+    }
+
+    function applyPlacementResult() {
+      if (detectedPlacementResult) {
+        selectLearnerTrack(detectedPlacementResult.track);
+      } else {
+        closeLearnerTrackModal();
+      }
+    }
+
+    function loadSavedLearnerTrack() {
+      try {
+        const saved = localStorage.getItem(STORAGE_TRACK_KEY);
+        if (saved) {
+          currentLearnerTrack = saved;
+        }
+      } catch (e) {}
     }
 
     // ==================== TAB SWITCHER ====================
@@ -6273,7 +6976,7 @@
       }
 
       if (e.code === 'KeyF') {
-        toggleZenMode();
+        toggleFocusMode();
       } else if (e.key === 'p' || e.key === 'P') {
         toggleAutoPlay();
       } else if (e.code === 'KeyR' || e.key === 'r' || e.key === 'R') {
