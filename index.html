@@ -7628,7 +7628,6 @@
         }
         recordWordStatus(q.targetWord, true);
         updateHeatStreak(true);
-        speakText(expectedForm);
       } else {
         clozeWrong++;
         triggerHaptic('error');
@@ -7781,7 +7780,6 @@
         }
         recordWordStatus(q.targetWord, true); // Temel sözcüğü kaydet ('absorb', 'a couple')
         updateHeatStreak(true);
-        speakText(displayAnswer);
       } else {
         clozeWrong++;
         triggerHaptic('error');
@@ -7972,7 +7970,6 @@
         recordWordStatus(q.word, true);
         updateHeatStreak(true);
         triggerHaptic('success');
-        speakText(q.word);
       } else {
         quizWrong++;
         const btn = document.getElementById('quiz-opt-' + optIdx);
@@ -15300,7 +15297,6 @@
         playAudioTone('success');
         triggerHaptic('success');
         triggerConfetti();
-        speakText(q.correct);
 
         if (feedbackBox) {
           feedbackBox.className = 'p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-xs sm:text-sm space-y-1.5 text-left';
@@ -16225,41 +16221,8 @@
     }
 
     function playAudioTone(type) {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        
-        if (type === 'success') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.08);
-          osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.16);
-          gain.gain.setValueAtTime(0.18, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.35);
-        } else if (type === 'error') {
-          osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(220, ctx.currentTime);
-          osc.frequency.linearRampToValueAtTime(146.83, ctx.currentTime + 0.18);
-          gain.gain.setValueAtTime(0.15, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.25);
-        } else if (type === 'click') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(750, ctx.currentTime);
-          gain.gain.setValueAtTime(0.06, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.05);
-        }
-      } catch(e) {}
+      // Soru çözümü (doğru/yanlış) ve buton tıklama ses efektleri tamamen sessize alındı
+      return;
     }
 
     // -------------------------------------------------------------------------
