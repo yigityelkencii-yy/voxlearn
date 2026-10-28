@@ -1750,26 +1750,39 @@
         </div>
 
         <!-- Clean Tactile Action Control Buttons (Responsive, Zero Overflow, Fits 360px+) -->
-        <div id="fcControls" class="flex items-center justify-between gap-2 sm:gap-3 pt-2 w-full max-w-full box-border">
+        <div id="fcControls" class="w-full max-w-full box-border pt-2">
           
-          <!-- Tekrar Et (Left Action) -->
-          <button onclick="handleSwipe('left')" class="group flex-1 min-w-0 py-3 px-3 sm:px-4 rounded-xl btn-rose-tactile font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 transition active:scale-[0.98]">
-            <svg class="w-3.5 h-3.5 text-rose-300 group-hover:text-white transition shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-            <span class="paren-span truncate">Tekrar Et</span>
-            <span class="text-[10px] font-mono text-rose-300/60 hidden sm:inline">[←]</span>
-          </button>
+          <!-- Front State Controls: Big, tactile "Cevabı Gör" with quick side actions -->
+          <div id="fcControlsFront" class="flex items-center justify-between gap-2 sm:gap-3 w-full">
+            <button type="button" onclick="handleSwipe('left')" title="Tekrar Et / Bilmiyorum (←)" class="py-3 px-3.5 sm:px-4 rounded-xl bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/20 text-rose-300 font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition active:scale-95 shrink-0 cursor-pointer">
+              <span>↺</span>
+              <span class="hidden sm:inline">Tekrar</span>
+              <span class="text-[10px] font-mono text-rose-400/60">[←]</span>
+            </button>
 
-          <!-- Flip Quick Button -->
-          <button onclick="flipCard()" title="Çevir (Boşluk)" class="p-3 rounded-xl btn-glass-subtle text-slate-300 hover:text-white transition active:scale-[0.98] shrink-0">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-          </button>
+            <button type="button" onclick="flipCard()" class="flex-1 min-w-0 py-3.5 px-4 rounded-xl bg-gradient-to-r from-rose-900/90 via-rose-800/90 to-rose-950/90 hover:from-rose-800 hover:to-rose-900 border border-rose-400/50 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-[0.98] shadow-lg shadow-rose-950/50 cursor-pointer">
+              <svg class="w-4 h-4 text-rose-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+              <span>Cevabı Gör</span>
+              <span class="text-[10px] font-mono text-rose-200/70 hidden sm:inline">[Boşluk]</span>
+            </button>
 
-          <!-- Öğrendim (Right Action) -->
-          <button onclick="handleSwipe('right')" class="group flex-1 min-w-0 py-3 px-3 sm:px-4 rounded-xl btn-emerald-tactile font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 transition active:scale-[0.98]">
-            <span class="paren-span truncate">Öğrendim</span>
-            <span class="text-[10px] font-mono text-emerald-300/60 hidden sm:inline">[→]</span>
-            <svg class="w-3.5 h-3.5 text-emerald-300 group-hover:text-white transition shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </button>
+            <button type="button" onclick="handleSwipe('right')" title="Öğrendim / Biliyorum (→)" class="py-3 px-3.5 sm:px-4 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/20 text-emerald-300 font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition active:scale-95 shrink-0 cursor-pointer">
+              <span>✓</span>
+              <span class="hidden sm:inline">Öğrendim</span>
+              <span class="text-[10px] font-mono text-emerald-400/60">[→]</span>
+            </button>
+          </div>
+
+          <!-- Back State Controls: Clean subtle toolbar that lets the 4 Anki buttons shine -->
+          <div id="fcControlsBack" class="hidden flex items-center justify-between gap-2 w-full">
+            <button type="button" onclick="flipCard()" class="py-2.5 px-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-slate-300 text-xs font-mono flex items-center gap-1.5 transition active:scale-95 cursor-pointer">
+              <span>🔄</span>
+              <span>Ön Yüze Dön</span>
+            </button>
+            <div class="text-[11px] font-mono text-slate-400 text-right">
+              <span>Kartı yukarıdan puanlayın ➔</span>
+            </div>
+          </div>
 
         </div>
 
@@ -1982,11 +1995,11 @@
     <!-- ==================== 2. QUIZ (COKTAN SECMELI ANLAM TESTI) ==================== -->
     <section id="view-quiz" class="hidden max-w-xl mx-auto space-y-5">
       
-      <div class="flex items-center justify-between gap-1.5 p-1 rounded-2xl bg-slate-900/70 border border-white/[0.06] text-xs">
-        <button onclick="setQuizSource('all')" id="quizSrc-all" class="flex-1 py-2 px-3 rounded-xl font-bold bg-indigo-600 text-white transition">
+      <div class="flex items-center justify-between gap-1.5 p-1 rounded-2xl bg-black/40 border border-white/[0.06] text-xs">
+        <button onclick="setQuizSource('all')" id="quizSrc-all" class="flex-1 py-2 px-3 rounded-xl font-bold bg-rose-900/80 border border-rose-500/40 text-white shadow-sm transition">
           Tüm Kelimeler
         </button>
-        <button onclick="setQuizSource('learn')" id="quizSrc-learn" class="flex-1 py-2 px-3 rounded-xl font-semibold text-rose-400 hover:bg-slate-800 transition">
+        <button onclick="setQuizSource('learn')" id="quizSrc-learn" class="flex-1 py-2 px-3 rounded-xl font-medium text-rose-300 hover:bg-white/[0.04] transition">
           Tekrar Listesi (<span id="quizLearnCount">0</span>)
         </button>
       </div>
@@ -2011,8 +2024,8 @@
 
       <div id="quizQuestionBox" class="p-6 sm:p-7 rounded-3xl bg-slate-900/80 border border-white/[0.08] text-center space-y-4 shadow-xl">
         <div class="flex justify-between items-center text-xs">
-          <span id="quizLvlBadge" class="px-2.5 py-0.5 rounded-lg bg-indigo-500/10 text-indigo-300 font-bold border border-indigo-500/20 font-mono">B1</span>
-          <button onclick="speakQuizWord()" class="p-2 rounded-xl bg-white/[0.04] hover:bg-indigo-600 text-slate-400 hover:text-white border border-white/5 transition">
+          <span id="quizLvlBadge" class="px-2.5 py-0.5 rounded-lg bg-rose-500/10 text-rose-300 font-bold border border-rose-500/20 font-mono">B1</span>
+          <button onclick="speakQuizWord()" class="p-2 rounded-xl bg-white/[0.04] hover:bg-rose-900/60 text-slate-400 hover:text-white border border-white/5 transition cursor-pointer">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
           </button>
         </div>
@@ -2112,15 +2125,16 @@
       <div class="flex flex-col sm:flex-row gap-2.5 items-center justify-between">
         <div class="relative w-full sm:w-96">
           <input type="text" id="searchInput" placeholder="Kelime, anlam veya telaffuz ara... (örn: assess)" 
-                 class="w-full bg-slate-900/90 border border-white/[0.08] rounded-2xl px-4 py-2.5 pl-10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition font-medium">
+                 class="w-full bg-slate-900/90 border border-white/[0.08] rounded-2xl px-4 py-2.5 pl-10 pr-9 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500/50 transition font-medium">
           <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <button type="button" id="searchClearBtn" onclick="clearDictSearch()" title="Aramayı Temizle" class="hidden absolute right-3 top-2.5 text-slate-400 hover:text-white p-0.5 rounded-full hover:bg-white/10 text-xs cursor-pointer font-bold">✕</button>
         </div>
 
         <div class="flex items-center gap-2 w-full sm:w-auto">
-          <div class="flex items-center gap-1 bg-slate-900/80 p-1 rounded-2xl border border-white/[0.06] text-xs flex-1 sm:flex-initial">
-            <button onclick="setDictFilter('all')" id="dictFilter-all" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-bold bg-indigo-600 text-white transition">Tümü</button>
-            <button onclick="setDictFilter('learn')" id="dictFilter-learn" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-semibold text-rose-400 hover:bg-slate-800 transition">🔥 Tekrar</button>
-            <button onclick="setDictFilter('known')" id="dictFilter-known" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-semibold text-emerald-400 hover:bg-slate-800 transition">✅ Bildiklerim</button>
+          <div class="flex items-center gap-1 bg-black/40 p-1 rounded-2xl border border-white/[0.06] text-xs flex-1 sm:flex-initial">
+            <button onclick="setDictFilter('all')" id="dictFilter-all" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-bold bg-rose-900/80 border border-rose-500/40 text-white shadow-sm transition">Tümü</button>
+            <button onclick="setDictFilter('learn')" id="dictFilter-learn" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-medium text-rose-400 hover:bg-white/[0.04] transition">🔥 Tekrar</button>
+            <button onclick="setDictFilter('known')" id="dictFilter-known" class="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-medium text-emerald-400 hover:bg-white/[0.04] transition">✅ Bildiklerim</button>
           </div>
           <button onclick="toggleDictationMode()" id="dictationToggleBtn" class="px-3.5 py-2 rounded-2xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white font-medium text-xs border border-white/5 transition flex items-center gap-1.5 shrink-0">
             <span>🎧</span> <span>Dikte Modu</span>
@@ -2708,8 +2722,6 @@
           </div>
         </div>
 
-        <div class="pt-1 flex items-center gap-2">
-          
         <!-- 📖 Bağlamsal Okuma Cümlesi (Contextual Sentence) -->
         <div id="rModalContextExBox" class="hidden text-xs text-amber-200/95 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-left space-y-1">
           <div class="text-[9px] font-mono uppercase text-amber-300 font-bold flex items-center gap-1">
@@ -2719,12 +2731,12 @@
         </div>
 
         <!-- 🔍 Özel / Tanımsız Kelime Arama & Hızlı Not Ekleme -->
-        <div id="rModalUncataloguedHelper" class="hidden p-3 rounded-xl bg-slate-900/90 border border-indigo-500/30 text-left space-y-2">
-          <div class="text-[10px] font-mono text-indigo-300 uppercase font-bold flex items-center gap-1">
+        <div id="rModalUncataloguedHelper" class="hidden p-3 rounded-xl bg-slate-900/90 border border-rose-500/30 text-left space-y-2">
+          <div class="text-[10px] font-mono text-rose-300 uppercase font-bold flex items-center gap-1">
             <span>🔍</span> <span>Özel Terim Arama:</span>
           </div>
           <div class="flex items-center gap-2">
-            <a id="rModalTurengLink" href="#" target="_blank" class="flex-1 py-1.5 px-2 rounded-lg bg-indigo-950/70 hover:bg-indigo-900 text-indigo-200 text-[11px] font-medium border border-indigo-500/30 text-center transition">
+            <a id="rModalTurengLink" href="#" target="_blank" class="flex-1 py-1.5 px-2 rounded-lg bg-rose-950/70 hover:bg-rose-900 text-rose-200 text-[11px] font-medium border border-rose-500/30 text-center transition">
               Tureng'de Gör ↗
             </a>
             <a id="rModalGTranslateLink" href="#" target="_blank" class="flex-1 py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-medium border border-white/10 text-center transition">
@@ -2732,11 +2744,12 @@
             </a>
           </div>
           <div class="pt-1">
-            <input type="text" id="rModalCustomTrInput" placeholder="Türkçe anlamını buraya yazın..." class="w-full px-2.5 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-indigo-400">
+            <input type="text" id="rModalCustomTrInput" placeholder="Türkçe anlamını buraya yazın..." class="w-full px-2.5 py-1.5 rounded-lg bg-black/60 border border-white/10 text-xs text-white focus:outline-none focus:border-rose-400">
           </div>
         </div>
     
-        <button id="rModalLearnBtn" onclick="addReadingWordToLearn(this.dataset.word)" data-word="" class="w-full py-2.5 rounded-xl bg-rose-900/80 hover:bg-rose-800 text-white font-medium text-xs transition border border-rose-500/30 flex items-center justify-center gap-1.5 shadow-md">
+        <div class="pt-2">
+          <button id="rModalLearnBtn" onclick="addReadingWordToLearn(this.dataset.word)" data-word="" class="w-full py-2.5 rounded-xl bg-rose-900/80 hover:bg-rose-800 text-white font-medium text-xs transition border border-rose-500/30 flex items-center justify-center gap-1.5 shadow-md cursor-pointer active:scale-95">
             <span>🔥</span> <span>Tekrar Listeme Ekle</span>
           </button>
         </div>
@@ -3700,11 +3713,14 @@
       </div>
 
       <!-- Action buttons -->
-      <div class="flex items-center gap-2">
-        <button onclick="startVaultPractice()" id="btnStartVaultPractice" class="flex-1 py-2.5 px-4 rounded-xl btn-primary-glow font-medium text-xs flex items-center justify-center gap-2 shadow-md">
-          <span>🚀</span> <span>Hatalarımla Yüzleş (Telafi Testi)</span>
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="startVaultPractice()" id="btnStartVaultPractice" class="flex-1 min-w-[130px] py-2.5 px-3 rounded-xl btn-primary-glow font-medium text-xs flex items-center justify-center gap-1.5 shadow-md cursor-pointer">
+          <span>🚀</span> <span>Telafi Testi</span>
         </button>
-        <button onclick="clearMistakeVault()" class="py-2.5 px-4 rounded-xl btn-glass-subtle text-slate-400 hover:text-rose-300 text-xs font-mono transition">
+        <button onclick="studyVaultMistakesAsDeck()" id="btnStudyVaultDeck" class="flex-1 min-w-[130px] py-2.5 px-3 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-white font-medium text-xs flex items-center justify-center gap-1.5 transition active:scale-95 shadow-sm cursor-pointer">
+          <span>🃏</span> <span>Kart Olarak Çalış</span>
+        </button>
+        <button onclick="clearMistakeVault()" class="py-2.5 px-3.5 rounded-xl btn-glass-subtle text-slate-400 hover:text-rose-300 text-xs font-mono transition cursor-pointer">
           🗑️ Temizle
         </button>
       </div>
@@ -6235,7 +6251,29 @@
         dueBtn.className = mode === 'due' ? 'flex-1 py-1.5 px-3 rounded-lg font-medium transition bg-rose-900/60 border border-rose-500/30 text-white shadow-sm flex items-center justify-center gap-1.5' : 'flex-1 py-1.5 px-3 rounded-lg font-medium transition text-amber-300 hover:bg-white/[0.04] flex items-center justify-center gap-1.5';
       }
 
-      if (mode === 'learn') {
+      if (mode === 'vault') {
+        const mistakeWords = (mistakeVault || []).map(m => m.word).filter(Boolean);
+        const matched = [];
+        const seen = new Set();
+        mistakeWords.forEach(w => {
+          const l = w.toLowerCase().trim();
+          if (!seen.has(l)) {
+            seen.add(l);
+            const found = allWords.find(item => item.w.toLowerCase() === l);
+            if (found) matched.push(found);
+            else {
+              const item = mistakeVault.find(m => (m.word || '').toLowerCase().trim() === l);
+              matched.push({ w: w, pos: 'word', lvl: 'B2', isAwl: false, tr: item ? item.answer : 'Hata Sözcüğü', ex: item ? item.explanation : '', ipa: '' });
+            }
+          }
+        });
+        if (matched.length === 0) {
+          showFloatingToast('📦 Hata kasanızda kelime bulunmuyor.');
+          setFcSource('batch', true);
+          return;
+        }
+        currentBatchWords = isShuffleMode ? shuffleArray(matched) : [...matched];
+      } else if (mode === 'learn') {
         const pool = getFilteredWords();
         const missed = pool.filter(w => learnSet.has(w.w));
         if (missed.length === 0) {
@@ -7017,6 +7055,15 @@
       }
     }
 
+    function updateCardControlsUI() {
+      const frontControls = document.getElementById('fcControlsFront');
+      const backControls = document.getElementById('fcControlsBack');
+      if (frontControls && backControls) {
+        frontControls.classList.toggle('hidden', isFlipped);
+        backControls.classList.toggle('hidden', !isFlipped);
+      }
+    }
+
     function renderFlashcard() {
       if (fcIndex >= currentBatchWords.length) {
         if (isAutoPlayActive) stopAutoPlay();
@@ -7026,6 +7073,7 @@
 
       isFlipped = false;
       isSwiping = false;
+      updateCardControlsUI();
 
       const card = currentBatchWords[fcIndex];
       const flipper = document.getElementById('cardFlipper');
@@ -7280,6 +7328,7 @@
       flipper.classList.toggle('is-flipped', isFlipped);
       triggerHaptic('tap');
       flipper.style.transform = isFlipped ? 'rotateY(180deg)' : 'none';
+      updateCardControlsUI();
 
       if (isReverseMode && isFlipped && currentBatchWords[fcIndex]) {
         speakText(currentBatchWords[fcIndex].w);
@@ -8152,9 +8201,20 @@
     function setDictFilter(type) {
       dictMemoryFilter = type;
       ['all', 'learn', 'known'].forEach(t => {
-        document.getElementById('dictFilter-' + t).className = t === type ? 'flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-bold bg-indigo-600 text-white transition' : 'flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-semibold text-slate-400 hover:bg-slate-800 transition';
+        const el = document.getElementById('dictFilter-' + t);
+        if (!el) return;
+        el.className = t === type 
+          ? 'flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-bold bg-rose-900/80 border border-rose-500/40 text-white shadow-sm transition' 
+          : 'flex-1 sm:flex-initial px-3 py-1.5 rounded-xl font-medium text-slate-400 hover:text-white hover:bg-white/[0.04] transition';
       });
       renderDict();
+    }
+
+    function highlightSearchTerm(text, q) {
+      if (!q || !text) return escapeHtmlAttr(text || '');
+      const escapedQ = q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+      const escapedText = escapeHtmlAttr(text);
+      return escapedText.replace(new RegExp('(' + escapedQ + ')', 'gi'), '<mark class="bg-amber-400/25 text-amber-200 px-0.5 rounded font-bold border border-amber-400/30">$1</mark>');
     }
 
     function renderDict() {
@@ -8211,22 +8271,22 @@
           <div class="word-card bg-slate-900/70 border border-white/[0.06] rounded-2xl p-4 hover:border-white/[0.12] transition shadow-sm">
             <div class="flex items-start justify-between gap-2">
               <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="word-title text-base font-bold text-white tracking-wide">${item.w}</span>
+                <span class="word-title text-base font-bold text-white tracking-wide">${highlightSearchTerm(item.w, q)}</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-lg font-mono border ${lvlColor}">${item.lvl || 'B1'}</span>
                 ${awlBadge}
                 ${customBadge}
                 ${item.ipa ? `<span class="ipa-badge text-xs font-mono px-2 py-0.5 rounded bg-slate-800/80 text-cyan-300 border border-cyan-500/20 font-medium">${item.ipa}</span>` : ''}
                 ${statusBadge}
-                <button onclick="speakText(this.dataset.word)" data-word="${item.w.replace(/"/g, '&quot;')}" class="text-slate-400 hover:text-indigo-400 transition p-1 rounded no-print">
+                <button onclick="speakText(this.dataset.word)" data-word="${item.w.replace(/"/g, '&quot;')}" class="text-slate-400 hover:text-rose-400 transition p-1 rounded no-print">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
                 </button>
                 ${deleteBtn}
               </div>
               <span class="text-[11px] text-slate-500 font-mono italic shrink-0">${item.pos}</span>
             </div>
-            <div class="word-tr mt-1.5 text-sm font-semibold text-emerald-400">${item.tr}</div>
-            ${item.ex ? `<div class="word-ex mt-2 pt-2 border-t border-white/[0.05] text-xs text-slate-300 font-light"><span class="text-slate-500 font-medium">Örnek:</span> "${item.ex}"</div>` : ''}
-            ${item.syn ? `<div class="mt-1.5 text-[11px] font-mono text-[#d6c7b2]/80"><span class="text-slate-500">Eş Anlam:</span> ${escapeHtmlAttr(item.syn)}</div>` : ''}
+            <div class="word-tr mt-1.5 text-sm font-semibold text-emerald-400">${highlightSearchTerm(item.tr, q)}</div>
+            ${item.ex ? `<div class="word-ex mt-2 pt-2 border-t border-white/[0.05] text-xs text-slate-300 font-light"><span class="text-slate-500 font-medium">Örnek:</span> "${highlightSearchTerm(item.ex, q)}"</div>` : ''}
+            ${item.syn ? `<div class="mt-1.5 text-[11px] font-mono text-[#d6c7b2]/80"><span class="text-slate-500">Eş Anlam:</span> ${highlightSearchTerm(item.syn, q)}</div>` : ''}
             ${item.colloc ? `<div class="mt-2 pt-1.5 border-t border-white/[0.04] flex flex-wrap items-center gap-1"><span class="text-[10px] font-mono text-slate-500 mr-0.5">Kalıp:</span>${formatCollocationPillsHtml(item.colloc)}</div>` : ''}
             ${item.fam && Object.keys(item.fam).length >= 2 ? `<div class="mt-1.5 flex flex-wrap items-center gap-1"><span class="text-[10px] font-mono text-slate-500 mr-0.5">Aile:</span>${formatWordFamilyPillsHtml(item.fam, item.w)}</div>` : ''}
             ${item.conf ? `<div class="mt-2 p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-[11px] font-mono text-amber-200 leading-snug"><span class="text-amber-400 font-bold">⚠️ Karıştırma:</span> ${escapeHtmlAttr(item.conf)}</div>` : ''}
@@ -8240,9 +8300,24 @@
       renderDict();
     }
 
+    function clearDictSearch() {
+      const inp = document.getElementById('searchInput');
+      if (inp) {
+        inp.value = '';
+        dictSearch = '';
+        dictLimit = 120;
+        const btn = document.getElementById('searchClearBtn');
+        if (btn) btn.classList.add('hidden');
+        renderDict();
+        inp.focus();
+      }
+    }
+
     document.getElementById('searchInput').addEventListener('input', (e) => {
       dictSearch = e.target.value;
       dictLimit = 120;
+      const btn = document.getElementById('searchClearBtn');
+      if (btn) btn.classList.toggle('hidden', !dictSearch.trim());
       renderDict();
     });
 
@@ -10406,6 +10481,7 @@
       });
       saveMemory();
       triggerHaptic('success');
+      showFloatingToast(`✅ ${currentPassageAcademicWords.length} akademik kelime tekrar listesine eklendi!`);
       const addBtnLbl = document.getElementById('btnAddPassageWordsLabel');
       if (addBtnLbl) {
         addBtnLbl.innerText = `✅ ${currentPassageAcademicWords.length} Kelime Tekrar Listesine Eklendi!`;
@@ -15935,7 +16011,10 @@
     }
 
     function startVaultPractice() {
-      if (mistakeVault.length === 0) return;
+      if (mistakeVault.length === 0) {
+        showFloatingToast('📦 Hata kasanız şu anda boş!');
+        return;
+      }
       vaultPracticeActive = true;
       vaultPracticeIndex = 0;
       const pArea = document.getElementById('vaultPracticeArea');
@@ -15943,6 +16022,19 @@
       if (lArea) lArea.classList.add('hidden');
       if (pArea) pArea.classList.remove('hidden');
       renderVaultPracticeItem();
+    }
+
+    function studyVaultMistakesAsDeck() {
+      if (!mistakeVault || mistakeVault.length === 0) {
+        showFloatingToast('📦 Hata kasanız şu anda boş!');
+        return;
+      }
+      toggleMistakeVaultModal();
+      switchTab('flashcards');
+      setFcSource('vault', true);
+      const lvlLabel = document.getElementById('fcActiveLevelLabel');
+      if (lvlLabel) lvlLabel.innerText = `Hata Kasası (${currentBatchWords.length})`;
+      showFloatingToast(`🩸 Hata Kasası Çalışması Başladı (${currentBatchWords.length} Kelime)`);
     }
 
     function renderVaultPracticeItem() {
