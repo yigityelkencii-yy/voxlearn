@@ -67,7 +67,8 @@
       height: 100%;
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
-      transition: transform 0.42s cubic-bezier(0.34, 1.25, 0.64, 1);
+      will-change: transform;
+      transition: transform 0.44s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .card-flipper.is-flipped {
       transform: rotateY(180deg) !important;
@@ -80,6 +81,8 @@
       height: 100%;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -93,11 +96,11 @@
         0 0 0 1px rgba(0, 0, 0, 0.55);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      transition: border-color 0.8s ease, box-shadow 0.8s ease, background 0.4s ease;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
     }
     .card-back {
-      transform: rotateY(180deg);
-      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg) translateZ(1px);
+      -webkit-transform: rotateY(180deg) translateZ(1px);
       background: linear-gradient(180deg, #220d15 0%, #0d0407 100%);
       border: 1.5px solid rgba(244, 63, 94, 0.35);
       overflow-y: auto !important;
@@ -159,17 +162,26 @@
         0 0 55px -5px rgba(6, 182, 212, 0.45) !important;
     }
 
+    /* ==================== 60/120FPS SILKY SMOOTH ANIMATION SUITE ==================== */
+    #cardSwipeWrapper {
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+      will-change: transform;
+    }
+
     /* Swipe Left / Right Fly Animations */
     @keyframes swipeRightFly {
       0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
-      100% { transform: translate3d(130%, 15px, 0) rotate(18deg); opacity: 0; }
+      100% { transform: translate3d(125%, 15px, 0) rotate(16deg); opacity: 0; }
     }
     @keyframes swipeLeftFly {
       0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 1; }
-      100% { transform: translate3d(-130%, 15px, 0) rotate(-18deg); opacity: 0; }
+      100% { transform: translate3d(-125%, 15px, 0) rotate(-16deg); opacity: 0; }
     }
     @keyframes cardEnterSpring {
-      0% { transform: scale(0.94) translate3d(0, 18px, 0); opacity: 0; }
+      0% { transform: scale(0.93) translate3d(0, 16px, 0); opacity: 0; }
+      70% { transform: scale(1.01) translate3d(0, -2px, 0); opacity: 1; }
       100% { transform: scale(1) translate3d(0, 0, 0); opacity: 1; }
     }
 
@@ -182,7 +194,72 @@
       pointer-events: none;
     }
     .anim-enter {
-      animation: cardEnterSpring 0.26s cubic-bezier(0.18, 0.89, 0.32, 1.2);
+      animation: cardEnterSpring 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Option Micro-Interactions (Quiz & Cloze) */
+    @keyframes optionShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .anim-shake {
+      animation: optionShake 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes optionCorrectPop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.035); }
+      100% { transform: scale(1); }
+    }
+    .anim-correct-pop {
+      animation: optionCorrectPop 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+    }
+
+    /* Match Card Vanish */
+    @keyframes matchCardVanish {
+      0% { transform: scale(1); opacity: 1; filter: brightness(1); }
+      40% { transform: scale(1.06); opacity: 1; filter: brightness(1.2); }
+      100% { transform: scale(0.75); opacity: 0; filter: brightness(1.4); }
+    }
+    .anim-match-vanish {
+      animation: matchCardVanish 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+    }
+
+    /* Tab View Entrance */
+    @keyframes tabViewEnter {
+      0% { opacity: 0; transform: translateY(8px) scale(0.995); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .tab-enter-active {
+      animation: tabViewEnter 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Modal Spring Entrance */
+    @keyframes modalSpringIn {
+      0% { opacity: 0; transform: scale(0.95) translateY(12px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-spring-box {
+      animation: modalSpringIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Option Stagger Entrance */
+    @keyframes optStaggerIn {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .anim-opt-enter {
+      animation: optStaggerIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+      animation-delay: calc(var(--opt-idx, 0) * 40ms);
+    }
+
+    /* Tactile Micro-Springs on Interactive Buttons */
+    button, .btn-emerald-tactile, .btn-rose-tactile, .btn-primary-glow, .btn-glass-subtle, .quiz-opt-btn, .cloze-opt-btn, .match-card, .lvl-btn, .hub-tab-btn {
+      transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+    }
+    .btn-emerald-tactile:active, .btn-rose-tactile:active, .btn-primary-glow:active {
+      transform: scale(0.96) translateY(1px) !important;
     }
 
     /* Floating Score / Streak Particle */
@@ -1302,7 +1379,14 @@
         
         <!-- Outer Swipe Wrapper & Parallax Tilt Container -->
         <div id="tiltContainer" class="perspective-container w-full max-w-full min-h-[420px] h-[440px] sm:h-[465px] box-border">
-          <div id="cardSwipeWrapper" class="anim-enter w-full max-w-full h-full relative box-border">
+          <div id="cardSwipeWrapper" class="anim-enter w-full max-w-full h-full relative box-border cursor-grab active:cursor-grabbing">
+            <!-- Dynamic Drag Swiping Feedback Stamps -->
+            <div id="fcDragStampRight" class="pointer-events-none absolute top-5 left-5 z-40 px-3.5 py-1.5 rounded-xl border-2 border-emerald-400 bg-emerald-950/90 text-emerald-300 font-bold font-mono text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-emerald-500/30 opacity-0 transform -rotate-12 transition-opacity duration-75 flex items-center gap-1.5 backdrop-blur-md">
+              <span class="text-base font-extrabold">✓</span> <span>ÖĞRENDİM</span>
+            </div>
+            <div id="fcDragStampLeft" class="pointer-events-none absolute top-5 right-5 z-40 px-3.5 py-1.5 rounded-xl border-2 border-rose-400 bg-rose-950/90 text-rose-300 font-bold font-mono text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-rose-500/30 opacity-0 transform rotate-12 transition-opacity duration-75 flex items-center gap-1.5 backdrop-blur-md">
+              <span class="text-base font-extrabold">↺</span> <span>TEKRAR ET</span>
+            </div>
             
             <div id="cardFlipper" class="card-flipper cursor-pointer select-none">
               
@@ -4947,54 +5031,165 @@
       requestAnimationFrame(animate);
     }
 
-    // ==================== 3D PARALLAX TILT ====================
+    // ==================== 3D PARALLAX TILT & INTERACTIVE SWIPE ENGINE ====================
+    let isDraggingCard = false;
+    let isPointerDown = false;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let pointerCurrentX = 0;
+    let pointerCurrentY = 0;
+    let dragRafId = null;
+    let lastDragEndTime = 0;
+
     function initParallaxTilt() {
       const container = document.getElementById('tiltContainer');
       const card = document.getElementById('cardFlipper');
+      if (!container || !card) return;
 
       container.addEventListener('mousemove', (e) => {
+        if (isDraggingCard || isSwiping) return;
         const rect = container.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
 
-        const rotateX = -(y / (rect.height / 2)) * 10;
-        const rotateY = (x / (rect.width / 2)) * 12;
+        const rotateX = -(y / (rect.height / 2)) * 6;
+        const rotateY = (x / (rect.width / 2)) * 8;
 
         const isFlipped = card.classList.contains('is-flipped');
-        card.style.transform = `${isFlipped ? 'rotateY(180deg)' : ''} rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`;
+        card.style.transform = `${isFlipped ? 'rotateY(180deg)' : ''} rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
 
       container.addEventListener('mouseleave', () => {
+        if (isDraggingCard || isSwiping) return;
         const isFlipped = card.classList.contains('is-flipped');
         card.style.transform = isFlipped ? 'rotateY(180deg)' : 'none';
       });
+    }
 
-      // Mobilde parmakla sağa/sola kaydırma (Touch Swipe) desteği
-      const cardWrapper = document.getElementById('cardSwipeWrapper');
-      if (cardWrapper) {
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let touchStartY = 0;
-        let touchEndY = 0;
-        cardWrapper.addEventListener('touchstart', (e) => {
-          touchStartX = e.changedTouches[0].screenX;
-          touchStartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-        cardWrapper.addEventListener('touchend', (e) => {
-          touchEndX = e.changedTouches[0].screenX;
-          touchEndY = e.changedTouches[0].screenY;
-          const diffX = touchEndX - touchStartX;
-          const diffY = touchEndY - touchStartY;
-          // Yalnızca yatay hareket dikey kaydırmadan daha belirginse ve 50px'i aşıyorsa kaydır
-          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-            if (diffX > 0) {
-              handleSwipe('right'); // Sağa kaydırma: Öğrendim
-            } else {
-              handleSwipe('left');  // Sola kaydırma: Tekrar Et
-            }
-          }
-        }, { passive: true });
+    function initCardInteractiveSwipe() {
+      const wrapper = document.getElementById('cardSwipeWrapper');
+      const stampRight = document.getElementById('fcDragStampRight');
+      const stampLeft = document.getElementById('fcDragStampLeft');
+      if (!wrapper) return;
+
+      function onPointerDown(e) {
+        if (isSwiping) return;
+        if (e.target.closest('button') || e.target.closest('input') || e.target.closest('a') || e.target.closest('select')) {
+          return;
+        }
+        isPointerDown = true;
+        isDraggingCard = false;
+        pointerStartX = e.clientX;
+        pointerStartY = e.clientY;
+        pointerCurrentX = 0;
+        pointerCurrentY = 0;
+        wrapper.style.transition = 'none';
       }
+
+      function onPointerMove(e) {
+        if (!isPointerDown || isSwiping) return;
+        const dx = e.clientX - pointerStartX;
+        const dy = e.clientY - pointerStartY;
+
+        if (!isDraggingCard) {
+          if (Math.abs(dx) > 7 || Math.abs(dy) > 7) {
+            if (Math.abs(dx) >= Math.abs(dy)) {
+              isDraggingCard = true;
+              try { wrapper.setPointerCapture(e.pointerId); } catch(err) {}
+            } else {
+              isPointerDown = false;
+              return;
+            }
+          } else {
+            return;
+          }
+        }
+
+        pointerCurrentX = dx;
+        pointerCurrentY = dy;
+
+        if (!dragRafId) {
+          dragRafId = requestAnimationFrame(() => {
+            dragRafId = null;
+            if (!isDraggingCard) return;
+            const rot = pointerCurrentX * 0.055;
+            wrapper.style.transform = `translate3d(${pointerCurrentX}px, ${pointerCurrentY * 0.25}px, 0) rotate(${rot}deg)`;
+
+            const stampRatio = Math.min(1, Math.max(0, Math.abs(pointerCurrentX) / 80));
+            if (stampRight && stampLeft) {
+              if (pointerCurrentX > 0) {
+                stampRight.style.opacity = String(stampRatio);
+                stampLeft.style.opacity = '0';
+              } else {
+                stampLeft.style.opacity = String(stampRatio);
+                stampRight.style.opacity = '0';
+              }
+            }
+          });
+        }
+      }
+
+      function onPointerUp(e) {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+
+        if (dragRafId) {
+          cancelAnimationFrame(dragRafId);
+          dragRafId = null;
+        }
+
+        try { wrapper.releasePointerCapture(e.pointerId); } catch(err) {}
+
+        if (stampRight) stampRight.style.opacity = '0';
+        if (stampLeft) stampLeft.style.opacity = '0';
+
+        if (!isDraggingCard) return;
+
+        isDraggingCard = false;
+        lastDragEndTime = Date.now();
+        const threshold = 75;
+        if (pointerCurrentX > threshold) {
+          wrapper.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.25s ease';
+          wrapper.style.transform = `translate3d(125%, ${pointerCurrentY * 0.25 + 15}px, 0) rotate(16deg)`;
+          wrapper.style.opacity = '0';
+          handleSwipe('right');
+        } else if (pointerCurrentX < -threshold) {
+          wrapper.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.25s ease';
+          wrapper.style.transform = `translate3d(-125%, ${pointerCurrentY * 0.25 + 15}px, 0) rotate(-16deg)`;
+          wrapper.style.opacity = '0';
+          handleSwipe('left');
+        } else {
+          wrapper.style.transition = 'transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          wrapper.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
+          triggerHaptic('tap');
+        }
+      }
+
+      wrapper.addEventListener('pointerdown', onPointerDown);
+      wrapper.addEventListener('pointermove', onPointerMove);
+      wrapper.addEventListener('pointerup', onPointerUp);
+      wrapper.addEventListener('pointercancel', onPointerUp);
+    }
+
+    // ==================== GLOBAL FLOATING TOAST SYSTEM ====================
+    let globalToastTimeout = null;
+    function showFloatingToast(message, type = 'info') {
+      let toast = document.getElementById('globalFloatingToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'globalFloatingToast';
+        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] px-4 py-2.5 rounded-2xl bg-slate-900/95 border border-white/15 text-white font-medium text-xs sm:text-sm shadow-2xl backdrop-blur-md flex items-center gap-2.5 transition-all duration-300 pointer-events-none opacity-0 translate-y-4';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = message;
+      toast.classList.remove('opacity-0', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      if (globalToastTimeout) clearTimeout(globalToastTimeout);
+      globalToastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-4');
+      }, 3200);
     }
 
     // ==================== 3-LAYER ULTRA-FOCUS MODE (ADHD-FRIENDLY & EYE-STRAIN FREE) ====================
@@ -5443,6 +5638,12 @@
       modal.classList.toggle('hidden');
       if (isOpening) {
         document.body.style.overflow = 'hidden';
+        const box = modal.querySelector('div');
+        if (box) {
+          box.classList.remove('modal-spring-box');
+          void box.offsetWidth;
+          box.classList.add('modal-spring-box');
+        }
       } else {
         document.body.style.overflow = '';
       }
@@ -5559,9 +5760,14 @@
         if (view) view.classList.add('hidden');
       });
 
-      // 3. Show target view
+      // 3. Show target view with silky native entrance
       const activeView = document.getElementById('view-' + tabId);
-      if (activeView) activeView.classList.remove('hidden');
+      if (activeView) {
+        activeView.classList.remove('hidden');
+        activeView.classList.remove('tab-enter-active');
+        void activeView.offsetWidth;
+        activeView.classList.add('tab-enter-active');
+      }
 
       // 4. Update Header Mode Button
       updateActiveModeButton(tabId);
@@ -5655,7 +5861,17 @@
 
     function toggleThemeModal() {
       const m = document.getElementById('themeModal');
-      if (m) m.classList.toggle('hidden');
+      if (!m) return;
+      const isOpening = m.classList.contains('hidden');
+      m.classList.toggle('hidden');
+      if (isOpening) {
+        const box = m.querySelector('div');
+        if (box) {
+          box.classList.remove('modal-spring-box');
+          void box.offsetWidth;
+          box.classList.add('modal-spring-box');
+        }
+      }
     }
 
     function loadSavedTheme() {
@@ -6384,13 +6600,18 @@
       const wrapper = document.getElementById('cardSwipeWrapper');
       
       if (flipper) {
+        flipper.style.transition = 'none';
         flipper.classList.remove('is-flipped');
         flipper.style.transform = 'none';
+        void flipper.offsetWidth;
+        flipper.style.transition = '';
       }
 
       if (wrapper) {
-        wrapper.classList.remove('anim-swipe-right', 'anim-swipe-left');
-        wrapper.classList.remove('anim-enter');
+        wrapper.style.transform = '';
+        wrapper.style.opacity = '';
+        wrapper.style.transition = '';
+        wrapper.classList.remove('anim-swipe-right', 'anim-swipe-left', 'anim-enter');
         void wrapper.offsetWidth;
         wrapper.classList.add('anim-enter');
       }
@@ -6632,8 +6853,10 @@
 
     function flipCard() {
       if (isSwiping) return;
+      if (Date.now() - lastDragEndTime < 250) return;
       isFlipped = !isFlipped;
       const flipper = document.getElementById('cardFlipper');
+      if (!flipper) return;
       flipper.classList.toggle('is-flipped', isFlipped);
       triggerHaptic('tap');
       flipper.style.transform = isFlipped ? 'rotateY(180deg)' : 'none';
@@ -6656,9 +6879,19 @@
       const card = currentBatchWords[fcIndex];
       const wrapper = document.getElementById('cardSwipeWrapper');
 
-      if (direction === 'right') {
+      if (wrapper) {
+        wrapper.style.transition = '';
+        wrapper.style.transform = '';
+        wrapper.style.opacity = '';
         wrapper.classList.remove('anim-enter');
-        wrapper.classList.add('anim-swipe-right');
+        if (direction === 'right') {
+          wrapper.classList.add('anim-swipe-right');
+        } else {
+          wrapper.classList.add('anim-swipe-left');
+        }
+      }
+
+      if (direction === 'right') {
         checkBlitzBonus();
         recordWordStatus(card.w, true);
         updateHeatStreak(true);
@@ -6666,8 +6899,6 @@
         removeMistakeFromVaultByWord(card.w);
       } else {
         stopBlitzTimer();
-        wrapper.classList.remove('anim-enter');
-        wrapper.classList.add('anim-swipe-left');
         recordWordStatus(card.w, false);
         updateHeatStreak(false);
         triggerHaptic('error'); // Cool down on unknown word
@@ -7111,7 +7342,8 @@
       grid.innerHTML = q.options.map((opt, idx) => `
         <button onclick="handleClozeAnswer(${idx})" 
                 id="cloze-opt-${idx}"
-                class="cloze-opt-btn p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-white/[0.08] hover:border-indigo-500/50 hover:bg-slate-800/80 text-slate-200 font-medium text-sm transition text-left flex items-start gap-3 active:scale-[0.98]">
+                style="--opt-idx: ${idx};"
+                class="cloze-opt-btn anim-opt-enter p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-white/[0.08] hover:border-indigo-500/50 hover:bg-slate-800/80 text-slate-200 font-medium text-sm transition text-left flex items-start gap-3 active:scale-[0.98]">
           <span class="w-6 h-6 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-xs shrink-0 font-mono mt-0.5">${letters[idx]}</span>
           <div class="flex-1 min-w-0">
             <span class="text-sm font-bold text-white tracking-wide block">${opt}</span>
@@ -7170,7 +7402,7 @@
         clozeCorrect++;
         triggerHaptic('success');
         if (blank) {
-          blank.className = 'px-3 py-1 rounded-xl bg-emerald-500/25 border-2 border-emerald-400 font-bold text-emerald-300 font-mono shadow-md inline-block animate-pulse cursor-pointer';
+          blank.className = 'px-3 py-1 rounded-xl bg-emerald-500/25 border-2 border-emerald-400 font-bold text-emerald-300 font-mono shadow-md inline-block anim-correct-pop cursor-pointer';
           blank.innerText = displayAnswer;
         }
         recordWordStatus(q.targetWord, true); // Temel sözcüğü kaydet ('absorb', 'a couple')
@@ -7181,10 +7413,10 @@
         triggerHaptic('error');
         const selectedBtn = document.getElementById('cloze-opt-' + optIdx);
         if (selectedBtn) {
-          selectedBtn.className = 'cloze-opt-btn p-3.5 sm:p-4 rounded-xl bg-rose-500/20 border-2 border-rose-500 text-white font-medium text-sm text-left flex items-start gap-3 shadow-md shadow-rose-500/15';
+          selectedBtn.className = 'cloze-opt-btn p-3.5 sm:p-4 rounded-xl bg-rose-500/20 border-2 border-rose-500 text-white font-medium text-sm text-left flex items-start gap-3 shadow-md shadow-rose-500/15 anim-shake';
         }
         if (blank) {
-          blank.className = 'px-3 py-1 rounded-xl bg-emerald-500/25 border-2 border-emerald-400 font-bold text-emerald-300 font-mono inline-block cursor-pointer';
+          blank.className = 'px-3 py-1 rounded-xl bg-emerald-500/25 border-2 border-emerald-400 font-bold text-emerald-300 font-mono inline-block cursor-pointer anim-correct-pop';
           blank.innerText = displayAnswer;
         }
         document.getElementById('clozeHintBox').classList.remove('hidden');
@@ -7334,7 +7566,8 @@
       grid.innerHTML = q.options.map((opt, idx) => `
         <button onclick="handleQuizAnswer(${idx})" 
                 id="quiz-opt-${idx}"
-                class="quiz-opt-btn p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-white/[0.08] hover:border-indigo-500/50 hover:bg-slate-800/80 text-slate-200 font-medium text-sm transition text-left flex items-center gap-3 active:scale-[0.98]">
+                style="--opt-idx: ${idx};"
+                class="quiz-opt-btn anim-opt-enter p-3.5 sm:p-4 rounded-2xl bg-slate-900/90 border border-white/[0.08] hover:border-indigo-500/50 hover:bg-slate-800/80 text-slate-200 font-medium text-sm transition text-left flex items-center gap-3 active:scale-[0.98]">
           <span class="w-6 h-6 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-xs shrink-0 font-mono">${letters[idx]}</span>
           <span class="text-sm font-bold text-white tracking-wide">${opt}</span>
         </button>
@@ -7356,7 +7589,7 @@
       buttons.forEach((b, idx) => {
         b.disabled = true;
         if (q.options[idx].trim() === q.answer.trim()) {
-          b.className = 'quiz-opt-btn p-3.5 sm:p-4 rounded-2xl bg-emerald-500/20 border-2 border-emerald-500 text-white font-bold text-sm text-left flex items-center gap-3 shadow-md shadow-emerald-500/15';
+          b.className = 'quiz-opt-btn p-3.5 sm:p-4 rounded-2xl bg-emerald-500/20 border-2 border-emerald-500 text-white font-bold text-sm text-left flex items-center gap-3 shadow-md shadow-emerald-500/15 anim-correct-pop';
         }
       });
 
@@ -7364,13 +7597,15 @@
         quizCorrect++;
         recordWordStatus(q.word, true);
         updateHeatStreak(true);
+        triggerHaptic('success');
         speakText(q.word);
       } else {
         quizWrong++;
         const btn = document.getElementById('quiz-opt-' + optIdx);
         if (btn) {
-          btn.className = 'quiz-opt-btn p-3.5 sm:p-4 rounded-2xl bg-rose-500/20 border-2 border-rose-500 text-white font-bold text-sm text-left flex items-center gap-3 shadow-md shadow-rose-500/15';
+          btn.className = 'quiz-opt-btn p-3.5 sm:p-4 rounded-2xl bg-rose-500/20 border-2 border-rose-500 text-white font-bold text-sm text-left flex items-center gap-3 shadow-md shadow-rose-500/15 anim-shake';
         }
+        triggerHaptic('error');
         recordWordStatus(q.word, false);
         updateHeatStreak(false);
         addMistakeToVault({
@@ -7498,16 +7733,20 @@
         matchSelected = null;
 
         if (prev.card.pairId === card.pairId && prev.card.type !== card.type) {
-          btn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-emerald-500/20 border-2 border-emerald-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center transition shadow-sm';
-          prevBtn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-emerald-500/20 border-2 border-emerald-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center transition shadow-sm';
+          btn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-emerald-500/20 border-2 border-emerald-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center shadow-sm anim-correct-pop';
+          prevBtn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-emerald-500/20 border-2 border-emerald-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center shadow-sm anim-correct-pop';
 
           recordWordStatus(card.rawWord, true);
           updateHeatStreak(true);
           triggerHaptic('success'); // Heat up on match success!
 
           setTimeout(() => {
-            btn.classList.add('opacity-0', 'pointer-events-none');
-            prevBtn.classList.add('opacity-0', 'pointer-events-none');
+            btn.classList.add('anim-match-vanish');
+            prevBtn.classList.add('anim-match-vanish');
+            setTimeout(() => {
+              btn.classList.add('opacity-0', 'pointer-events-none');
+              prevBtn.classList.add('opacity-0', 'pointer-events-none');
+            }, 300);
             matchRemaining--;
             document.getElementById('matchRemaining').innerText = matchRemaining;
 
@@ -7515,14 +7754,16 @@
               clearInterval(matchInterval);
               document.getElementById('matchGrid').classList.add('hidden');
               document.getElementById('matchVictory').classList.remove('hidden');
+              document.getElementById('matchVictory').classList.add('modal-spring-box');
               triggerConfetti();
             }
-          }, 300);
+          }, 320);
 
         } else {
-          btn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-rose-500/20 border-2 border-rose-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center transition shadow-sm';
-          prevBtn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-rose-500/20 border-2 border-rose-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center transition shadow-sm';
+          btn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-rose-500/20 border-2 border-rose-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center shadow-sm anim-shake';
+          prevBtn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-rose-500/20 border-2 border-rose-500 text-white font-bold text-xs sm:text-sm p-3 flex items-center justify-center text-center shadow-sm anim-shake';
           updateHeatStreak(false); // Cool down on mismatch
+          triggerHaptic('error');
 
           setTimeout(() => {
             btn.className = 'match-card h-24 sm:h-26 rounded-2xl bg-slate-900/90 border border-white/[0.08] hover:border-indigo-500/50 text-white font-medium text-xs sm:text-sm p-3 flex items-center justify-center text-center transition shadow-sm';
@@ -11095,6 +11336,7 @@
     loadCustomWords();
     loadMemory();
     initParallaxTilt();
+    initCardInteractiveSwipe();
     setLevelFilter(activeLevelFilter);
     // Keyboard Shortcuts (1, 2, 3, 4 veya A, B, C, D ve Enter/Space)
     document.addEventListener('keydown', (e) => {
@@ -14994,6 +15236,12 @@
       if (!modal) return;
       modal.classList.toggle('hidden');
       if (!modal.classList.contains('hidden')) {
+        const box = modal.querySelector('div');
+        if (box) {
+          box.classList.remove('modal-spring-box');
+          void box.offsetWidth;
+          box.classList.add('modal-spring-box');
+        }
         vaultPracticeActive = false;
         const pArea = document.getElementById('vaultPracticeArea');
         const lArea = document.getElementById('vaultListArea');
