@@ -11,7 +11,7 @@
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     html {
@@ -22,18 +22,23 @@
       --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
+    body, .font-sans {
+      font-family: var(--font-sans) !important;
+    }
     body {
-      font-family: var(--font-sans);
       background-color: #0c0406;
       color: #ede2d7;
       overflow-x: hidden;
-      letter-spacing: -0.015em;
+      letter-spacing: var(--body-tracking, -0.015em);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    .font-serif-hero {
-      font-family: var(--font-serif);
+    .font-serif-hero, .font-serif {
+      font-family: var(--font-serif) !important;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+    .font-mono, kbd, code, pre {
+      font-family: var(--font-mono) !important;
     }
 
     /* Ambient Pure Color Flame & Vignette (Göz yormayan alev fiziği) */
@@ -326,9 +331,13 @@
     }
 
 
-    /* ==================== 3 ATMOSPHERIC THEMES ==================== */
-    /* Theme 1: Oxford Crimson (Default) */
+    /* ==================== 8 TYPOGRAPHY & ATMOSPHERIC THEMES ==================== */
+    /* Theme 1: Oxford Crimson (Default — Newsreader + Plus Jakarta Sans) */
     :root, [data-theme="crimson"] {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --body-tracking: -0.015em;
       --theme-bg-body: #0c0406;
       --theme-bg-card: #140609;
       --theme-border: rgba(255, 255, 255, 0.08);
@@ -336,28 +345,47 @@
       --theme-accent-glow: rgba(225, 29, 72, 0.45);
     }
 
-    /* Theme 2: Vintage Parchment (Antik Kitaplık - Warm Espresso & Amber) */
+    /* Theme 2: Vintage Parchment (Antik Kitaplık — Cormorant Garamond + Lora Edebi Serif) */
     [data-theme="parchment"] {
-      --theme-bg-body: #110d0b;
-      --theme-bg-card: #1a1410;
-      --theme-border: rgba(245, 158, 11, 0.15);
+      --font-sans: 'Lora', Georgia, serif;
+      --font-serif: 'Cormorant Garamond', 'Newsreader', Georgia, serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --body-tracking: 0em;
+      --theme-bg-body: #110d09;
+      --theme-bg-card: #1b140e;
+      --theme-border: rgba(245, 158, 11, 0.16);
       --theme-accent: #d97706;
       --theme-accent-glow: rgba(217, 119, 6, 0.45);
     }
     [data-theme="parchment"] body {
-      background-color: #110d0b !important;
+      background-color: #110d09 !important;
       color: #f4ece1 !important;
     }
-    [data-theme="parchment"] .bg-\[\#140609\] {
-      background-color: #1a1410 !important;
-      border-color: rgba(245, 158, 11, 0.14) !important;
+    [data-theme="parchment"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(217, 119, 6, 0.16), rgba(17, 13, 9, 0) 72%) !important;
     }
-    [data-theme="parchment"] .bg-\[\#17080c\], [data-theme="parchment"] .bg-\[\#1c0a10\] {
-      background: linear-gradient(180deg, #221914 0%, #140e0b 100%) !important;
+    [data-theme="parchment"] nav,
+    [data-theme="parchment"] .bg-\[\#140609\],
+    [data-theme="parchment"] .bg-\[\#120407\]\/70,
+    [data-theme="parchment"] .bg-\[\#16060a\]\/90,
+    [data-theme="parchment"] .bg-\[\#18080c\] {
+      background-color: #1b140e !important;
+      border-color: rgba(245, 158, 11, 0.16) !important;
     }
-    [data-theme="parchment"] .bg-rose-900\/60, [data-theme="parchment"] .btn-primary-glow {
+    [data-theme="parchment"] .card-front {
+      background: linear-gradient(180deg, #241a12 0%, #140e09 100%) !important;
+      border-color: rgba(245, 158, 11, 0.22) !important;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(217, 119, 6, 0.14) !important;
+    }
+    [data-theme="parchment"] .card-back {
+      background: linear-gradient(180deg, #291e14 0%, #140e09 100%) !important;
+      border-color: rgba(245, 158, 11, 0.30) !important;
+    }
+    [data-theme="parchment"] .bg-rose-900\/60,
+    [data-theme="parchment"] #btnModeSelector,
+    [data-theme="parchment"] .btn-primary-glow {
       background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #92400e 100%) !important;
-      border-color: rgba(245, 158, 11, 0.5) !important;
+      border-color: rgba(251, 191, 36, 0.5) !important;
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(217, 119, 6, 0.45) !important;
     }
     [data-theme="parchment"] .text-rose-300 { color: #fde68a !important; }
@@ -366,8 +394,12 @@
       border-color: rgba(245, 158, 11, 0.35) !important;
     }
 
-    /* Theme 3: Emerald Sanctuary (Zümrüt Odak - Deep Graphite & Emerald Mint) */
+    /* Theme 3: Emerald Sanctuary (Botanik Odak — Fraunces + Outfit) */
     [data-theme="emerald"] {
+      --font-sans: 'Outfit', -apple-system, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --body-tracking: -0.01em;
       --theme-bg-body: #050f0c;
       --theme-bg-card: #091913;
       --theme-border: rgba(16, 185, 129, 0.15);
@@ -378,14 +410,29 @@
       background-color: #050f0c !important;
       color: #e8f5f0 !important;
     }
-    [data-theme="emerald"] .bg-\[\#140609\] {
+    [data-theme="emerald"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(16, 185, 129, 0.16), rgba(5, 15, 12, 0) 72%) !important;
+    }
+    [data-theme="emerald"] nav,
+    [data-theme="emerald"] .bg-\[\#140609\],
+    [data-theme="emerald"] .bg-\[\#120407\]\/70,
+    [data-theme="emerald"] .bg-\[\#16060a\]\/90,
+    [data-theme="emerald"] .bg-\[\#18080c\] {
       background-color: #091913 !important;
-      border-color: rgba(16, 185, 129, 0.14) !important;
+      border-color: rgba(16, 185, 129, 0.16) !important;
     }
-    [data-theme="emerald"] .bg-\[\#17080c\], [data-theme="emerald"] .bg-\[\#1c0a10\] {
-      background: linear-gradient(180deg, #0d251d 0%, #06140f 100%) !important;
+    [data-theme="emerald"] .card-front {
+      background: linear-gradient(180deg, #0d241b 0%, #06120e 100%) !important;
+      border-color: rgba(16, 185, 129, 0.22) !important;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(16, 185, 129, 0.14) !important;
     }
-    [data-theme="emerald"] .bg-rose-900\/60, [data-theme="emerald"] .btn-primary-glow {
+    [data-theme="emerald"] .card-back {
+      background: linear-gradient(180deg, #102c21 0%, #06120e 100%) !important;
+      border-color: rgba(16, 185, 129, 0.30) !important;
+    }
+    [data-theme="emerald"] .bg-rose-900\/60,
+    [data-theme="emerald"] #btnModeSelector,
+    [data-theme="emerald"] .btn-primary-glow {
       background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%) !important;
       border-color: rgba(52, 211, 153, 0.5) !important;
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(5, 150, 105, 0.45) !important;
@@ -394,6 +441,307 @@
     [data-theme="emerald"] .text-rose-400 { color: #34d399 !important; }
     [data-theme="emerald"] .border-rose-500\/30, [data-theme="emerald"] .border-rose-500\/40 {
       border-color: rgba(16, 185, 129, 0.35) !important;
+    }
+
+    /* Theme 4: Cambridge Sapphire (Gece Laciverti — Lora + Plus Jakarta Sans) */
+    [data-theme="sapphire"] {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --body-tracking: -0.012em;
+      --theme-bg-body: #040914;
+      --theme-bg-card: #091326;
+      --theme-border: rgba(56, 189, 248, 0.16);
+      --theme-accent: #0284c7;
+      --theme-accent-glow: rgba(2, 132, 199, 0.45);
+    }
+    [data-theme="sapphire"] body {
+      background-color: #040914 !important;
+      color: #e2ecf8 !important;
+    }
+    [data-theme="sapphire"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(14, 165, 233, 0.16), rgba(4, 9, 20, 0) 72%) !important;
+    }
+    [data-theme="sapphire"] nav,
+    [data-theme="sapphire"] .bg-\[\#140609\],
+    [data-theme="sapphire"] .bg-\[\#120407\]\/70,
+    [data-theme="sapphire"] .bg-\[\#16060a\]\/90,
+    [data-theme="sapphire"] .bg-\[\#18080c\] {
+      background-color: #091326 !important;
+      border-color: rgba(56, 189, 248, 0.16) !important;
+    }
+    [data-theme="sapphire"] .card-front {
+      background: linear-gradient(180deg, #0d1c38 0%, #060d1b 100%) !important;
+      border-color: rgba(56, 189, 248, 0.22) !important;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(14, 165, 233, 0.15) !important;
+    }
+    [data-theme="sapphire"] .card-back {
+      background: linear-gradient(180deg, #102344 0%, #060d1b 100%) !important;
+      border-color: rgba(56, 189, 248, 0.30) !important;
+    }
+    [data-theme="sapphire"] .bg-rose-900\/60,
+    [data-theme="sapphire"] #btnModeSelector,
+    [data-theme="sapphire"] .btn-primary-glow {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #075985 100%) !important;
+      border-color: rgba(56, 189, 248, 0.5) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(2, 132, 199, 0.45) !important;
+    }
+    [data-theme="sapphire"] .text-rose-300 { color: #bae6fd !important; }
+    [data-theme="sapphire"] .text-rose-400 { color: #38bdf8 !important; }
+    [data-theme="sapphire"] .border-rose-500\/30, [data-theme="sapphire"] .border-rose-500\/40 {
+      border-color: rgba(56, 189, 248, 0.35) !important;
+    }
+
+    /* Theme 5: Cyber Terminal Mono (Daktilo & Kodlayıcı — Space Grotesk + IBM Plex Mono) */
+    [data-theme="terminal"] {
+      --font-sans: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+      --font-serif: 'Space Grotesk', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --body-tracking: -0.02em;
+      --theme-bg-body: #05080d;
+      --theme-bg-card: #0a1019;
+      --theme-border: rgba(34, 211, 238, 0.18);
+      --theme-accent: #0891b2;
+      --theme-accent-glow: rgba(8, 145, 178, 0.45);
+    }
+    [data-theme="terminal"] body {
+      background-color: #05080d !important;
+      color: #d8f3f8 !important;
+    }
+    [data-theme="terminal"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(6, 182, 212, 0.16), rgba(5, 8, 13, 0) 72%) !important;
+    }
+    [data-theme="terminal"] nav,
+    [data-theme="terminal"] .bg-\[\#140609\],
+    [data-theme="terminal"] .bg-\[\#120407\]\/70,
+    [data-theme="terminal"] .bg-\[\#16060a\]\/90,
+    [data-theme="terminal"] .bg-\[\#18080c\] {
+      background-color: #0a1019 !important;
+      border-color: rgba(34, 211, 238, 0.18) !important;
+    }
+    [data-theme="terminal"] .card-front {
+      background: linear-gradient(180deg, #0d1724 0%, #060b12 100%) !important;
+      border-color: rgba(34, 211, 238, 0.25) !important;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.9), 0 0 35px -5px rgba(6, 182, 212, 0.15) !important;
+    }
+    [data-theme="terminal"] .card-back {
+      background: linear-gradient(180deg, #101d2d 0%, #060b12 100%) !important;
+      border-color: rgba(34, 211, 238, 0.35) !important;
+    }
+    [data-theme="terminal"] .bg-rose-900\/60,
+    [data-theme="terminal"] #btnModeSelector,
+    [data-theme="terminal"] .btn-primary-glow {
+      background: linear-gradient(135deg, #0891b2 0%, #0e7490 50%, #155e75 100%) !important;
+      border-color: rgba(34, 211, 238, 0.5) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(8, 145, 178, 0.45) !important;
+    }
+    [data-theme="terminal"] .text-rose-300 { color: #a5f3fc !important; }
+    [data-theme="terminal"] .text-rose-400 { color: #22d3ee !important; }
+    [data-theme="terminal"] .border-rose-500\/30, [data-theme="terminal"] .border-rose-500\/40 {
+      border-color: rgba(34, 211, 238, 0.35) !important;
+    }
+
+    /* Theme 6: Hyperlegible Focus (Maksimum Okunabilirlik — Lexend + Atkinson Hyperlegible) */
+    [data-theme="hyperlegible"] {
+      --font-sans: 'Atkinson Hyperlegible', 'Lexend', sans-serif;
+      --font-serif: 'Lexend', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --body-tracking: 0.01em;
+      --theme-bg-body: #090b12;
+      --theme-bg-card: #111522;
+      --theme-border: rgba(129, 140, 248, 0.18);
+      --theme-accent: #4f46e5;
+      --theme-accent-glow: rgba(79, 70, 229, 0.45);
+    }
+    [data-theme="hyperlegible"] body {
+      background-color: #090b12 !important;
+      color: #f1f5f9 !important;
+      line-height: 1.65;
+    }
+    [data-theme="hyperlegible"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(99, 102, 241, 0.16), rgba(9, 11, 18, 0) 72%) !important;
+    }
+    [data-theme="hyperlegible"] nav,
+    [data-theme="hyperlegible"] .bg-\[\#140609\],
+    [data-theme="hyperlegible"] .bg-\[\#120407\]\/70,
+    [data-theme="hyperlegible"] .bg-\[\#16060a\]\/90,
+    [data-theme="hyperlegible"] .bg-\[\#18080c\] {
+      background-color: #111522 !important;
+      border-color: rgba(129, 140, 248, 0.18) !important;
+    }
+    [data-theme="hyperlegible"] .card-front {
+      background: linear-gradient(180deg, #171c2e 0%, #0c0f1a 100%) !important;
+      border-color: rgba(129, 140, 248, 0.25) !important;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(99, 102, 241, 0.15) !important;
+    }
+    [data-theme="hyperlegible"] .card-back {
+      background: linear-gradient(180deg, #1b2238 0%, #0c0f1a 100%) !important;
+      border-color: rgba(129, 140, 248, 0.35) !important;
+    }
+    [data-theme="hyperlegible"] .bg-rose-900\/60,
+    [data-theme="hyperlegible"] #btnModeSelector,
+    [data-theme="hyperlegible"] .btn-primary-glow {
+      background: linear-gradient(135deg, #4f46e5 0%, #4338ca 50%, #3730a3 100%) !important;
+      border-color: rgba(129, 140, 248, 0.5) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(79, 70, 229, 0.45) !important;
+    }
+    [data-theme="hyperlegible"] .text-rose-300 { color: #c7d2fe !important; }
+    [data-theme="hyperlegible"] .text-rose-400 { color: #818cf8 !important; }
+    [data-theme="hyperlegible"] .border-rose-500\/30, [data-theme="hyperlegible"] .border-rose-500\/40 {
+      border-color: rgba(129, 140, 248, 0.35) !important;
+    }
+
+    /* Theme 7: Royal Amethyst (Gece Moru & Galeri — Fraunces + Space Grotesk) */
+    [data-theme="amethyst"] {
+      --font-sans: 'Space Grotesk', -apple-system, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --body-tracking: -0.015em;
+      --theme-bg-body: #090514;
+      --theme-bg-card: #120a24;
+      --theme-border: rgba(167, 139, 250, 0.16);
+      --theme-accent: #7c3aed;
+      --theme-accent-glow: rgba(124, 58, 237, 0.45);
+    }
+    [data-theme="amethyst"] body {
+      background-color: #090514 !important;
+      color: #efe8fc !important;
+    }
+    [data-theme="amethyst"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(139, 92, 246, 0.18), rgba(9, 5, 20, 0) 72%) !important;
+    }
+    [data-theme="amethyst"] nav,
+    [data-theme="amethyst"] .bg-\[\#140609\],
+    [data-theme="amethyst"] .bg-\[\#120407\]\/70,
+    [data-theme="amethyst"] .bg-\[\#16060a\]\/90,
+    [data-theme="amethyst"] .bg-\[\#18080c\] {
+      background-color: #120a24 !important;
+      border-color: rgba(167, 139, 250, 0.16) !important;
+    }
+    [data-theme="amethyst"] .card-front {
+      background: linear-gradient(180deg, #1a0f33 0%, #0b0618 100%) !important;
+      border-color: rgba(167, 139, 250, 0.24) !important;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(139, 92, 246, 0.16) !important;
+    }
+    [data-theme="amethyst"] .card-back {
+      background: linear-gradient(180deg, #211240 0%, #0b0618 100%) !important;
+      border-color: rgba(167, 139, 250, 0.32) !important;
+    }
+    [data-theme="amethyst"] .bg-rose-900\/60,
+    [data-theme="amethyst"] #btnModeSelector,
+    [data-theme="amethyst"] .btn-primary-glow {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%) !important;
+      border-color: rgba(196, 181, 253, 0.5) !important;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 6px 20px -4px rgba(124, 58, 237, 0.45) !important;
+    }
+    [data-theme="amethyst"] .text-rose-300 { color: #ddd6fe !important; }
+    [data-theme="amethyst"] .text-rose-400 { color: #a78bfa !important; }
+    [data-theme="amethyst"] .border-rose-500\/30, [data-theme="amethyst"] .border-rose-500\/40 {
+      border-color: rgba(167, 139, 250, 0.35) !important;
+    }
+
+    /* Theme 8: Daylight Ivory (Gündüz Kağıt & Mürekkep Modu — Açık Tema, Newsreader + Lora) */
+    [data-theme="ivory"] {
+      --font-sans: 'Lora', Georgia, serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --body-tracking: -0.005em;
+      --theme-bg-body: #f4eee4;
+      --theme-bg-card: #fffdf9;
+      --theme-border: rgba(120, 90, 65, 0.18);
+      --theme-accent: #9f1239;
+      --theme-accent-glow: rgba(159, 18, 57, 0.25);
+    }
+    [data-theme="ivory"] body {
+      background-color: #f4eee4 !important;
+      color: #1f1916 !important;
+    }
+    [data-theme="ivory"] #auraBase {
+      background: radial-gradient(circle 950px at 50% -120px, rgba(217, 119, 6, 0.10), rgba(244, 238, 228, 0) 72%) !important;
+    }
+    [data-theme="ivory"] nav,
+    [data-theme="ivory"] #levelFilterBar {
+      background-color: rgba(251, 247, 240, 0.92) !important;
+      border-color: rgba(120, 90, 65, 0.16) !important;
+    }
+    [data-theme="ivory"] .bg-\[\#140609\],
+    [data-theme="ivory"] .bg-\[\#120407\]\/70,
+    [data-theme="ivory"] .bg-\[\#16060a\]\/90,
+    [data-theme="ivory"] .bg-\[\#18080c\] {
+      background-color: #fffdf9 !important;
+      border-color: rgba(120, 90, 65, 0.18) !important;
+      box-shadow: 0 12px 30px -10px rgba(80, 60, 40, 0.10) !important;
+    }
+    [data-theme="ivory"] .card-front {
+      background: linear-gradient(180deg, #fffefb 0%, #f8f1e5 100%) !important;
+      border: 1px solid rgba(120, 90, 65, 0.24) !important;
+      box-shadow: 0 20px 40px -15px rgba(70, 50, 30, 0.14), 0 1px 0 rgba(255, 255, 255, 0.9) inset !important;
+    }
+    [data-theme="ivory"] .card-back {
+      background: linear-gradient(180deg, #fdf9f2 0%, #f3eadb 100%) !important;
+      border: 1px solid rgba(159, 18, 57, 0.28) !important;
+      box-shadow: 0 20px 40px -15px rgba(70, 50, 30, 0.16) !important;
+    }
+    [data-theme="ivory"] .bg-black\/30,
+    [data-theme="ivory"] .bg-black\/40,
+    [data-theme="ivory"] .bg-black\/50,
+    [data-theme="ivory"] .bg-black\/60,
+    [data-theme="ivory"] .bg-white\/\[0\.03\],
+    [data-theme="ivory"] .bg-white\/\[0\.04\],
+    [data-theme="ivory"] .bg-white\/\[0\.05\],
+    [data-theme="ivory"] .bg-white\/\[0\.06\],
+    [data-theme="ivory"] .bg-white\/\[0\.08\],
+    [data-theme="ivory"] .btn-glass-subtle {
+      background-color: #efe7da !important;
+      border-color: rgba(120, 90, 65, 0.18) !important;
+      color: #29201b !important;
+    }
+    [data-theme="ivory"] .text-white,
+    [data-theme="ivory"] .text-\[\#fdf6ee\],
+    [data-theme="ivory"] .text-\[\#fbf4eb\],
+    [data-theme="ivory"] .text-\[\#ede2d7\],
+    [data-theme="ivory"] .text-\[\#e8dbcc\],
+    [data-theme="ivory"] .text-slate-100,
+    [data-theme="ivory"] .text-slate-200 {
+      color: #1e1612 !important;
+    }
+    [data-theme="ivory"] .text-\[\#d6c7b2\],
+    [data-theme="ivory"] .text-\[\#a8998c\],
+    [data-theme="ivory"] .text-slate-300,
+    [data-theme="ivory"] .text-slate-400 {
+      color: #5c4b3e !important;
+    }
+    [data-theme="ivory"] .text-rose-200,
+    [data-theme="ivory"] .text-rose-300,
+    [data-theme="ivory"] .text-rose-400 {
+      color: #9f1239 !important;
+    }
+    [data-theme="ivory"] .text-emerald-200,
+    [data-theme="ivory"] .text-emerald-300,
+    [data-theme="ivory"] .text-emerald-400 {
+      color: #065f46 !important;
+    }
+    [data-theme="ivory"] .text-amber-200,
+    [data-theme="ivory"] .text-amber-300,
+    [data-theme="ivory"] .text-amber-400 {
+      color: #92400e !important;
+    }
+    [data-theme="ivory"] .text-cyan-300,
+    [data-theme="ivory"] .text-sky-200,
+    [data-theme="ivory"] .text-sky-300 {
+      color: #075985 !important;
+    }
+    [data-theme="ivory"] .text-indigo-200,
+    [data-theme="ivory"] .text-indigo-300 {
+      color: #3730a3 !important;
+    }
+    [data-theme="ivory"] .btn-primary-glow,
+    [data-theme="ivory"] .btn-primary-glow *,
+    [data-theme="ivory"] #btnModeSelector,
+    [data-theme="ivory"] #btnModeSelector *,
+    [data-theme="ivory"] .bg-rose-900\/60,
+    [data-theme="ivory"] .bg-rose-900\/60 * {
+      color: #ffffff !important;
     }
 
     /* Core Hub Pill Styles */
@@ -2999,7 +3347,7 @@
     </div>
   </div>
 
-  <!-- ==================== WELCOME & USAGE GUIDE MODAL (İLK GİRİŞ & ? REHBERİ) ==================== -->
+  <!-- ==================== WELCOME & USAGE GUIDE MODAL (İLK GİRİŞ & ? REHBERİ — HER GÜNCELLEMEDE SENKRONİZE TUTULUR) ==================== -->
   <div id="welcomeGuideModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md">
     <div class="absolute inset-0" onclick="closeWelcomeGuideModal()"></div>
     <div class="bg-[#140609] border border-rose-500/30 rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden relative z-10">
@@ -3011,7 +3359,7 @@
             Ox
           </div>
           <div>
-            <div class="text-[10px] font-mono tracking-widest uppercase text-rose-300/80">Hızlı Başlangıç & Kullanım Rehberi</div>
+            <div class="text-[10px] font-mono tracking-widest uppercase text-rose-300/80">Hızlı Başlangıç & Güncel Kullanım Rehberi</div>
             <h3 class="font-serif-hero text-xl sm:text-2xl font-bold text-[#fdf6ee] leading-tight">Oxford Lexicon'a Hoş Geldin</h3>
           </div>
         </div>
@@ -3027,40 +3375,54 @@
         <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.07] space-y-1.5">
           <div class="text-xs font-mono uppercase tracking-wider text-rose-300 font-bold">🎯 Bu Site Ne İşe Yarar?</div>
           <p class="text-[#d6c7b2] text-xs sm:text-sm leading-relaxed">
-            Üniversite Hazırlık (Proficiency), YDS/YÖKDİL ve akademik İngilizce için gereken <strong>3.750 Oxford, AWL & Phrasal Verb kelimesini</strong>, sık karıştırılan nüans ikizlerini, akademik edat kalıplarını ve okuma metinlerini kuru ezber yerine <strong>5 kutulu aralıklı tekrar (Leitner sistemi)</strong> ve aktif pratikle kalıcı olarak öğrenmeni sağlar. Tüm ilerlemen tarayıcında otomatik kaydedilir.
+            Üniversite Hazırlık (Proficiency), YDS/YÖKDİL, TOEFL/IELTS ve akademik İngilizce için gereken <strong>3.750 Oxford, AWL & Phrasal Verb kelimesini</strong>, <strong>227 sık karıştırılan nüans ikizini</strong>, akademik edat kalıplarını, A1–C1 tüm gramer konularını ve okuma metinlerini kuru ezber yerine <strong>5 kutulu aralıklı tekrar (Leitner sistemi)</strong> ile kalıcı olarak öğrenmeni sağlar.
           </p>
         </div>
 
-        <!-- 2. Adım Adım Kullanım -->
+        <!-- 2. Adım Adım Kullanım (6 Güncel Modül) -->
         <div class="space-y-2.5">
           <div class="text-xs font-mono uppercase tracking-wider text-amber-300 font-bold">🚀 Adım Adım Nasıl Kullanılır?</div>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
-              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>1️⃣</span> <span>Kurunu & Özel Kütüphaneni Seç</span></div>
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>1️⃣</span> <span>Kur & Özel Kütüphane Seçimi</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                Üst bardan seviyene uygun kuru (<strong class="text-slate-200">A1–C1</strong>) veya özel sınav paketlerini (<strong class="text-rose-300">AWL</strong>, <strong class="text-cyan-300">Phrasal Verbs</strong>, <strong class="text-amber-300">Karışan İkizler</strong>) seç.
+                Üst bardan seviyene uygun kuru (<strong class="text-slate-200">A1–C1</strong>) veya sınav odaklı özel paketleri (<strong class="text-rose-300">🎓 AWL</strong>, <strong class="text-cyan-300">🔗 Phrasal Verbs (250)</strong>, <strong class="text-amber-300">⚠️ Karışan İkizler</strong>) seç.
               </p>
             </div>
 
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
-              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>2️⃣</span> <span>Kartlarla Aktif Çalış</span></div>
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>2️⃣</span> <span>3B Kartlar & Nüans Motoru</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                Karta tıklayarak arka yüzdeki <strong class="text-slate-200">edat kalıplarını (🔊)</strong> ve <strong class="text-slate-200">kelime ailesini</strong> incele. Biliyorsan sağa (<strong class="text-emerald-400">Öğrendim</strong>), zorlandıysan sola (<strong class="text-rose-300">Tekrar Et</strong>) geç. <strong class="text-amber-300">✍️ Yazım</strong> butonuyla harf iskeletinden yazma pratiği yap.
+                Kartın arkasındaki <strong class="text-slate-200">edat kalıplarını (🔊)</strong>, <strong class="text-indigo-300">akademik eş anlamları</strong>, <strong class="text-amber-300">⚠️ Karıştırma (Nüans)</strong> uyarısını ve kelime ailesini incele. <strong class="text-amber-300">✍️ Yazım</strong> ile harf iskeletinden dikte çalış.
               </p>
             </div>
 
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
-              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>3️⃣</span> <span>Test, Okuma & Sınav Modları</span></div>
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>3️⃣</span> <span>Okuma Labı 2.0 & Metin Röntgeni</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                Sağ üstteki <strong class="text-rose-300">🧭 Mod</strong> menüsünden <em>Boşluk Doldurma, Kelime Testi, Eşleştirme, Okuma Labı, Gramer Arenası</em> ve 20 soruluk <em>Deneme Sınavı</em>'na geç.
+                Hazır makaleleri oku veya <strong>kendi metnini yapıştır</strong>: <em>🔬 Metin Röntgeni</em> akademik yoğunluğu hesaplar, kelimeleri tek tıkla tekrara ekler ve <strong>yapıştırdığın metinden otomatik 4 şıklı test üretir</strong>. <em>Kelime Yükseltici (92+ kalıp)</em> ile essay cümlelerini C1'e taşı.
               </p>
             </div>
 
             <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
-              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>4️⃣</span> <span>Akademik Lab (C1 Analiz)</span></div>
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>4️⃣</span> <span>A1–C1 Gramer & 12 Karışan Yapı</span></div>
               <p class="text-[11px] text-[#a8998c] leading-snug">
-                <em>Kelime Röntgeni</em> ile kelimeleri kök ve eklerine ayır, <em>Cümle Ameliyatı</em> ile uzun cümlelerin ana iskeletini gör, <em>Ton Çevirici</em> ile cümleni akademik dile dönüştür.
+                A1'den C1'e (<em>Inversion, Cleft, Subjunctive, Participle Clauses</em> dahil) tüm konuların formüllerini incele; <em>Karışan Yapılar, Preposition Avcısı, Hata Avcısı, Cümle Kurma</em> ve <em>148 Düzensiz Fiil Refleks Testi</em> ile pratik yap.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>5️⃣</span> <span>Akıllı Testler & Deneme Sınavı</span></div>
+              <p class="text-[11px] text-[#a8998c] leading-snug">
+                Karışan ikizleri ve aynı kelime türünü (POS) akıllı çeldirici yapan <em>Boşluk Doldurma, Kelime Testi, Eşleştirme</em> ve süreli <em>B1/B2/C1 Hazırlık Muafiyet Deneme Sınavı</em> ile kendini dene.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-black/40 border border-white/[0.06] space-y-1">
+              <div class="font-bold text-white text-xs flex items-center gap-1.5"><span>6️⃣</span> <span>C1 Akademik Lab & 8 Font/Renk Teması</span></div>
+              <p class="text-[11px] text-[#a8998c] leading-snug">
+                <em>Kelime Röntgeni</em> (kök/ek), <em>Cümle Ameliyatı</em>, <em>Ton Çevirici</em> ve <em>Tez Savunması</em> ile C1 analizi yap. Sağ üstteki <strong class="text-rose-300">🎨 Tema</strong> butonundan hem yazı tipini (font) hem atmosferi değiştiren 8 temadan birini seç.
               </p>
             </div>
           </div>
@@ -3071,6 +3433,7 @@
           <div><strong class="text-amber-300">🔥 Seri:</strong> Günlük hedef & odak zincirin</div>
           <div><strong class="text-rose-300">🩸 Kasa:</strong> Yanlış yaptığın soruların kutusu</div>
           <div><strong class="text-emerald-300">📦 Kutu 1/5:</strong> Aralıklı tekrar hafıza seviyesi</div>
+          <div><strong class="text-cyan-300">🎨 Tema:</strong> 8 farklı Font + Renk atmosferi</div>
         </div>
 
       </div>
@@ -3088,9 +3451,9 @@
     </div>
   </div>
 
-  <!-- ==================== THEME SWITCHER MODAL ==================== -->
+  <!-- ==================== THEME SWITCHER MODAL (8 FONT + COLOR THEMES) ==================== -->
   <div id="themeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-    <div class="bg-[#140609] border border-white/[0.08] rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative text-left">
+    <div class="bg-[#140609] border border-white/[0.08] rounded-3xl max-w-xl w-full p-5 sm:p-6 space-y-4 shadow-2xl relative text-left">
       <button onclick="toggleThemeModal()" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.05] transition text-sm">
         ✕
       </button>
@@ -3098,52 +3461,130 @@
       <div class="space-y-1">
         <div class="flex items-center gap-2">
           <span>🎨</span>
-          <h3 class="font-serif-hero text-xl font-bold text-[#fdf6ee]">Atmosferik Temalar</h3>
+          <h3 class="font-serif-hero text-xl font-bold text-[#fdf6ee]">Atmosferik Renk & Font Temaları</h3>
         </div>
-        <p class="text-xs text-[#a8998c]">Çalışma modunuza ve ortamınıza uygun renk paletini seçin:</p>
+        <p class="text-xs text-[#a8998c]">Her tema hem sitenin renk paletini hem de okuma/arayüz yazı tipini (font) değiştirir:</p>
       </div>
 
-      <div class="space-y-2.5 pt-1">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1 max-h-[68vh] overflow-y-auto pr-1 scrollbar-thin">
         <!-- Theme 1: Crimson -->
-        <button onclick="selectTheme('crimson')" id="themeBtn-crimson" class="theme-card-btn w-full p-3.5 rounded-xl border border-rose-500/50 bg-rose-950/40 text-left flex items-center justify-between transition hover:border-rose-400">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-[#0c0406] border border-rose-500/40 flex items-center justify-center text-sm shadow-inner">
+        <button onclick="selectTheme('crimson')" id="themeBtn-crimson" class="theme-card-btn w-full p-3 rounded-2xl border border-rose-500/50 bg-[#140609] text-left flex items-center justify-between gap-2 transition hover:border-rose-400">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#0c0406] border border-rose-500/40 flex items-center justify-center text-base shrink-0 shadow-inner">
               🍷
             </div>
-            <div>
-              <div class="text-xs font-bold text-white">Oxford Crimson</div>
-              <div class="text-[11px] text-[#d6c7b2]/70">Derin Asil Bordo & Gece Paleti</div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#fdf6ee] truncate" style="font-family: 'Newsreader', serif;">Oxford Crimson</div>
+              <div class="text-[10px] text-[#d6c7b2]/75 truncate">Asil Bordo & Gece Siyahı</div>
+              <div class="text-[9px] font-mono text-rose-300/90 mt-0.5 truncate">🔤 Newsreader + Jakarta Sans</div>
             </div>
           </div>
-          <span id="themeCheck-crimson" class="text-rose-400 text-sm font-bold">✓</span>
+          <span id="themeCheck-crimson" class="text-rose-400 text-sm font-bold shrink-0">✓</span>
         </button>
 
         <!-- Theme 2: Vintage Parchment -->
-        <button onclick="selectTheme('parchment')" id="themeBtn-parchment" class="theme-card-btn w-full p-3.5 rounded-xl border border-white/[0.08] bg-[#1a1410] text-left flex items-center justify-between transition hover:border-amber-500/50">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-[#110d0b] border border-amber-500/40 flex items-center justify-center text-sm shadow-inner">
+        <button onclick="selectTheme('parchment')" id="themeBtn-parchment" class="theme-card-btn w-full p-3 rounded-2xl border border-white/[0.08] bg-[#1a1410] text-left flex items-center justify-between gap-2 transition hover:border-amber-500/50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#110d0b] border border-amber-500/40 flex items-center justify-center text-base shrink-0 shadow-inner">
               📜
             </div>
-            <div>
-              <div class="text-xs font-bold text-[#f4ece1]">Vintage Parchment</div>
-              <div class="text-[11px] text-[#a89c8d]">Antik Kitaplık, Parşömen & Amber</div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#f4ece1] truncate" style="font-family: 'Cormorant Garamond', serif; font-size: 13px;">Vintage Parchment</div>
+              <div class="text-[10px] text-[#a89c8d] truncate">Antik Kitaplık & Kehribar</div>
+              <div class="text-[9px] font-mono text-amber-300/90 mt-0.5 truncate">🔤 Cormorant + Lora (Edebi Serif)</div>
             </div>
           </div>
-          <span id="themeCheck-parchment" class="hidden text-amber-400 text-sm font-bold">✓</span>
+          <span id="themeCheck-parchment" class="hidden text-amber-400 text-sm font-bold shrink-0">✓</span>
         </button>
 
         <!-- Theme 3: Emerald Sanctuary -->
-        <button onclick="selectTheme('emerald')" id="themeBtn-emerald" class="theme-card-btn w-full p-3.5 rounded-xl border border-white/[0.08] bg-[#091913] text-left flex items-center justify-between transition hover:border-emerald-500/50">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-[#050f0c] border border-emerald-500/40 flex items-center justify-center text-sm shadow-inner">
+        <button onclick="selectTheme('emerald')" id="themeBtn-emerald" class="theme-card-btn w-full p-3 rounded-2xl border border-white/[0.08] bg-[#091913] text-left flex items-center justify-between gap-2 transition hover:border-emerald-500/50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#050f0c] border border-emerald-500/40 flex items-center justify-center text-base shrink-0 shadow-inner">
               🌲
             </div>
-            <div>
-              <div class="text-xs font-bold text-[#e8f5f0]">Emerald Sanctuary</div>
-              <div class="text-[11px] text-[#8faaa0]">Koyu Grafit & Zümrüt Yeşili</div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#e8f5f0] truncate" style="font-family: 'Fraunces', serif;">Emerald Sanctuary</div>
+              <div class="text-[10px] text-[#8faaa0] truncate">Botanik Zümrüt & Grafit</div>
+              <div class="text-[9px] font-mono text-emerald-300/90 mt-0.5 truncate">🔤 Fraunces + Outfit</div>
             </div>
           </div>
-          <span id="themeCheck-emerald" class="hidden text-emerald-400 text-sm font-bold">✓</span>
+          <span id="themeCheck-emerald" class="hidden text-emerald-400 text-sm font-bold shrink-0">✓</span>
+        </button>
+
+        <!-- Theme 4: Cambridge Sapphire -->
+        <button onclick="selectTheme('sapphire')" id="themeBtn-sapphire" class="theme-card-btn w-full p-3 rounded-2xl border border-white/[0.08] bg-[#091326] text-left flex items-center justify-between gap-2 transition hover:border-sky-500/50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#040914] border border-sky-500/40 flex items-center justify-center text-base shrink-0 shadow-inner">
+              🏛️
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#e2ecf8] truncate" style="font-family: 'Lora', serif;">Cambridge Sapphire</div>
+              <div class="text-[10px] text-[#94a8c4] truncate">Gece Laciverti & Safir Buz</div>
+              <div class="text-[9px] font-mono text-sky-300/90 mt-0.5 truncate">🔤 Lora Serif + Jakarta Sans</div>
+            </div>
+          </div>
+          <span id="themeCheck-sapphire" class="hidden text-sky-400 text-sm font-bold shrink-0">✓</span>
+        </button>
+
+        <!-- Theme 5: Cyber Terminal Mono -->
+        <button onclick="selectTheme('terminal')" id="themeBtn-terminal" class="theme-card-btn w-full p-3 rounded-2xl border border-white/[0.08] bg-[#0a1019] text-left flex items-center justify-between gap-2 transition hover:border-cyan-500/50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#05080d] border border-cyan-500/40 flex items-center justify-center text-base shrink-0 shadow-inner">
+              ⌨️
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#d8f3f8] truncate" style="font-family: 'Space Grotesk', sans-serif;">Terminal Mono</div>
+              <div class="text-[10px] text-[#88a8b5] truncate">OLED Karbon & Daktilo Modu</div>
+              <div class="text-[9px] font-mono text-cyan-300/90 mt-0.5 truncate">🔤 Space Grotesk + IBM Plex Mono</div>
+            </div>
+          </div>
+          <span id="themeCheck-terminal" class="hidden text-cyan-400 text-sm font-bold shrink-0">✓</span>
+        </button>
+
+        <!-- Theme 6: Hyperlegible Focus -->
+        <button onclick="selectTheme('hyperlegible')" id="themeBtn-hyperlegible" class="theme-card-btn w-full p-3 rounded-2xl border border-white/[0.08] bg-[#111522] text-left flex items-center justify-between gap-2 transition hover:border-indigo-500/50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#090b12] border border-indigo-500/40 flex items-center justify-center text-base shrink-0 shadow-inner">
+              👁️
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#f1f5f9] truncate" style="font-family: 'Lexend', sans-serif;">Hyperlegible Focus</div>
+              <div class="text-[10px] text-[#94a3b8] truncate">Sıfır Göz Yorgunluğu & İndigo</div>
+              <div class="text-[9px] font-mono text-indigo-300/90 mt-0.5 truncate">🔤 Lexend + Atkinson Hyperlegible</div>
+            </div>
+          </div>
+          <span id="themeCheck-hyperlegible" class="hidden text-indigo-400 text-sm font-bold shrink-0">✓</span>
+        </button>
+
+        <!-- Theme 7: Royal Amethyst -->
+        <button onclick="selectTheme('amethyst')" id="themeBtn-amethyst" class="theme-card-btn w-full p-3 rounded-2xl border border-white/[0.08] bg-[#120a24] text-left flex items-center justify-between gap-2 transition hover:border-violet-500/50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#090514] border border-violet-500/40 flex items-center justify-center text-base shrink-0 shadow-inner">
+              🔮
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#efe8fc] truncate" style="font-family: 'Fraunces', serif;">Royal Amethyst</div>
+              <div class="text-[10px] text-[#a79bc2] truncate">Derin Obsidyen & Ametist Moru</div>
+              <div class="text-[9px] font-mono text-violet-300/90 mt-0.5 truncate">🔤 Fraunces + Space Grotesk</div>
+            </div>
+          </div>
+          <span id="themeCheck-amethyst" class="hidden text-violet-400 text-sm font-bold shrink-0">✓</span>
+        </button>
+
+        <!-- Theme 8: Daylight Ivory (Light Paper Mode) -->
+        <button onclick="selectTheme('ivory')" id="themeBtn-ivory" class="theme-card-btn w-full p-3 rounded-2xl border border-amber-900/25 bg-[#f4eee4] text-left flex items-center justify-between gap-2 transition hover:border-rose-700/50">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-9 h-9 rounded-xl bg-[#fffdf9] border border-amber-900/25 flex items-center justify-center text-base shrink-0 shadow-inner">
+              ☀️
+            </div>
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-[#1e1612] truncate" style="font-family: 'Newsreader', serif;">Daylight Ivory (Açık)</div>
+              <div class="text-[10px] text-[#5c4b3e] truncate">Fildişi Kağıt & Bordo Mürekkep</div>
+              <div class="text-[9px] font-mono text-[#9f1239] mt-0.5 truncate">🔤 Newsreader + Lora (Kağıt Modu)</div>
+            </div>
+          </div>
+          <span id="themeCheck-ivory" class="hidden text-[#9f1239] text-sm font-bold shrink-0">✓</span>
         </button>
       </div>
     </div>
@@ -4197,11 +4638,26 @@
       selectMode(hubDefaults[hubId] || 'flashcards');
     }
 
-    // ==================== 3 ATMOSPHERIC THEMES ENGINE ====================
+    // ==================== 8 TYPOGRAPHY & ATMOSPHERIC THEMES ENGINE ====================
     function applyTheme(themeName) {
-      const validThemes = ['crimson', 'parchment', 'emerald'];
+      const validThemes = ['crimson', 'parchment', 'emerald', 'sapphire', 'terminal', 'hyperlegible', 'amethyst', 'ivory'];
       const theme = validThemes.includes(themeName) ? themeName : 'crimson';
       document.documentElement.setAttribute('data-theme', theme);
+
+      const metaColors = {
+        crimson: '#0c0406',
+        parchment: '#110d09',
+        emerald: '#050f0c',
+        sapphire: '#040914',
+        terminal: '#05080d',
+        hyperlegible: '#090b12',
+        amethyst: '#090514',
+        ivory: '#f4eee4'
+      };
+      const metaEl = document.querySelector('meta[name="theme-color"]');
+      if (metaEl && metaColors[theme]) {
+        metaEl.setAttribute('content', metaColors[theme]);
+      }
 
       validThemes.forEach(t => {
         const check = document.getElementById('themeCheck-' + t);
