@@ -1451,7 +1451,7 @@
 
   <!-- Level & Category Selector Filter Bar (CEFR + AWL - Tek ve Ana Seviye Barı) -->
   <div id="levelFilterBar" class="bg-black/40 border-b border-white/[0.06] px-3 sm:px-4 py-2 relative z-10 overflow-x-auto scrollbar-none" style="overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
-    <div class="max-w-4xl mx-auto flex items-center justify-between gap-2 overflow-x-auto text-xs font-medium scrollbar-none py-0.5" style="overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+    <div class="max-w-4xl mx-auto flex items-center gap-2 overflow-x-auto text-xs font-medium scrollbar-none py-0.5" style="overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
       <div class="flex items-center gap-1.5 shrink-0">
         <span class="text-[11px] text-[#a8998c]/70 font-mono uppercase tracking-wider mr-1 shrink-0">Kur:</span>
         <button onclick="setLevelFilter('ALL')" id="lvlBtn-ALL" class="lvl-btn px-3 py-1.5 rounded-xl bg-white/[0.08] text-white font-medium transition border border-white/10 whitespace-nowrap active:scale-95 shrink-0">
@@ -1483,14 +1483,7 @@
         </button>
       </div>
 
-      <div class="flex items-center gap-1.5 shrink-0">
-        <button type="button" onclick="openLearnerTrackModal()" title="Seviye Belirleme Testi & Rota Seçimi" class="px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500/20 to-rose-500/20 hover:from-amber-500/30 hover:to-rose-500/30 border border-amber-500/40 text-amber-200 hover:text-white transition text-xs font-semibold flex items-center gap-1.5 active:scale-95 shadow-sm">
-          <span>🎯</span> <span class="hidden sm:inline">Seviye Testi</span>
-        </button>
-        <button type="button" onclick="openWelcomeGuideFromMenu()" title="Kullanım Kılavuzu & Site Rehberi" class="px-2 py-1 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-slate-300 hover:text-white transition text-xs font-mono font-bold flex items-center gap-1 active:scale-95">
-          <span>📖</span> <span class="hidden sm:inline">Kılavuz</span>
-        </button>
-      </div>
+
     </div>
   </div>
 
@@ -3755,9 +3748,6 @@
           </div>
         </div>
         <div class="flex items-center gap-1.5">
-          <button type="button" onclick="openWelcomeGuideFromMenu()" title="Site Rehberi & Nasıl Kullanılır?" class="w-8 h-8 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] text-[#d6c7b2]/70 hover:text-white transition text-xs font-mono font-bold flex items-center justify-center">
-            ?
-          </button>
           <button onclick="closeModeSelectModal()" title="Kapat (ESC)" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.08] transition text-sm flex items-center justify-center w-8 h-8">
             ✕
           </button>
