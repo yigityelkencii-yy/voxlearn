@@ -1673,21 +1673,6 @@
                     <div id="fcDynamicDetailContent"></div>
                   </div>
 
-                  <!-- İki Yönlü Akıllı Hafıza Eylemleri (Sade, Akıcı, Otomatik) -->
-                  <div class="pt-2 border-t border-white/[0.06] grid grid-cols-2 gap-2 sm:gap-3 w-full" onclick="event.stopPropagation()">
-                    <button type="button" onclick="handleCardAction(false)" title="Bilmiyorum / Tekrar Et (← veya 1)" class="py-3 px-3 sm:py-3.5 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-500/25 text-rose-200 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer shadow-sm">
-                      <span class="text-rose-400 font-mono text-xs sm:text-sm">[←]</span>
-                      <span>Bilmiyorum</span>
-                    </button>
-                    <button type="button" onclick="handleCardAction(true)" title="Biliyorum / Öğrendim (→ veya 2)" class="py-3 px-3 sm:py-3.5 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-500/25 text-emerald-200 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition active:scale-95 cursor-pointer shadow-sm">
-                      <span class="text-emerald-400 font-mono text-xs sm:text-sm">[→]</span>
-                      <span>Biliyorum</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="text-[11px] text-[#a8998c]/50 flex items-center justify-center gap-2 font-sans pt-1">
-                  <span>Klavye: <strong>[←]</strong> Bilmiyorum • <strong>[→]</strong> Biliyorum • <strong>[Boşluk]</strong> Çevir</span>
                 </div>
 
               </div>
@@ -1695,41 +1680,30 @@
           </div>
         </div>
 
-        <!-- Clean Tactile Action Control Buttons (Responsive, Zero Overflow, Fits 360px+) -->
+        <!-- Clean Tactile Action Control Buttons (Sabit, her zaman kartın altında aynı pozisyonda) -->
         <div id="fcControls" class="w-full max-w-full box-border pt-2">
-          
-          <!-- Front State Controls: Big, tactile "Cevabı Gör" with quick side actions -->
-          <div id="fcControlsFront" class="flex items-center justify-between gap-2 sm:gap-3 w-full">
-            <button type="button" onclick="handleCardAction(false)" title="Bilmiyorum / Tekrar Et (←)" class="py-3 px-3.5 sm:px-4 rounded-xl bg-rose-950/40 hover:bg-rose-900/50 border border-rose-500/20 text-rose-300 font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition active:scale-95 shrink-0 cursor-pointer">
+          <div class="flex items-center justify-between gap-2 sm:gap-3 w-full">
+            <!-- Sol: Bilmiyorum (Kırmızı / Tekrar) -->
+            <button type="button" onclick="handleCardAction(false)" title="Bilmiyorum / Tekrar Et (← veya 1)" class="py-3 px-3.5 sm:px-4 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-500/25 text-rose-300 font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition active:scale-95 shrink-0 cursor-pointer shadow-sm">
               <span>↺</span>
-              <span class="hidden sm:inline">Tekrar</span>
-              <span class="text-[10px] font-mono text-rose-400/60">[←]</span>
+              <span>Bilmiyorum</span>
+              <span class="text-[10px] font-mono text-rose-400/60 hidden sm:inline">[←]</span>
             </button>
 
-            <button type="button" onclick="flipCard()" class="flex-1 min-w-0 py-3.5 px-4 rounded-xl bg-gradient-to-r from-rose-900/90 via-rose-800/90 to-rose-950/90 hover:from-rose-800 hover:to-rose-900 border border-rose-400/50 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-[0.98] shadow-lg shadow-rose-950/50 cursor-pointer">
+            <!-- Orta: Çevir / Ön-Arka Geçiş -->
+            <button type="button" onclick="flipCard()" id="fcCenterFlipBtn" class="flex-1 min-w-0 py-3.5 px-4 rounded-xl bg-gradient-to-r from-rose-900/90 via-rose-800/90 to-rose-950/90 hover:from-rose-800 hover:to-rose-900 border border-rose-400/50 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition active:scale-[0.98] shadow-lg shadow-rose-950/50 cursor-pointer">
               <svg class="w-4 h-4 text-rose-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-              <span>Cevabı Gör</span>
+              <span id="fcCenterFlipLabel">Cevabı Gör</span>
               <span class="text-[10px] font-mono text-rose-200/70 hidden sm:inline">[Boşluk]</span>
             </button>
 
-            <button type="button" onclick="handleCardAction(true)" title="Biliyorum / Öğrendim (→)" class="py-3 px-3.5 sm:px-4 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/20 text-emerald-300 font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition active:scale-95 shrink-0 cursor-pointer">
+            <!-- Sağ: Biliyorum (Yeşil / Pekiştir) -->
+            <button type="button" onclick="handleCardAction(true)" title="Biliyorum / Öğrendim (→ veya 2)" class="py-3 px-3.5 sm:px-4 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-500/25 text-emerald-300 font-medium text-xs sm:text-sm flex items-center justify-center gap-1.5 transition active:scale-95 shrink-0 cursor-pointer shadow-sm">
               <span>✓</span>
-              <span class="hidden sm:inline">Öğrendim</span>
-              <span class="text-[10px] font-mono text-emerald-400/60">[→]</span>
+              <span>Biliyorum</span>
+              <span class="text-[10px] font-mono text-emerald-400/60 hidden sm:inline">[→]</span>
             </button>
           </div>
-
-          <!-- Back State Controls: Clean subtle toolbar that lets the 4 Anki buttons shine -->
-          <div id="fcControlsBack" class="hidden flex items-center justify-between gap-2 w-full">
-            <button type="button" onclick="flipCard()" class="py-2.5 px-4 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-slate-300 text-xs font-mono flex items-center gap-1.5 transition active:scale-95 cursor-pointer">
-              <span>🔄</span>
-              <span>Ön Yüze Dön</span>
-            </button>
-            <div class="text-[11px] font-mono text-slate-400 text-right">
-              <span>Kartı yukarıdan puanlayın ➔</span>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -7196,8 +7170,7 @@
           explanation: card.ex ? `Örnek: "${card.ex}"` : ''
         });
 
-        showFloatingToast(`🔴 Tekrar: "${card.w}" oturum sonuna eklendi.`);
-        // Aynı oturumda 3-4 kart sonra pekiştirme için tekrar sıraya sok
+        // Sessizce oturum sonuna ekle (kullanıcıyı sürekli toast ile rahatsız etme)
         currentBatchWords.splice(Math.min(currentBatchWords.length, fcIndex + 4), 0, card);
 
         memoryDecayMap[card.w] = entry;
@@ -7210,7 +7183,6 @@
 
         if (entry.streak === 1) {
           entry.weight = 0.50; // %50 ihtimal
-          // İlk kez bildiğinde oturum yeterince uzunsa 8 kart sonrasına sessiz teyit için serpiştir
           if (currentBatchWords.length >= fcIndex + 8) {
             currentBatchWords.splice(fcIndex + 8, 0, card);
           }
@@ -7228,11 +7200,7 @@
         triggerHaptic('success');
         removeMistakeFromVaultByWord(card.w);
 
-        const toastMsg = entry.streak >= 3
-          ? `✨ Kalıcı Hafıza: "${card.w}"`
-          : `🟢 Biliyorum: "${card.w}" pekiştirildi.`;
-        showFloatingToast(toastMsg);
-
+        // Sessiz ve pürüzsüz akış (toast gösterilmez)
         memoryDecayMap[card.w] = entry;
         saveMemoryDecay();
         saveMemory();
@@ -7249,11 +7217,9 @@
     }
 
     function updateCardControlsUI() {
-      const frontControls = document.getElementById('fcControlsFront');
-      const backControls = document.getElementById('fcControlsBack');
-      if (frontControls && backControls) {
-        frontControls.classList.toggle('hidden', isFlipped);
-        backControls.classList.toggle('hidden', !isFlipped);
+      const lbl = document.getElementById('fcCenterFlipLabel');
+      if (lbl) {
+        lbl.innerText = isFlipped ? 'Ön Yüze Dön' : 'Cevabı Gör';
       }
     }
 
