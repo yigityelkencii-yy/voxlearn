@@ -1571,10 +1571,10 @@
           </button>
 
           <!-- Kutu 5 -->
-          <button type="button" onclick="studySpecificLeitnerBox(5)" id="leitnerBoxCard-5" title="Kutu 5'i Çalış (14 gün ara)" class="p-1.5 sm:p-2 rounded-xl bg-purple-500/[0.08] hover:bg-purple-500/[0.2] border border-purple-500/25 hover:border-purple-400 text-purple-200 transition-all active:scale-95 flex flex-col items-center gap-0.5 group cursor-pointer shadow-sm">
+          <button type="button" onclick="studySpecificLeitnerBox(5)" id="leitnerBoxCard-5" title="Kutu 5'i Çalış (15 gün ara)" class="p-1.5 sm:p-2 rounded-xl bg-purple-500/[0.08] hover:bg-purple-500/[0.2] border border-purple-500/25 hover:border-purple-400 text-purple-200 transition-all active:scale-95 flex flex-col items-center gap-0.5 group cursor-pointer shadow-sm">
             <span class="text-[9px] uppercase tracking-wider text-purple-400 font-bold">Kutu 5</span>
             <strong id="leitnerBoxCount-5" class="text-xs sm:text-sm font-extrabold text-white">0</strong>
-            <span class="text-[8px] sm:text-[9px] text-purple-300/70">14 gün</span>
+            <span class="text-[8px] sm:text-[9px] text-purple-300/70">15 gün</span>
           </button>
         </div>
       </div>
@@ -1720,33 +1720,47 @@
                     <div id="fcDynamicDetailContent"></div>
                   </div>
 
-                  <!-- Anki 4-Seviyeli Hafıza Değerlendirme Butonları -->
-                  <div class="pt-2 border-t border-white/[0.06] grid grid-cols-4 gap-1.5 sm:gap-2 w-full" onclick="event.stopPropagation()">
-                    <button type="button" onclick="rateCardAnki(1)" title="1 tuşu: Unuttum / Tekrar" class="p-2 sm:py-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
-                      <span class="text-[9px] text-rose-400 font-mono">[1]</span>
-                      <span class="text-[11px] sm:text-xs">Tekrar</span>
-                      <span class="text-[9px] text-rose-300/70 font-mono">10 dk</span>
+                  <!-- 📦 5-Kutulu Leitner Hafıza Kasası Butonları (1-5 Tuşları ile Birebir Eşleşme) -->
+                  <div class="pt-2 border-t border-white/[0.06] grid grid-cols-5 gap-1 sm:gap-1.5 w-full" onclick="event.stopPropagation()">
+                    <!-- Kutu 1 -->
+                    <button type="button" onclick="setCardLeitnerBox(1)" id="btnRateBox-1" title="1 Tuşu: Kutu 1'e Yerleştir (1 gün ara)" class="p-1.5 sm:py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-rose-400 font-mono font-bold">[1]</span>
+                      <span class="text-[10px] sm:text-xs font-bold leading-tight">Kutu 1</span>
+                      <span class="text-[8px] sm:text-[9px] text-rose-300/70 font-mono">1 gün</span>
                     </button>
-                    <button type="button" onclick="rateCardAnki(2)" title="2 tuşu: Zorlandım" class="p-2 sm:py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
-                      <span class="text-[9px] text-amber-400 font-mono">[2]</span>
-                      <span class="text-[11px] sm:text-xs">Zor</span>
-                      <span class="text-[9px] text-amber-300/70 font-mono">1 gün</span>
+
+                    <!-- Kutu 2 -->
+                    <button type="button" onclick="setCardLeitnerBox(2)" id="btnRateBox-2" title="2 Tuşu: Kutu 2'ye Yerleştir (2 gün ara)" class="p-1.5 sm:py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-amber-400 font-mono font-bold">[2]</span>
+                      <span class="text-[10px] sm:text-xs font-bold leading-tight">Kutu 2</span>
+                      <span class="text-[8px] sm:text-[9px] text-amber-300/70 font-mono">2 gün</span>
                     </button>
-                    <button type="button" onclick="rateCardAnki(3)" title="3 tuşu: İyi hatırladım" class="p-2 sm:py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
-                      <span class="text-[9px] text-emerald-400 font-mono">[3]</span>
-                      <span class="text-[11px] sm:text-xs">İyi</span>
-                      <span class="text-[9px] text-emerald-300/70 font-mono">3 gün</span>
+
+                    <!-- Kutu 3 -->
+                    <button type="button" onclick="setCardLeitnerBox(3)" id="btnRateBox-3" title="3 Tuşu: Kutu 3'e Yerleştir (4 gün ara)" class="p-1.5 sm:py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-emerald-400 font-mono font-bold">[3]</span>
+                      <span class="text-[10px] sm:text-xs font-bold leading-tight">Kutu 3</span>
+                      <span class="text-[8px] sm:text-[9px] text-emerald-300/70 font-mono">4 gün</span>
                     </button>
-                    <button type="button" onclick="rateCardAnki(4)" title="4 tuşu: Çok kolaydı" class="p-2 sm:py-2.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
-                      <span class="text-[9px] text-sky-400 font-mono">[4]</span>
-                      <span class="text-[11px] sm:text-xs">Kolay</span>
-                      <span class="text-[9px] text-sky-300/70 font-mono">7 gün</span>
+
+                    <!-- Kutu 4 -->
+                    <button type="button" onclick="setCardLeitnerBox(4)" id="btnRateBox-4" title="4 Tuşu: Kutu 4'e Yerleştir (7 gün ara)" class="p-1.5 sm:py-2 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/30 text-sky-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-sky-400 font-mono font-bold">[4]</span>
+                      <span class="text-[10px] sm:text-xs font-bold leading-tight">Kutu 4</span>
+                      <span class="text-[8px] sm:text-[9px] text-sky-300/70 font-mono">7 gün</span>
+                    </button>
+
+                    <!-- Kutu 5 -->
+                    <button type="button" onclick="setCardLeitnerBox(5)" id="btnRateBox-5" title="5 Tuşu: Kutu 5'e Yerleştir (15 gün ara)" class="p-1.5 sm:py-2 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 text-purple-200 text-xs font-semibold flex flex-col items-center gap-0.5 transition active:scale-95 cursor-pointer">
+                      <span class="text-[9px] text-purple-400 font-mono font-bold">[5]</span>
+                      <span class="text-[10px] sm:text-xs font-bold leading-tight">Kutu 5</span>
+                      <span class="text-[8px] sm:text-[9px] text-purple-300/70 font-mono">15 gün</span>
                     </button>
                   </div>
                 </div>
 
                 <div class="text-[11px] text-[#a8998c]/50 flex items-center justify-center gap-1.5 font-sans pt-1">
-                  <span>Klavye: <strong>[1-4]</strong> puanla • <strong>[Boşluk]</strong> çevir</span>
+                  <span>Klavye: <strong>[1-5]</strong> Kutuya yerleştir • <strong>[Boşluk]</strong> çevir</span>
                 </div>
 
               </div>
@@ -1795,15 +1809,17 @@
 
         <!-- Sleek Desktop Keyboard Shortcuts Pill -->
         <div class="hidden sm:flex items-center justify-center gap-3 text-[11px] text-slate-400 font-mono pt-1">
+          <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">1-5</kbd> Kutu Seç</span>
+          <span>•</span>
           <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">Boşluk</kbd> Çevir</span>
           <span>•</span>
           <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">P</kbd> Akış</span>
           <span>•</span>
           <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">R</kbd> Karıştır</span>
           <span>•</span>
-          <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">←</kbd> Bilmiyorum</span>
+          <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">←</kbd> Kutu 1</span>
           <span>•</span>
-          <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">→</kbd> Biliyorum</span>
+          <span><kbd class="px-1.5 py-0.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300">→</kbd> +1 Kutu</span>
         </div>
 
       <!-- Empty Learn State Box (Safe Non-Destructive Overlay) -->
@@ -7170,16 +7186,31 @@
       }, 280);
     }
 
-    function rateCardAnki(rating) {
+    function setCardLeitnerBox(targetBox) {
       if (fcIndex >= currentBatchWords.length) return;
       const card = currentBatchWords[fcIndex];
       if (!card) return;
 
+      const boxNum = Math.max(1, Math.min(5, parseInt(targetBox, 10) || 1));
       logDailyReview();
 
-      if (rating === 1) {
-        // Again / Tekrar (10 dk): Kutu 1'e döner, aynı oturumda 3 kart sonra tekrar sorulur
-        recordWordStatus(card.w, false);
+      const now = Date.now();
+      const intervalDays = LEITNER_INTERVALS_DAYS[boxNum] || 1;
+      const nextReview = now + (intervalDays * 86400000);
+
+      const prev = leitnerBoxes[card.w] || { box: 1, lapseCount: 0, isLeech: false };
+      let lapseCount = prev.lapseCount || 0;
+      let isLeech = prev.isLeech || false;
+
+      incrementActivityCount();
+      logHeatmapActivity(1);
+
+      if (boxNum === 1) {
+        // Kutu 1: Yanlış/Tekrar
+        lapseCount++;
+        if (lapseCount >= 3) isLeech = true;
+        learnSet.add(card.w);
+        knownSet.delete(card.w);
         updateHeatStreak(false);
         triggerHaptic('error');
         addMistakeToVault({
@@ -7189,36 +7220,46 @@
           answer: card.tr,
           explanation: card.ex ? `Örnek: "${card.ex}"` : ''
         });
-        showFloatingToast(`🔴 Tekrar: "${card.w}" oturum sonuna eklendi.`);
+        showFloatingToast(`🔴 Kutu 1 (1 gün): "${card.w}" tekrar listesine alındı.`);
         currentBatchWords.splice(Math.min(currentBatchWords.length, fcIndex + 4), 0, card);
+        saveMemory();
+        leitnerBoxes[card.w] = {
+          box: 1,
+          lastReviewed: now,
+          nextReview: nextReview,
+          lapseCount: lapseCount,
+          isLeech: isLeech
+        };
+        saveLeitnerBoxes();
+        updateLeitnerMatrixUI();
         advanceCard('left');
-      } else if (rating === 2) {
-        // Hard / Zor (1 gün)
-        recordWordStatus(card.w, false);
-        updateHeatStreak(false);
-        triggerHaptic('tap');
-        showFloatingToast(`🟠 Zor: "${card.w}" yarın tekrar edilecek.`);
-        advanceCard('left');
-      } else if (rating === 3) {
-        // Good / İyi (3 gün): +1 Kutu terfi
-        recordWordStatus(card.w, true);
+      } else {
+        // Kutu 2, 3, 4, 5
+        if (boxNum >= 3) isLeech = false;
+        knownSet.add(card.w);
+        learnSet.delete(card.w);
         updateHeatStreak(true);
         triggerHaptic('success');
         removeMistakeFromVaultByWord(card.w);
-        const box = leitnerBoxes[card.w]?.box || 2;
-        showFloatingToast(`🟢 İyi: "${card.w}" Kutu ${box}'e yükseldi.`);
-        advanceCard('right');
-      } else if (rating === 4) {
-        // Easy / Kolay (7 gün): +2 Kutu sıçrama
-        recordWordStatus(card.w, true);
-        updateWordLeitner(card.w, true);
-        updateHeatStreak(true);
-        triggerHaptic('success');
-        removeMistakeFromVaultByWord(card.w);
-        const box = leitnerBoxes[card.w]?.box || 3;
-        showFloatingToast(`🔵 Kolay: "${card.w}" Kutu ${box}'e sıçradı!`);
+        const boxDays = { 2: '2 gün', 3: '4 gün', 4: '7 gün', 5: '15 gün' };
+        showFloatingToast(`📦 Kutu ${boxNum} (${boxDays[boxNum]}): "${card.w}" kasaya yerleştirildi.`);
+        saveMemory();
+        leitnerBoxes[card.w] = {
+          box: boxNum,
+          lastReviewed: now,
+          nextReview: nextReview,
+          lapseCount: lapseCount,
+          isLeech: isLeech
+        };
+        saveLeitnerBoxes();
+        updateLeitnerMatrixUI();
         advanceCard('right');
       }
+    }
+
+    // Geriye dönük çağrılar için uyumluluk
+    function rateCardAnki(rating) {
+      setCardLeitnerBox(rating);
     }
 
     function updateCardControlsUI() {
@@ -7363,13 +7404,25 @@
       if (pMirror) pMirror.classList.toggle('hidden', !hasMirror);
       if (pEcho) pEcho.classList.toggle('hidden', !hasEcho);
 
-      // Leitner Box Badge
+      // Leitner Box Badge & Buton Vurgulama
       const leitnerInfo = leitnerBoxes[card.w];
-      const boxNum = leitnerInfo ? leitnerInfo.box : 1;
+      const boxNum = (leitnerInfo && leitnerInfo.box) ? leitnerInfo.box : (learnSet.has(card.w) ? 1 : (knownSet.has(card.w) ? 2 : 1));
       const bEl = document.getElementById('fcLeitnerBadge');
       if (bEl) bEl.innerText = `📦 Kutu ${boxNum}/5`;
       const bBackEl = document.getElementById('fcBackLeitnerBadge');
       if (bBackEl) bBackEl.innerText = `📦 Kutu ${boxNum}/5`;
+
+      // Kart arkasındaki 5 Kutu butonundan mevcut kutuyu görsel olarak vurgula
+      for (let b = 1; b <= 5; b++) {
+        const btn = document.getElementById('btnRateBox-' + b);
+        if (btn) {
+          if (boxNum === b) {
+            btn.classList.add('ring-2', 'ring-white', 'shadow-md', 'scale-[1.03]');
+          } else {
+            btn.classList.remove('ring-2', 'ring-white', 'shadow-md', 'scale-[1.03]');
+          }
+        }
+      }
 
       // Word-to-Grammar linking pill
       const grammarLinkBox = document.getElementById('fcGrammarLinkBox');
@@ -7503,10 +7556,16 @@
 
     function handleSwipe(direction) {
       if (isSwiping || fcIndex >= currentBatchWords.length) return;
+      const card = currentBatchWords[fcIndex];
+      if (!card) return;
       if (direction === 'right') {
-        rateCardAnki(3);
+        // Sağa kaydırma / Öğrendim: Mevcut kutuyu +1 terfi ettir (maksimum 5)
+        const curBox = (leitnerBoxes[card.w] && leitnerBoxes[card.w].box) ? leitnerBoxes[card.w].box : (knownSet.has(card.w) ? 2 : 1);
+        const nextBox = Math.min(5, curBox + 1);
+        setCardLeitnerBox(nextBox);
       } else {
-        rateCardAnki(1);
+        // Sola kaydırma / Bilmiyorum: Kutu 1'e geri gönder
+        setCardLeitnerBox(1);
       }
     }
 
@@ -8519,19 +8578,22 @@
         return;
       }
 
-      if (['1', 'Digit1', 'Numpad1'].includes(e.code) || e.key === '1') {
-        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
-        if (isFcActive && isFlipped) { rateCardAnki(1); return; }
-      } else if (['2', 'Digit2', 'Numpad2'].includes(e.code) || e.key === '2') {
-        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
-        if (isFcActive && isFlipped) { rateCardAnki(2); return; }
-      } else if (['3', 'Digit3', 'Numpad3'].includes(e.code) || e.key === '3') {
-        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
-        if (isFcActive && isFlipped) { rateCardAnki(3); return; }
-      } else if (['4', 'Digit4', 'Numpad4'].includes(e.code) || e.key === '4') {
-        const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
-        if (isFcActive && isFlipped) { rateCardAnki(4); return; }
-      } else if (e.code === 'KeyF') {
+      const isFcActive = !document.getElementById('view-flashcards').classList.contains('hidden');
+      if (isFcActive && isFlipped) {
+        if (['1', 'Digit1', 'Numpad1'].includes(e.code) || e.key === '1') {
+          setCardLeitnerBox(1); return;
+        } else if (['2', 'Digit2', 'Numpad2'].includes(e.code) || e.key === '2') {
+          setCardLeitnerBox(2); return;
+        } else if (['3', 'Digit3', 'Numpad3'].includes(e.code) || e.key === '3') {
+          setCardLeitnerBox(3); return;
+        } else if (['4', 'Digit4', 'Numpad4'].includes(e.code) || e.key === '4') {
+          setCardLeitnerBox(4); return;
+        } else if (['5', 'Digit5', 'Numpad5'].includes(e.code) || e.key === '5') {
+          setCardLeitnerBox(5); return;
+        }
+      }
+
+      if (e.code === 'KeyF') {
         toggleFocusMode();
       
       } else if (e.key === 'p' || e.key === 'P') {
