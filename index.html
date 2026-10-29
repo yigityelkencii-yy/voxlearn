@@ -74,6 +74,42 @@
       transform: rotateY(180deg) !important;
       -webkit-transform: rotateY(180deg) !important;
     }
+    /* ==================== ELEVATED STUDY ARENAS (ODAK ALANI & NET ARKA PLAN AYRIŞIMI) ==================== */
+    .study-focus-halo {
+      position: relative;
+    }
+    .study-focus-halo::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 104%;
+      height: 104%;
+      border-radius: 2.25rem;
+      background: radial-gradient(ellipse at center, var(--theme-stage-glow, rgba(225, 29, 72, 0.16)) 0%, transparent 72%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(24px);
+      transition: background 0.4s ease, opacity 0.4s ease;
+    }
+
+    .card-front, .card-back,
+    #clozeQuestionBox,
+    #quizQuestionBox,
+    #readingQuestionsCard,
+    #examOptionsContainer {
+      background: var(--theme-stage-bg, linear-gradient(180deg, #2d1422 0%, #1a0a13 100%)) !important;
+      border: 1.5px solid var(--theme-stage-border, rgba(255, 255, 255, 0.18)) !important;
+      border-top-color: var(--theme-stage-rim, rgba(251, 113, 133, 0.38)) !important;
+      box-shadow: 
+        0 1px 0 0 rgba(255, 255, 255, 0.16) inset,
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 16px 36px -6px rgba(0, 0, 0, 0.75),
+        0 32px 72px -16px rgba(0, 0, 0, 0.90) !important;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+    }
+
     .card-front, .card-back {
       position: absolute;
       inset: 0;
@@ -88,23 +124,16 @@
       justify-content: space-between;
       border-radius: 1.5rem;
       padding: 2rem 1.75rem;
-      background: linear-gradient(180deg, #26111a 0%, #190a11 100%);
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
-      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 28px 56px -12px rgba(0, 0, 0, 0.95);
-      box-shadow: 
-        0 1px 0 0 rgba(255, 255, 255, 0.12) inset,
-        0 28px 56px -12px rgba(0, 0, 0, 0.95),
-        0 0 0 1px rgba(0, 0, 0, 0.55);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
     }
+
     .card-back {
       transform: rotateY(180deg) translateZ(1px);
       -webkit-transform: rotateY(180deg) translateZ(1px);
-      background: linear-gradient(180deg, #2c121e 0%, #1c0a13 100%);
-      border: 1.5px solid rgba(244, 63, 94, 0.45);
-      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 28px 56px -12px rgba(0, 0, 0, 0.95);
+      background: var(--theme-stage-back-bg, linear-gradient(180deg, #331526 0%, #1c0a15 100%)) !important;
+      border-color: var(--theme-stage-back-border, rgba(244, 63, 94, 0.48)) !important;
+      border-top-color: var(--theme-stage-back-rim, rgba(251, 113, 133, 0.65)) !important;
       overflow-y: auto !important;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
@@ -456,6 +485,13 @@
       --theme-border: rgba(255, 255, 255, 0.08);
       --theme-accent: #e11d48;
       --theme-accent-glow: rgba(225, 29, 72, 0.45);
+      --theme-stage-bg: linear-gradient(180deg, #2d1422 0%, #1a0a13 100%);
+      --theme-stage-back-bg: linear-gradient(180deg, #331526 0%, #1c0a15 100%);
+      --theme-stage-border: rgba(255, 255, 255, 0.18);
+      --theme-stage-rim: rgba(251, 113, 133, 0.38);
+      --theme-stage-back-border: rgba(244, 63, 94, 0.48);
+      --theme-stage-back-rim: rgba(251, 113, 133, 0.65);
+      --theme-stage-glow: rgba(225, 29, 72, 0.16);
     }
 
     /* Theme 2: Vintage Parchment (Antik Kitaplık — Cormorant Garamond + Lora Edebi Serif) */
@@ -469,6 +505,13 @@
       --theme-border: rgba(245, 158, 11, 0.16);
       --theme-accent: #d97706;
       --theme-accent-glow: rgba(217, 119, 6, 0.45);
+      --theme-stage-bg: linear-gradient(180deg, #2b1f16 0%, #19120c 100%);
+      --theme-stage-back-bg: linear-gradient(180deg, #322419 0%, #1c140d 100%);
+      --theme-stage-border: rgba(245, 158, 11, 0.22);
+      --theme-stage-rim: rgba(251, 191, 36, 0.40);
+      --theme-stage-back-border: rgba(245, 158, 11, 0.40);
+      --theme-stage-back-rim: rgba(251, 191, 36, 0.60);
+      --theme-stage-glow: rgba(217, 119, 6, 0.15);
     }
     [data-theme="parchment"] body {
       background-color: #110d09 !important;
@@ -518,6 +561,13 @@
       --theme-border: rgba(16, 185, 129, 0.15);
       --theme-accent: #059669;
       --theme-accent-glow: rgba(5, 150, 105, 0.45);
+      --theme-stage-bg: linear-gradient(180deg, #112d22 0%, #071711 100%);
+      --theme-stage-back-bg: linear-gradient(180deg, #15382a 0%, #091c15 100%);
+      --theme-stage-border: rgba(16, 185, 129, 0.22);
+      --theme-stage-rim: rgba(52, 211, 153, 0.40);
+      --theme-stage-back-border: rgba(16, 185, 129, 0.40);
+      --theme-stage-back-rim: rgba(52, 211, 153, 0.60);
+      --theme-stage-glow: rgba(16, 185, 129, 0.15);
     }
     [data-theme="emerald"] body {
       background-color: #050f0c !important;
@@ -567,6 +617,13 @@
       --theme-border: rgba(56, 189, 248, 0.16);
       --theme-accent: #0284c7;
       --theme-accent-glow: rgba(2, 132, 199, 0.45);
+      --theme-stage-bg: linear-gradient(180deg, #102647 0%, #081426 100%);
+      --theme-stage-back-bg: linear-gradient(180deg, #142f57 0%, #09172c 100%);
+      --theme-stage-border: rgba(56, 189, 248, 0.22);
+      --theme-stage-rim: rgba(125, 211, 252, 0.40);
+      --theme-stage-back-border: rgba(56, 189, 248, 0.40);
+      --theme-stage-back-rim: rgba(125, 211, 252, 0.60);
+      --theme-stage-glow: rgba(56, 189, 248, 0.15);
     }
     [data-theme="sapphire"] body {
       background-color: #040914 !important;
@@ -616,6 +673,13 @@
       --theme-border: rgba(34, 211, 238, 0.18);
       --theme-accent: #0891b2;
       --theme-accent-glow: rgba(8, 145, 178, 0.45);
+      --theme-stage-bg: linear-gradient(180deg, #0a1f2e 0%, #040d14 100%);
+      --theme-stage-back-bg: linear-gradient(180deg, #0c2638 0%, #051019 100%);
+      --theme-stage-border: rgba(34, 211, 238, 0.25);
+      --theme-stage-rim: rgba(103, 232, 249, 0.45);
+      --theme-stage-back-border: rgba(34, 211, 238, 0.45);
+      --theme-stage-back-rim: rgba(103, 232, 249, 0.65);
+      --theme-stage-glow: rgba(34, 211, 238, 0.15);
     }
     [data-theme="terminal"] body {
       background-color: #05080d !important;
@@ -715,6 +779,13 @@
       --theme-border: rgba(167, 139, 250, 0.16);
       --theme-accent: #7c3aed;
       --theme-accent-glow: rgba(124, 58, 237, 0.45);
+      --theme-stage-bg: linear-gradient(180deg, #24133f 0%, #120721 100%);
+      --theme-stage-back-bg: linear-gradient(180deg, #2b174b 0%, #140826 100%);
+      --theme-stage-border: rgba(167, 139, 250, 0.24);
+      --theme-stage-rim: rgba(192, 132, 252, 0.40);
+      --theme-stage-back-border: rgba(167, 139, 250, 0.45);
+      --theme-stage-back-rim: rgba(192, 132, 252, 0.65);
+      --theme-stage-glow: rgba(168, 85, 247, 0.15);
     }
     [data-theme="amethyst"] body {
       background-color: #090514 !important;
@@ -764,6 +835,13 @@
       --theme-border: rgba(120, 90, 65, 0.18);
       --theme-accent: #9f1239;
       --theme-accent-glow: rgba(159, 18, 57, 0.25);
+      --theme-stage-bg: #ffffff;
+      --theme-stage-back-bg: #fffdfa;
+      --theme-stage-border: rgba(120, 90, 65, 0.22);
+      --theme-stage-rim: rgba(255, 255, 255, 0.95);
+      --theme-stage-back-border: rgba(159, 18, 57, 0.35);
+      --theme-stage-back-rim: rgba(255, 255, 255, 0.95);
+      --theme-stage-glow: rgba(160, 120, 85, 0.10);
     }
     [data-theme="ivory"] body {
       background-color: #f4eee4 !important;
@@ -887,6 +965,13 @@
       --theme-border: rgba(255, 255, 255, 0.15);
       --theme-accent: #6366f1;
       --theme-accent-glow: rgba(99, 102, 241, 0.35);
+      --theme-stage-bg: linear-gradient(180deg, #242940 0%, #151826 100%);
+      --theme-stage-back-bg: linear-gradient(180deg, #2a304b 0%, #171b2b 100%);
+      --theme-stage-border: rgba(255, 255, 255, 0.18);
+      --theme-stage-rim: rgba(165, 180, 252, 0.40);
+      --theme-stage-back-border: rgba(129, 140, 248, 0.45);
+      --theme-stage-back-rim: rgba(165, 180, 252, 0.65);
+      --theme-stage-glow: rgba(99, 102, 241, 0.15);
     }
     [data-theme="slate"] body {
       background-color: #07080d !important;
@@ -1549,7 +1634,7 @@
       <div id="fcPlayArea" class="w-full max-w-full box-border space-y-4 sm:space-y-6 pt-1">
         
         <!-- Outer Swipe Wrapper & Parallax Tilt Container -->
-        <div id="tiltContainer" class="perspective-container w-full max-w-full min-h-[420px] h-[440px] sm:h-[465px] box-border">
+        <div id="tiltContainer" class="perspective-container study-focus-halo w-full max-w-full min-h-[420px] h-[440px] sm:h-[465px] box-border">
           <div id="cardSwipeWrapper" class="anim-enter w-full max-w-full h-full relative box-border cursor-grab active:cursor-grabbing">
             <!-- Dynamic Drag Swiping Feedback Stamps -->
             <div id="fcDragStampRight" class="pointer-events-none absolute top-5 left-5 z-40 px-3.5 py-1.5 rounded-xl border-2 border-emerald-400 bg-emerald-950/90 text-emerald-300 font-bold font-mono text-xs sm:text-sm tracking-wider uppercase shadow-xl shadow-emerald-500/30 opacity-0 transform -rotate-12 transition-opacity duration-75 flex items-center gap-1.5 backdrop-blur-md">
@@ -1794,7 +1879,7 @@
       </div>
 
       <!-- Cloze Question Container -->
-      <div id="clozeQuestionBox" class="p-6 sm:p-7 rounded-3xl bg-slate-900/80 border border-white/[0.08] space-y-5 shadow-xl relative backdrop-blur-md">
+      <div id="clozeQuestionBox" class="p-6 sm:p-7 rounded-3xl study-focus-halo border border-white/[0.08] space-y-5 shadow-xl relative backdrop-blur-md">
         
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
@@ -1935,7 +2020,7 @@
         </div>
       </div>
 
-      <div id="quizQuestionBox" class="p-6 sm:p-7 rounded-3xl bg-slate-900/80 border border-white/[0.08] text-center space-y-4 shadow-xl">
+      <div id="quizQuestionBox" class="p-6 sm:p-7 rounded-3xl study-focus-halo border border-white/[0.08] text-center space-y-4 shadow-xl">
         <div class="flex justify-between items-center text-xs">
           <span id="quizLvlBadge" class="px-2.5 py-0.5 rounded-lg bg-rose-500/10 text-rose-300 font-bold border border-rose-500/20 font-mono">B1</span>
           <button onclick="speakQuizWord()" class="p-2 rounded-xl bg-white/[0.04] hover:bg-rose-900/60 text-slate-400 hover:text-white border border-white/5 transition cursor-pointer">
