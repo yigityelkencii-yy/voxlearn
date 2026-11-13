@@ -6,6 +6,7 @@ Statik bir PWA. GitHub Pages `main` dalından yayınlar; derleme adımı yoktur,
 - `index.html` – arayüz ve tüm uygulama mantığı (tek `<script>` bloğu).
 - `data/words.js` – `allWords` (3.750 kelime). `index.html` bunu ana betikten önce yükler.
 - `data/extras.js` – `COMPREHENSIVE_DICT`, `READING_VOCAB_EXTENSIONS`, `IDIOMS_DATA`.
+- `data/enrich.js` – `WORD_ENRICH`: anlam anlam açıklamalar, örnek çevirileri ve kullanım notları; yüklenince `allWords` içindeki aynı kelimelerin üzerine yazılır. Alan açıklaması dosyanın başında.
 - `tw.css` – önceden derlenmiş Tailwind CSS (CDN çalışma zamanı kaldırıldı).
 - `sw.js` – service worker (network-first). Dosya eklersen `ASSETS_TO_CACHE`'e ekle, her yayında `CACHE_NAME` sürümünü artır.
 
