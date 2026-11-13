@@ -1758,10 +1758,13 @@
                       </span>
                     </div>
                     <p id="fcEx" class="fc-example-sentence text-[#ede4d8] text-sm sm:text-base leading-relaxed">Example sentence goes here.</p>
+                    <p id="fcExTr" class="hidden text-[#d6c7b2]/70 text-xs sm:text-sm italic leading-relaxed"></p>
                   </div>
 
                   <!-- Progressive Disclosure Pill Tabs (Sadece verisi olan haplar gösterilir) -->
                   <div id="fcDetailPills" class="flex items-center justify-center flex-wrap gap-1.5 pt-1" onclick="event.stopPropagation()">
+                    <button type="button" onclick="toggleCardDetailTab('senses')" id="pill-senses" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-semibold bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/40 transition active:scale-95">📚 Tüm Anlamlar</button>
+                    <button type="button" onclick="toggleCardDetailTab('note')" id="pill-note" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-yellow-300 border border-yellow-500/30 transition active:scale-95">💡 Not</button>
                     <button type="button" onclick="toggleCardDetailTab('syn')" id="pill-syn" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-indigo-300 border border-indigo-500/30 transition active:scale-95">⚡ Eş Anlam</button>
                     <button type="button" onclick="toggleCardDetailTab('conf')" id="pill-conf" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-amber-300 border border-amber-500/30 transition active:scale-95">⚠️ Nüans İkizi</button>
                     <button type="button" onclick="toggleCardDetailTab('colloc')" id="pill-colloc" class="hidden px-2.5 py-1 rounded-lg text-xs font-mono font-medium bg-white/[0.04] hover:bg-white/[0.1] text-emerald-300 border border-emerald-500/30 transition active:scale-95">🎯 Edatlar</button>
@@ -4985,6 +4988,7 @@
   <!-- Global JavaScript Logic -->
   <script src="data/words.js"></script>
   <script src="data/extras.js"></script>
+  <script src="data/enrich.js"></script>
   <script>
     var STORAGE_VAULT_KEY = 'voxlearn_mistake_vault_v1';
     var mistakeVault = [];
@@ -7660,6 +7664,32 @@
     // ==================== ANKI 4-BUTTON SRS & PROGRESSIVE DISCLOSURE ====================
     let activeCardDetailTab = null;
 
+    // Anlam anlam ayrılmış açıklama listesi (kart arkası ve sözlükte ortak)
+    function renderSensesHtml(card) {
+      const senses = Array.isArray(card.senses) ? card.senses : [];
+      if (!senses.length) return '';
+      return `
+        <div class="text-[10px] font-mono tracking-widest text-sky-300 uppercase mb-2 font-bold">📚 "<span lang="en">${escapeHtmlAttr(card.w)}</span>" kelimesinin anlamları:</div>
+        <ol class="space-y-2.5">${senses.map((s, i) => `
+          <li lang="tr" class="p-2.5 rounded-lg bg-white/[0.03] border border-white/[0.06]">
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span class="text-sky-300 font-mono text-[11px] font-bold">${i + 1}.</span>
+              <span class="text-[#fdf6ee] font-semibold text-sm">${escapeHtmlAttr(s.tr)}</span>
+              <span lang="en" class="text-[10px] font-mono text-slate-400 italic">${escapeHtmlAttr(s.p || '')}</span>
+            </div>
+            ${s.d ? `<div class="mt-1 text-[#d6c7b2]/85 text-xs leading-relaxed">${escapeHtmlAttr(s.d)}</div>` : ''}
+            ${s.ex ? `<div class="mt-1.5 flex items-start gap-1.5">
+              <button type="button" data-say="${escapeHtmlAttr(s.ex)}" onclick="event.stopPropagation(); speakText(this.dataset.say)" title="Cümleyi dinle" aria-label="Cümleyi dinle" class="shrink-0 text-rose-300 hover:text-rose-200 text-xs mt-0.5">🔊</button>
+              <div>
+                <div lang="en" class="text-[#ede4d8] text-xs sm:text-sm">${escapeHtmlAttr(s.ex)}</div>
+                ${s.exTr ? `<div class="text-[#d6c7b2]/65 text-[11px] sm:text-xs italic">${escapeHtmlAttr(s.exTr)}</div>` : ''}
+              </div>
+            </div>` : ''}
+          </li>`).join('')}
+        </ol>
+      `;
+    }
+
     function toggleCardDetailTab(tab) {
       const box = document.getElementById('fcDynamicDetailBox');
       const content = document.getElementById('fcDynamicDetailContent');
@@ -7678,7 +7708,14 @@
       const card = currentBatchWords[fcIndex];
       if (!card) return;
 
-      if (tab === 'syn') {
+      if (tab === 'senses') {
+        content.innerHTML = renderSensesHtml(card);
+      } else if (tab === 'note') {
+        content.innerHTML = `
+          <div class="text-[10px] font-mono tracking-widest text-yellow-300 uppercase mb-1 font-bold">💡 Kullanım Notu:</div>
+          <div class="p-2.5 rounded-lg bg-yellow-500/10 border border-yellow-500/25 text-yellow-100 leading-relaxed text-xs sm:text-sm">${escapeHtmlAttr(card.note || '')}</div>
+        `;
+      } else if (tab === 'syn') {
         content.innerHTML = `
           <div class="text-[10px] font-mono tracking-widest text-indigo-300 uppercase mb-1.5 font-bold">⚡ Eş Anlamlılar:</div>
           <div class="flex flex-wrap gap-1.5">${(card.syn || '').split(',').map(s => {
@@ -7938,6 +7975,14 @@
         document.getElementById('fcEx').innerText = card.ex;
       }
 
+      // Örnek cümlenin Türkçe çevirisi (zenginleştirilmiş kelimelerde)
+      const exTrEl = document.getElementById('fcExTr');
+      if (exTrEl) {
+        const showExTr = Boolean(card.exTr && !card.contextEx);
+        exTrEl.textContent = showExTr ? card.exTr : '';
+        exTrEl.classList.toggle('hidden', !showExTr);
+      }
+
       // Bağlamsal Cümle Rozeti (Reading Lab Alıntısı)
       const contextBadge = document.getElementById('fcContextBadge');
       if (contextBadge) {
@@ -7967,6 +8012,14 @@
       const pMirror = document.getElementById('pill-mirror');
       const pEcho = document.getElementById('pill-echo');
 
+      const pSenses = document.getElementById('pill-senses');
+      const pNote = document.getElementById('pill-note');
+      if (pSenses) {
+        const n = Array.isArray(card.senses) ? card.senses.length : 0;
+        pSenses.classList.toggle('hidden', n < 1);
+        pSenses.textContent = `📚 Tüm Anlamlar (${n})`;
+      }
+      if (pNote) pNote.classList.toggle('hidden', !card.note);
       if (pSyn) pSyn.classList.toggle('hidden', !card.syn);
       if (pConf) pConf.classList.toggle('hidden', !card.conf);
       if (pColloc) pColloc.classList.toggle('hidden', !card.colloc);
@@ -9286,6 +9339,9 @@
             </div>
             <div class="word-tr mt-1.5 text-sm font-semibold text-emerald-400">${highlightSearchTerm(item.tr, q)}</div>
             ${item.ex ? `<div class="word-ex mt-2 pt-2 border-t border-white/[0.05] text-xs text-slate-300 font-light"><span class="text-slate-500 font-medium">Örnek:</span> "${highlightSearchTerm(item.ex, q)}"</div>` : ''}
+            ${item.exTr ? `<div class="mt-0.5 text-[11px] text-slate-400 italic">${escapeHtmlAttr(item.exTr)}</div>` : ''}
+            ${Array.isArray(item.senses) && item.senses.length ? `<details class="mt-2 rounded-lg bg-sky-500/[0.06] border border-sky-500/20 px-2.5 py-1.5"><summary class="cursor-pointer text-[11px] font-mono font-semibold text-sky-300 select-none">📚 Tüm anlamlar (${item.senses.length})</summary><div class="pt-2">${renderSensesHtml(item)}</div></details>` : ''}
+            ${item.note ? `<div class="mt-2 p-2 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-[11px] text-yellow-100 leading-snug"><span class="text-yellow-300 font-bold">💡 Not:</span> ${escapeHtmlAttr(item.note)}</div>` : ''}
             ${item.syn ? `<div class="mt-1.5 text-[11px] font-mono text-[#d6c7b2]/80"><span class="text-slate-500">Eş Anlam:</span> ${highlightSearchTerm(item.syn, q)}</div>` : ''}
             ${item.colloc ? `<div class="mt-2 pt-1.5 border-t border-white/[0.04] flex flex-wrap items-center gap-1"><span class="text-[10px] font-mono text-slate-500 mr-0.5">Kalıp:</span>${formatCollocationPillsHtml(item.colloc)}</div>` : ''}
             ${item.fam && Object.keys(item.fam).length >= 2 ? `<div class="mt-1.5 flex flex-wrap items-center gap-1"><span class="text-[10px] font-mono text-slate-500 mr-0.5">Aile:</span>${formatWordFamilyPillsHtml(item.fam, item.w)}</div>` : ''}
