@@ -20193,6 +20193,7 @@
 
       head.innerHTML = `
         <div class="rounded-2xl border border-white/[0.07] bg-black/30 p-3.5 sm:p-4 space-y-3">
+          <div class="text-[13px] text-[#d6c7b2] leading-relaxed">📘 Bir konuya gir: kuralı oku, örnekleri dinle, mini testi çöz, sonra <b class="text-white">Üret</b> bölümünde kendin yaz. Unuttuğunda dönüp bak; ilerleme tutulmaz.</div>
           <div class="grid grid-cols-5 gap-1.5">
             ${lvlStats.map(s => `
               <button type="button" onclick="setGrammarLevel('${s.l}')" class="text-center rounded-xl px-2 py-2 border ${s.l === grammarActiveLevel ? 'border-rose-500/40 bg-rose-950/40' : 'border-white/[0.06] bg-white/[0.02]'}">
@@ -20846,6 +20847,7 @@
             <button type="button" onclick="closeGrammarMix()" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl bg-white/[0.06] border border-white/10 text-sm text-white font-medium">← Konular</button>
             <div class="min-w-0">
               <div class="text-base font-semibold text-white">🔀 Karışık tekrar</div>
+              <div class="text-xs text-[#a8998c]">Farklı konulardan sorular; "hangi yapı?" ayrımını çalıştırır.</div>
             </div>
           </div>
           <div class="rounded-2xl border border-white/[0.07] bg-black/30 p-3.5 space-y-2.5">
@@ -20903,6 +20905,7 @@
       box.innerHTML = `
         <div class="space-y-2.5">
           <div class="text-sm font-semibold text-white">A) Türkçeden çevir</div>
+          <div class="text-xs text-[#a8998c]">İngilizcesini yaz, Kontrol'e bas.</div>
           ${p.ceviri.map((c, i) => {
             const st = grammarProduceState[i] || {};
             const r = st.sonuc;
@@ -20919,6 +20922,7 @@
         </div>
         <div class="space-y-2.5 pt-2">
           <div class="text-sm font-semibold text-white">B) Kendi cümleni yaz</div>
+          <div class="text-xs text-[#a8998c]">Bu yapıyla kendi hayatından bir cümle kur; yapı ve yaygın hatalar kontrol edilir.</div>
           
           <textarea id="gOwnIn" rows="2" autocapitalize="sentences" spellcheck="false" placeholder="Örn. ${escapeHtmlAttr(((findGrammarTopic(t) || {}).topic || {}).examples ? findGrammarTopic(t).topic.examples[0].en : '')}" class="w-full rounded-lg bg-black/50 border border-white/10 focus:border-rose-500/50 px-3 py-2 text-[15px] text-white outline-none leading-relaxed">${gEsc(grammarOwnState.val || '')}</textarea>
           <div class="flex gap-2">
