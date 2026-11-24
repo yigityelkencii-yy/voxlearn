@@ -1635,6 +1635,11 @@
           <span>✍️</span>
           <span id="spellModeLabel">Yazım</span>
         </button>
+        <button onclick="toggleFcClozeMode()" id="btnClozeMode" title="Cümle modu: ön yüzde kelime yerine boşluklu cümle"
+                class="py-1.5 px-2.5 rounded-lg font-mono text-[11px] transition bg-white/[0.04] hover:bg-white/[0.08] text-[#d6c7b2] border border-white/5 flex items-center justify-center gap-1.5 shrink-0 active:scale-95 cursor-pointer">
+          <span>📝</span>
+          <span id="clozeModeLabel">Cümle</span>
+        </button>
         <button onclick="toggleShuffleMode()" id="btnShuffleMode" title="Sıralama: Karışık / Sıralı (A-Z)" 
                 class="py-1.5 px-2.5 rounded-lg font-mono text-[11px] transition bg-rose-900/60 border border-rose-500/30 text-white flex items-center justify-center gap-1.5 shrink-0 shadow-sm active:scale-95 cursor-pointer">
           <span id="shuffleModeIcon">🔀</span>
@@ -1776,6 +1781,7 @@
                   </div>
 
                   <h3 id="fcTr" class="fc-tr-heading text-2xl sm:text-3xl text-[#fdf6ee] font-semibold leading-snug tracking-tight text-center">Anlam</h3>
+                  <div id="fcPattern" class="hidden text-center text-sm leading-relaxed px-3 py-2 rounded-xl bg-emerald-500/[0.07] border border-emerald-500/20" onclick="event.stopPropagation()"></div>
                   
                   <div class="p-3.5 sm:p-4 rounded-xl bg-black/40 border border-white/[0.05] border-l-2 border-l-rose-500/50 text-left space-y-1.5 group cursor-pointer hover:bg-white/[0.03] transition" onclick="speakCardExample(event)" title="Örnek cümleyi dinlemek için tıkla [Kısayol: E]">
                     <div class="flex items-center justify-between">
@@ -2626,9 +2632,14 @@
                   </h3>
                 </div>
                 
-                <button type="button" onclick="speakCurrentReadingPassage()" id="btnSpeakPassage" class="px-3 py-1.5 rounded-xl btn-glass-subtle text-xs flex items-center gap-1.5 transition text-slate-300 hover:text-white">
-                  <span>🔊</span> <span class="text-[11px] font-sans">Metni Dinle</span>
-                </button>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="toggleReadingGrammarLens()" id="btnGrammarLens" class="px-3 py-1.5 rounded-xl btn-glass-subtle text-xs flex items-center gap-1.5 transition text-slate-300 hover:text-white">
+                    <span>🔍</span> <span class="text-[11px] font-sans">Gramer gözlüğü</span>
+                  </button>
+                  <button type="button" onclick="speakCurrentReadingPassage()" id="btnSpeakPassage" class="px-3 py-1.5 rounded-xl btn-glass-subtle text-xs flex items-center gap-1.5 transition text-slate-300 hover:text-white">
+                    <span>🔊</span> <span class="text-[11px] font-sans">Metni Dinle</span>
+                  </button>
+                </div>
               </div>
 
               <!-- Metin Röntgeni (Text X-Ray) Minimalist Summary Strip -->
@@ -2650,6 +2661,8 @@
               <div id="readingRenderedContainer" class="font-serif text-[16px] sm:text-[17px] text-[#ede2d7] leading-[2.1] tracking-wide select-text space-y-4">
                 <!-- Interactively rendered words with clean hover styling injected here -->
               </div>
+              <!-- Gramer gözlüğü görünümü (açıkken kelime görünümünün yerine geçer) -->
+              <div id="readingGrammarLensBox" class="hidden"></div>
 
               <!-- Word lookup help footnote -->
               <div class="pt-3 border-t border-white/[0.05] flex items-center justify-between text-[11px] font-mono text-[#a8998c]">
@@ -2884,6 +2897,9 @@
           <button onclick="setGrammarSubTab('timeline')" id="gSubTab-timeline" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
             📋 Zaman Çizelgesi
           </button>
+          <button onclick="setGrammarSubTab('listen')" id="gSubTab-listen" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
+            🎧 Dinle-Ayırt
+          </button>
           <button onclick="setGrammarSubTab('irregulars')" id="gSubTab-irregulars" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
             Düzensiz Fiiller
           </button>
@@ -2934,6 +2950,8 @@
        </div>
        <!-- Ders sayfası (konu açıldığında listenin yerine geçer) -->
        <div id="grammarLessonView" class="hidden"></div>
+       <!-- Karışık tekrar -->
+       <div id="grammarMixView" class="hidden"></div>
       </div>
 
 
@@ -3056,6 +3074,15 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- BÖLÜM: DİNLE-AYIRT (kulakta karışan yapılar) -->
+      <div id="grammarListenSection" class="hidden space-y-4">
+        <div class="rounded-2xl border border-white/[0.07] bg-black/30 p-3.5 sm:p-4">
+          <div class="text-sm sm:text-base font-semibold text-[#fbf4eb]">🎧 Dinle-Ayırt</div>
+          <div class="text-[13px] sm:text-sm text-[#d6c7b2] leading-relaxed mt-0.5">I've / I'd, used to / be used to, stopped to / stopped -ing gibi kulakta karışan yapı çiftleri. Cümleyi dinle, hangisi olduğunu seç; açıklama ve ilgili kural hemen açılır.</div>
+        </div>
+        <div id="grammarListenBox" class="rounded-2xl border border-white/[0.07] bg-[#120407]/70 p-4 sm:p-5"></div>
       </div>
 
       <!-- BÖLÜM 2: TEMEL DÜZENSİZ FİİLLER (50 FİİL) -->
@@ -4030,6 +4057,10 @@
 
   
   <!-- ==================== MISTAKE VAULT (HATA KASASI) MODAL ==================== -->
+  <div id="grammarPeekModal" class="hidden fixed inset-0 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/75 backdrop-blur-sm" style="z-index:70" onclick="if(event.target===this)closeGrammarPeek()">
+    <div id="grammarPeekContent" class="w-full sm:max-w-lg max-h-[88vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl bg-[#14070b] border border-white/10 p-4 sm:p-5 space-y-3 shadow-2xl" style="padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 16px)"></div>
+  </div>
+
   <div id="mistakeVaultModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
     <div class="bg-[#140609] border border-white/[0.08] rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl relative max-h-[90vh] flex flex-col">
       <button onclick="toggleMistakeVaultModal()" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.05] transition text-sm">
@@ -5024,6 +5055,8 @@
   <script src="data/extras.js"></script>
   <script src="data/enrich.js"></script>
   <script src="data/grammar.js"></script>
+  <script src="data/grammar-practice.js"></script>
+  <script src="data/patterns.js"></script>
   <script>
     var STORAGE_VAULT_KEY = 'voxlearn_mistake_vault_v1';
     var mistakeVault = [];
@@ -8028,6 +8061,9 @@
         document.getElementById('fcEx').innerText = card.ex;
       }
 
+      // Cümle modu + kalıp satırı (öğrenme eklentileri)
+      try { applyFcLearningExtras(card); } catch (e) {}
+
       // Örnek cümlenin Türkçe çevirisi (zenginleştirilmiş kelimelerde)
       const exTrEl = document.getElementById('fcExTr');
       if (exTrEl) {
@@ -9459,7 +9495,8 @@
             mistakeVaultModal: () => toggleMistakeVaultModal(),
             themeModal: () => toggleThemeModal(),
             examScorecardModal: () => closeExamScorecardModal(),
-            welcomeGuideModal: () => closeWelcomeGuideModal()
+            welcomeGuideModal: () => closeWelcomeGuideModal(),
+            grammarPeekModal: () => closeGrammarPeek()
           };
           try {
             if (closers[openModal.id]) closers[openModal.id]();
@@ -16258,6 +16295,20 @@
       document.getElementById('examScorecardModal').classList.remove('hidden');
     }
 
+    // Sınav sorusunu (gramer odaklı türlerde) ilgili gramer konusuna bağla: doğru seçeneğin içindeki yapıya bakılır
+    function examGrammarTopicFor(q) {
+      try {
+        if (!q || !/Sentence Completion|Cloze|Restatement|Translation/i.test(q.category || '')) return null;
+        const opt = (q.options || []).find(o => o.key === q.answer);
+        const txt = opt ? String(opt.text) : '';
+        const spans = grammarDetectSpans(txt);
+        if (!spans.length) return null;
+        const pri = ['c1-inversion', 'c1-cleft-sentences', 'c1-subjunctive', 'c1-past-modals', 'b2-mixed-conditionals', 'b2-conditionals-2-3', 'b2-wishes-regrets', 'b1-conditionals-0-1', 'b2-linkers', 'b2-advanced-passives', 'c1-participle-clauses', 'b2-future-cont-perfect', 'b1-past-perfect', 'b1-ppc', 'b2-gerunds-infinitives', 'b1-relative-clauses', 'b2-noun-clauses', 'c1-hedging', 'b1-passive-intro', 'a2-present-perfect-intro'];
+        const rank = k => { const i = pri.indexOf(k); return i < 0 ? 99 : i; };
+        return spans.slice().sort((a, b) => rank(a.konu) - rank(b.konu))[0].konu;
+      } catch (e) { return null; }
+    }
+
     function renderExamReviewItems() {
       const container = document.getElementById('examReviewContainer');
       if (!container) return;
@@ -16280,6 +16331,7 @@
             <div class="p-2.5 rounded-lg bg-black/50 border border-white/5 text-[11px] text-[#d6c7b2]/90 leading-relaxed">
               <strong class="text-amber-300 font-mono">Çözüm & Açıklama:</strong> ${escapeHtmlAttr(q.explanation)}
             </div>
+            ${!isRight ? (() => { const tp = examGrammarTopicFor(q); return tp ? `<div>${grammarLinkChip(tp)}</div>` : ''; })() : ''}
           </div>
         `;
       }).join('');
@@ -19552,7 +19604,7 @@
       if (subTab === 'colloc') { selectMode('phrasal'); return; }
       if (subTab === 'idioms') { selectMode('idioms'); return; }
       grammarActiveSubTab = subTab;
-      const subTabs = ['topics', 'verbforms', 'versus', 'spotter', 'scramble', 'timeline', 'irregulars'];
+      const subTabs = ['topics', 'verbforms', 'versus', 'spotter', 'scramble', 'timeline', 'listen', 'irregulars'];
       const sectionMap = {
         topics: 'grammarTopicsSection',
         verbforms: 'grammarVerbFormsSection',
@@ -19560,6 +19612,7 @@
         spotter: 'grammarSpotterSection',
         scramble: 'grammarScrambleSection',
         timeline: 'grammarTimelineSection',
+        listen: 'grammarListenSection',
         irregulars: 'grammarIrregularsSection'
       };
 
@@ -19582,13 +19635,14 @@
       if (activeBtn) activeBtn.className = 'px-3 py-1.5 rounded-lg bg-rose-900/60 border border-rose-500/30 text-white font-medium transition shrink-0 shadow-sm';
 
       // Trigger sub-tab renderer
-      if (subTab === 'topics') renderGrammarTopics();
+      if (subTab === 'topics') { if (grammarMixOpen) renderGrammarMix(); else renderGrammarTopics(); }
       else if (subTab === 'verbforms') startVerbFormsTest();
       else if (subTab === 'versus') renderGrammarVersus();
       else if (subTab === 'spotter') startSpotterGame();
       else if (subTab === 'scramble') startScrambleGame();
       else if (subTab === 'timeline') renderTimeline(currentTimelineFilter);
       else if (subTab === 'irregulars') renderIrregularVerbs(irregularVerbsData);
+      else if (subTab === 'listen') { if (!listenOrder.length) startGrammarListen(); else renderGrammarListen(); }
     }
 
     // ---------- 1. KARIŞAN YAPILAR (GRAMMAR VERSUS) ----------
@@ -19731,6 +19785,7 @@
               <span class="text-emerald-300 font-mono font-bold">✅ ${q.correctWord}</span>
             </div>
             <p class="text-[#d6c7b2] text-xs leading-relaxed pt-1">${q.explanation}</p>
+            ${(typeof GRAMMAR_EXERCISE_LINKS !== 'undefined' && GRAMMAR_EXERCISE_LINKS.sp[q.id]) ? `<div class="pt-1">${grammarLinkChip(GRAMMAR_EXERCISE_LINKS.sp[q.id])}</div>` : ''}
           `;
           feedbackBox.classList.remove('hidden');
         }
@@ -20134,6 +20189,8 @@
       const lessonView = document.getElementById('grammarLessonView');
       if (listView) listView.classList.remove('hidden');
       if (lessonView) lessonView.classList.add('hidden');
+      const mixView = document.getElementById('grammarMixView');
+      if (mixView) mixView.classList.add('hidden');
       renderGrammarLearnHead();
       renderGrammarTopicList();
     }
@@ -20171,6 +20228,10 @@
               <span class="min-w-0"><span class="block text-[11px] font-mono uppercase tracking-wider text-rose-300/80">Son baktığın · ${lastInfo.lvl}</span><span class="block text-sm text-white font-medium truncate">${gEsc(lastInfo.topic.title)}</span></span>
               <span class="text-rose-300 shrink-0 text-sm">Aç →</span>
             </button>` : ''}
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" onclick="openGrammarMix()" class="flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 bg-amber-500/10 border border-amber-500/30 text-amber-100 text-sm font-medium">🔀 Karışık tekrar</button>
+            <button type="button" onclick="setGrammarSubTab('listen')" class="flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 bg-sky-500/10 border border-sky-500/30 text-sky-100 text-sm font-medium">🎧 Dinle-Ayırt</button>
+          </div>
           <div class="relative">
             <input id="grammarSearchInput" type="search" value="${escapeHtmlAttr(grammarSearchQuery)}" oninput="setGrammarSearch(this.value)" placeholder="Konu ara: since, passive, koşul, -mişti…" class="w-full rounded-xl bg-black/40 border border-white/[0.08] px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500/50">
           </div>
@@ -20234,6 +20295,11 @@
       const wasOpen = !!grammarOpenLessonId;
       grammarOpenLessonId = id;
       grammarQuizState = {};
+      grammarProduceState = {};
+      grammarOwnState = { val: '', sonuc: null };
+      grammarMixOpen = false;
+      const mixV = document.getElementById('grammarMixView');
+      if (mixV) mixV.classList.add('hidden');
       grammarExpandedTopics = new Set([id]);
       try { localStorage.setItem(STORAGE_GRAMMAR_LAST_KEY, id); } catch (e) {}
       const prog = getGrammarProgress();
@@ -20283,6 +20349,9 @@
     window.addEventListener('popstate', (e) => {
       if (grammarLessonPopSkip) { grammarLessonPopSkip = false; return; }
       const st = e.state || {};
+      const peekM = document.getElementById('grammarPeekModal');
+      if (peekM && !peekM.classList.contains('hidden') && !st.voxPeek) { closeGrammarPeek(true); return; }
+      if (typeof grammarMixOpen !== 'undefined' && grammarMixOpen && !st.voxGrammarMix) { closeGrammarMix(true); return; }
       if (st.voxGrammar && st.voxGrammar !== grammarOpenLessonId) {
         openGrammarLesson(st.voxGrammar, true);
       } else if (!st.voxGrammar && grammarOpenLessonId) {
@@ -20385,7 +20454,7 @@
               </div>
             </div>
             <div class="flex gap-1.5 overflow-x-auto scrollbar-none mt-2 text-xs">
-              ${[['g-ozet', 'Özet'], ['g-kural', 'Kural'], ['g-tr', 'Türkçe farkı'], ['g-ornek', 'Örnekler'], ['g-incelik', 'İncelikler'], ['g-hata', 'Hatalar'], ['g-test', 'Test']]
+              ${[['g-ozet', 'Özet'], ['g-kural', 'Kural'], ['g-tr', 'Türkçe farkı'], ['g-ornek', 'Örnekler'], ['g-incelik', 'İncelikler'], ['g-hata', 'Hatalar'], ['g-test', 'Test'], ['g-uret', 'Üret']]
                 .map(([a, n]) => `<button type="button" onclick="grammarScrollTo('${a}')" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.07] text-[#d6c7b2]">${n}</button>`).join('')}
             </div>
           </div>
@@ -20479,6 +20548,13 @@
             <div id="gQuizBox" class="space-y-2.5"></div>
           </div>` : ''}
 
+          <!-- 8. Üret: çeviri + kendi cümlen -->
+          ${(typeof GRAMMAR_PRODUCE !== 'undefined' && GRAMMAR_PRODUCE[t.id]) ? `
+          <div class="${card}">
+            ${H('g-uret', 8, 'Üret: çevir ve kendi cümleni yaz', 'text-emerald-300')}
+            <div id="gProduceBox" class="space-y-3"></div>
+          </div>` : ''}
+
           <!-- İlgili + önceki/sonraki -->
           <div class="${card}">
             ${(t.ilgili || []).length ? `
@@ -20493,8 +20569,674 @@
           </div>
         </div>`;
       renderGrammarQuiz();
+      renderGrammarProduce();
       if (y != null) window.scrollTo(0, y);
     }
+
+    // ==================== GRAMER KONTROL MOTORU (üretim, gözlük, ortak) ====================
+    let __gramForms = null;
+    function grammarVerbForms() {
+      if (__gramForms) return __gramForms;
+      const v2 = new Set(), v3 = new Set(), v1 = new Set();
+      const list = (typeof irregularVerbsData !== 'undefined' && Array.isArray(irregularVerbsData)) ? irregularVerbsData : [];
+      list.forEach(it => {
+        const a = String(it.v1 || '').toLowerCase().split(/\s*\/\s*/);
+        const b = String(it.v2 || '').toLowerCase().split(/\s*\/\s*/);
+        const c = String(it.v3 || '').toLowerCase().split(/\s*\/\s*/);
+        a.forEach(x => x && v1.add(x.trim()));
+        b.forEach(x => x && v2.add(x.trim()));
+        c.forEach(x => x && v3.add(x.trim()));
+      });
+      const clean = s => [...s].filter(w => /^[a-z]+$/.test(w));
+      const ambiguous = new Set(['lay', 'saw', 'found', 'fell', 'wound', 'bore', 'ground', 'rose', 'left', 'lit', 'bit', 'felt', 'meant', 'read', 'set', 'let', 'put', 'cut', 'hit', 'cost', 'shut', 'hurt', 'quit', 'spread', 'bet', 'burst', 'cast', 'fit', 'split', 'upset', 'broadcast', 'forecast', 'beat', 'become', 'come', 'run', 'overcome', 'outrun', 'was', 'were', 'been', 'be']);
+      const v2only = clean(v2).filter(w => !v1.has(w) && !v3.has(w) && !ambiguous.has(w));
+      const v3only = clean(v3).filter(w => !v1.has(w) && !v2.has(w) && !ambiguous.has(w));
+      const alt = arr => arr.sort((x, y) => y.length - x.length).join('|');
+      __gramForms = {
+        V3: `(?:\\w+ed|${alt(clean(v3))})`,
+        V2: `(?:\\w+ed|${alt(clean(v2))})`,
+        VING: `(?:\\w+ing)`,
+        V2only: `(?:${alt(v2only) || 'zzzz'})`,
+        V3only: `(?:${alt(v3only) || 'zzzz'})`
+      };
+      return __gramForms;
+    }
+
+    const __gramReCache = {};
+    function grammarRe(src, flags) {
+      const key = flags + '|' + src;
+      if (key in __gramReCache) return __gramReCache[key];
+      const f = grammarVerbForms();
+      const full = String(src).replace(/\{(V3only|V2only|V3|V2|VING)\}/g, (_, k) => f[k]);
+      let re = null;
+      try { re = new RegExp(full, flags); } catch (e) { re = null; }
+      __gramReCache[key] = re;
+      return re;
+    }
+
+    function grammarSplitSentences(text) {
+      return String(text || '').replace(/\s+/g, ' ').trim()
+        .split(/(?<=[.!?])\s+(?=["“‘(]?[A-Z0-9])/)
+        .map(s => s.trim()).filter(Boolean);
+    }
+
+    function grammarNormalize(text) {
+      return ' ' + String(text || '').toLowerCase()
+        .replace(/[’‘`´]/g, "'").replace(/[“”]/g, '"')
+        .replace(/\bwon't\b/g, 'will not').replace(/\bcan't\b/g, 'cannot').replace(/\bcannot\b/g, 'can not')
+        .replace(/\bshan't\b/g, 'shall not').replace(/n't\b/g, ' not')
+        .replace(/'m\b/g, ' am').replace(/'re\b/g, ' are').replace(/'ve\b/g, ' have').replace(/'ll\b/g, ' will')
+        .replace(/'d\b/g, ' d').replace(/'s\b/g, ' s')
+        .replace(/\bneighbour/g, 'neighbor').replace(/\b(realise|realised)\b/g, m => m.replace('s', 'z'))
+        .replace(/\be-mail\b/g, 'email')
+        .replace(/[^a-z0-9' ]+/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
+    }
+
+    // Tek cümle/metin üzerinde genel hata kurallarını çalıştırır
+    function grammarFindErrors(text) {
+      const out = [];
+      const seen = new Set();
+      const rules = (typeof GRAMMAR_ERROR_RULES !== 'undefined') ? GRAMMAR_ERROR_RULES : [];
+      grammarSplitSentences(text).forEach(sent => {
+        rules.forEach((r, ri) => {
+          const re = grammarRe(r.re, 'i');
+          if (!re) return;
+          const m = sent.match(re);
+          if (!m) return;
+          if (r.disla) { const d = grammarRe(r.disla, 'i'); if (d && d.test(m[0])) return; }
+          const k = ri + '|' + m[0].toLowerCase();
+          if (seen.has(k)) return;
+          seen.add(k);
+          out.push({ parca: m[0].trim(), mesaj: r.mesaj, konu: r.konu });
+        });
+      });
+      return out;
+    }
+
+    // Konunun hedef yapısı cümlede var mı?
+    function grammarFindTarget(topicId, text) {
+      const p = (typeof GRAMMAR_PRODUCE !== 'undefined') ? GRAMMAR_PRODUCE[topicId] : null;
+      if (!p || !p.hedef) return { var: true, bulunan: null, ad: '' };
+      const sents = grammarSplitSentences(text);
+      for (const h of p.hedef) {
+        const re = grammarRe(h.re, 'i');
+        if (!re) continue;
+        for (const s of sents) {
+          const m = s.match(re);
+          if (m) return { var: true, bulunan: m[0].trim(), ad: h.ad };
+        }
+      }
+      return { var: false, bulunan: null, ad: p.hedef.map(h => h.ad).join(' ya da ') };
+    }
+
+    // Kullanıcı çevirisini kabul edilen cevaplarla karşılaştırır
+    function grammarCompareTranslation(user, accepted) {
+      const nu = grammarNormalize(user);
+      const list = (accepted || []).map(a => ({ raw: a, n: grammarNormalize(a) }));
+      if (list.some(a => a.n === nu)) return { tam: true, en_yakin: list.find(a => a.n === nu).raw, fark: [] };
+      const uw = nu.trim().split(' ');
+      let best = null;
+      list.forEach(a => {
+        const aw = a.n.trim().split(' ');
+        const d = grammarWordDiff(uw, aw);
+        if (!best || d.cost < best.cost) best = { raw: a.raw, cost: d.cost, ops: d.ops };
+      });
+      return { tam: false, en_yakin: best ? best.raw : (accepted || [])[0], fark: best ? best.ops : [], cost: best ? best.cost : 99 };
+    }
+
+    // Kelime düzeyinde fark (Levenshtein + işlem listesi)
+    function grammarWordDiff(a, b) {
+      const n = a.length, m = b.length;
+      const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+      for (let i = 0; i <= n; i++) dp[i][0] = i;
+      for (let j = 0; j <= m; j++) dp[0][j] = j;
+      for (let i = 1; i <= n; i++) for (let j = 1; j <= m; j++) {
+        dp[i][j] = Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      }
+      const ops = [];
+      let i = n, j = m;
+      while (i > 0 || j > 0) {
+        if (i > 0 && j > 0 && a[i - 1] === b[j - 1] && dp[i][j] === dp[i - 1][j - 1]) { ops.unshift({ t: '=', w: b[j - 1] }); i--; j--; }
+        else if (i > 0 && j > 0 && dp[i][j] === dp[i - 1][j - 1] + 1) { ops.unshift({ t: '~', w: b[j - 1], u: a[i - 1] }); i--; j--; }
+        else if (j > 0 && dp[i][j] === dp[i][j - 1] + 1) { ops.unshift({ t: '+', w: b[j - 1] }); j--; }
+        else { ops.unshift({ t: '-', u: a[i - 1] }); i--; }
+      }
+      return { cost: dp[n][m], ops };
+    }
+
+    // Okuma metninde yapıları bulur → [{ s, e, konu, ad, renk }]
+    function grammarDetectSpans(text) {
+      const rules = (typeof GRAMMAR_DETECT !== 'undefined') ? GRAMMAR_DETECT : [];
+      const spans = [];
+      const taken = new Uint8Array(text.length + 1);
+      const sentenceAt = (i) => {
+        let a = i, b = i;
+        while (a > 0 && !/[.!?]/.test(text[a - 1])) a--;
+        while (b < text.length && !/[.!?]/.test(text[b])) b++;
+        return text.slice(a, b + 1);
+      };
+      rules.forEach(r => {
+        const re = grammarRe(r.re, 'g');
+        if (!re) return;
+        const dis = r.disla ? grammarRe(r.disla, 'i') : null;
+        const sart = r.sart ? grammarRe(r.sart, 'i') : null;
+        re.lastIndex = 0;
+        let m;
+        while ((m = re.exec(text))) {
+          if (!m[0]) { re.lastIndex++; continue; }
+          const s = m.index, e = s + m[0].length;
+          let free = true;
+          for (let i = s; i < e; i++) if (taken[i]) { free = false; break; }
+          if (!free) continue;
+          if (dis && dis.test(m[0])) continue;
+          if (sart && !sart.test(m[0])) continue;
+          let konu = r.konu, ad = r.ad;
+          if (r.tipSec) {
+            const sent = sentenceAt(s);
+            const before = text.slice(Math.max(0, s - 25), s).toLowerCase();
+            if (/\b(ask|asked|asks|wonder|wondered|know|knew|see|check|checked|decide|decided|sure)\s*$/.test(before)) { konu = 'b2-noun-clauses'; ad = 'İsim cümleciği (if = -ip -mediği)'; }
+            else if (grammarRe(String.raw`\b(would|could|might|'d)\s+(not\s+)?have\s+{V3}|\bhad\s+{V3}`, 'i').test(sent)) { konu = 'b2-conditionals-2-3'; ad = 'Koşul (Type 3 / karma)'; }
+            else if (/\b(would|could|might)\b/i.test(sent)) { konu = 'b2-conditionals-2-3'; ad = 'Koşul (Type 2)'; }
+            else { ad = 'Koşul (Type 0 / 1)'; }
+          }
+          for (let i = s; i < e; i++) taken[i] = 1;
+          spans.push({ s, e, konu, ad, renk: r.renk || 'sky' });
+        }
+      });
+      return spans.sort((a, b) => a.s - b.s);
+    }
+
+    // ==================== KURAL ÖNİZLEME PENCERESİ (her yerden konuya kısa bakış) ====================
+    function grammarLinkChip(topicId, label) {
+      const info = (typeof findGrammarTopic === 'function') ? findGrammarTopic(topicId) : null;
+      if (!info) return '';
+      return `<button type="button" onclick="event.stopPropagation(); openGrammarPeek('${topicId}')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-200 text-xs font-medium hover:bg-sky-500/20 transition"><span>📘</span><span>${label || 'Kural'}: ${gEsc(info.topic.title)}</span><span class="text-sky-300/70">›</span></button>`;
+    }
+
+    function openGrammarPeek(topicId, phrase) {
+      const info = findGrammarTopic(topicId);
+      const modal = document.getElementById('grammarPeekModal');
+      const box = document.getElementById('grammarPeekContent');
+      if (!info || !modal || !box) return;
+      const t = info.topic;
+      const ex = (t.examples || [])[0];
+      box.innerHTML = `
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0">
+            <div class="text-[11px] font-mono text-rose-300">${info.lvl} · Gramer</div>
+            <h3 class="font-serif-hero text-xl sm:text-2xl text-[#fdf6ee] leading-tight">${gEsc(t.title)}</h3>
+          </div>
+          <button type="button" onclick="closeGrammarPeek()" aria-label="Kapat" class="shrink-0 w-10 h-10 rounded-xl bg-white/[0.06] border border-white/10 text-white text-lg">✕</button>
+        </div>
+        ${phrase ? `<div class="text-sm text-[#d6c7b2]">Metindeki ifade: <span class="px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-200 font-medium">${gEsc(phrase)}</span></div>` : ''}
+        ${t.ozet ? `<p class="text-[15px] text-white leading-relaxed"><span class="text-rose-300 font-semibold">Ana fikir:</span> ${gEsc(t.ozet)}</p>` : ''}
+        <pre class="font-mono text-[13px] text-rose-100 whitespace-pre-wrap leading-relaxed bg-black/40 border border-rose-500/20 rounded-xl p-3 max-h-48 overflow-y-auto">${gEsc(t.formula)}</pre>
+        ${ex ? `<div class="p-3 rounded-xl bg-black/30 border border-white/[0.06]"><div class="text-white">${gEsc(ex.en)}</div><div class="text-sm text-[#a8998c]">${gEsc(ex.tr)}</div></div>` : ''}
+        ${t.mistake ? `<div class="text-sm"><span class="text-rose-300">✗ ${gEsc(t.mistake.wrong)}</span><br><span class="text-emerald-300">✓ ${gEsc(t.mistake.correct)}</span></div>` : ''}
+        <button type="button" onclick="closeGrammarPeek(); jumpToGrammarTopic('${t.id}', '${info.lvl}')" class="w-full px-4 py-3 rounded-xl btn-primary-glow text-sm font-semibold">Dersin tamamını aç →</button>`;
+      const wasHidden = modal.classList.contains('hidden');
+      modal.classList.remove('hidden');
+      box.scrollTop = 0;
+      if (wasHidden) { try { history.pushState({ voxPeek: 1 }, ''); } catch (e) {} }
+      if (typeof triggerHaptic === 'function') triggerHaptic('tap');
+    }
+
+    function closeGrammarPeek(fromPop) {
+      const modal = document.getElementById('grammarPeekModal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      modal.classList.add('hidden');
+      if (!fromPop) { try { if (history.state && history.state.voxPeek) { grammarLessonPopSkip = true; history.back(); } } catch (e) {} }
+    }
+
+    // ==================== KARIŞIK TEKRAR (tüm konuların mini testlerinden) ====================
+    let grammarMixLevels = null;      // Set
+    let grammarMixCount = 10;
+    let grammarMixQuestions = [];
+    let grammarMixAnswers = {};
+    let grammarMixOpen = false;
+
+    function openGrammarMix() {
+      if (!grammarMixLevels) grammarMixLevels = new Set([grammarActiveLevel]);
+      if (grammarOpenLessonId) closeGrammarLesson();
+      grammarMixOpen = true;
+      try { if (!(history.state && history.state.voxGrammarMix)) history.pushState({ voxGrammarMix: 1 }, ''); } catch (e) {}
+      buildGrammarMixQuestions();
+      renderGrammarMix();
+      const v = document.getElementById('grammarMixView');
+      if (v) window.scrollTo({ top: Math.max(0, v.getBoundingClientRect().top + window.scrollY - 70) });
+    }
+
+    function closeGrammarMix(fromPop) {
+      grammarMixOpen = false;
+      if (!fromPop) { try { if (history.state && history.state.voxGrammarMix) { grammarLessonPopSkip = true; history.back(); } } catch (e) {} }
+      const v = document.getElementById('grammarMixView');
+      if (v) v.classList.add('hidden');
+      const l = document.getElementById('grammarListView');
+      if (l) l.classList.remove('hidden');
+      renderGrammarTopics();
+    }
+
+    function toggleGrammarMixLevel(l) {
+      if (!grammarMixLevels) grammarMixLevels = new Set();
+      if (grammarMixLevels.has(l)) { if (grammarMixLevels.size > 1) grammarMixLevels.delete(l); }
+      else grammarMixLevels.add(l);
+      buildGrammarMixQuestions();
+      renderGrammarMix();
+    }
+
+    function setGrammarMixCount(n) {
+      grammarMixCount = n;
+      buildGrammarMixQuestions();
+      renderGrammarMix();
+    }
+
+    function buildGrammarMixQuestions() {
+      const pool = [];
+      ['A1', 'A2', 'B1', 'B2', 'C1'].forEach(l => {
+        if (!grammarMixLevels.has(l)) return;
+        (grammarTopicsData[l] || []).forEach(t => (t.test || []).forEach(q => pool.push({ q, t, lvl: l })));
+      });
+      const sh = (typeof shuffleArray === 'function') ? shuffleArray : (a => a.slice().sort(() => Math.random() - 0.5));
+      // Aynı konudan art arda soru gelmesin diye konulara dağıt
+      const byTopic = {};
+      sh(pool).forEach(x => { (byTopic[x.t.id] = byTopic[x.t.id] || []).push(x); });
+      const order = sh(Object.keys(byTopic));
+      const picked = [];
+      let round = 0;
+      while (picked.length < grammarMixCount && order.some(k => byTopic[k].length > round)) {
+        order.forEach(k => { if (picked.length < grammarMixCount && byTopic[k][round]) picked.push(byTopic[k][round]); });
+        round++;
+      }
+      grammarMixQuestions = picked.map(x => {
+        const idx = x.q.o.map((_, i) => i);
+        const perm = sh(idx);
+        return { s: x.q.s, o: perm.map(i => x.q.o[i]), c: perm.indexOf(x.q.c), n: x.q.n, t: x.t, lvl: x.lvl };
+      });
+      grammarMixAnswers = {};
+    }
+
+    function answerGrammarMix(qi, oi) {
+      if (grammarMixAnswers[qi] != null) return;
+      grammarMixAnswers[qi] = oi;
+      if (typeof triggerHaptic === 'function') triggerHaptic(grammarMixQuestions[qi].c === oi ? 'success' : 'error');
+      renderGrammarMix(true);
+    }
+
+    function renderGrammarMix(keepScroll) {
+      const view = document.getElementById('grammarMixView');
+      const list = document.getElementById('grammarListView');
+      const lesson = document.getElementById('grammarLessonView');
+      if (!view) return;
+      if (list) list.classList.add('hidden');
+      if (lesson) lesson.classList.add('hidden');
+      view.classList.remove('hidden');
+      const y = keepScroll ? window.scrollY : null;
+      const qs = grammarMixQuestions;
+      const answered = Object.keys(grammarMixAnswers).length;
+      const correct = qs.filter((q, i) => grammarMixAnswers[i] === q.c).length;
+      const wrongTopics = [];
+      qs.forEach((q, i) => { if (grammarMixAnswers[i] != null && grammarMixAnswers[i] !== q.c && !wrongTopics.includes(q.t.id)) wrongTopics.push(q.t.id); });
+      view.innerHTML = `
+        <div class="space-y-4 text-[15px] text-[#ede2d7]">
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="closeGrammarMix()" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl bg-white/[0.06] border border-white/10 text-sm text-white font-medium">← Konular</button>
+            <div class="min-w-0">
+              <div class="text-[11px] font-mono text-[#a8998c]">Farklı konulardan karışık sorular</div>
+              <div class="text-base font-semibold text-white">🔀 Karışık tekrar</div>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-white/[0.07] bg-black/30 p-3.5 space-y-2.5">
+            <div class="text-xs text-[#a8998c]">Konular karışık sorulunca "hangi yapı burada?" ayrımı öğrenilir. Sonuç kaydedilmez.</div>
+            <div class="flex flex-wrap items-center gap-1.5">
+              ${['A1', 'A2', 'B1', 'B2', 'C1'].map(l => `<button type="button" onclick="toggleGrammarMixLevel('${l}')" class="px-3 py-1.5 rounded-lg border text-sm font-mono ${grammarMixLevels.has(l) ? 'border-rose-500/40 bg-rose-900/50 text-white' : 'border-white/[0.08] bg-white/[0.03] text-slate-400'}">${l}</button>`).join('')}
+              <span class="mx-1 text-white/20">|</span>
+              ${[5, 10, 20].map(n => `<button type="button" onclick="setGrammarMixCount(${n})" class="px-3 py-1.5 rounded-lg border text-sm ${grammarMixCount === n ? 'border-amber-500/40 bg-amber-500/15 text-amber-200' : 'border-white/[0.08] bg-white/[0.03] text-slate-400'}">${n} soru</button>`).join('')}
+            </div>
+          </div>
+          <div class="space-y-2.5">
+            ${qs.map((q, qi) => {
+              const sel = grammarMixAnswers[qi];
+              const done = sel != null;
+              const filled = done
+                ? gEsc(q.s).replace('___', `<span class="px-1 rounded bg-emerald-500/20 text-emerald-200 font-semibold">${gEsc(q.o[q.c])}</span>`)
+                : gEsc(q.s).replace('___', '<span class="inline-block min-w-[3.5rem] border-b-2 border-rose-400/60 mx-0.5">&nbsp;</span>');
+              return `
+                <div class="rounded-xl border ${done ? (sel === q.c ? 'border-emerald-500/30' : 'border-rose-500/30') : 'border-white/[0.07]'} bg-black/30 p-3 sm:p-3.5 space-y-2.5">
+                  <div class="text-[15px] text-white leading-relaxed"><span class="font-mono text-xs text-[#a8998c] mr-1">${qi + 1}.</span> ${filled}</div>
+                  <div class="flex flex-wrap gap-2">
+                    ${q.o.map((o, oi) => {
+                      let cls = 'bg-white/[0.05] border-white/[0.1] text-[#ede2d7]';
+                      if (done && oi === q.c) cls = 'bg-emerald-500/15 border-emerald-500/40 text-emerald-200';
+                      else if (done && oi === sel) cls = 'bg-rose-500/15 border-rose-500/40 text-rose-200 line-through';
+                      else if (done) cls = 'bg-white/[0.02] border-white/[0.05] text-slate-500';
+                      return `<button type="button" ${done ? 'disabled' : ''} onclick="answerGrammarMix(${qi}, ${oi})" class="px-3 py-2 min-h-[40px] rounded-lg border text-sm text-left ${cls}">${gEsc(o)}</button>`;
+                    }).join('')}
+                  </div>
+                  ${done ? `
+                    <div class="text-[13px] leading-relaxed ${sel === q.c ? 'text-emerald-300' : 'text-rose-300'}">${sel === q.c ? '✓ Doğru.' : '✗ Doğrusu: ' + gEsc(q.o[q.c]) + '.'} <span class="text-[#d6c7b2]">${gEsc(q.n)}</span></div>
+                    <div>${grammarLinkChip(q.t.id, q.lvl)}</div>` : ''}
+                </div>`;
+            }).join('')}
+          </div>
+          ${answered === qs.length && qs.length ? `
+            <div class="rounded-xl p-3.5 border ${correct === qs.length ? 'border-emerald-500/30 bg-emerald-500/10' : 'border-amber-500/30 bg-amber-500/10'} space-y-2.5">
+              <div class="text-sm text-white"><b>${correct}/${qs.length}</b> doğru.</div>
+              ${wrongTopics.length ? `<div class="text-xs text-[#d6c7b2]">Göz atmaya değer konular:</div><div class="flex flex-wrap gap-1.5">${wrongTopics.map(id => grammarLinkChip(id, findGrammarTopic(id).lvl)).join('')}</div>` : ''}
+              <button type="button" onclick="buildGrammarMixQuestions(); renderGrammarMix(); window.scrollTo({ top: document.getElementById('grammarMixView').getBoundingClientRect().top + window.scrollY - 70 })" class="px-4 py-2.5 rounded-xl btn-primary-glow text-sm font-semibold">Yeni karışık set</button>
+            </div>` : ''}
+        </div>`;
+      if (y != null) window.scrollTo(0, y);
+    }
+
+    // ==================== DERSTE ÜRETİM: TÜRKÇEDEN ÇEVİR + KENDİ CÜMLEN ====================
+    let grammarProduceState = {};   // { [i]: { val, sonuc } }
+    let grammarOwnState = { val: '', sonuc: null };
+
+    function renderGrammarProduce() {
+      const box = document.getElementById('gProduceBox');
+      const t = grammarOpenLessonId;
+      if (!box || !t) return;
+      const p = (typeof GRAMMAR_PRODUCE !== 'undefined') ? GRAMMAR_PRODUCE[t] : null;
+      if (!p) { box.innerHTML = ''; return; }
+      box.innerHTML = `
+        <div class="space-y-2.5">
+          <div class="text-sm font-semibold text-white">A) Türkçeden çevir</div>
+          <div class="text-xs text-[#a8998c]">Cümleyi İngilizceye çevir, Kontrol'e bas. Birebir eşleşmezse en yakın örnek cevap ve farklar gösterilir; farklı ama doğru bir çeviri de olabilir.</div>
+          ${p.ceviri.map((c, i) => {
+            const st = grammarProduceState[i] || {};
+            const r = st.sonuc;
+            return `
+              <div class="rounded-xl border border-white/[0.07] bg-black/30 p-3 space-y-2">
+                <div class="text-[15px] text-white"><span class="font-mono text-xs text-[#a8998c] mr-1">${i + 1}.</span>${gEsc(c.tr)}</div>
+                <div class="flex gap-2">
+                  <input id="gTrIn-${i}" type="text" autocomplete="off" autocapitalize="sentences" spellcheck="false" value="${escapeHtmlAttr(st.val || '')}" onkeydown="if(event.key==='Enter'){event.preventDefault();checkGrammarTranslation(${i});}" placeholder="İngilizcesini yaz…" class="flex-1 min-w-0 rounded-lg bg-black/50 border border-white/10 focus:border-rose-500/50 px-3 py-2 text-[15px] text-white outline-none">
+                  <button type="button" onclick="checkGrammarTranslation(${i})" class="shrink-0 px-3 py-2 rounded-lg bg-rose-900/70 border border-rose-500/40 text-sm text-white">Kontrol</button>
+                </div>
+                ${r ? grammarProduceResultHtml(r, c) : `<button type="button" onclick="revealGrammarTranslation(${i})" class="text-xs text-[#a8998c] underline decoration-dotted">Cevabı göster</button>`}
+              </div>`;
+          }).join('')}
+        </div>
+        <div class="space-y-2.5 pt-2">
+          <div class="text-sm font-semibold text-white">B) Kendi cümleni yaz</div>
+          <div class="text-xs text-[#a8998c]">Bu konudaki yapıyı kullanarak kendi hayatından bir cümle yaz. Otomatik kontrol yapının cümlede olup olmadığına ve yaygın hatalara bakar; her hatayı yakalamaz.</div>
+          <textarea id="gOwnIn" rows="2" autocapitalize="sentences" spellcheck="false" placeholder="Örn. ${escapeHtmlAttr(((findGrammarTopic(t) || {}).topic || {}).examples ? findGrammarTopic(t).topic.examples[0].en : '')}" class="w-full rounded-lg bg-black/50 border border-white/10 focus:border-rose-500/50 px-3 py-2 text-[15px] text-white outline-none leading-relaxed">${gEsc(grammarOwnState.val || '')}</textarea>
+          <div class="flex gap-2">
+            <button type="button" onclick="checkGrammarOwn()" class="px-4 py-2 rounded-lg bg-rose-900/70 border border-rose-500/40 text-sm text-white">Kontrol et</button>
+            <button type="button" onclick="speakText(document.getElementById('gOwnIn').value)" class="px-3 py-2 rounded-lg bg-white/[0.06] border border-white/10 text-sm text-white">🔊 Dinle</button>
+          </div>
+          ${grammarOwnState.sonuc ? grammarOwnResultHtml(grammarOwnState.sonuc) : ''}
+        </div>`;
+    }
+
+    function grammarDiffHtml(ops) {
+      return ops.map(o => {
+        if (o.t === '=') return `<span>${gEsc(o.w)}</span>`;
+        if (o.t === '+') return `<span class="px-1 rounded bg-emerald-500/20 text-emerald-200" title="eksik">${gEsc(o.w)}</span>`;
+        if (o.t === '~') return `<span class="px-1 rounded bg-amber-500/20 text-amber-200" title="senin: ${escapeHtmlAttr(o.u)}">${gEsc(o.w)}</span>`;
+        return `<span class="px-1 rounded bg-rose-500/20 text-rose-300 line-through" title="fazla">${gEsc(o.u)}</span>`;
+      }).join(' ');
+    }
+
+    function grammarProduceResultHtml(r, c) {
+      if (r.goster) {
+        return `<div class="text-sm text-[#d6c7b2]">Örnek cevap: <span class="text-white">${gEsc(c.en[0])}</span> <button type="button" onclick="speakText(this.dataset.s)" data-s="${escapeHtmlAttr(c.en[0])}" class="ml-1">🔊</button>${c.en.length > 1 ? `<div class="text-xs text-[#a8998c] mt-1">Diğer kabul edilenler: ${c.en.slice(1, 4).map(gEsc).join(' · ')}</div>` : ''}</div>`;
+      }
+      const errs = r.hatalar || [];
+      return `
+        <div class="space-y-1.5 text-sm">
+          ${r.tam
+            ? `<div class="text-emerald-300">✓ Doğru: <span class="text-white">${gEsc(r.en_yakin)}</span></div>`
+            : `<div class="text-amber-300">Tam eşleşmedi. En yakın örnek cevap: <span class="text-white">${gEsc(r.en_yakin)}</span></div>
+               <div class="text-[11px] text-[#a8998c]">Senin cevabına göre farklar:</div>
+               <div class="p-2 rounded-lg bg-black/40 border border-white/[0.06] leading-relaxed">${grammarDiffHtml(r.fark)}</div>
+               <div class="text-[11px] text-[#a8998c]"><span class="px-1 rounded bg-emerald-500/20 text-emerald-200">yeşil</span> eksik, <span class="px-1 rounded bg-amber-500/20 text-amber-200">sarı</span> farklı, <span class="px-1 rounded bg-rose-500/20 text-rose-300 line-through">kırmızı</span> fazla kelime. Anlam aynıysa senin çevirin de doğru olabilir.</div>`}
+          ${errs.length ? `<div class="space-y-1">${errs.map(e => `<div class="text-rose-300">⚠ <span class="font-medium">“${gEsc(e.parca)}”</span> — ${gEsc(e.mesaj)}</div>`).join('')}</div>` : ''}
+          <button type="button" onclick="speakText(this.dataset.s)" data-s="${escapeHtmlAttr(r.en_yakin)}" class="text-xs text-sky-300">🔊 Örnek cevabı dinle</button>
+        </div>`;
+    }
+
+    function checkGrammarTranslation(i) {
+      const p = GRAMMAR_PRODUCE[grammarOpenLessonId];
+      const inp = document.getElementById('gTrIn-' + i);
+      if (!p || !inp) return;
+      const val = inp.value.trim();
+      if (!val) { inp.focus(); return; }
+      const c = p.ceviri[i];
+      const cmp = grammarCompareTranslation(val, c.en);
+      cmp.hatalar = grammarFindErrors(val);
+      grammarProduceState[i] = { val, sonuc: cmp };
+      if (typeof triggerHaptic === 'function') triggerHaptic(cmp.tam && !cmp.hatalar.length ? 'success' : 'tap');
+      const y = window.scrollY;
+      renderGrammarProduce();
+      window.scrollTo(0, y);
+    }
+
+    function revealGrammarTranslation(i) {
+      const inp = document.getElementById('gTrIn-' + i);
+      grammarProduceState[i] = { val: inp ? inp.value : '', sonuc: { goster: true } };
+      const y = window.scrollY;
+      renderGrammarProduce();
+      window.scrollTo(0, y);
+    }
+
+    function grammarOwnResultHtml(r) {
+      return `
+        <div class="rounded-xl border ${r.hedef.var && !r.hatalar.length ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-amber-500/30 bg-amber-500/5'} p-3 space-y-1.5 text-sm">
+          ${r.hedef.var
+            ? `<div class="text-emerald-300">✓ Hedef yapı bulundu${r.hedef.bulunan ? `: <span class="text-white font-medium">“${gEsc(r.hedef.bulunan)}”</span>` : ''}</div>`
+            : `<div class="text-amber-300">⚠ Bu konunun yapısı cümlede doğru biçimde bulunamadı. Aranan: <span class="text-white">${gEsc(r.hedef.ad)}</span></div>`}
+          ${r.hatalar.length
+            ? r.hatalar.map(e => `<div class="text-rose-300">⚠ <span class="font-medium">“${gEsc(e.parca)}”</span> — ${gEsc(e.mesaj)} ${e.konu && e.konu !== grammarOpenLessonId ? grammarLinkChip(e.konu, 'Kural') : ''}</div>`).join('')
+            : `<div class="text-[#d6c7b2]">Yaygın hatalardan biri bulunmadı. (Otomatik kontrol anlamı ve her hatayı denetleyemez.)</div>`}
+        </div>`;
+    }
+
+    function checkGrammarOwn() {
+      const inp = document.getElementById('gOwnIn');
+      if (!inp) return;
+      const val = inp.value.trim();
+      if (!val) { inp.focus(); return; }
+      grammarOwnState = { val, sonuc: { hedef: grammarFindTarget(grammarOpenLessonId, val), hatalar: grammarFindErrors(val) } };
+      const y = window.scrollY;
+      renderGrammarProduce();
+      window.scrollTo(0, y);
+    }
+
+    // ==================== OKUMA LABI: GRAMER GÖZLÜĞÜ ====================
+    let readingGrammarLens = false;
+    const GRAMMAR_LENS_COLORS = {
+      sky: 'bg-sky-500/15 border-b-2 border-sky-400/70 text-sky-100',
+      amber: 'bg-amber-500/15 border-b-2 border-amber-400/70 text-amber-100',
+      purple: 'bg-purple-500/15 border-b-2 border-purple-400/70 text-purple-100',
+      emerald: 'bg-emerald-500/15 border-b-2 border-emerald-400/70 text-emerald-100',
+      rose: 'bg-rose-500/15 border-b-2 border-rose-400/70 text-rose-100',
+      cyan: 'bg-cyan-500/15 border-b-2 border-cyan-400/70 text-cyan-100'
+    };
+    const GRAMMAR_LENS_DOT = { sky: 'bg-sky-400', amber: 'bg-amber-400', purple: 'bg-purple-400', emerald: 'bg-emerald-400', rose: 'bg-rose-400', cyan: 'bg-cyan-400' };
+
+    function toggleReadingGrammarLens() {
+      readingGrammarLens = !readingGrammarLens;
+      renderReadingGrammarLens();
+    }
+
+    function renderReadingGrammarLens() {
+      const btn = document.getElementById('btnGrammarLens');
+      const words = document.getElementById('readingRenderedContainer');
+      const lens = document.getElementById('readingGrammarLensBox');
+      if (btn) btn.className = readingGrammarLens
+        ? 'px-3 py-1.5 rounded-xl text-xs flex items-center gap-1.5 transition bg-sky-500/20 border border-sky-500/40 text-sky-100'
+        : 'px-3 py-1.5 rounded-xl btn-glass-subtle text-xs flex items-center gap-1.5 transition text-slate-300 hover:text-white';
+      if (!words || !lens) return;
+      words.classList.toggle('hidden', readingGrammarLens);
+      lens.classList.toggle('hidden', !readingGrammarLens);
+      if (!readingGrammarLens) return;
+      const text = currentReadingRawText || '';
+      const spans = grammarDetectSpans(text);
+      const legend = {};
+      let html = '', pos = 0;
+      spans.forEach((sp, i) => {
+        html += gEsc(text.slice(pos, sp.s));
+        const ph = text.slice(sp.s, sp.e);
+        html += `<span role="button" tabindex="0" onclick="openGrammarPeek('${sp.konu}', this.dataset.p)" data-p="${escapeHtmlAttr(ph)}" title="${escapeHtmlAttr(sp.ad)}" class="cursor-pointer rounded-sm px-0.5 ${GRAMMAR_LENS_COLORS[sp.renk] || GRAMMAR_LENS_COLORS.sky}">${gEsc(ph)}</span>`;
+        pos = sp.e;
+        const k = sp.ad;
+        legend[k] = legend[k] || { n: 0, renk: sp.renk, konu: sp.konu };
+        legend[k].n++;
+      });
+      html += gEsc(text.slice(pos));
+      const paras = html.split(/\n\s*\n/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+      const items = Object.entries(legend).sort((a, b) => b[1].n - a[1].n);
+      lens.innerHTML = `
+        <div class="p-3 rounded-xl bg-black/40 border border-sky-500/20 space-y-2 font-sans">
+          <div class="text-xs text-sky-200">🔍 Gramer gözlüğü: metindeki yapılar renklendirildi. Bir ifadeye dokununca kuralı açılır. <span class="text-[#a8998c]">Tespit otomatiktir; ara sıra kaçırabilir ya da yanlış işaretleyebilir.</span></div>
+          ${items.length ? `<div class="flex flex-wrap gap-1.5">${items.map(([ad, v]) => `<button type="button" onclick="openGrammarPeek('${v.konu}')" class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] text-[12px] text-[#ede2d7]"><span class="w-2 h-2 rounded-full ${GRAMMAR_LENS_DOT[v.renk] || 'bg-sky-400'}"></span>${gEsc(ad)} <span class="text-[#a8998c] font-mono">${v.n}</span></button>`).join('')}</div>` : '<div class="text-xs text-[#a8998c]">Bu metinde işaretlenecek B1 üstü yapı bulunamadı. Daha ileri seviye bir metin seçmeyi dene.</div>'}
+        </div>
+        <div class="font-serif text-[16px] sm:text-[17px] text-[#ede2d7] leading-[2.1] tracking-wide space-y-4 pt-3">${paras}</div>`;
+    }
+
+    // ==================== DİNLE-AYIRT (kulakta karışan yapılar) ====================
+    let listenOrder = [];
+    let listenIdx = 0;
+    let listenTarget = null;     // 'a' | 'b'
+    let listenPicked = null;
+    let listenScore = { d: 0, t: 0 };
+
+    function startGrammarListen() {
+      const sh = (typeof shuffleArray === 'function') ? shuffleArray : (a => a.slice().sort(() => Math.random() - 0.5));
+      listenOrder = sh((typeof GRAMMAR_LISTEN !== 'undefined' ? GRAMMAR_LISTEN : []).map((_, i) => i));
+      listenIdx = 0;
+      listenScore = { d: 0, t: 0 };
+      nextGrammarListen(true);
+    }
+
+    function nextGrammarListen(first) {
+      if (!first) listenIdx = (listenIdx + 1) % Math.max(1, listenOrder.length);
+      listenTarget = Math.random() < 0.5 ? 'a' : 'b';
+      listenPicked = null;
+      renderGrammarListen();
+      setTimeout(() => playGrammarListen(), 250);
+    }
+
+    function currentListenItem() { return GRAMMAR_LISTEN[listenOrder[listenIdx]]; }
+
+    function playGrammarListen(slow) {
+      const it = currentListenItem();
+      if (!it) return;
+      speakText(it[listenTarget], slow ? 0.62 : 0.9);
+    }
+
+    function pickGrammarListen(side) {
+      if (listenPicked) return;
+      listenPicked = side;
+      listenScore.t++;
+      if (side === listenTarget) listenScore.d++;
+      if (typeof triggerHaptic === 'function') triggerHaptic(side === listenTarget ? 'success' : 'error');
+      renderGrammarListen();
+    }
+
+    function renderGrammarListen() {
+      const box = document.getElementById('grammarListenBox');
+      const it = currentListenItem();
+      if (!box || !it) return;
+      const done = !!listenPicked;
+      const opt = side => {
+        let cls = 'bg-white/[0.04] border-white/[0.1] text-white';
+        if (done && side === listenTarget) cls = 'bg-emerald-500/15 border-emerald-500/40 text-emerald-100';
+        else if (done && side === listenPicked) cls = 'bg-rose-500/15 border-rose-500/40 text-rose-200';
+        else if (done) cls = 'bg-white/[0.02] border-white/[0.05] text-slate-400';
+        return `<button type="button" ${done ? '' : `onclick="pickGrammarListen('${side}')"`} class="w-full text-left p-4 rounded-xl border text-base sm:text-lg ${cls}">
+          <span class="font-mono text-xs text-[#a8998c] mr-2">${side.toUpperCase()}</span>${gEsc(it[side])}
+          ${done ? `<span onclick="event.stopPropagation(); speakText(this.dataset.s, 0.85)" data-s="${escapeHtmlAttr(it[side])}" class="float-right text-sm">🔊</span>` : ''}
+        </button>`;
+      };
+      box.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between text-xs font-mono text-[#a8998c]">
+            <span>${listenIdx + 1} / ${listenOrder.length}</span>
+            <span>Bu turda: ${listenScore.d}/${listenScore.t}</span>
+          </div>
+          <div class="text-center space-y-3">
+            <div class="text-sm text-[#d6c7b2]">Cümleyi dinle; hangisini duydun?</div>
+            <div class="flex items-center justify-center gap-2">
+              <button type="button" onclick="playGrammarListen()" class="px-5 py-3 rounded-xl btn-primary-glow text-base font-semibold">🔊 Dinle</button>
+              <button type="button" onclick="playGrammarListen(true)" class="px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-sm text-white">🐢 Yavaş</button>
+            </div>
+          </div>
+          <div class="space-y-2">${opt('a')}${opt('b')}</div>
+          ${done ? `
+            <div class="rounded-xl p-3.5 border ${listenPicked === listenTarget ? 'border-emerald-500/30 bg-emerald-500/10' : 'border-rose-500/30 bg-rose-500/10'} space-y-2">
+              <div class="text-sm ${listenPicked === listenTarget ? 'text-emerald-300' : 'text-rose-300'}">${listenPicked === listenTarget ? '✓ Doğru duydun.' : '✗ Duyulan: ' + gEsc(it[listenTarget])}</div>
+              <div class="text-sm text-[#ede2d7] leading-relaxed">${gEsc(it.not)}</div>
+              <div>${grammarLinkChip(it.konu)}</div>
+            </div>
+            <button type="button" onclick="nextGrammarListen()" class="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-sm text-white font-medium">Sonraki →</button>` : ''}
+          <div class="text-[11px] text-[#a8998c] leading-relaxed">Ses, cihazının yerleşik İngilizce sesiyle okunur. Kısaltmalar ('ve / 'd / 'll) hızlı konuşmada gerçekten zor duyulur; önce normal, sonra yavaş dinle.</div>
+        </div>`;
+    }
+
+    // ==================== KELİME KARTI: KALIP + CÜMLE MODU ====================
+    var STORAGE_FC_CLOZE_KEY = 'voxlearn_fc_cloze_mode_v1';
+    var isFcClozeMode = false;
+    try { isFcClozeMode = localStorage.getItem(STORAGE_FC_CLOZE_KEY) === '1'; } catch (e) {}
+
+    function wordPatternFor(card) {
+      if (!card || typeof WORD_PATTERNS === 'undefined') return '';
+      const w = String(card.w || '').toLowerCase().trim();
+      return WORD_PATTERNS[w] || '';
+    }
+
+    function toggleFcClozeMode() {
+      isFcClozeMode = !isFcClozeMode;
+      try { localStorage.setItem(STORAGE_FC_CLOZE_KEY, isFcClozeMode ? '1' : '0'); } catch (e) {}
+      updateFcClozeModeUI();
+      renderFlashcard();
+    }
+
+    function updateFcClozeModeUI() {
+      const btn = document.getElementById('btnClozeMode');
+      const lbl = document.getElementById('clozeModeLabel');
+      if (btn) btn.className = isFcClozeMode
+        ? 'py-1.5 px-2.5 rounded-lg font-mono text-[11px] transition bg-emerald-500/20 border border-emerald-500/40 text-emerald-200 flex items-center justify-center gap-1.5 shrink-0 shadow-sm active:scale-95 cursor-pointer'
+        : 'py-1.5 px-2.5 rounded-lg font-mono text-[11px] transition bg-white/[0.04] hover:bg-white/[0.08] text-[#d6c7b2] border border-white/5 flex items-center justify-center gap-1.5 shrink-0 active:scale-95 cursor-pointer';
+      if (lbl) lbl.innerText = isFcClozeMode ? 'Cümle: Açık' : 'Cümle';
+    }
+
+    // renderFlashcard sonrası çağrılır: Cümle modu ön yüzü + arka yüz kalıp satırı
+    function applyFcLearningExtras(card) {
+      const patEl = document.getElementById('fcPattern');
+      const pat = wordPatternFor(card);
+      if (patEl) {
+        patEl.innerHTML = pat ? `<span class="text-[10px] font-mono uppercase tracking-widest text-emerald-300/80 mr-1.5">Kalıp</span><span class="text-[#ede2d7]">${gEsc(pat)}</span>` : '';
+        patEl.classList.toggle('hidden', !pat);
+      }
+      if (!isFcClozeMode || isFcSpellMode || !card) return;
+      const sent = card.cloze_sent && card.cloze_sent.includes('___') ? card.cloze_sent : null;
+      if (!sent) return;
+      const wordEl = document.getElementById('fcWord');
+      const ipaEl = document.getElementById('fcIpa');
+      const posEl = document.getElementById('fcPos');
+      const hint = document.getElementById('fcBottomHint');
+      if (wordEl) {
+        wordEl.innerHTML = gEsc(sent).replace('___', '<span class="inline-block min-w-[4.5rem] border-b-2 border-emerald-400/70 mx-1">&nbsp;</span>');
+        wordEl.className = 'fc-word-heading text-2xl sm:text-3xl font-medium text-[#fdf6ee] leading-snug tracking-tight select-text';
+      }
+      if (ipaEl) {
+        ipaEl.innerText = isReverseMode ? `İpucu: ${card.tr}` : `${(card.pos || '')}${card.lvl ? ' · ' + card.lvl : ''}`;
+        ipaEl.className = 'text-emerald-300/80 font-sans text-sm font-normal';
+      }
+      if (posEl) posEl.innerText = 'Boşluğa hangi kelime gelir?';
+      if (hint) hint.innerHTML = '<span>Cevabı görmek için çevir</span>';
+      const trEl = document.getElementById('fcTr');
+      if (trEl && !isReverseMode) {
+        trEl.innerHTML = `<span class="text-[#fdf6ee] fc-word-heading font-bold text-3xl sm:text-4xl">${gEsc(card.cloze_word || card.w)}</span><span class="block text-[#d6c7b2] text-lg font-medium mt-1">${gEsc(card.tr)}</span>`;
+      }
+    }
+
+    // Açılışta kayıtlı Cümle modunu uygula (kart ilk kez bu satırdan önce çizildiği için yeniden çiz)
+    try {
+      updateFcClozeModeUI();
+      if (isFcClozeMode && typeof renderFlashcard === 'function' && typeof currentBatchWords !== 'undefined' && currentBatchWords.length) renderFlashcard();
+    } catch (e) {}
 
     // ---------- 5. SÖZLÜK & KARTLARDAN GRAMERE KÖPRÜ (JUMP TO TOPIC) ----------
     function jumpToGrammarTopic(topicId, lvl) {
@@ -21897,7 +22639,10 @@
       }
 
       if (trBox) trBox.innerText = `"${q.tr}"`;
-      if (ruleTip) ruleTip.innerHTML = q.ruleTip;
+      if (ruleTip) {
+        const vfTopic = (typeof GRAMMAR_EXERCISE_LINKS !== 'undefined') ? GRAMMAR_EXERCISE_LINKS.vf[q.id] : null;
+        ruleTip.innerHTML = q.ruleTip + (vfTopic ? `<div class="pt-2">${grammarLinkChip(vfTopic)}</div>` : '');
+      }
 
       const streakEl = document.getElementById('vfStreakCount');
       if (streakEl) streakEl.innerText = vfStreak;

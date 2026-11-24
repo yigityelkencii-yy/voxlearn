@@ -8,6 +8,8 @@ Statik bir PWA. GitHub Pages `main` dalından yayınlar; derleme adımı yoktur,
 - `data/extras.js` – `COMPREHENSIVE_DICT`, `READING_VOCAB_EXTENSIONS`, `IDIOMS_DATA`.
 - `data/enrich.js` – `WORD_ENRICH`: anlam anlam açıklamalar, örnek çevirileri ve kullanım notları; yüklenince `allWords` içindeki aynı kelimelerin üzerine yazılır. Alan açıklaması dosyanın başında.
 - `data/grammar.js` – Gramer öğrenme alanı: `GRAMMAR_PLUS` (mevcut konulara özet, ipucu kelimeler, Türkçe farkı, incelikler, ek hatalar, mini test, ilgili konular) ve `GRAMMAR_NEW` (yeni konular). `index.html` yüklenirken `grammarTopicsData`'ya ekler; alan açıklaması dosyanın başında. Konu bitirme / ilerleme takibi yoktur (kullanıcı isteği: başvuru ve tekrar alanı); yalnız son açılan konu `voxlearn_grammar_last_v1` anahtarında tutulur.
+- `data/grammar-practice.js` – Gramer pratik verisi: `GRAMMAR_PRODUCE` (konu başına hedef yapı düzenli ifadesi + Türkçeden çeviri alıştırması), `GRAMMAR_ERROR_RULES` (genel hata kuralları), `GRAMMAR_LISTEN` (Dinle-Ayırt çiftleri), `GRAMMAR_EXERCISE_LINKS` (Fiil Çekimi / Hata Avcısı sorularının konu eşlemesi), `GRAMMAR_DETECT` (Okuma Labı gramer gözlüğü). Düzenli ifadelerde `{V3}`, `{V2}`, `{VING}`, `{V2only}`, `{V3only}` yer tutucuları `irregularVerbsData`'dan çalışma anında doldurulur. Kural ekleyince doğruluk testi: kabul edilen her çeviri hedef yapıyı bulmalı ve hiçbir hata kuralına takılmamalı; `allWords` örnek cümlelerinde hata kuralı tetiklenmemeli.
+- `data/patterns.js` – `WORD_PATTERNS`: kelime kartının arkasındaki "Kalıp" satırı (to V1 / V-ing / edat).
 - `tw.css` – önceden derlenmiş Tailwind CSS (CDN çalışma zamanı kaldırıldı).
 - `sw.js` – service worker (network-first). Dosya eklersen `ASSETS_TO_CACHE`'e ekle, her yayında `CACHE_NAME` sürümünü artır.
 
