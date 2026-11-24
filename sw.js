@@ -1,5 +1,5 @@
 // VoxLearn Service Worker - Network-First Cache Strategy & PWA Support
-const CACHE_NAME = 'voxlearn-cache-v50';
+const CACHE_NAME = 'voxlearn-cache-v51';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,7 +7,8 @@ const ASSETS_TO_CACHE = [
   './tw.css',
   './data/words.js',
   './data/extras.js',
-  './data/enrich.js'
+  './data/enrich.js',
+  './data/grammar.js'
 ];
 
 self.addEventListener('install', (event) => {
