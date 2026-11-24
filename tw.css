@@ -4460,10 +4460,6 @@ video {
   border-color: rgb(251 191 36 / 0.4);
 }
 
-.hover\:border-amber-500\/30:hover {
-  border-color: rgb(245 158 11 / 0.3);
-}
-
 .hover\:border-amber-500\/40:hover {
   border-color: rgb(245 158 11 / 0.4);
 }

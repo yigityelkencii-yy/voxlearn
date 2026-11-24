@@ -2867,14 +2867,10 @@
       <!-- Gramer Üst Başlık & Mod Seçimi (Konular / Düzensiz Fiiller) -->
       <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pb-3 border-b border-rose-950/40">
         <div>
-          <div class="text-[11px] font-mono tracking-widest text-[#d6c7b2]/60 uppercase">Dilbilgisi & Yapılar</div>
           <h2 class="font-serif-hero text-2xl sm:text-3xl font-medium text-[#fdf6ee] flex items-center gap-2.5">
-            <span>Gramer Rehberi</span>
-            <span id="grammarLevelBadge" class="text-xs px-2.5 py-0.5 rounded-full bg-rose-950/80 border border-rose-500/40 text-rose-300 font-sans font-medium">A1</span>
+            <span>Gramer</span>
           </h2>
-          <p class="text-[#a8998c] text-xs sm:text-sm mt-1">
-            CEFR standartlarında kurallara göre derlenmiş temel dilbilgisi kalıpları ve açıklamalar.
-          </p>
+          
         </div>
 
         <!-- Alt Sekme Seçici: Konular, Karşılaştırma, Hata Avcısı, Cümle Kurma, Zaman Çizelgesi, Preposition Avcısı, Düzensiz Fiiller -->
@@ -2902,12 +2898,6 @@
           </button>
           <button onclick="setGrammarSubTab('irregulars')" id="gSubTab-irregulars" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0">
             Düzensiz Fiiller
-          </button>
-          <button onclick="selectMode('phrasal')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0 flex items-center gap-1.5 border border-white/5 hover:border-rose-500/30 font-medium">
-            <span>🎯</span> Phrasal & Edatlar ↗
-          </button>
-          <button onclick="selectMode('idioms')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition shrink-0 flex items-center gap-1.5 border border-white/5 hover:border-amber-500/30 font-medium">
-            <span>🎭</span> 100+ Deyimler ↗
           </button>
         </div>
       </div>
@@ -3078,10 +3068,6 @@
 
       <!-- BÖLÜM: DİNLE-AYIRT (kulakta karışan yapılar) -->
       <div id="grammarListenSection" class="hidden space-y-4">
-        <div class="rounded-2xl border border-white/[0.07] bg-black/30 p-3.5 sm:p-4">
-          <div class="text-sm sm:text-base font-semibold text-[#fbf4eb]">🎧 Dinle-Ayırt</div>
-          <div class="text-[13px] sm:text-sm text-[#d6c7b2] leading-relaxed mt-0.5">I've / I'd, used to / be used to, stopped to / stopped -ing gibi kulakta karışan yapı çiftleri. Cümleyi dinle, hangisi olduğunu seç; açıklama ve ilgili kural hemen açılır.</div>
-        </div>
         <div id="grammarListenBox" class="rounded-2xl border border-white/[0.07] bg-[#120407]/70 p-4 sm:p-5"></div>
       </div>
 
@@ -20207,15 +20193,6 @@
 
       head.innerHTML = `
         <div class="rounded-2xl border border-white/[0.07] bg-black/30 p-3.5 sm:p-4 space-y-3">
-          <div class="flex items-start gap-3">
-            <div class="text-2xl leading-none mt-0.5">📘</div>
-            <div class="min-w-0">
-              <div class="text-sm sm:text-base font-semibold text-[#fbf4eb]">Başvuru ve tekrar alanı</div>
-              <div class="text-[13px] sm:text-sm text-[#d6c7b2] leading-relaxed mt-0.5">
-                Konular burada hep açık durur; unuttuğun an dönüp bak. Bir konuya girince <b class="text-white">özet</b> ve <b class="text-white">kuralı</b> oku, örnekleri sesli dinle (Türkçeyi gizleyip kendini dene), <b class="text-white">sık hatalara</b> göz at, istersen <b class="text-white">mini testi</b> çöz.
-              </div>
-            </div>
-          </div>
           <div class="grid grid-cols-5 gap-1.5">
             ${lvlStats.map(s => `
               <button type="button" onclick="setGrammarLevel('${s.l}')" class="text-center rounded-xl px-2 py-2 border ${s.l === grammarActiveLevel ? 'border-rose-500/40 bg-rose-950/40' : 'border-white/[0.06] bg-white/[0.02]'}">
@@ -20228,10 +20205,7 @@
               <span class="min-w-0"><span class="block text-[11px] font-mono uppercase tracking-wider text-rose-300/80">Son baktığın · ${lastInfo.lvl}</span><span class="block text-sm text-white font-medium truncate">${gEsc(lastInfo.topic.title)}</span></span>
               <span class="text-rose-300 shrink-0 text-sm">Aç →</span>
             </button>` : ''}
-          <div class="grid grid-cols-2 gap-2">
-            <button type="button" onclick="openGrammarMix()" class="flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 bg-amber-500/10 border border-amber-500/30 text-amber-100 text-sm font-medium">🔀 Karışık tekrar</button>
-            <button type="button" onclick="setGrammarSubTab('listen')" class="flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 bg-sky-500/10 border border-sky-500/30 text-sky-100 text-sm font-medium">🎧 Dinle-Ayırt</button>
-          </div>
+          <button type="button" onclick="openGrammarMix()" class="w-full flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 bg-amber-500/10 border border-amber-500/30 text-amber-100 text-sm font-medium">🔀 Karışık tekrar</button>
           <div class="relative">
             <input id="grammarSearchInput" type="search" value="${escapeHtmlAttr(grammarSearchQuery)}" oninput="setGrammarSearch(this.value)" placeholder="Konu ara: since, passive, koşul, -mişti…" class="w-full rounded-xl bg-black/40 border border-white/[0.08] px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500/50">
           </div>
@@ -20279,7 +20253,6 @@
               </span>
               <span class="block text-[13px] text-[#a8998c] leading-relaxed mt-1 line-clamp-2">${gEsc(t.ozet || t.desc)}</span>
               <span class="flex flex-wrap items-center gap-1.5 mt-2">
-                ${nQ ? `<span class="text-[11px] text-slate-500">${nQ} soruluk test</span>` : ''}
               </span>
             </span>
             <span class="text-slate-500 text-lg leading-none shrink-0 mt-1">›</span>
@@ -20460,12 +20433,8 @@
 
           <!-- Başlık + özet -->
           <div id="g-ozet" class="rounded-2xl border border-rose-500/25 bg-gradient-to-b from-rose-950/50 to-transparent p-4 sm:p-5 space-y-2 scroll-mt-28">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class="text-[11px] font-mono text-rose-300 px-2 py-0.5 rounded bg-rose-950/70 border border-rose-500/30">${lvl}</span>
-            </div>
-            <h2 class="font-serif-hero text-2xl sm:text-3xl text-[#fdf6ee] leading-tight">${gEsc(t.title)}</h2>
             ${t.ozet ? `<p class="text-base sm:text-lg text-white leading-relaxed"><span class="text-rose-300 font-semibold">Ana fikir:</span> ${gEsc(t.ozet)}</p>` : ''}
-            <p class="text-[#d6c7b2]">${gEsc(t.desc)}</p>
+            ${t.ozet ? '' : `<p class="text-[#d6c7b2]">${gEsc(t.desc)}</p>`}
           </div>
 
           <!-- 1. Ne zaman -->
@@ -20474,7 +20443,6 @@
             <div class="text-[#ede2d7]">${gEsc(t.usage).replace(/\n/g, '<br>')}</div>
             ${(t.sinyal || []).length ? `
               <div class="pt-1">
-                <div class="text-xs text-[#a8998c] mb-1.5">İpucu kelimeler — cümlede bunları görürsen bu yapıyı düşün:</div>
                 <div class="flex flex-wrap gap-1.5">${t.sinyal.map(s => `<span class="px-2 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-200 text-[13px]">${gEsc(s)}</span>`).join('')}</div>
               </div>` : ''}
           </div>
@@ -20503,7 +20471,6 @@
               ${H('g-ornek', 4, 'Örnek cümleler', 'text-emerald-300')}
               <button type="button" onclick="toggleGrammarHideTr()" class="shrink-0 px-2.5 py-1.5 rounded-lg border text-xs ${grammarHideTr ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-200' : 'border-white/10 bg-white/[0.05] text-[#d6c7b2]'}">${grammarHideTr ? 'Türkçe gizli' : 'Türkçeyi gizle'}</button>
             </div>
-            ${grammarHideTr ? '<div class="text-xs text-[#a8998c]">Cümleyi önce kendin çevir, sonra Türkçesine dokunarak kontrol et.</div>' : ''}
             <div class="space-y-2">
               ${t.examples.map(ex => `
                 <div class="p-3 rounded-xl bg-black/30 border border-white/[0.05] flex items-start justify-between gap-3">
@@ -20519,7 +20486,7 @@
           <!-- 5. İncelikler -->
           ${(t.incelik || []).length ? `
           <div class="${card}">
-            ${H('g-incelik', 5, 'İncelikler ve istisnalar', 'text-purple-300')}
+            ${H('g-incelik', 5, 'İncelikler', 'text-purple-300')}
             <ul class="space-y-2">${t.incelik.map(x => `<li class="flex gap-2"><span class="text-purple-300 shrink-0">•</span><span>${gEsc(x)}</span></li>`).join('')}</ul>
           </div>` : ''}
 
@@ -20542,14 +20509,13 @@
             <div class="flex items-center justify-between gap-2">
               ${H('g-test', 7, 'Mini test', 'text-amber-300')}
             </div>
-            <div class="text-xs text-[#a8998c]">Boşluğa uyan seçeneğe dokun; cevabın hemen açıklanır.</div>
             <div id="gQuizBox" class="space-y-2.5"></div>
           </div>` : ''}
 
           <!-- 8. Üret: çeviri + kendi cümlen -->
           ${(typeof GRAMMAR_PRODUCE !== 'undefined' && GRAMMAR_PRODUCE[t.id]) ? `
           <div class="${card}">
-            ${H('g-uret', 8, 'Üret: çevir ve kendi cümleni yaz', 'text-emerald-300')}
+            ${H('g-uret', 8, 'Üret', 'text-emerald-300')}
             <div id="gProduceBox" class="space-y-3"></div>
           </div>` : ''}
 
@@ -20879,12 +20845,10 @@
           <div class="flex items-center gap-2">
             <button type="button" onclick="closeGrammarMix()" class="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 min-h-[40px] rounded-xl bg-white/[0.06] border border-white/10 text-sm text-white font-medium">← Konular</button>
             <div class="min-w-0">
-              <div class="text-[11px] font-mono text-[#a8998c]">Farklı konulardan karışık sorular</div>
               <div class="text-base font-semibold text-white">🔀 Karışık tekrar</div>
             </div>
           </div>
           <div class="rounded-2xl border border-white/[0.07] bg-black/30 p-3.5 space-y-2.5">
-            <div class="text-xs text-[#a8998c]">Konular karışık sorulunca "hangi yapı burada?" ayrımı öğrenilir. Sonuç kaydedilmez.</div>
             <div class="flex flex-wrap items-center gap-1.5">
               ${['A1', 'A2', 'B1', 'B2', 'C1'].map(l => `<button type="button" onclick="toggleGrammarMixLevel('${l}')" class="px-3 py-1.5 rounded-lg border text-sm font-mono ${grammarMixLevels.has(l) ? 'border-rose-500/40 bg-rose-900/50 text-white' : 'border-white/[0.08] bg-white/[0.03] text-slate-400'}">${l}</button>`).join('')}
               <span class="mx-1 text-white/20">|</span>
@@ -20939,7 +20903,6 @@
       box.innerHTML = `
         <div class="space-y-2.5">
           <div class="text-sm font-semibold text-white">A) Türkçeden çevir</div>
-          <div class="text-xs text-[#a8998c]">Cümleyi İngilizceye çevir, Kontrol'e bas. Birebir eşleşmezse en yakın örnek cevap ve farklar gösterilir; farklı ama doğru bir çeviri de olabilir.</div>
           ${p.ceviri.map((c, i) => {
             const st = grammarProduceState[i] || {};
             const r = st.sonuc;
@@ -20956,7 +20919,7 @@
         </div>
         <div class="space-y-2.5 pt-2">
           <div class="text-sm font-semibold text-white">B) Kendi cümleni yaz</div>
-          <div class="text-xs text-[#a8998c]">Bu konudaki yapıyı kullanarak kendi hayatından bir cümle yaz. Otomatik kontrol yapının cümlede olup olmadığına ve yaygın hatalara bakar; her hatayı yakalamaz.</div>
+          
           <textarea id="gOwnIn" rows="2" autocapitalize="sentences" spellcheck="false" placeholder="Örn. ${escapeHtmlAttr(((findGrammarTopic(t) || {}).topic || {}).examples ? findGrammarTopic(t).topic.examples[0].en : '')}" class="w-full rounded-lg bg-black/50 border border-white/10 focus:border-rose-500/50 px-3 py-2 text-[15px] text-white outline-none leading-relaxed">${gEsc(grammarOwnState.val || '')}</textarea>
           <div class="flex gap-2">
             <button type="button" onclick="checkGrammarOwn()" class="px-4 py-2 rounded-lg bg-rose-900/70 border border-rose-500/40 text-sm text-white">Kontrol et</button>
@@ -20985,9 +20948,8 @@
           ${r.tam
             ? `<div class="text-emerald-300">✓ Doğru: <span class="text-white">${gEsc(r.en_yakin)}</span></div>`
             : `<div class="text-amber-300">Tam eşleşmedi. En yakın örnek cevap: <span class="text-white">${gEsc(r.en_yakin)}</span></div>
-               <div class="text-[11px] text-[#a8998c]">Senin cevabına göre farklar:</div>
                <div class="p-2 rounded-lg bg-black/40 border border-white/[0.06] leading-relaxed">${grammarDiffHtml(r.fark)}</div>
-               <div class="text-[11px] text-[#a8998c]"><span class="px-1 rounded bg-emerald-500/20 text-emerald-200">yeşil</span> eksik, <span class="px-1 rounded bg-amber-500/20 text-amber-200">sarı</span> farklı, <span class="px-1 rounded bg-rose-500/20 text-rose-300 line-through">kırmızı</span> fazla kelime. Anlam aynıysa senin çevirin de doğru olabilir.</div>`}
+               <div class="text-[11px] text-[#a8998c]">yeşil eksik · sarı farklı · kırmızı fazla</div>`}
           ${errs.length ? `<div class="space-y-1">${errs.map(e => `<div class="text-rose-300">⚠ <span class="font-medium">“${gEsc(e.parca)}”</span> — ${gEsc(e.mesaj)}</div>`).join('')}</div>` : ''}
           <button type="button" onclick="speakText(this.dataset.s)" data-s="${escapeHtmlAttr(r.en_yakin)}" class="text-xs text-sky-300">🔊 Örnek cevabı dinle</button>
         </div>`;
@@ -21025,7 +20987,7 @@
             : `<div class="text-amber-300">⚠ Bu konunun yapısı cümlede doğru biçimde bulunamadı. Aranan: <span class="text-white">${gEsc(r.hedef.ad)}</span></div>`}
           ${r.hatalar.length
             ? r.hatalar.map(e => `<div class="text-rose-300">⚠ <span class="font-medium">“${gEsc(e.parca)}”</span> — ${gEsc(e.mesaj)} ${e.konu && e.konu !== grammarOpenLessonId ? grammarLinkChip(e.konu, 'Kural') : ''}</div>`).join('')
-            : `<div class="text-[#d6c7b2]">Yaygın hatalardan biri bulunmadı. (Otomatik kontrol anlamı ve her hatayı denetleyemez.)</div>`}
+            : `<div class="text-[#d6c7b2]">Yaygın hata bulunmadı (kontrol her hatayı yakalamaz).</div>`}
         </div>`;
     }
 
@@ -21086,7 +21048,7 @@
       const items = Object.entries(legend).sort((a, b) => b[1].n - a[1].n);
       lens.innerHTML = `
         <div class="p-3 rounded-xl bg-black/40 border border-sky-500/20 space-y-2 font-sans">
-          <div class="text-xs text-sky-200">🔍 Gramer gözlüğü: metindeki yapılar renklendirildi. Bir ifadeye dokununca kuralı açılır. <span class="text-[#a8998c]">Tespit otomatiktir; ara sıra kaçırabilir ya da yanlış işaretleyebilir.</span></div>
+          <div class="text-xs text-[#a8998c]">Dokun → kural. Otomatik tespit; nadiren yanılabilir.</div>
           ${items.length ? `<div class="flex flex-wrap gap-1.5">${items.map(([ad, v]) => `<button type="button" onclick="openGrammarPeek('${v.konu}')" class="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] text-[12px] text-[#ede2d7]"><span class="w-2 h-2 rounded-full ${GRAMMAR_LENS_DOT[v.renk] || 'bg-sky-400'}"></span>${gEsc(ad)} <span class="text-[#a8998c] font-mono">${v.n}</span></button>`).join('')}</div>` : '<div class="text-xs text-[#a8998c]">Bu metinde işaretlenecek B1 üstü yapı bulunamadı. Daha ileri seviye bir metin seçmeyi dene.</div>'}
         </div>
         <div class="font-serif text-[16px] sm:text-[17px] text-[#ede2d7] leading-[2.1] tracking-wide space-y-4 pt-3">${paras}</div>`;
@@ -21168,7 +21130,6 @@
               <div>${grammarLinkChip(it.konu)}</div>
             </div>
             <button type="button" onclick="nextGrammarListen()" class="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-sm text-white font-medium">Sonraki →</button>` : ''}
-          <div class="text-[11px] text-[#a8998c] leading-relaxed">Ses, cihazının yerleşik İngilizce sesiyle okunur. Kısaltmalar ('ve / 'd / 'll) hızlı konuşmada gerçekten zor duyulur; önce normal, sonra yavaş dinle.</div>
         </div>`;
     }
 
