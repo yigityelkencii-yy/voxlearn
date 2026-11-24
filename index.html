@@ -20279,7 +20279,6 @@
               </span>
               <span class="block text-[13px] text-[#a8998c] leading-relaxed mt-1 line-clamp-2">${gEsc(t.ozet || t.desc)}</span>
               <span class="flex flex-wrap items-center gap-1.5 mt-2">
-                ${t.isNew ? `<span class="text-[11px] px-2 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-300">Yeni konu</span>` : ''}
                 ${nQ ? `<span class="text-[11px] text-slate-500">${nQ} soruluk test</span>` : ''}
               </span>
             </span>
@@ -20463,7 +20462,6 @@
           <div id="g-ozet" class="rounded-2xl border border-rose-500/25 bg-gradient-to-b from-rose-950/50 to-transparent p-4 sm:p-5 space-y-2 scroll-mt-28">
             <div class="flex flex-wrap items-center gap-2">
               <span class="text-[11px] font-mono text-rose-300 px-2 py-0.5 rounded bg-rose-950/70 border border-rose-500/30">${lvl}</span>
-              ${t.isNew ? '<span class="text-[11px] px-2 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/25 text-sky-300">Yeni konu</span>' : ''}
             </div>
             <h2 class="font-serif-hero text-2xl sm:text-3xl text-[#fdf6ee] leading-tight">${gEsc(t.title)}</h2>
             ${t.ozet ? `<p class="text-base sm:text-lg text-white leading-relaxed"><span class="text-rose-300 font-semibold">Ana fikir:</span> ${gEsc(t.ozet)}</p>` : ''}
