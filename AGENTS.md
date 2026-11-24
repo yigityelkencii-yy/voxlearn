@@ -7,7 +7,7 @@ Statik bir PWA. GitHub Pages `main` dalından yayınlar; derleme adımı yoktur,
 - `data/words.js` – `allWords` (3.750 kelime). `index.html` bunu ana betikten önce yükler.
 - `data/extras.js` – `COMPREHENSIVE_DICT`, `READING_VOCAB_EXTENSIONS`, `IDIOMS_DATA`.
 - `data/enrich.js` – `WORD_ENRICH`: anlam anlam açıklamalar, örnek çevirileri ve kullanım notları; yüklenince `allWords` içindeki aynı kelimelerin üzerine yazılır. Alan açıklaması dosyanın başında.
-- `data/grammar.js` – Gramer öğrenme alanı: `GRAMMAR_PLUS` (mevcut konulara özet, ipucu kelimeler, Türkçe farkı, incelikler, ek hatalar, mini test, ilgili konular) ve `GRAMMAR_NEW` (yeni konular). `index.html` yüklenirken `grammarTopicsData`'ya ekler; alan açıklaması dosyanın başında. İlerleme `voxlearn_grammar_progress_v1` anahtarında.
+- `data/grammar.js` – Gramer öğrenme alanı: `GRAMMAR_PLUS` (mevcut konulara özet, ipucu kelimeler, Türkçe farkı, incelikler, ek hatalar, mini test, ilgili konular) ve `GRAMMAR_NEW` (yeni konular). `index.html` yüklenirken `grammarTopicsData`'ya ekler; alan açıklaması dosyanın başında. Konu bitirme / ilerleme takibi yoktur (kullanıcı isteği: başvuru ve tekrar alanı); yalnız son açılan konu `voxlearn_grammar_last_v1` anahtarında tutulur.
 - `tw.css` – önceden derlenmiş Tailwind CSS (CDN çalışma zamanı kaldırıldı).
 - `sw.js` – service worker (network-first). Dosya eklersen `ASSETS_TO_CACHE`'e ekle, her yayında `CACHE_NAME` sürümünü artır.
 
